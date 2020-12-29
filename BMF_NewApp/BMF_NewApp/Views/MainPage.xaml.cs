@@ -1,0 +1,11 @@
+﻿
+namespace BMF_NewApp.Views
+{
+    public partial class MainPage
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+    }
+}
