@@ -1,9 +1,4 @@
 ﻿using BMF.Shared.Models.Website;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Web;
 
 namespace BMF.Web.Admin.DBMappings.Website
 {
@@ -11,22 +6,17 @@ namespace BMF.Web.Admin.DBMappings.Website
     {
         public M_News_Mapping()
         {
-            Property(t => t.Title).HasMaxLength(255).IsRequired();
+            MapDefaultProperties();
+            MapCustomProperties();
         }
 
-        public M_News_Mapping(EntityTypeConfiguration<M_News> entityBuilder)
-        {
-            MapDefaultProperties(entityBuilder);
-            MapCustomProperties(entityBuilder);
-        }
-
-        public override void MapCustomProperties(EntityTypeConfiguration<M_News> entityBuilder)
+        public override void MapCustomProperties()
         {
             // Attributes
-            entityBuilder.Property(t => t.Title).HasMaxLength(255).IsRequired();
-            entityBuilder.Property(t => t.Content).HasMaxLength(3000).IsRequired();
-            entityBuilder.Property(t => t.Image_URL).HasMaxLength(1024).IsRequired();
-            entityBuilder.Property(t => t.NewsTimestampUtc).HasColumnType("DATETIME2(7)");
+            Property(t => t.Title).HasMaxLength(255).IsRequired();
+            Property(t => t.Content).HasMaxLength(3000).IsRequired();
+            Property(t => t.Image_URL).HasMaxLength(1024).IsRequired();
+            Property(t => t.NewsTimestampUtc).HasColumnType("DATETIME2");
             // Ignored Attributes
             // Foreign Keys
             // Relationships

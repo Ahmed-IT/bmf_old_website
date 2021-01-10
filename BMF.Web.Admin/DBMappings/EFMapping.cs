@@ -5,23 +5,23 @@ namespace BMF.Web.Admin.DBMappings
 {
     public abstract class EFMapping<TEntity> : EntityTypeConfiguration<TEntity> where TEntity : BaseEntity
     {
-        public void Map(EntityTypeConfiguration<TEntity> entityBuilder)
+        public void Map()
         {
-            MapDefaultProperties(entityBuilder);
-            MapCustomProperties(entityBuilder);
+            MapDefaultProperties();
+            MapCustomProperties();
         }
 
-        public void MapDefaultProperties(EntityTypeConfiguration<TEntity> entityBuilder)
+        public void MapDefaultProperties()
         {
-            entityBuilder.HasKey(t => t.ID);
-            entityBuilder.Property(t => t.CreatedOnUtc).HasColumnType("DATETIME2(7)");
-            entityBuilder.Property(t => t.UpdatedOnUtc).HasColumnType("DATETIME2(7)");
-            entityBuilder.Property(t => t.DeletedBy).IsRequired();
-            entityBuilder.Property(t => t.DeletedOnUtc).IsRequired();
-            entityBuilder.Property(t => t.DeletedOnUtc).HasColumnType("DATETIME2(7)");
-            entityBuilder.Property(t => t.RowVersion).IsRowVersion();
+            HasKey(t => t.ID);
+            Property(t => t.CreatedOnUtc).HasColumnType("DATETIME2");
+            Property(t => t.UpdatedOnUtc).HasColumnType("DATETIME2");
+            Property(t => t.DeletedBy).IsRequired();
+            Property(t => t.DeletedOnUtc).IsRequired();
+            Property(t => t.DeletedOnUtc).HasColumnType("DATETIME2");
+            Property(t => t.RowVersion).IsRowVersion();
         }
 
-        public abstract void MapCustomProperties(EntityTypeConfiguration<TEntity> entityBuilder);
+        public abstract void MapCustomProperties();
     }
 }

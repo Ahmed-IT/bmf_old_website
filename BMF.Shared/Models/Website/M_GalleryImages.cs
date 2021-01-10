@@ -8,7 +8,7 @@ namespace BMF.Shared.Models.Website
     {
         #region Foreign Keys
 
-        public int ID_GalleryCategory { get; set; }
+        public long ID_GalleryCategory { get; set; }
 
         #endregion
 
