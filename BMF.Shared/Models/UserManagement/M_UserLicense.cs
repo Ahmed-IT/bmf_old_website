@@ -8,9 +8,9 @@ namespace BMF.Shared.Models.UserManagement
     {
         #region Foreign Keys
 
-        public int ID_User { get; set; }
+        public long ID_User { get; set; }
         
-        public int ID_LicenseType { get; set; }
+        public long ID_LicenseType { get; set; }
 
         #endregion
 

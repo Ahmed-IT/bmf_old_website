@@ -11,10 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategory_Rules.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategoryRules.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRound.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRoundSession.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRoundSession_UserResults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRoundSessionUserResults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventSeason.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\D_LicenseType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_MyFavRaces.cs" />
@@ -22,7 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicense.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicenseRenewal.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicenseRenewal_MedicForms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_Club.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_GalleryCategory.cs" />

@@ -142,6 +142,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database\BMFDbContext.cs" />
     <Compile Include="DBMappings\EFMapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventCategory_Mapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventCategoryRules_Mapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventRound_Mapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventRoundSession_Mapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventRoundSessionUserResults_Mapping.cs" />
+    <Compile Include="DBMappings\Events\M_EventSeason_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\D_LicenseType_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_MyFavRaces_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_MyRaces_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_User_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_UserLicense_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_UserLicenseRenewal_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_UserLicenseRenewalMedicForms_Mapping.cs" />
+    <Compile Include="DBMappings\UserManagement\M_UserProfile_Mapping.cs" />
     <Compile Include="DBMappings\Website\M_Club_Mapping.cs" />
     <Compile Include="DBMappings\Website\M_GalleryCategory_Mapping.cs" />
     <Compile Include="DBMappings\Website\M_GalleryImages_Mapping.cs" />
@@ -153,6 +167,10 @@
     <Compile Include="Migrations\202101101845303_WebsiteTables.cs" />
     <Compile Include="Migrations\202101101845303_WebsiteTables.designer.cs">
       <DependentUpon>202101101845303_WebsiteTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101102157510_AllTables.cs" />
+    <Compile Include="Migrations\202101102157510_AllTables.designer.cs">
+      <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,6 +218,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202101101845303_WebsiteTables.resx">
       <DependentUpon>202101101845303_WebsiteTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101102157510_AllTables.resx">
+      <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\BMF.Shared\BMF.Shared.projitems" Label="Shared" />

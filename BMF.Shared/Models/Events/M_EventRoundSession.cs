@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BMF.Shared.Models.UserManagement;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public int ID_EventRound { get; set; }
+        public long ID_EventRound { get; set; }
 
         #endregion
 
@@ -24,7 +25,11 @@ namespace BMF.Shared.Models.Events
 
         public M_EventRound EventRound { get; set; }
 
-        public List<M_EventRoundSession_UserResults> UserResults { get; set; }
+        public List<M_EventRoundSessionUserResults> UserResults { get; set; }
+
+        public List<M_MyRaces> User_MyRaces { get; set; }
+
+        public List<M_MyFavRaces> User_MyFavRaces { get; set; }
 
         #endregion
     }

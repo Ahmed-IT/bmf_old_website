@@ -8,7 +8,7 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public int ID_EventSeason { get; set; }
+        public long ID_EventSeason { get; set; }
 
         #endregion
 
@@ -23,6 +23,8 @@ namespace BMF.Shared.Models.Events
         #region Relationships
 
         public M_EventSeason EventSeason { get; set; }
+
+        public List<M_EventCategoryRules> EventCategoryRules { get; set; }
 
         public List<M_EventRound> EventRounds { get; set; }
 

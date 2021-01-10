@@ -8,7 +8,7 @@ namespace BMF.Shared.Models.UserManagement
     {
         #region Foreign Keys
 
-        public int ID_UserLicense { get; set; }
+        public long ID_UserLicense { get; set; }
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace BMF.Shared.Models.UserManagement
 
         public M_UserLicense UserLicense { get; set; }
 
-        public List<M_UserLicenseRenewal_MedicForms> MedicForms { get; set; }
+        public List<M_UserLicenseRenewalMedicForms> MedicForms { get; set; }
 
         #endregion
     }

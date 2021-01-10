@@ -25,7 +25,11 @@ namespace BMF.Shared.Models.UserManagement
         
         public List<M_UserLicense> UserLicense { get; set; }
 
-        public List<M_EventRoundSession_UserResults> UserResults { get; set; }
+        public List<M_EventRoundSessionUserResults> UserResults { get; set; }
+
+        public List<M_MyRaces> MyRaces { get; set; }
+
+        public List<M_MyFavRaces> MyFavRaces { get; set; }
 
         #endregion
     }

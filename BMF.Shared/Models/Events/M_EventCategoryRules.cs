@@ -4,11 +4,11 @@ using System.Text;
 
 namespace BMF.Shared.Models.Events
 {
-    public partial class M_EventCategory_Rules : BaseEntity
+    public partial class M_EventCategoryRules : BaseEntity
     {
         #region Foreign Keys
 
-        public string ID_EventCategory { get; set; }
+        public long ID_EventCategory { get; set; }
 
         #endregion
 

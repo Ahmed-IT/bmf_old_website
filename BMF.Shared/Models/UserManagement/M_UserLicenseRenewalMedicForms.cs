@@ -4,11 +4,11 @@ using System.Text;
 
 namespace BMF.Shared.Models.UserManagement
 {
-    public partial class M_UserLicenseRenewal_MedicForms : BaseEntity
+    public partial class M_UserLicenseRenewalMedicForms : BaseEntity
     {
         #region Foreign Keys
 
-        public int ID_UserLicenseRenewal { get; set; }
+        public long ID_UserLicenseRenewal { get; set; }
 
         #endregion
 

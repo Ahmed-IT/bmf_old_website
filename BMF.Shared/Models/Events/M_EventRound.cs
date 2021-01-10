@@ -8,7 +8,7 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public int ID_EventCategory { get; set; }
+        public long ID_EventCategory { get; set; }
 
         #endregion
 

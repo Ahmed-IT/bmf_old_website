@@ -9,9 +9,9 @@ namespace BMF.Shared.Models.UserManagement
     {
         #region Foreign Keys
 
-        public int ID_User { get; set; }
+        public long ID_User { get; set; }
 
-        public int ID_EventRoundSession { get; set; }
+        public long ID_EventRoundSession { get; set; }
 
         #endregion
 

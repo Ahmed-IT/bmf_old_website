@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BMF.Shared.Models.Events
 {
-    public partial class M_EventRoundSession_UserResults : BaseEntity
+    public partial class M_EventRoundSessionUserResults : BaseEntity
     {
         #region Foreign Keys
 
-        public int ID_EventRoundSession { get; set; }
+        public long ID_EventRoundSession { get; set; }
 
-        public int ID_User { get; set; }
+        public long ID_User { get; set; }
 
         #endregion
 
