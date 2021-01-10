@@ -1,0 +1,18 @@
+﻿namespace BMF.Web.Admin.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class UpdateCols : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.M_News", "Title", c => c.String(nullable: false, maxLength: 255));
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.M_News", "Title", c => c.String());
+        }
+    }
+}

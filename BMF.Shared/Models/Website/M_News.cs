@@ -14,7 +14,7 @@ namespace BMF.Shared.Models.Website
 
         public string Image_URL { get; set; }
 
-        public DateTime NewsTimestapUtc { get; set; }
+        public DateTime NewsTimestampUtc { get; set; }
         
         #endregion
     }

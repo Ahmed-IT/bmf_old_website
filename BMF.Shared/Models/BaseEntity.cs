@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BMF.Shared.Models
 {
-    public class BaseEntity
+    public partial class BaseEntity
     {
         #region Properties
 

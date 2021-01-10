@@ -140,13 +140,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Database\BMFDbContext.cs" />
+    <Compile Include="DBMappings\EFMapping.cs" />
+    <Compile Include="DBMappings\Website\M_News_Mapping.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101101751226_InitialCreate.cs" />
+    <Compile Include="Migrations\202101101751226_InitialCreate.designer.cs">
+      <DependentUpon>202101101751226_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101101808209_UpdateCols.cs" />
+    <Compile Include="Migrations\202101101808209_UpdateCols.designer.cs">
+      <DependentUpon>202101101808209_UpdateCols.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBModels\Database.sql" />
+    <Content Include="DBMappings\Database.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -184,6 +196,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101101751226_InitialCreate.resx">
+      <DependentUpon>202101101751226_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101808209_UpdateCols.resx">
+      <DependentUpon>202101101808209_UpdateCols.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\BMF.Shared\BMF.Shared.projitems" Label="Shared" />
   <PropertyGroup>

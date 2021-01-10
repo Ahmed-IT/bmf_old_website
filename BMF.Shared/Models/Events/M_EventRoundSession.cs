@@ -8,7 +8,7 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public string ID_EventRound { get; set; }
+        public int ID_EventRound { get; set; }
 
         #endregion
 
@@ -23,6 +23,8 @@ namespace BMF.Shared.Models.Events
         #region Relationships
 
         public M_EventRound EventRound { get; set; }
+
+        public List<M_EventRoundSession_UserResults> UserResults { get; set; }
 
         #endregion
     }

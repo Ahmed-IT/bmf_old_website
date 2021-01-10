@@ -8,13 +8,13 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public string ID_EventCategory { get; set; }
+        public int ID_EventCategory { get; set; }
 
         #endregion
 
         #region Properties
 
-        public string RoundNumber { get; set; }
+        public string Round_Number { get; set; }
 
         public DateTime DateTime_Start { get; set; }
 
@@ -29,6 +29,8 @@ namespace BMF.Shared.Models.Events
         #region Relationships
 
         public M_EventCategory EventCategory { get; set; }
+
+        public List<M_EventRoundSession> EventRoundSessions { get; set; }
 
         #endregion
     }

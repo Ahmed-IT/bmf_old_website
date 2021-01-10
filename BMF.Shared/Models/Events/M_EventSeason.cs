@@ -11,5 +11,11 @@ namespace BMF.Shared.Models.Events
         public string Title { get; set; }
 
         #endregion
+
+        #region Relationships
+
+        public List<M_EventCategory> EventCategories { get; set; }
+
+        #endregion
     }
 }

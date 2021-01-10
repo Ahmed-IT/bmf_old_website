@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BMF.Shared.Models.Events;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,19 +9,23 @@ namespace BMF.Shared.Models.UserManagement
     {
         #region Properties
 
-        public string EmailAddress { get; set; }
+        public string Email_Address { get; set; }
 
-        public string CPRNumber { get; set; }
+        public string CPR_Number { get; set; }
 
         public string Password { get; set; }
 
-        public bool IsAdmin { get; set; }
+        public bool Is_Admin { get; set; }
 
         #endregion
 
         #region Relationships
 
         public M_UserProfile UserProfile { get; set; }
+        
+        public List<M_UserLicense> UserLicense { get; set; }
+
+        public List<M_EventRoundSession_UserResults> UserResults { get; set; }
 
         #endregion
     }

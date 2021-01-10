@@ -9,9 +9,9 @@ namespace BMF.Shared.Models.Events
     {
         #region Foreign Keys
 
-        public string ID_EventRoundSession { get; set; }
+        public int ID_EventRoundSession { get; set; }
 
-        public string ID_User { get; set; }
+        public int ID_User { get; set; }
 
         #endregion
 
