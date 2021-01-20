@@ -5,13 +5,153 @@
 
 <!DOCTYPE html>
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>_Layout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="HTML5 Template,Event, Meetup, Conference" />
+    <meta name="description" content="Eveno - Event & Meetup Conference Template" />
+    <title>Bahrain Motor Federation</title>
+    <!--font-awesome icons link-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    @*<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">*@
+    <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="stylesheet" href="~/Content/css/venobox.css">
+    <link rel="stylesheet" href="~/Content/css/lightbox.min.css">
+    <!--main style file-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
 </head>
+
 <body>
-    <div> 
+    <!-- perloader part start -->
+    <div id="main-preloader" class="main-preloader semi-dark-background">
+        <div id="status" class="main-preloader-inner center">
+            <div class="preloader-percentage center">
+                <div class="object object_one"></div>
+                <div class="object object_two"></div>
+                <div class="object object_three"></div>
+                <div class="object object_four"></div>
+                <div class="object object_five"></div>
+            </div>
+            <div class="preloader-bar-outer">
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
     </div>
+    <!-- perloader part start -->
+    <!-- HEADER AREA START -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navber">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="~/Content/images/BMF_Logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse navbar-collapse menu-main" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto menu-item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- HEADER AREA END -->
+
+    @RenderBody()
+
+    <!-- FOOTER AREA START -->
+    <section id="footer">
+        <div class="container zindex">
+            <div class="row">
+                <div class="col-lg-12 text-center footer-txt">
+                    <h3>
+                        <a href="#">
+
+                            <img src="~/Content/images/BMF_Logo1.png" />
+                        </a>
+                    </h3>
+                    <div class="social-icons_2">
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer_2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 m-auto">
+                    <div class="menu-a text-center">
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Services</a>
+                        <a href="#">Calendar</a>
+                        <a href="#">Results</a>
+                        <a href="#">News</a>
+                        <a href="#">Gallery</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER AREA END -->
+    <!-- COPY_RIGHT AREA START -->
+    <section id="copy_right">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center copy-right-txt">
+                    <p>Copyright © 2020. All rights reserved by <a href="#">BMF</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- COPY_RIGHT AREA END -->
+    <!-- Optional JavaScript -->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    @*<script src="~/Content/js/bootstrap.min.js"></script>*@
+    <script src="~/Content/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/js/slick.min.js"></script>
+    <script src="~/Content/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Content/js/venobox.min.js"></script>
+    <script src="~/Content/js/lightbox.min.js"></script>
+    <script src="~/Content/js/jquery.isotope.min.js"></script>
+    <script src="~/Content/js/countdown.min.js"></script>
+    <script src="~/Content/js/jquery.counterup.min.js"></script>
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/custom.js"></script>
 </body>
+
 </html>
+

@@ -18,5 +18,30 @@ namespace BMF_WebSite.Controllers
         {
             return View();
         }
+
+        public ActionResult BoardMembers()
+        {
+            return View();
+        }
+
+        public ActionResult MissionStatement()
+        {
+            return View();
+        }
+
+        public ActionResult RulesRegulations()
+        {
+            return View();
+        }
+
+        public ActionResult EventPermit()
+        {
+            return View();
+        }
+
+        public ActionResult CompetitionLicense()
+        {
+            return View();
+        }
     }
 }
