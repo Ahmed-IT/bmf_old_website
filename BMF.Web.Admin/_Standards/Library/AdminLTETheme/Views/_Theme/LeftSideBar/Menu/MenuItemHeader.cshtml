@@ -1,0 +1,37 @@
+﻿@model _SystemFeature
+@{ Layout = null; }
+@if (Model == null)
+{
+    <li class='active'><a style='border-color:red;'><i class='margin-r-5 fa fa-ban'></i><span>Error Occured (#SBHI)<br />Please contact the<br />system administrator.</span></a></li>
+}
+else
+{
+    var _Features = Model.Features.Where(w => w.Cleared && w.Visibility).ToList();
+    string cssClass = (Model.Selected ? "active" : "");
+    cssClass += (_Features.Count > 0 ? " treeview" : "");
+    <li id='SMF_@Model.ID' class="@cssClass">
+        <a href="@(Model.URL == null ? Html.Raw("#") : Html.Raw(Model.URL))">
+            <i class='@(Model.LeftIcons_Fixed == null ? "fa fa-list" : Model.LeftIcons_Fixed)'></i>
+            <span>@Model.Title</span>
+            <span class="pull-right-container">
+                @if (_Features.Count > 0)
+                {
+                    <i class="fa fa-angle-left pull-right"></i>
+                }
+                @*<small class="label pull-right bg-yellow">12</small>
+                    <small class="label pull-right bg-green">16</small>
+                    <small class="label pull-right bg-red">5</small>*@
+                @(Model.RightIcons_Fixed == null ? Html.Raw("") : Html.Raw(Model.RightIcons_Fixed))
+            </span>
+        </a>
+        @if (_Features.Count > 0)
+        {
+            <ul class='treeview-menu'>
+                @foreach (_SystemFeature SingleFeature in _Features)
+                {
+                    Html.RenderPartial(FixedTerms.System_PartialView_LeftSideBar_MenuSingleItem, SingleFeature);
+                }
+            </ul>
+        }
+    </li>
+}

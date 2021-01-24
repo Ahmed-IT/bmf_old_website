@@ -1,0 +1,57 @@
+﻿@if (ViewBag.PVErrorID != null)
+{
+    <div class='alert alert-danger alert-dismissable'>
+        @if (ViewBag.PVErrorDispose)
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h4><i class='margin-r-5 fa fa-ban'></i>@Html.Raw(ViewBag.PVErrorTitle)</h4>
+        @if (ViewBag.PVErrorMsg != "")
+        {
+            <p>@Html.Raw(ViewBag.PVErrorMsg)</p>
+        }
+        <p>If this problem persists, please contact system administrator (reference error #@ViewBag.PVErrorID).</p>
+    </div>
+}
+@if (ViewBag.PVWarnTitle != null)
+{
+    <div class='alert alert-warning alert-dismissable'>
+        @if (ViewBag.PVWarnDispose)
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h4><i class='margin-r-5 fa fa-warning'></i>@Html.Raw(ViewBag.PVWarnTitle)</h4>
+        @if (ViewBag.PVWarnMsg != "")
+        {
+            <p>@Html.Raw(ViewBag.PVWarnMsg)</p>
+        }
+    </div>
+}
+@if (ViewBag.PVSuccessTitle != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        @if (ViewBag.PVSuccessDispose)
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h4><i class="margin-r-5 fa fa-check"></i>@Html.Raw(ViewBag.PVSuccessTitle)</h4>
+        @if (ViewBag.PVSuccessMsg != "")
+        {
+            <p>@Html.Raw(ViewBag.PVSuccessMsg)</p>
+        }
+    </div>
+}
+@if (ViewBag.PVInfoTitle != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        @if (ViewBag.PVInfoDispose)
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h4><i class="margin-r-5 fa fa-info"></i>@Html.Raw(ViewBag.PVInfoTitle)</h4>
+        @if (ViewBag.PVInfoMsg != "")
+        {
+            <p>@Html.Raw(ViewBag.PVInfoMsg)</p>
+        }
+    </div>
+}

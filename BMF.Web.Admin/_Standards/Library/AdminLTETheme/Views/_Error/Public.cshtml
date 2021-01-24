@@ -1,0 +1,26 @@
+﻿@{
+    Layout = FixedTerms.System_ViewStart;
+}
+<div class="header-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 header-title">
+                <h2 class="headline"><i class="fa fa-warning"></i> @ViewBag.Code</h2>
+                <h2 class="text-blue-bg">@ViewBag.Title</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 header-text">
+                <p>
+                    @ViewBag.Message
+                </p>
+                <div class="form-group">
+                    <a href="/" class="btn btn-app btn-lg"><i class="fa fa-home"></i> Go Home</a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-app btn-lg" onclick="history.go(-1);"><i class="fa fa-history"></i> Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

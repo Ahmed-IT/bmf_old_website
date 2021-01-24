@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@FixedTerms.Application_Code | Admin</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/_bootstrap4.css">
+    <link rel="stylesheet" href="~/Content/_theme/AdminLTE.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/_theme/skins/skin-red.css" />
+    <link rel="stylesheet" href="~/Content/_theme/_customizations.css" />
+    @RenderSection("PageHeaders", required: false)
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-red sidebar-mini">
+    <div class="full-page-dim"></div>
+    <div class="full-overlay">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="full-overlay-loader">
+                <span>Please wait ...</span>
+                <div class="progress progress-striped active"><div class="progress-bar" style="width: 100%"></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        @Html.Partial(FixedTerms.System_PartialView_Header_Index)
+        @Html.Partial(FixedTerms.System_PartialView_LeftSideBar_Index)
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>@ViewBag.Page_MainTitle<small>@ViewBag.Page_SubTitle</small></h1>
+                <ol class="breadcrumb partial" data-u="/_Theme/_B?ID=@Url.Encode(Request.RawUrl)"></ol>
+            </section>
+            <section class="content container-fluid">
+                @RenderBody()
+            </section>
+        </div>
+        @Html.Partial(FixedTerms.System_PartialView_Footer_Index)
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/_theme/adminlte.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/_theme/helpers.js"></script>
+    @RenderSection("PageScripts", required: false)
+</body>
+</html>

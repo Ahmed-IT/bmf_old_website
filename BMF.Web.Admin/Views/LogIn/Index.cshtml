@@ -1,0 +1,56 @@
+﻿@model _Standards.Library.Security.FormBasedUser
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@FixedTerms.Application_Code | Admin</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/_bootstrap4.css">
+    <link rel="stylesheet" href="~/Content/_theme/AdminLTE.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/_theme/skins/skin-blue.css" />
+    <link rel="stylesheet" href="~/Content/_theme/_customizations.css" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="/"><b>@FixedTerms.Application_Name</b></a>
+        </div>
+        <div class="login-box-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                Html.RenderPartial(FixedTerms.System_PartialView_AdminFeedback);
+                <div class="form-group has-feedback">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email or Username", @required = "required", @maxlength = "50", @autofocus = "autofocus" } })
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @required = "required", @maxlength = "20" })
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
+                    </div>
+                </div>
+            }
+            <br />
+            <a href="/ForgotPassword">I forgot my password</a>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/_theme/adminlte.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/_theme/helpers.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model _Standards.Library.ModalManagement.ViewModels.ModalInformational
+@using _Standards.Library.ModalManagement.Enum
+@using _Standards.Library.Helpers
+@{ Layout = null; }
+@if (Model != null)
+{
+    string Class_Size = "",
+        Class_Header = "bg-primary",
+        ID = string.Format("View{0}", Model.ID);
+    switch (Model.Size)
+    {
+        case Size.XLarge: Class_Size = "modal-xl"; break;
+        case Size.Large: Class_Size = "modal-lg"; break;
+        case Size.Small: Class_Size = "modal-sm"; break;
+        default: break;
+    }
+    <div class="modal fade" id="M_@ID">
+        <div class="modal-dialog @Class_Size">
+            <div class="modal-content">
+                <div class="modal-header @Class_Header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">View @Model.Name</h4>
+                </div>
+                <div class="C_@ID" data-ou="@Model.SourceURL">
+                    <div class="modal-body">
+                        <div class="box-body">
+                            @Html.Partial(FixedTerms.System_PartialView_LoadingBar)
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left btn-close-@ID" data-dismiss="modal"><i class="margin-r-5 fa fa-remove"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on('click', "[data-target='#M_@ID']", function () {
+            $('.C_@ID').children().remove();
+            SetLoadingDisplay($('.C_@ID'));
+            var Data = $(this).data();
+            $('.C_@ID').data('u',$('.C_@ID').data('ou') + "?"+jQuery.param(Data));
+            LoadPartial($('.C_@ID'));
+        });
+    </script>
+}

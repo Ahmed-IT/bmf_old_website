@@ -15,8 +15,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             // Attributes
             Property(t => t.Email_Address).HasMaxLength(120).IsRequired();
             Property(t => t.CPR_Number).HasMaxLength(60).IsRequired();
-            Property(t => t.Password).HasMaxLength(120).IsRequired();
-            Property(t => t.Is_Admin).IsRequired();
+            Property(t => t.Password).HasMaxLength(225).IsRequired();
             // Ignored Attributes
             // Foreign Keys
             // Relationships

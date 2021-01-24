@@ -1,0 +1,243 @@
+/* Colors */
+
+.color {
+    color: #00E7FF;
+}
+
+.bg-primary {
+    background-color: #123456 !important;
+}
+
+.box-withshadow {
+    box-shadow: 1px 1px 2px 1px black;
+}
+
+    .box-withshadow.collapsed-box {
+        box-shadow: none;
+    }
+
+.progress-bar {
+    background-color: #123456;
+}
+
+/*
+    Buttons
+*/
+.btn-primary {
+    color: #FFFFFF;
+    background-color: #123456;
+    border-color: #0A1F33;
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active,
+    .btn-primary.active,
+    .open .dropdown-toggle.btn-primary {
+        color: #FFFFFF;
+        background-color: #0a1f33;
+        border-color: #0A1F33;
+    }
+
+    .btn-primary:active,
+    .btn-primary.active,
+    .open .dropdown-toggle.btn-primary {
+        background-image: none;
+    }
+
+    .btn-primary.disabled,
+    .btn-primary[disabled],
+    fieldset[disabled] .btn-primary,
+    .btn-primary.disabled:hover,
+    .btn-primary[disabled]:hover,
+    fieldset[disabled] .btn-primary:hover,
+    .btn-primary.disabled:focus,
+    .btn-primary[disabled]:focus,
+    fieldset[disabled] .btn-primary:focus,
+    .btn-primary.disabled:active,
+    .btn-primary[disabled]:active,
+    fieldset[disabled] .btn-primary:active,
+    .btn-primary.disabled.active,
+    .btn-primary[disabled].active,
+    fieldset[disabled] .btn-primary.active {
+        background-color: #123456;
+        border-color: #0A1F33;
+    }
+
+    .btn-primary .badge {
+        color: #123456;
+        background-color: #FFFFFF;
+    }
+
+.btn-success {
+    color: #FFFFFF;
+    background-color: #125656;
+    border-color: #0C3C3C;
+}
+
+    .btn-success:hover,
+    .btn-success:focus,
+    .btn-success:active,
+    .btn-success.active,
+    .open .dropdown-toggle.btn-success {
+        color: #FFFFFF;
+        background-color: #0c3c3c;
+        border-color: #0C3C3C;
+    }
+
+    .btn-success:active,
+    .btn-success.active,
+    .open .dropdown-toggle.btn-success {
+        background-image: none;
+    }
+
+    .btn-success.disabled,
+    .btn-success[disabled],
+    fieldset[disabled] .btn-success,
+    .btn-success.disabled:hover,
+    .btn-success[disabled]:hover,
+    fieldset[disabled] .btn-success:hover,
+    .btn-success.disabled:focus,
+    .btn-success[disabled]:focus,
+    fieldset[disabled] .btn-success:focus,
+    .btn-success.disabled:active,
+    .btn-success[disabled]:active,
+    fieldset[disabled] .btn-success:active,
+    .btn-success.disabled.active,
+    .btn-success[disabled].active,
+    fieldset[disabled] .btn-success.active {
+        background-color: #125656;
+        border-color: #0C3C3C;
+    }
+
+    .btn-success .badge {
+        color: #125656;
+        background-color: #FFFFFF;
+    }
+
+.btn-danger {
+    color: #FFFFFF;
+    background-color: #951F1F;
+    border-color: #591212;
+}
+
+    .btn-danger:hover,
+    .btn-danger:focus,
+    .btn-danger:active,
+    .btn-danger.active,
+    .open .dropdown-toggle.btn-danger {
+        color: #FFFFFF;
+        background-color: #591212;
+        border-color: #591212;
+    }
+
+    .btn-danger:active,
+    .btn-danger.active,
+    .open .dropdown-toggle.btn-danger {
+        background-image: none;
+    }
+
+    .btn-danger.disabled,
+    .btn-danger[disabled],
+    fieldset[disabled] .btn-danger,
+    .btn-danger.disabled:hover,
+    .btn-danger[disabled]:hover,
+    fieldset[disabled] .btn-danger:hover,
+    .btn-danger.disabled:focus,
+    .btn-danger[disabled]:focus,
+    fieldset[disabled] .btn-danger:focus,
+    .btn-danger.disabled:active,
+    .btn-danger[disabled]:active,
+    fieldset[disabled] .btn-danger:active,
+    .btn-danger.disabled.active,
+    .btn-danger[disabled].active,
+    fieldset[disabled] .btn-danger.active {
+        background-color: #951F1F;
+        border-color: #591212;
+    }
+
+    .btn-danger .badge {
+        color: #951F1F;
+        background-color: #FFFFFF;
+    }
+
+/*
+    Pagination
+*/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #123456 !important;
+    border-color: #123456 !important;
+}
+
+/* Form Elements */
+textarea {
+    resize: vertical !important;
+}
+
+/* Errors */
+
+.error,
+.field-validation-error,
+.ast-required {
+    color: #DD4B39;
+}
+
+/* Ajax Loading */
+
+.full-page-dim {
+    top: 0;
+    left: 0;
+    opacity: .8;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999999990;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #999;
+    filter: alpha(opacity=80);
+}
+
+.full-overlay {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    z-index: 999999999;
+}
+
+.full-overlay-loader {
+    width: 300px;
+    height: 80px;
+    padding: 10px;
+    text-align: center;
+    border-style: solid;
+    border-color: #808080;
+    background-color: White;
+}
+
+/* Modal */
+
+.close {
+    color: #fff;
+    opacity: 0.7;
+}
+
+    .close:hover, .close:focus {
+        color: #fff;
+        opacity: 1;
+    }
+
+@media (min-width: 768px) {
+    .modal-xl {
+        width: 90% !important;
+        max-width: 1200px;
+    }
+}

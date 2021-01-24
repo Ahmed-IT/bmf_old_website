@@ -15,8 +15,6 @@ namespace BMF.Shared.Models.UserManagement
 
         public string Password { get; set; }
 
-        public bool Is_Admin { get; set; }
-
         #endregion
 
         #region Relationships

@@ -1,0 +1,21 @@
+﻿<nav class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            @*@Html.Partial("~/_Logic/AdminLTETheme/Views/Header/NavigationBar/Messages.cshtml")*@
+            @*@Html.Partial("~/_Logic/AdminLTETheme/Views/Header/NavigationBar/Notifications.cshtml")*@
+            @*@Html.Partial("~/_Logic/AdminLTETheme/Views/Header/NavigationBar/Tasks.cshtml")*@
+            <li>
+                <a class="SysUserName" id="SysUserName">@_Standards.Library.Security.AuthenticationManager.Get_DisplayName()</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","LogOut", new { Area = "" })" title="Log Out"><span class="margin-r-5 hidden-xs">Log Out</span><i class="fa fa-sign-out"></i></a>
+            </li>
+            <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>

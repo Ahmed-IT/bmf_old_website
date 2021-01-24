@@ -1,0 +1,21 @@
+﻿@{ Layout = null; }
+<div class="header-container box no-border text-center">
+    <div class="row">
+        <div class="col-sm-12 header-title">
+            <h2 class="headline text-danger"><i class="margin-r-5 fa fa-ban"></i></h2>
+            <h2 class="text-danger">@ViewBag.Title</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 header-text text-danger">
+            <h4>
+                @ViewBag.Message
+                <br />
+                <br />
+            </h4>
+            <div class="form-group">
+                <a href="/" class="btn btn-app btn-primary"><i class="fa fa-home"></i> Go Home</a>
+            </div>
+        </div>
+    </div>
+</div>
