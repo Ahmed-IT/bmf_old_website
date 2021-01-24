@@ -9,11 +9,5 @@ namespace BMF.Shared.Entities.Security
 
         [Display(Name = "Administrator")]
         Administrator = 10,
-
-        [Display(Name = "Tribe Member")]
-        ServiceProvider = 20,
-
-        [Display(Name = "Customer")]
-        Customer = 30,
     }
 }

@@ -1,0 +1,35 @@
+﻿@model AdminRole
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <div class="row">
+            <div class="col">
+                <label class="control-label">Role</label>
+                <h3 class="page-header m-0 text-primary">@Model.Name</h3>
+            </div>
+        </div>
+        <hr />
+        <input type="hidden" name="Operations" id="Operations" value="" />
+        await Html.RenderPartialAsync("~/Areas/Admin/Views/Shared/_systemoperation_hummingbird.cshtml", Model.AssignedOperations.Select(s => s.Operation));
+        <script>
+            $.fn.hummingbird.defaults.SymbolPrefix = "fas";
+            $.fn.hummingbird.defaults.collapsedSymbol = "fa-angle-right";
+            $.fn.hummingbird.defaults.expandedSymbol = "fa-angle-down";
+            $("#operations-list").hummingbird();
+            $("#operations-list").hummingbird("expandAll");
+            $("#operations-list").on("CheckUncheckDone", function () {
+                List = { "id": [], "dataid": [], "text": [] };
+                $("#operations-list").hummingbird("getChecked", { list: List, onlyEndNodes: false, onlyParents: false, fromThis: false });
+                $('#Operations').val(List.dataid.join(","));
+            });
+        </script>
+    }
+}

@@ -1,25 +1,29 @@
-﻿using BMF.Shared.Models.UserManagement;
+﻿using BMF.Shared.Entities.UserManagement;
+using BMF.Shared.EntityMappings;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BMF.Web.Admin.DBMappings.UserManagement
 {
-    public partial class M_MyRaces_Mapping : EFMapping<M_MyRaces>
+    public partial class M_MyRaces_EFCoreBuilder : EFCoreMappingBuilder<M_MyRaces>
     {
-        public M_MyRaces_Mapping()
+        public M_MyRaces_EFCoreBuilder() { }
+
+        public M_MyRaces_EFCoreBuilder(EntityTypeBuilder<M_MyRaces> entityBuilder)
         {
-            MapDefaultProperties();
-            MapCustomProperties();
+            MapDefaultProperties(entityBuilder);
+            MapCustomProperties(entityBuilder);
         }
 
-        public override void MapCustomProperties()
+        public override void MapCustomProperties(EntityTypeBuilder<M_MyRaces> entityBuilder)
         {
             // Attributes
-            Property(t => t.ID_User).IsRequired();
-            Property(t => t.ID_EventRoundSession).IsRequired();
             // Ignored Attributes
             // Foreign Keys
+            entityBuilder.Property(t => t.ID_User).IsRequired(true);
+            entityBuilder.Property(t => t.ID_EventRoundSession).IsRequired(true);
             // Relationships
-            HasRequired(g => g.User).WithMany(s => s.MyRaces).HasForeignKey(s => s.ID_User);
-            HasRequired(g => g.EventRoundSession).WithMany(s => s.User_MyRaces).HasForeignKey(s => s.ID_EventRoundSession);
+            entityBuilder.HasOne(g => g.User).WithMany(s => s.MyRaces).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasOne(g => g.EventRoundSession).WithMany(s => s.User_MyRaces).HasForeignKey(s => s.ID_EventRoundSession);
             // Indexes
         }
     }

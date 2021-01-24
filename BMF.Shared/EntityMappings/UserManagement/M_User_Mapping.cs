@@ -1,29 +1,33 @@
-﻿using BMF.Shared.Models.UserManagement;
+﻿using BMF.Shared.Entities.UserManagement;
+using BMF.Shared.EntityMappings;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BMF.Web.Admin.DBMappings.UserManagement
 {
-    public partial class M_User_Mapping : EFMapping<M_User>
+    public partial class M_User_EFCoreBuilder : EFCoreMappingBuilder<M_User>
     {
-        public M_User_Mapping()
+        public M_User_EFCoreBuilder() { }
+
+        public M_User_EFCoreBuilder(EntityTypeBuilder<M_User> entityBuilder)
         {
-            MapDefaultProperties();
-            MapCustomProperties();
+            MapDefaultProperties(entityBuilder);
+            MapCustomProperties(entityBuilder);
         }
 
-        public override void MapCustomProperties()
+        public override void MapCustomProperties(EntityTypeBuilder<M_User> entityBuilder)
         {
             // Attributes
-            Property(t => t.Email_Address).HasMaxLength(120).IsRequired();
-            Property(t => t.CPR_Number).HasMaxLength(60).IsRequired();
-            Property(t => t.Password).HasMaxLength(225).IsRequired();
+            entityBuilder.Property(t => t.Email_Address).HasMaxLength(120).IsRequired(true);
+            entityBuilder.Property(t => t.CPR_Number).HasMaxLength(60).IsRequired(true);
+            entityBuilder.Property(t => t.Password).HasMaxLength(225).IsRequired(true);
             // Ignored Attributes
             // Foreign Keys
             // Relationships
-            HasRequired(g => g.UserProfile).WithRequiredPrincipal(s => s.User);
-            HasMany(g => g.UserLicense).WithRequired(s => s.User).HasForeignKey(s => s.ID_User);
-            HasMany(g => g.UserResults).WithRequired(s => s.User).HasForeignKey(s => s.ID_User);
-            HasMany(g => g.MyRaces).WithRequired(s => s.User).HasForeignKey(s => s.ID_User);
-            HasMany(g => g.MyFavRaces).WithRequired(s => s.User).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasOne(g => g.UserProfile).WithOne(s => s.User).HasForeignKey<M_UserProfile>(s => s.ID);
+            entityBuilder.HasMany(g => g.UserLicense).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasMany(g => g.UserResults).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasMany(g => g.MyRaces).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasMany(g => g.MyFavRaces).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
             // Indexes
         }
     }

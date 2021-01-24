@@ -1,26 +1,31 @@
-﻿using BMF.Shared.Models.UserManagement;
+﻿using BMF.Shared.Entities.UserManagement;
+using BMF.Shared.EntityMappings;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BMF.Web.Admin.DBMappings.UserManagement
 {
-    public partial class M_UserLicenseRenewal_Mapping : EFMapping<M_UserLicenseRenewal>
+    public partial class M_UserLicenseRenewal_EFCoreBuilder : EFCoreMappingBuilder<M_UserLicenseRenewal>
     {
-        public M_UserLicenseRenewal_Mapping()
+        public M_UserLicenseRenewal_EFCoreBuilder() { }
+
+        public M_UserLicenseRenewal_EFCoreBuilder(EntityTypeBuilder<M_UserLicenseRenewal> entityBuilder)
         {
-            MapDefaultProperties();
-            MapCustomProperties();
+            MapDefaultProperties(entityBuilder);
+            MapCustomProperties(entityBuilder);
         }
 
-        public override void MapCustomProperties()
+        public override void MapCustomProperties(EntityTypeBuilder<M_UserLicenseRenewal> entityBuilder)
         {
             // Attributes
-            Property(t => t.ID_UserLicense).IsRequired();
-            Property(t => t.Issue_Type).HasMaxLength(15).IsRequired();
-            Property(t => t.Issue_Date).HasColumnType("DATETIME2").IsRequired();
+            entityBuilder.Property(t => t.Issue_Type).HasMaxLength(15).IsRequired(true);
+            entityBuilder.Property(t => t.Issue_Date).HasColumnType("DATETIME2(7)").IsRequired(true);
             // Ignored Attributes
             // Foreign Keys
+            entityBuilder.Property(t => t.ID_UserLicense).IsRequired(true);
             // Relationships
-            HasRequired(g => g.UserLicense).WithMany(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicense);
-            HasMany(g => g.MedicForms).WithRequired(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicenseRenewal);
+            entityBuilder.HasOne(g => g.UserLicense).WithMany(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicense);
+            entityBuilder.HasMany(g => g.MedicForms).WithOne(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicenseRenewal);
             // Indexes
         }
     }

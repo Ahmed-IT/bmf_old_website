@@ -1,15 +1,14 @@
-﻿using BMF.WebCore.Admin.Models;
+﻿using BMF.Shared.Core.WebFramework;
+using BMF.WebCore.Admin.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BMF.WebCore.Admin.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 

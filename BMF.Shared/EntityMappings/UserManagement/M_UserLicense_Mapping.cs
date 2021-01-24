@@ -1,28 +1,33 @@
-﻿using BMF.Shared.Models.UserManagement;
+﻿using BMF.Shared.Entities.UserManagement;
+using BMF.Shared.EntityMappings;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BMF.Web.Admin.DBMappings.UserManagement
 {
-    public partial class M_UserLicense_Mapping : EFMapping<M_UserLicense>
+    public partial class M_UserLicense_EFCoreBuilder : EFCoreMappingBuilder<M_UserLicense>
     {
-        public M_UserLicense_Mapping()
+        public M_UserLicense_EFCoreBuilder() { }
+
+        public M_UserLicense_EFCoreBuilder(EntityTypeBuilder<M_UserLicense> entityBuilder)
         {
-            MapDefaultProperties();
-            MapCustomProperties();
+            MapDefaultProperties(entityBuilder);
+            MapCustomProperties(entityBuilder);
         }
 
-        public override void MapCustomProperties()
+        public override void MapCustomProperties(EntityTypeBuilder<M_UserLicense> entityBuilder)
         {
             // Attributes
-            Property(t => t.ID_User).IsRequired();
-            Property(t => t.ID_LicenseType).IsRequired();
-            Property(t => t.License_Number).HasMaxLength(50).IsRequired();
-            Property(t => t.Expire_Date).HasColumnType("DATETIME2").IsRequired();
+            entityBuilder.Property(t => t.License_Number).HasMaxLength(50).IsRequired(true);
+            entityBuilder.Property(t => t.Expire_Date).HasColumnType("DATETIME2(7)").IsRequired(true);
             // Ignored Attributes
             // Foreign Keys
+            entityBuilder.Property(t => t.ID_User).IsRequired(true);
+            entityBuilder.Property(t => t.ID_LicenseType).IsRequired(true);
             // Relationships
-            HasRequired(g => g.User).WithMany(s => s.UserLicense).HasForeignKey(s => s.ID_User);
-            HasRequired(g => g.LicenseType).WithMany(s => s.UserLicense).HasForeignKey(s => s.ID_LicenseType);
-            HasMany(g => g.UserLicenseRenewal).WithRequired(s => s.UserLicense).HasForeignKey(s => s.ID_UserLicense);
+            entityBuilder.HasOne(g => g.User).WithMany(s => s.UserLicense).HasForeignKey(s => s.ID_User);
+            entityBuilder.HasOne(g => g.LicenseType).WithMany(s => s.UserLicense).HasForeignKey(s => s.ID_LicenseType);
+            entityBuilder.HasMany(g => g.UserLicenseRenewal).WithOne(s => s.UserLicense).HasForeignKey(s => s.ID_UserLicense);
             // Indexes
         }
     }

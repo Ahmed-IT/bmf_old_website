@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TN.Shared.Entities.ServiceProviders;
 
 namespace BMF.Shared.Entities.Security
 {
@@ -33,9 +32,6 @@ namespace BMF.Shared.Entities.Security
 
         [InverseProperty(nameof(AdminRoleOperation.Operation))]
         public ICollection<AdminRoleOperation> AssignedAdminRoles { get; set; }
-
-        [InverseProperty(nameof(TNServiceProviderSystemOperation.Operation))]
-        public ICollection<TNServiceProviderSystemOperation> AssignedServiceProviders { get; set; }
 
         #endregion
     }

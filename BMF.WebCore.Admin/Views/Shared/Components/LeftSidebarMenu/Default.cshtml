@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SiteMapNode>
+@if (Model != null)
+{
+    foreach (var SingleItem in Model.Where(x => x.IsVisible))
+    {
+        string url = null;
+        if (!string.IsNullOrEmpty(SingleItem.ControllerName) && !string.IsNullOrEmpty(SingleItem.ActionName))
+        {
+            url = Url.Action(SingleItem.ActionName, SingleItem.ControllerName, SingleItem.RouteValues, null, null);
+        }
+        else if (!string.IsNullOrEmpty(SingleItem.Url))
+        {
+            url = SingleItem.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(SingleItem.Url) : SingleItem.Url;
+        }
+        var isActive = SingleItem.ContainsSystemName(Html.GetActiveMenuItemSystemName(pageHeadBuilder));
+        if (SingleItem.ChildNodes != null && SingleItem.ChildNodes.Any(x => x.IsVisible))
+        {
+            <li class="nav-item has-treeview @(isActive?"menu-open":"")">
+                <a href="#" class="nav-link @(isActive?"active":"")">
+                    <i class="nav-icon @SingleItem.IconClass"></i>
+                    <p>
+                        @SingleItem.Title
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    @await Html.PartialAsync("~/Views/Shared/Components/LeftSidebarMenu/Default.cshtml", SingleItem.ChildNodes)
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                @{
+                    <a href="@url" class="nav-link @(isActive?"active":"")">
+                        <i class="nav-icon @SingleItem.IconClass"></i>
+                        <p>
+                            @SingleItem.Title
+                        </p>
+                    </a>
+                }
+            </li>
+        }
+    }
+}

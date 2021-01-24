@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMF.WebCore.Admin", "BMF.We
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		BMF.Shared\BMF.Shared.projitems*{04409268-6e14-463b-8a49-4f2bd0848ef6}*SharedItemsImports = 5
 		BMF.Shared\BMF.Shared.projitems*{23c8f29b-7f8a-46ce-9a2f-553d582c6f77}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

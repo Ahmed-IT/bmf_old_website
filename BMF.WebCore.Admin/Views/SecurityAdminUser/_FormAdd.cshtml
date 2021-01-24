@@ -1,0 +1,61 @@
+﻿@model AdminUser
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @required = "required", @autofocus = "autofocus", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "")
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "")
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.Email, "")
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "20" } })
+                    @Html.ValidationMessageFor(model => model.Username, "")
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "40" } })
+            @Html.ValidationMessageFor(model => model.Password, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, true, new { id = "IsActive_T" })
+                <label for="IsActive_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, false, new { id = "IsActive_F" })
+                <label for="IsActive_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.IsActive, "")
+        </div>
+    }
+}

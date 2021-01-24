@@ -1,0 +1,114 @@
+﻿@if (ViewData["ErrorID"] != null)
+{
+    <div class="alert alert-danger alert-dismissible-">
+        @if ((bool)ViewData["ErrorDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-ban'></i>@Html.Raw(ViewData["ErrorTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["ErrorMsg"]))
+        {
+            @Html.Raw(ViewData["ErrorMsg"])
+        }
+        <p>(Reference error code #@ViewData["ErrorID"])</p>
+    </div>
+}
+@if (TempData["ErrorID"] != null)
+{
+    <div class="alert alert-danger alert-dismissible-">
+        @if ((bool)TempData["ErrorDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-ban'></i>@Html.Raw(TempData["ErrorTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["ErrorMsg"]))
+        {
+            @Html.Raw(TempData["ErrorMsg"])
+        }
+        <p>(Reference error code #@TempData["ErrorID"])</p>
+    </div>
+}
+@if (ViewData["WarnTitle"] != null)
+{
+    <div class="alert alert-warning alert-dismissible-">
+        @if ((bool)ViewData["WarnDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-exclamation-triangle'></i>@Html.Raw(ViewData["WarnTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["WarnMsg"]))
+        {
+            @Html.Raw(ViewData["WarnMsg"])
+        }
+    </div>
+}
+@if (TempData["WarnTitle"] != null)
+{
+    <div class="alert alert-warning alert-dismissible-">
+        @if ((bool)TempData["WarnDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-exclamation-triangle'></i>@Html.Raw(TempData["WarnTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["WarnMsg"]))
+        {
+            @Html.Raw(TempData["WarnMsg"])
+        }
+    </div>
+}
+@if (ViewData["SuccessTitle"] != null)
+{
+    <div class="alert alert-success alert-dismissible-">
+        @if ((bool)ViewData["SuccessDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-check"></i>@Html.Raw(ViewData["SuccessTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["SuccessMsg"]))
+        {
+            @Html.Raw(ViewData["SuccessMsg"])
+        }
+    </div>
+}
+@if (TempData["SuccessTitle"] != null)
+{
+    <div class="alert alert-success alert-dismissible-">
+        @if ((bool)TempData["SuccessDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-check"></i>@Html.Raw(TempData["SuccessTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["SuccessMsg"]))
+        {
+            @Html.Raw(TempData["SuccessMsg"])
+        }
+    </div>
+}
+@if (ViewData["InfoTitle"] != null)
+{
+    <div class="alert alert-info alert-dismissible-">
+        @if ((bool)ViewData["InfoDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-info-circle"></i>@Html.Raw(ViewData["InfoTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["InfoMsg"]))
+        {
+            @Html.Raw(ViewData["InfoMsg"])
+        }
+    </div>
+}
+@if (TempData["InfoTitle"] != null)
+{
+    <div class="alert alert-info alert-dismissible-">
+        @if ((bool)TempData["InfoDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-info-circle"></i>@Html.Raw(TempData["InfoTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["InfoMsg"]))
+        {
+            @Html.Raw(TempData["InfoMsg"])
+        }
+    </div>
+}

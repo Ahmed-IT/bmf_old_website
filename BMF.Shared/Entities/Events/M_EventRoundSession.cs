@@ -9,7 +9,7 @@ namespace BMF.Shared.Entities.Events
     {
         #region Foreign Keys
 
-        [JsonProperty(PropertyName = nameof(ID_EventRound))]
+        [JsonProperty(PropertyName = nameof(ID_EventRound))]        
         public long ID_EventRound { get; set; }
 
         #endregion

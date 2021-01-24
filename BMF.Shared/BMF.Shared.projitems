@@ -9,6 +9,12 @@
     <Import_RootNamespace>BMF.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Helpers\CommonHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Helpers\EnumHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IWorkContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\WebFramework\AuthorizeOperationAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\WebFramework\BaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\WebWorkContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryRules.cs" />
@@ -16,6 +22,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRoundSession.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRoundSessionUserResults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventSeason.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\IDBViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Location\Country.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\AdminRole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\AdminRoleOperation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\AdminUser.cs" />
@@ -41,13 +49,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_News.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_QuickLinks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\EFCoreMappingBuilder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\S_User_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryRules_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategory_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSessionUserResults_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSession_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRound_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventSeason_Mapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryRules_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategory_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSessionUserResults_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSession_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRound_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventSeason_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Location\Country_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\AdminRoleOperation_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\AdminRole_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\AdminUserRole_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\AdminUser_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\SystemOperation_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\D_LicenseType_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyFavRaces_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyRaces_Mapping.cs" />
@@ -61,5 +74,37 @@
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_GalleryImages_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_News_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_QuickLinks_Mappings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ControllerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\LayoutExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SiteMapNodeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixedTerms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\KatrikFile\KatrikFilePreviewConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\KatrikFile\KatrikFileResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Security\AdminRole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Security\AdminUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Security\SystemOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Authentication\AuthenticationDefaults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Authentication\AuthenticationMiddleware.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Authentication\CookieAuthenticationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Authentication\CookieDefaults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Authentication\IAuthenticationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Data\EFRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Data\IDataSeeder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Data\IRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Data\BMFDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Menu\ISiteMapService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminRoleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminUserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\IAdminRoleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\IAdminUserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\IPermissionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\ISystemOperationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\ISystemOperationsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\PermissionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Security\SystemOperationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\IPageHeadBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\PageHeadBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LogInViewModel.cs" />
   </ItemGroup>
 </Project>

@@ -1,28 +1,27 @@
-﻿using BMF.Shared.Models.Website;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BMF.Shared.Entities.Website;
+using BMF.Shared.EntityMappings;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BMF.Web.Admin.DBMappings.Website
 {
-    public partial class M_GalleryImages_Mapping : EFMapping<M_GalleryImages>
+    public partial class M_GalleryImages_EFCoreBuilder : EFCoreMappingBuilder<M_GalleryImages>
     {
-        public M_GalleryImages_Mapping()
+        public M_GalleryImages_EFCoreBuilder() { }
+
+        public M_GalleryImages_EFCoreBuilder(EntityTypeBuilder<M_GalleryImages> entityBuilder)
         {
-            MapDefaultProperties();
-            MapCustomProperties();
+            MapDefaultProperties(entityBuilder);
+            MapCustomProperties(entityBuilder);
         }
 
-        public override void MapCustomProperties()
+        public override void MapCustomProperties(EntityTypeBuilder<M_GalleryImages> entityBuilder)
         {
             // Attributes
-            //Property(t => t.ID_GalleryCategory).IsRequired();
-            Property(t => t.Image_URL).HasMaxLength(1024).IsRequired();
+            entityBuilder.Property(t => t.Image_URL).HasMaxLength(1024).IsRequired();
             // Ignored Attributes
             // Foreign Keys
             // Relationships
-            HasRequired(g => g.GalleryCategory).WithMany(s => s.GalleryImages).HasForeignKey(s => s.ID_GalleryCategory);
+            entityBuilder.HasOne(g => g.GalleryCategory).WithMany(s => s.GalleryImages).HasForeignKey(s => s.ID_GalleryCategory);
             // Indexes
         }
     }
