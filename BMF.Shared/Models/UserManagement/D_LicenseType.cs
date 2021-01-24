@@ -20,7 +20,7 @@ namespace BMF.Shared.Models.UserManagement
 
         #region Relationships
 
-        public List<M_UserLicense> UserLicense { get; set; }
+        public ICollection<M_UserLicense> UserLicense { get; set; }
 
         #endregion
     }

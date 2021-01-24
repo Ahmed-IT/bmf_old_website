@@ -25,6 +25,7 @@ namespace BMF.Web.Admin.DBMappings.AccessManagement
             // Ignored Attributes
             // Foreign Keys
             // Relationships
+            HasMany(g => g.AssignedRoles).WithRequired(s => s.S_User).HasForeignKey(s => s.ID_User);
             // Indexes
         }
     }

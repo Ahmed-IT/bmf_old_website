@@ -28,7 +28,7 @@ namespace BMF.Shared.Models.UserManagement
 
         public D_LicenseType LicenseType { get; set; }
 
-        public List<M_UserLicenseRenewal> UserLicenseRenewal { get; set; }
+        public ICollection<M_UserLicenseRenewal> UserLicenseRenewal { get; set; }
 
         #endregion
     }

@@ -9,6 +9,10 @@
     <Import_RootNamespace>BMF.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessManagement\S_Feature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessManagement\S_Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessManagement\S_RoleFeature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessManagement\S_RoleUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AccessManagement\S_User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategory.cs" />

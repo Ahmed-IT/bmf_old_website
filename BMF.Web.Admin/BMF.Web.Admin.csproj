@@ -167,6 +167,7 @@
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\LogOutController.cs" />
     <Compile Include="Database\BMFDbContext.cs" />
+    <Compile Include="Database\DataFunctions.cs" />
     <Compile Include="DBMappings\AccessManagement\S_User_Mapping.cs" />
     <Compile Include="DBMappings\EFMapping.cs" />
     <Compile Include="DBMappings\Events\M_EventCategory_Mapping.cs" />

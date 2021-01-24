@@ -24,7 +24,7 @@ namespace BMF.Shared.Models.UserManagement
 
         public M_UserLicense UserLicense { get; set; }
 
-        public List<M_UserLicenseRenewalMedicForms> MedicForms { get; set; }
+        public ICollection<M_UserLicenseRenewalMedicForms> MedicForms { get; set; }
 
         #endregion
     }

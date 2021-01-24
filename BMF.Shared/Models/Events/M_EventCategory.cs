@@ -24,9 +24,9 @@ namespace BMF.Shared.Models.Events
 
         public M_EventSeason EventSeason { get; set; }
 
-        public List<M_EventCategoryRules> EventCategoryRules { get; set; }
+        public ICollection<M_EventCategoryRules> EventCategoryRules { get; set; }
 
-        public List<M_EventRound> EventRounds { get; set; }
+        public ICollection<M_EventRound> EventRounds { get; set; }
 
         #endregion
     }

@@ -21,13 +21,13 @@ namespace BMF.Shared.Models.UserManagement
 
         public M_UserProfile UserProfile { get; set; }
         
-        public List<M_UserLicense> UserLicense { get; set; }
+        public ICollection<M_UserLicense> UserLicense { get; set; }
 
-        public List<M_EventRoundSessionUserResults> UserResults { get; set; }
+        public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
-        public List<M_MyRaces> MyRaces { get; set; }
+        public ICollection<M_MyRaces> MyRaces { get; set; }
 
-        public List<M_MyFavRaces> MyFavRaces { get; set; }
+        public ICollection<M_MyFavRaces> MyFavRaces { get; set; }
 
         #endregion
     }

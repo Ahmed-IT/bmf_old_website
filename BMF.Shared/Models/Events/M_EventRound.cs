@@ -30,7 +30,7 @@ namespace BMF.Shared.Models.Events
 
         public M_EventCategory EventCategory { get; set; }
 
-        public List<M_EventRoundSession> EventRoundSessions { get; set; }
+        public ICollection<M_EventRoundSession> EventRoundSessions { get; set; }
 
         #endregion
     }

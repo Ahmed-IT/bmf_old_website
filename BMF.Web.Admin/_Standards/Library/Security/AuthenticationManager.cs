@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using _Standards.Library.Security;
 using BMF.Web.Admin.Database;
+using BMF.Shared.Models.AccessManagement;
 
 namespace _Standards.Library.Security
 {
@@ -16,14 +17,14 @@ namespace _Standards.Library.Security
     {
         #region Properties
         private static BMFDbContext _TheDatabase { get; set; }
-        //private static List<_SystemRole> SystemRoles { get; set; }
+        private static List<S_Role> SystemRoles { get; set; }
 
         [DataMember]
         private long ID { get; set; }
         [DataMember]
         private string Name { get; set; }
-        //[DataMember]
-        //private List<long> Features { get; set; }
+        [DataMember]
+        private List<long> Features { get; set; }
         [DataMember]
         private DateTime LoggedIn_Timestamp { get; set; }
         #endregion
@@ -32,12 +33,12 @@ namespace _Standards.Library.Security
         {
             try
             {
-                //var _DataFunctions = new DataFunctions();
-                //SystemRoles = _DataFunctions.GetAll_SystemRoles(true, true);
+                var _DataFunctions = new DataFunctions();
+                SystemRoles = _DataFunctions.GetAll_SystemRoles(true, true);
             }
             catch (Exception LogError)
             {
-                //SystemRoles = new List<_SystemRole>();
+                SystemRoles = new List<S_Role>();
             }
         }
 
@@ -45,14 +46,14 @@ namespace _Standards.Library.Security
         {
             try
             {
-                //_TheDatabase = new AccessClass_DB();
-                //int Updated_RL = _TheDatabase.Table_SystemRole.Count(w => w.Date_Updated > LoggedIn_Timestamp);
-                //int Updated_RU = _TheDatabase.Table_SystemRoleUser.Count(w => w.Date_Updated > LoggedIn_Timestamp);
-                //int Updated_RF = _TheDatabase.Table_SystemRoleFeature.Count(w => w.Date_Updated > LoggedIn_Timestamp);
-                //if (Updated_RL > 0 || Updated_RU > 0 || Updated_RF > 0)
-                //{
+                _TheDatabase = new BMFDbContext();
+                int Updated_RL = _TheDatabase.Table_SystemRole.Count(w => w.IsActive && !w.DeletedOnUtc.HasValue && w.UpdatedOnUtc > LoggedIn_Timestamp);
+                int Updated_RU = _TheDatabase.Table_SystemRoleUser.Count(w => w.IsActive && !w.DeletedOnUtc.HasValue && w.UpdatedOnUtc > LoggedIn_Timestamp);
+                int Updated_RF = _TheDatabase.Table_SystemRoleFeature.Count(w => w.IsActive && !w.DeletedOnUtc.HasValue && w.UpdatedOnUtc > LoggedIn_Timestamp);
+                if (Updated_RL > 0 || Updated_RU > 0 || Updated_RF > 0)
+                {
                     return true;
-                //}
+                }
             }
             catch (Exception LogError)
             {
@@ -63,7 +64,7 @@ namespace _Standards.Library.Security
         public AuthenticationManager(long ID, string FirstName, string LastName, List<long> Features)
         {
             this.ID = ID;
-            //this.Features = Features;
+            this.Features = Features;
             LoggedIn_Timestamp = DateTime.Now;
             Name = string.Format("{0} {1}", FirstName, LastName);
         }
@@ -80,7 +81,7 @@ namespace _Standards.Library.Security
             {
                 Initialize_FromDB();
                 _TheDatabase = new BMFDbContext();
-                var User = _TheDatabase.Table_SystemUser.Where(w => w.Username.ToLower().Trim() == SignInRequest.Username.ToLower().Trim() || w.Email.ToLower().Trim() == SignInRequest.Username.ToLower().Trim()).SingleOrDefault();
+                var User = _TheDatabase.Table_SystemUser.Where(w => w.IsActive && !w.DeletedOnUtc.HasValue && w.Username.ToLower().Trim() == SignInRequest.Username.ToLower().Trim() || w.Email.ToLower().Trim() == SignInRequest.Username.ToLower().Trim()).SingleOrDefault();
                 if (User == null)
                 {
                     return false;
@@ -96,8 +97,8 @@ namespace _Standards.Library.Security
                     else
                     {
                         //var _User = new _SystemUser(User, true);
-                        //var _Features = _User.Roles.SelectMany(s => s.Features.Select(sf => sf.ID)).Distinct().ToList();
-                        var _UserData = JsonConvert.SerializeObject(new AuthenticationManager(User.ID, User.FirstName, User.LastName, null));
+                        var _Features = User.AssignedRoles.Where(w => w.IsActive && !w.DeletedOnUtc.HasValue).SelectMany(s => s.S_Role.AssignedFeatures.Where(w => w.IsActive && !w.DeletedOnUtc.HasValue).Select(sf => sf.ID)).Distinct().ToList();
+                        var _UserData = JsonConvert.SerializeObject(new AuthenticationManager(User.ID, User.FirstName, User.LastName, _Features));
                         FormsAuthenticationTicket _Ticket = new FormsAuthenticationTicket(1, User.ID.ToString(), DateTime.Now, DateTime.Now.AddHours(1), true, _UserData, FormsAuthentication.FormsCookiePath);
                         _EncTicket = FormsAuthentication.Encrypt(_Ticket);
                         return true;
@@ -131,7 +132,7 @@ namespace _Standards.Library.Security
 
         public static bool IsInRole(string Role)
         {
-         
+
             return false;
         }
 
@@ -165,32 +166,32 @@ namespace _Standards.Library.Security
             return string.Empty;
         }
 
-        //public static List<long> GetAll_Features()
-        //{
-        //    try
-        //    {
-        //        FormsIdentity _Identity = (FormsIdentity)HttpContext.Current.User.Identity;
-        //        FormsAuthenticationTicket _Ticket = _Identity.Ticket;
-        //        var _UserData = JsonConvert.DeserializeObject<AuthenticationManager>(_Ticket.UserData);
-        //        if (Update_FromDB(_UserData.LoggedIn_Timestamp))
-        //        {
-        //            var User = _TheDatabase.Table_SystemUser.Find(_UserData.ID);
-        //            var _User = new _SystemUser(User, true);
-        //            _TheDatabase.Dispose();
-        //            var _Features = _User.Roles.SelectMany(s => s.Features.Select(sf => sf.ID)).Distinct().ToList();
-        //            _UserData.Features = _Features;
-        //            _UserData.LoggedIn_Timestamp = DateTime.Now;
-        //            _Ticket = new FormsAuthenticationTicket(1, _User.ID.ToString(), DateTime.Now, DateTime.Now.AddHours(1), true, JsonConvert.SerializeObject(_UserData), FormsAuthentication.FormsCookiePath);
-        //            string _EncTicket = FormsAuthentication.Encrypt(_Ticket);
-        //            HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, _EncTicket));
-        //        }
-        //        return _UserData.Features;
-        //    }
-        //    catch (Exception LogError)
-        //    {
-        //    }
-        //    return null;
-        //}
+        public static List<long> GetAll_Features()
+        {
+            try
+            {
+                FormsIdentity _Identity = (FormsIdentity)HttpContext.Current.User.Identity;
+                FormsAuthenticationTicket _Ticket = _Identity.Ticket;
+                var _UserData = JsonConvert.DeserializeObject<AuthenticationManager>(_Ticket.UserData);
+                //if (Update_FromDB(_UserData.LoggedIn_Timestamp))
+                //{
+                //    var User = _TheDatabase.Table_SystemUser.Find(_UserData.ID);
+                //    //var _User = new _SystemUser(User, true);
+                //    _TheDatabase.Dispose();
+                //    var _Features = _User.Roles.SelectMany(s => s.Features.Select(sf => sf.ID)).Distinct().ToList();
+                //    _UserData.Features = _Features;
+                //    _UserData.LoggedIn_Timestamp = DateTime.Now;
+                //    _Ticket = new FormsAuthenticationTicket(1, _User.ID.ToString(), DateTime.Now, DateTime.Now.AddHours(1), true, JsonConvert.SerializeObject(_UserData), FormsAuthentication.FormsCookiePath);
+                //    string _EncTicket = FormsAuthentication.Encrypt(_Ticket);
+                //    HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, _EncTicket));
+                //}
+                return _UserData.Features;
+            }
+            catch (Exception LogError)
+            {
+            }
+            return null;
+        }
 
         #endregion
     }

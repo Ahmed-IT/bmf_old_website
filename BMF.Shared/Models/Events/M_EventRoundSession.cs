@@ -25,11 +25,11 @@ namespace BMF.Shared.Models.Events
 
         public M_EventRound EventRound { get; set; }
 
-        public List<M_EventRoundSessionUserResults> UserResults { get; set; }
+        public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
-        public List<M_MyRaces> User_MyRaces { get; set; }
+        public ICollection<M_MyRaces> User_MyRaces { get; set; }
 
-        public List<M_MyFavRaces> User_MyFavRaces { get; set; }
+        public ICollection<M_MyFavRaces> User_MyFavRaces { get; set; }
 
         #endregion
     }

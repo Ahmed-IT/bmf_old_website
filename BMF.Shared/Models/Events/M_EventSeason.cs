@@ -14,7 +14,7 @@ namespace BMF.Shared.Models.Events
 
         #region Relationships
 
-        public List<M_EventCategory> EventCategories { get; set; }
+        public ICollection<M_EventCategory> EventCategories { get; set; }
 
         #endregion
     }

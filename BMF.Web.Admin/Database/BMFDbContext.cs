@@ -19,6 +19,11 @@ namespace BMF.Web.Admin.Database
 
         #region Access Management
         public DbSet<S_User> Table_SystemUser { get; set; }
+        public DbSet<S_Role> Table_SystemRole { get; set; }
+        public DbSet<S_Feature> Table_SystemFeature { get; set; }
+        public DbSet<S_RoleUser> Table_SystemRoleUser { get; set; }
+        public DbSet<S_RoleFeature> Table_SystemRoleFeature { get; set; }
+
         #endregion
 
         #region Events

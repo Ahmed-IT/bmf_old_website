@@ -16,7 +16,7 @@ namespace BMF.Shared.Models.Website
 
         #region Relationships
 
-        public List<M_GalleryImages> GalleryImages { get; set; }
+        public ICollection<M_GalleryImages> GalleryImages { get; set; }
 
         #endregion
     }
