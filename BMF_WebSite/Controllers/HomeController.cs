@@ -43,5 +43,40 @@ namespace BMF_WebSite.Controllers
         {
             return View();
         }
+
+        public ActionResult CdpApplication()
+        {
+            return View();
+        }
+
+        public ActionResult EventCalendar()
+        {
+            return View();
+        }
+
+        public ActionResult Results()
+        {
+            return View();
+        }
+
+        public ActionResult Gallery()
+        {
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+        public ActionResult News()
+        {
+            return View();
+        }
+
+        public ActionResult Bulletins()
+        {
+            return View();
+        }
     }
 }

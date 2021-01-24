@@ -119,6 +119,26 @@ p {
     font-family: pr;
 }
 
+@font-face {
+    src: url(../fonts/FjallaOne-Regular.ttf);
+    font-family: FjallaOneR;
+}
+
+@font-face {
+    src: url(../fonts/PermanentMarker-Regular.ttf);
+    font-family: PermanentMarkerR;
+}
+
+@font-face {
+    src: url(../fonts/Lato-Regular.ttf);
+    font-family: LatoR;
+}
+
+@font-face {
+    src: url(../fonts/Lato-Bold.ttf);
+    font-family: LatoB;
+}
+
 /* Version 2 */
 .particles-js-canvas-el {
     position: absolute;
@@ -329,8 +349,8 @@ p {
 
 .navbar-light .navbar-nav .nav-link {
     color: #fff;
-    font-family: br;
-    font-size: 19px;
+    font-family: FjallaOneR;
+    font-size: 16px;
     -webkit-transition: all linear .3s;
     -o-transition: all linear .3s;
     transition: all linear .3s;
@@ -348,7 +368,7 @@ p {
 
 .navbar-light .navbar-brand {
     color: #fff;
-    font-family: bb;
+    font-family: FjallaOneR;
     font-size: 34px;
     -webkit-transition: all linear .3s;
     -o-transition: all linear .3s;
@@ -419,7 +439,7 @@ p {
 =============================*/
 #banner {
     padding: 180px 0 190px;
-    background: url(../images/banner.jpg);
+    background: url(../images/banner1.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -440,43 +460,43 @@ p {
     padding-top: 50px;
 }
 
-.banner-txt h3 {
-    font-size: 25px;
-    padding-bottom: 7px;
-    font-family: bl;
-    color: #cb1a2b;
-}
+    .banner-txt h3 {
+        font-size: 25px;
+        padding-bottom: 7px;
+        font-family: LatoR;
+        color: #cb1a2b;
+    }
 
-.banner-txt h1 {
-    font-size: 50px;
-    font-family: bb;
-    color: white;
-    text-transform: uppercase;
-    padding-bottom: 18px;
-}
+    .banner-txt h1 {
+        font-size: 50px;
+        font-family: FjallaOneR;
+        color: white;
+        text-transform: uppercase;
+        padding-bottom: 18px;
+    }
 
-.banner-txt p {
-    font-size: 19px;
-    color: #cbc5c5;
-    font-family: br;
-    padding-right: 50px;
-    padding-bottom: 44px;
-}
+    .banner-txt p {
+        font-size: 19px;
+        color: #cbc5c5;
+        font-family: LatoR;
+        padding-right: 50px;
+        padding-bottom: 44px;
+    }
 
-.banner-txt a {
-    padding: 21px 25px;
-    background: #cb1a2b;
-    border-radius: 50px;
-    -webkit-box-shadow: 0px 4px 19px 0px #cb1a2b;
-    box-shadow: 0px 4px 19px 0px #cb1a2b;
-    font-size: 19px;
-    font-family: bb;
-    color: white;
-    -webkit-transition: all linear .3s;
-    -o-transition: all linear .3s;
-    transition: all linear .3s;
-    text-transform: uppercase;
-}
+    .banner-txt a {
+        padding: 21px 25px;
+        background: #cb1a2b;
+        border-radius: 50px;
+        -webkit-box-shadow: 0px 4px 19px 0px #cb1a2b;
+        box-shadow: 0px 4px 19px 0px #cb1a2b;
+        font-size: 19px;
+        font-family: LatoR;
+        color: white;
+        -webkit-transition: all linear .3s;
+        -o-transition: all linear .3s;
+        transition: all linear .3s;
+        text-transform: uppercase;
+    }
 
 .banner-txt a:hover {
     -webkit-box-shadow: none;
@@ -495,9 +515,9 @@ p {
 }
 
 .banner-img img {
-    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+/*    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
+*/}
 
 .banner-pos,
 .banner-pos2 {
@@ -701,13 +721,13 @@ p {
 
 .about-txt h3 {
     font-size: 25px;
-    font-family: bl;
+    font-family: FjallaOneR;
     color: #cb1a2b;
 }
 
 .about-txt h4 {
     font-size: 37px;
-    font-family: bb;
+    font-family: FjallaOneR;
     color: #1c1c1c;
     padding-top: 17px;
     padding-bottom: 19px;
@@ -721,7 +741,7 @@ p {
 .about-txt p {
     font-size: 19px;
     color: #666;
-    font-family: br;
+    font-family: LatoR;
     padding-bottom: 46px;
     padding-right: 40px;
 }
@@ -731,7 +751,7 @@ p {
     background: #cb1a2b;
     border-radius: 50px;
     font-size: 19px;
-    font-family: bb;
+    font-family: FjallaOneR;
     color: white;
     text-transform: uppercase;
     -webkit-transition: all linear .3s;
@@ -743,6 +763,19 @@ p {
     -webkit-box-shadow: 0px 4px 19px 0px #cb1a2b;
     box-shadow: 0px 4px 19px 0px #cb1a2b;
 }
+
+.buttonStyle {
+    background: #cb1a2b;
+    font-size: 16px;
+    font-family: FjallaOneR;
+    color: white;
+    text-transform: uppercase;
+}
+
+    .buttonStyle:hover {
+        -webkit-box-shadow: 0px 4px 19px 0px #cb1a2b;
+        box-shadow: 0px 4px 19px 0px #cb1a2b;
+    }
 
 .about-s {
     padding-top: 70px;
@@ -770,13 +803,13 @@ p {
 
 .event-header h4 {
     font-size: 30px;
-    font-family: bl;
+    font-family: FjallaOneR;
     color: #cb1a2b;
 }
 
 .event-header h3 {
     font-size: 40px;
-    font-family: bb;
+    font-family: FjallaOneR;
     color: #1c1c1c;
     padding-bottom: 18px;
     padding-top: 5px;
@@ -787,14 +820,14 @@ p {
 }
 
 .event-header p {
-    font-size: 19px;
+    font-size: 16px;
     color: #666;
-    font-family: br;
+    font-family: LatoR;
     padding-bottom: 48px;
     padding-right: 22px;
 }
 
-.event-header a {
+/*.event-header a {
     padding: 21px 25px;
     background: #cb1a2b;
     border-radius: 50px;
@@ -810,43 +843,43 @@ p {
 .event-header a:hover {
     -webkit-box-shadow: 0px 4px 19px 0px #cb1a2b;
     box-shadow: 0px 4px 19px 0px #cb1a2b;
-}
+}*/
 
 .about-item {
     padding: 30px;
-    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+/*    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .1);*/
     margin-bottom: 30px;
     position: relative;
 }
 
 .about-item h3 {
     font-size: 25px;
-    font-family: bb;
+    font-family: LatoB;
     color: #1c1c1c;
     padding-bottom: 6px;
 }
 
 .about-item p {
-    font-size: 19px;
-    color: #666;
-    font-family: br;
+    font-size: 16px;
+    color: black;
+    font-family: LatoR;
 }
 
-.about-item span {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 50px;
-    color: #d8d8d8;
-    font-family: bb;
-    -webkit-transition: all linear .3s;
-    -o-transition: all linear .3s;
-    transition: all linear .3s;
-}
+    .about-item span {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        font-size: 26px;
+        color: red;
+        font-family: FjallaOneR;
+        -webkit-transition: all linear .3s;
+        -o-transition: all linear .3s;
+        transition: all linear .3s;
+    }
 
 .about-item:hover span {
-    color: #fc7d7d;
+    color: red;
 }
 
 /*===========================
@@ -927,6 +960,10 @@ p {
 
 #organize_2 {
     background: #1c1c1c;
+    background-image:url('../images/shortcutsBackground.jpg');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
     padding: 40px 0;
 }
 
@@ -942,7 +979,7 @@ p {
 
 .organize-text h3 {
     color: white;
-    font-family: bb;
+    font-family: FjallaOneR;
     font-size: 37px;
     padding-top: 8px;
     padding-bottom: 18px;
@@ -950,6 +987,14 @@ p {
     text-transform: uppercase;
     position: relative;
 }
+
+    .organize-text-link {
+        color: white;
+        font-family: FjallaOneR;
+        font-size: 24px;
+        margin-top:50px;
+        text-transform: uppercase;
+    }
 
 .organize-text h3::after {
     position: absolute;
@@ -993,6 +1038,14 @@ p {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+    .org-item a {
+        color:white;
+    }
+
+    .org-item a:hover {
+        color: red;
+    }
 
 .or-i-none:after {
     display: none;
@@ -1047,18 +1100,18 @@ p {
 7.0 *** SPEAKER AREA START ***
 =============================*/
 #speaker {
-    padding: 90px 0;
+    padding: 50px 0;
     position: relative;
 }
 
 #speaker:after {
-    position: absolute;
+   /* position: absolute;
     content: '';
     top: 0;
     left: 50%;
     width: 2px;
     height: 100%;
-    background: #f4f6fa;
+    background: #ffffff;*/
 
 }
 
@@ -1068,10 +1121,10 @@ p {
 
 .speaker-heading h3 {
     font-size: 60px;
-    font-family: bb;
+    font-family: FjallaOneR;
     color: #1c1c1c;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
     position: relative;
 }
 
@@ -1085,9 +1138,10 @@ p {
     transform: translate(-50%);
     width: 60px;
     height: 60px;
-    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+/*    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: white;
+background: white;
+*/    
     z-index: -1;
 }
 
@@ -1096,37 +1150,39 @@ p {
     height: 100%;
 }
 
-.header-style::after {
-    position: absolute;
-    content: '';
-    top: -4px;
-    left: 50%;
-    -webkit-transform: translate(-50%);
-    -ms-transform: translate(-50%);
-    transform: translate(-50%);
-    width: 90px;
-    height: 90px;
-    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    .header-style::after {
+        position: absolute;
+        content: '';
+        top: -4px;
+        left: 50%;
+        -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+        transform: translate(-50%);
+        width: 90px;
+        height: 90px;
+        /*    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: white;
-    z-index: -11;
-}
+background: white;
+*/
+        z-index: -11;
+    }
 
-.header-style::before {
-    position: absolute;
-    content: '';
-    top: -9px;
-    left: 50%;
-    -webkit-transform: translate(-50%);
-    -ms-transform: translate(-50%);
-    transform: translate(-50%);
-    width: 100px;
-    height: 100px;
-    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    .header-style::before {
+        position: absolute;
+        content: '';
+        top: -9px;
+        left: 50%;
+        -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+        transform: translate(-50%);
+        width: 100px;
+        height: 100px;
+        /*    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     background: #e8e8e8;
-    z-index: -11;
-}
+    */
+        z-index: -11;
+    }
 
 .speaker-item {
     position: relative;
@@ -1218,8 +1274,8 @@ p {
 }
 
 .speaker-txt h3 {
-    font-family: bb;
-    font-size: 30px;
+    font-family: FjallaOneR;
+    font-size: 20px;
     color: #1c1c1c;
     padding-top: 25px;
     padding-bottom: 6px;
@@ -1228,12 +1284,13 @@ p {
 .speaker-txt p {
     font-size: 17px;
     color: #666;
+    font-family:LatoR;
     padding-bottom: 15px;
 }
 
 .speaker-txt a {
     position: relative;
-    font-family: bb;
+    font-family: LatoR;
     font-size: 19px;
     color: #cb1a2b;
     padding-left: 69px;
@@ -1461,7 +1518,7 @@ p {
 
 .price-item h3 {
     font-size: 35px;
-    font-family: bb;
+    font-family: FjallaOneR;
     padding-top: 5px;
     padding-bottom: 5px;
     color: #1c1c1c;
@@ -1469,7 +1526,7 @@ p {
 
 .cl {
     color: #666;
-    font-family: br;
+    font-family: LatoR;
     font-size: 19px;
     display: block;
 }
@@ -1488,7 +1545,7 @@ p {
     padding-top: 19px;
     font-size: 34px;
     color: #cb1a2b;
-    font-family: bb;
+    font-family: LatoB;
 }
 
 .price-btn {
@@ -1799,11 +1856,11 @@ p {
 14.0 *** BLOG AREA START ***
 =============================*/
 #blog {
-    padding: 90px 0;
+    padding: 40px 0;
 }
 
 .blog-pa {
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 .blog-data {
@@ -1880,13 +1937,33 @@ p {
 .blog-date h4 {
     padding-top: 10px;
     color: white;
-    font-family: bb;
+    font-family: LatoB;
 }
 
 .blog-date h5 {
     color: white;
-    font-family: br;
+    font-family: LatoR;
 }
+
+.events-date {
+    background: #cb1a2b;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    position: relative;
+    border-radius: 3px;
+}
+
+    .events-date h4 {
+        padding-top: 10px;
+        color: white;
+        font-family: LatoB;
+    }
+
+    .events-date h5 {
+        color: white;
+        font-family: LatoR;
+    }
 
 /*===========================
 15.0 *** FOOTER AREA START ***
@@ -1898,7 +1975,7 @@ p {
 
 .footer-txt h3 a {
     font-size: 55px;
-    font-family: bb;
+    font-family: FjallaOneR;
     color: white;
 }
 
@@ -1960,9 +2037,9 @@ p {
 }
 
 .copy-right-txt p {
-    font-family: br;
+    font-family: FjallaOneR;
     color: #ffffff;
-    font-size: 19px;
+    font-size: 14px;
 }
 
 .copy-right-txt p a {
@@ -2033,8 +2110,8 @@ p {
         transform: translate(-50%);
         width: 60px;
         height: 60px;
-        -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+/*        -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        
+*/        
         z-index: -1;
     }

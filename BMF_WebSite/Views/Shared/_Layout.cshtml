@@ -46,7 +46,7 @@
     <!-- HEADER AREA START -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navber">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="@Url.Action("Index","Home",null)">
                 <img src="~/Content/images/BMF_Logo.png" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,28 +56,28 @@
             <div class="collapse navbar-collapse menu-main" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto menu-item">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        @Html.ActionLink("Home", "Index", "Home", null ,new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        @Html.ActionLink("About", "AboutUs", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        @Html.ActionLink("Services", "CdpApplication", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Calendar</a>
+                        @Html.ActionLink("Calendar", "EventCalendar", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Results</a>
+                        @Html.ActionLink("Results", "Results", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">News</a>
+                        @Html.ActionLink("News", "News", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gallery</a>
+                        @Html.ActionLink("Gallery", "Gallery", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        @Html.ActionLink("Contact", "ContactUs", "Home", null, new { @class = "nav-link" })
                     </li>
                 </ul>
             </div>
@@ -113,14 +113,14 @@
 
                 <div class="col-lg-12 m-auto">
                     <div class="menu-a text-center">
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
-                        <a href="#">Calendar</a>
-                        <a href="#">Results</a>
-                        <a href="#">News</a>
-                        <a href="#">Gallery</a>
-                        <a href="#">Contact</a>
+                        <a href='@Url.Action("Index","Home",null)'>Home</a>
+                        <a href='@Url.Action("AboutUs","Home",null)'>About</a>
+                        <a href='@Url.Action("CdpApplication","Home",null)'>Services</a>
+                        <a href='@Url.Action("EventCalendar","Home",null)'>Calendar</a>
+                        <a href='@Url.Action("Results","Home",null)'>Results</a>
+                        <a href='@Url.Action("News","Home",null)'>News</a>
+                        <a href='@Url.Action("Gallery","Home",null)'>Gallery</a>
+                        <a href='@Url.Action("ContactUs","Home",null)'>Contact</a>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center copy-right-txt">
-                    <p>Copyright © 2020. All rights reserved by <a href="#">BMF</a></p>
+                    <p>Copyright © 2020. All rights reserved by <a href="'@Url.Action("Index","Home")'">BMF</a></p>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
     <!-- COPY_RIGHT AREA END -->
     <!-- Optional JavaScript -->
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
-    @*<script src="~/Content/js/bootstrap.min.js"></script>*@
+    <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/bootstrap/js/bootstrap.js"></script>
     <script src="~/Content/js/slick.min.js"></script>
     <script src="~/Content/js/jquery.nicescroll.min.js"></script>

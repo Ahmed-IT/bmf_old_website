@@ -134,6 +134,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\2000cc.jpeg" />
     <Content Include="Content\images\about.png" />
+    <Content Include="Content\images\BahrainF1Track.jpg" />
+    <Content Include="Content\images\bahrainRally2.jpg" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
@@ -151,6 +153,8 @@
     <Content Include="Content\images\brand5.png" />
     <Content Include="Content\images\brand6.png" />
     <Content Include="Content\images\close.png" />
+    <Content Include="Content\images\cpd.jpg" />
+    <Content Include="Content\images\drag.jpg" />
     <Content Include="Content\images\e1.jpg" />
     <Content Include="Content\images\e2.jpg" />
     <Content Include="Content\images\e3.jpg" />
@@ -174,16 +178,19 @@
     <Content Include="Content\images\next.png" />
     <Content Include="Content\images\organize-main.jpg" />
     <Content Include="Content\images\payment.png" />
+    <Content Include="Content\images\PorscheSuperCup.png" />
     <Content Include="Content\images\price1.png" />
     <Content Include="Content\images\price2.png" />
     <Content Include="Content\images\price3.png" />
     <Content Include="Content\images\register-bg.jpg" />
+    <Content Include="Content\images\Rotax.png" />
     <Content Include="Content\images\s1.jpg" />
     <Content Include="Content\images\s2.jpg" />
     <Content Include="Content\images\s3.jpg" />
     <Content Include="Content\images\s4.jpg" />
     <Content Include="Content\images\s5.jpg" />
     <Content Include="Content\images\s6.jpg" />
+    <Content Include="Content\images\shortcutsBackground.jpg" />
     <Content Include="Content\images\testimonial.png" />
     <Content Include="Content\images\testimonial1.png" />
     <Content Include="Content\images\testimonial3.png" />
@@ -247,6 +254,10 @@
     <Content Include="Content\bootstrap\js\bootstrap.esm.min.js.map" />
     <Content Include="Content\bootstrap\js\bootstrap.js.map" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\fonts\Lato-Regular.ttf" />
+    <Content Include="Content\fonts\PermanentMarker-Regular.ttf" />
+    <Content Include="Content\fonts\FjallaOne-Regular.ttf" />
+    <Content Include="Content\fonts\Lato-Bold.ttf" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_SubLayout.cshtml" />
@@ -258,6 +269,14 @@
     <Content Include="Views\Home\RulesRegulations.cshtml" />
     <Content Include="Views\Home\EventPermit.cshtml" />
     <Content Include="Views\Home\CompetitionLicense.cshtml" />
+    <Content Include="Views\Home\CdpApplication.cshtml" />
+    <Content Include="Views\Home\EventCalendar.cshtml" />
+    <Content Include="Views\Home\Results.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\CpdForm.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Bulletins.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
