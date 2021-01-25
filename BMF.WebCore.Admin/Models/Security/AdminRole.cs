@@ -12,7 +12,7 @@ namespace BMF.Shared.Entities.Security
     public partial class AdminRole : IJQDataTableExtendDBViewModel<AdminRole, BMFDbContext>, IDBViewModel<AdminRole, BMFDbContext>
     {
         [NotMapped]
-        public static string _controllerName => $"Security{nameof(AdminRole)}";
+        public static string _controllerName => $"{nameof(AdminRole)}";
 
         #region Fields
 

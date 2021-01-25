@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BMF.WebCore.Admin.Services.Menu
 {
@@ -56,7 +55,7 @@ namespace BMF.WebCore.Admin.Services.Menu
                             {
                                 SystemName = nameof(SystemOperationsProvider.Admin.SecurityAdminRole),
                                 Title = "Admin Roles",
-                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Admin } },
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Security } },
                                 ControllerName = AdminRole._controllerName,
                                 ActionName = "Index",
                                 IconClass = "fas fa-tags",
@@ -66,7 +65,7 @@ namespace BMF.WebCore.Admin.Services.Menu
                             {
                                 SystemName = nameof(SystemOperationsProvider.Admin.SecurityAdminUser),
                                 Title = "Admin Users",
-                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Admin } },
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Security } },
                                 ControllerName = AdminUser._controllerName,
                                 ActionName = "Index",
                                 IconClass = "fas fa-users",
@@ -87,7 +86,7 @@ namespace BMF.WebCore.Admin.Services.Menu
                             {
                                 SystemName = nameof(SystemOperationsProvider.Admin.SystemSettingsCountry),
                                 Title = "Countries",
-                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Admin } },
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Location } },
                                 ControllerName = Country._controllerName,
                                 ActionName = "Index",
                                 IconClass = "fas fa-flag",

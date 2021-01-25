@@ -12,7 +12,7 @@ namespace BMF.Shared.Entities.Location
     public partial class Country : IJQDataTableExtendDBViewModel<Country, BMFDbContext>, IDBViewModel<Country, BMFDbContext>
     {
         [NotMapped]
-        public static string _controllerName => $"Location{nameof(Country)}";
+        public static string _controllerName => $"{nameof(Country)}";
 
         #region Fields
 
