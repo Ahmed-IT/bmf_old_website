@@ -133,6 +133,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-link",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_QuickLinks)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_GalleryCategory),
+                                Title = "Gallery Categories",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_GalleryCategory._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-images",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_GalleryCategory)),
                             }
                         }
                     },

@@ -40,6 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\WebsiteCMS\Views\GalleryCategory\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Areas\WebsiteCMS\Views\News\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

@@ -14,6 +14,9 @@ namespace BMF.Shared.Entities.Website
         [NotMapped]
         public static string _controllerName => $"{nameof(M_GalleryCategory)}".Replace("M_", "");
 
+        [NotMapped]
+        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/websitecms-gallery/default.jpg";
+
         #region Fields
 
         #endregion
@@ -32,11 +35,13 @@ namespace BMF.Shared.Entities.Website
         {
             get
             {
-                var BtnEdit = "<button type='button' class='btn btn-primary btn-xs' data-toggle='modal' " +
+                var BtnEdit = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Edit"}{ClassAcronym}' data-id='{ID}'><i class='{"fas fa-pencil-alt"}'></i></button>";
-                var BtnDelete = "<button type='button' class='btn btn-danger btn-xs' data-toggle='modal' " +
+                var BtnEditImages = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
+                    $"data-target='#M_{"EGCI"}' data-id='{ID}'><i class='{"fas fa-images"}'></i></button>";
+                var BtnDelete = "<button type='button' class='btn btn-danger btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Delete"}{ClassAcronym}' data-id='{ID}'><i class='fas fa-trash-alt'></i></button>";
-                return $"<div class='btn-group'>{BtnEdit}{BtnDelete}</div>";
+                return $"<div class='btn-group'>{BtnEdit}{BtnEditImages}{BtnDelete}</div>";
             }
         }
 
