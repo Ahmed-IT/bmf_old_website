@@ -92,7 +92,7 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-flag",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Admin.SystemSettingsCountry)),
-                            }                        
+                            }
                         }
                     },
 
@@ -123,6 +123,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-users",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_Club)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_QuickLinks),
+                                Title = "Quick Links",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_QuickLinks._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-link",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_QuickLinks)),
                             }
                         }
                     },

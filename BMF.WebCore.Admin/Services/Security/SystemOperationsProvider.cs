@@ -55,7 +55,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region Website CMS
 
-            public static SystemOperation WebsiteCMS => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS), Children = new List<SystemOperation>() { WebsiteCMS_News } };
+            public static SystemOperation WebsiteCMS => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS), Children = new List<SystemOperation>() { WebsiteCMS_News, WebsiteCMS_Club, WebsiteCMS_QuickLinks } };
 
             // WebsiteCMS - News
             public static SystemOperation WebsiteCMS_News => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News), Children = new List<SystemOperation>() { WebsiteCMS_News_ViewAll, WebsiteCMS_News_Add, WebsiteCMS_News_Edit, WebsiteCMS_News_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
@@ -70,6 +70,13 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation WebsiteCMS_Club_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Add), Parent = GetParent(nameof(WebsiteCMS_Club)) };
             public static SystemOperation WebsiteCMS_Club_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Edit), Parent = GetParent(nameof(WebsiteCMS_Club)) };
             public static SystemOperation WebsiteCMS_Club_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Delete), Parent = GetParent(nameof(WebsiteCMS_Club)) };
+
+            // WebsiteCMS - QuickLinks
+            public static SystemOperation WebsiteCMS_QuickLinks => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks), Children = new List<SystemOperation>() { WebsiteCMS_QuickLinks_ViewAll, WebsiteCMS_QuickLinks_Add, WebsiteCMS_QuickLinks_Edit, WebsiteCMS_QuickLinks_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_QuickLinks_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_ViewAll), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
+            public static SystemOperation WebsiteCMS_QuickLinks_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_Add), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
+            public static SystemOperation WebsiteCMS_QuickLinks_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_Edit), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
+            public static SystemOperation WebsiteCMS_QuickLinks_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_Delete), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
 
             #endregion
         }

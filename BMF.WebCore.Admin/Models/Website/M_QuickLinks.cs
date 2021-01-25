@@ -24,7 +24,7 @@ namespace BMF.Shared.Entities.Website
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_QuickLinks).GetUppercaseLettersAsString().Replace("M_", "");
+        public string ClassAcronym => nameof(M_QuickLinks).GetUppercaseLettersAsString().Replace("M", "");
 
         public string Secondary_ClassAcronym => ClassAcronym;
 
@@ -32,9 +32,9 @@ namespace BMF.Shared.Entities.Website
         {
             get
             {
-                var BtnEdit = "<button type='button' class='btn btn-primary btn-xs' data-toggle='modal' " +
+                var BtnEdit = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Edit"}{ClassAcronym}' data-id='{ID}'><i class='{"fas fa-pencil-alt"}'></i></button>";
-                var BtnDelete = "<button type='button' class='btn btn-danger btn-xs' data-toggle='modal' " +
+                var BtnDelete = "<button type='button' class='btn btn-danger btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Delete"}{ClassAcronym}' data-id='{ID}'><i class='fas fa-trash-alt'></i></button>";
                 return $"<div class='btn-group'>{BtnEdit}{BtnDelete}</div>";
             }
