@@ -16,7 +16,7 @@
                 "Application_Code": "BMFAIIS",
                 "Application_Name": "BMF Admin",
                 "Application_Website": "BMF.com",
-                "Application_WebsiteLink": "https://BMF.com"
+                "Application_WebsiteLink": "https://www.BMF.com"
             }
         },
         "BMF.WebCore.Admin": {
@@ -28,7 +28,7 @@
                 "Application_Code": "BMFAIIS",
                 "Application_Name": "BMF Admin",
                 "Application_Website": "BMF.com",
-                "Application_WebsiteLink": "https://BMF.com"
+                "Application_WebsiteLink": "https://www.BMF.com"
             }
         }
     }
