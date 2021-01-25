@@ -1,6 +1,7 @@
 ﻿using BMF.Shared.Core;
 using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.Security;
+using BMF.Shared.Entities.Website;
 using BMF.Shared.Services.Data;
 using BMF.Shared.Services.Menu;
 using BMF.Shared.Services.Security;
@@ -92,6 +93,27 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 IconClass = "fas fa-flag",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Admin.SystemSettingsCountry)),
                             }                        
+                        }
+                    },
+
+                    new SiteMapNode()
+                    {
+                        SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS),
+                        Title = "Website CMS",
+                        IconClass = "fas fa-globe",
+                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS)),
+                        ChildNodes = new List<SiteMapNode>()
+                        {
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_News),
+                                Title = "News",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_News._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-newspaper",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_News)),
+                            }
                         }
                     },
 

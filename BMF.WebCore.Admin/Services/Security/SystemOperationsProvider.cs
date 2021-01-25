@@ -39,7 +39,7 @@ namespace BMF.WebCore.Admin.Services.Security
 
             #region Admin System Settings
 
-            public static SystemOperation SystemSettings => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettings), Children = new List<SystemOperation>() { SystemSettingsCountry, SystemSettingsCity, SystemSettingsCurrency } };
+            public static SystemOperation SystemSettings => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettings), Children = new List<SystemOperation>() { SystemSettingsCountry } };
 
             // System Settings - Countries
             public static SystemOperation SystemSettingsCountry => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCountry), Children = new List<SystemOperation>() { SystemSettingsCountry_ViewAll, SystemSettingsCountry_Add, SystemSettingsCountry_Edit, SystemSettingsCountry_Delete }, Parent = GetParent(nameof(SystemSettings)) };
@@ -48,19 +48,21 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation SystemSettingsCountry_Edit => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCountry_Edit), Parent = GetParent(nameof(SystemSettingsCountry)) };
             public static SystemOperation SystemSettingsCountry_Delete => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCountry_Delete), Parent = GetParent(nameof(SystemSettingsCountry)) };
 
-            // System Settings - Cities
-            public static SystemOperation SystemSettingsCity => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCity), Children = new List<SystemOperation>() { SystemSettingsCity_ViewAll, SystemSettingsCity_Add, SystemSettingsCity_Edit, SystemSettingsCity_Delete }, Parent = GetParent(nameof(SystemSettings)) };
-            public static SystemOperation SystemSettingsCity_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCity_ViewAll), Parent = GetParent(nameof(SystemSettingsCity)) };
-            public static SystemOperation SystemSettingsCity_Add => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCity_Add), Parent = GetParent(nameof(SystemSettingsCity)) };
-            public static SystemOperation SystemSettingsCity_Edit => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCity_Edit), Parent = GetParent(nameof(SystemSettingsCity)) };
-            public static SystemOperation SystemSettingsCity_Delete => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCity_Delete), Parent = GetParent(nameof(SystemSettingsCity)) };
+            #endregion
+        }
 
-            // System Settings - Currencies
-            public static SystemOperation SystemSettingsCurrency => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCurrency), Children = new List<SystemOperation>() { SystemSettingsCurrency_ViewAll, SystemSettingsCurrency_Add, SystemSettingsCurrency_Edit, SystemSettingsCurrency_Delete }, Parent = GetParent(nameof(SystemSettings)) };
-            public static SystemOperation SystemSettingsCurrency_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCurrency_ViewAll), Parent = GetParent(nameof(SystemSettingsCurrency)) };
-            public static SystemOperation SystemSettingsCurrency_Add => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCurrency_Add), Parent = GetParent(nameof(SystemSettingsCurrency)) };
-            public static SystemOperation SystemSettingsCurrency_Edit => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCurrency_Edit), Parent = GetParent(nameof(SystemSettingsCurrency)) };
-            public static SystemOperation SystemSettingsCurrency_Delete => new SystemOperation { IsActive = true, SystemName = nameof(SystemSettingsCurrency_Delete), Parent = GetParent(nameof(SystemSettingsCurrency)) };
+        public static partial class Website_CMS
+        {
+            #region Website CMS
+
+            public static SystemOperation WebsiteCMS => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS), Children = new List<SystemOperation>() { WebsiteCMS_News } };
+
+            // WebsiteCMS - News
+            public static SystemOperation WebsiteCMS_News => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News), Children = new List<SystemOperation>() { WebsiteCMS_News_ViewAll, WebsiteCMS_News_Add, WebsiteCMS_News_Edit, WebsiteCMS_News_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_News_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_ViewAll), Parent = GetParent(nameof(WebsiteCMS_News)) };
+            public static SystemOperation WebsiteCMS_News_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_Add), Parent = GetParent(nameof(WebsiteCMS_News)) };
+            public static SystemOperation WebsiteCMS_News_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_Edit), Parent = GetParent(nameof(WebsiteCMS_News)) };
+            public static SystemOperation WebsiteCMS_News_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_Delete), Parent = GetParent(nameof(WebsiteCMS_News)) };
 
             #endregion
         }
@@ -79,11 +81,13 @@ namespace BMF.WebCore.Admin.Services.Security
                 Items = new List<SystemOperation> {
                     Admin.Security,
                     Admin.SystemSettings,
+                    Website_CMS.WebsiteCMS,
                 };
             else
             {
                 Items = new List<SystemOperation>();
                 Items.AddRange(typeof(Admin).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
+                Items.AddRange(typeof(Website_CMS).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
             }
             return Items;
         }

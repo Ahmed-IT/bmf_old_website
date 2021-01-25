@@ -1,5 +1,6 @@
 using BMF.Shared.Core;
 using BMF.Shared.Services.Authentication;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using BMF.Shared.Services.Menu;
 using BMF.Shared.Services.Security;
@@ -61,13 +62,15 @@ namespace BMF.WebCore.Admin
 
             // Dependency Injection
             // Services
+            // ------ Azure
+            services.Configure<AzureStorageConfig>(Configuration.GetSection(nameof(AzureStorageConfig)));
+            services.AddScoped<IAzureStorageManager, AzureStorageManager>();
             // ------ Security
             services.AddScoped<IAdminRoleService, AdminRoleService>();
             services.AddScoped<IAdminUserService, AdminUserService>();
             services.AddScoped<ISystemOperationService, SystemOperationService>();
             services.AddScoped<ISystemOperationsProvider, SystemOperationsProvider>();
             services.AddScoped<IPermissionService, PermissionService>();
-       
             // ------ Send Grid
 
             // System Builder Services

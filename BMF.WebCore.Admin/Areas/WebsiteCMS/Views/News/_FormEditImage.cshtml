@@ -1,0 +1,66 @@
+﻿@model M_News
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.RowVersion)
+            <table class="table table-striped table-hover table-bordered table-sm">
+                <tr>
+                    <th>@Html.LabelFor(model => model.Title)</th>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.NewsTimestampUtc)</th>
+                    <td>@Model.Display_NewsTimestampUtc</td>
+                </tr>
+            </table>
+            <h5>News Content</h5>
+            <p>
+                @Model.Content
+            </p>
+            <hr />
+            <input id="ImageUpload" name="ImageUpload" type="file">
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="mr-1 fas fa-times"></i>Close</button>
+        </div>
+        <script id="image-upload">
+            var URL_Image_Overview = ["@Model.Image_URL"],
+                Data_Image_Overview = [{ downloadUrl: "@Model.Image_URL", key: @Model.ID, caption: "@Model.Title" }];
+            $("#ImageUpload").fileinput({
+                theme: 'fas',
+                required: true,
+                showDrag: false,
+                showRemove: false,
+                overwriteInitial: true,
+                initialPreview: URL_Image_Overview,
+                initialPreviewAsData: true,
+                minFileCount: 1,
+                maxFileCount: 1,
+                validateInitialCount: true,
+                maxFileSize: 5000,
+                allowedFileExtensions: ["jpeg", "jpg", "png"],
+                initialPreviewConfig: Data_Image_Overview,
+                uploadUrl: '@Url.Action("UploadImage", new { Model.ID })',
+                //deleteUrl: '@Url.Action("DeleteImage", new { Model.ID })',
+            });
+
+            var getFileSize = function (url) {
+                var req = $.ajax({
+                    type: "HEAD",
+                    url: url,
+                    success: function () {
+                        return (req.getResponseHeader("Content-Length") * 1048576);
+                    }
+                });
+            }
+        </script>
+    }
+}
