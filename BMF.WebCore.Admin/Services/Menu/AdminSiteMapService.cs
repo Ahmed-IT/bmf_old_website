@@ -113,6 +113,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-newspaper",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_News)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_Club),
+                                Title = "Clubs",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_Club._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-users",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_Club)),
                             }
                         }
                     },

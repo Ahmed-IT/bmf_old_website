@@ -64,6 +64,13 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation WebsiteCMS_News_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_Edit), Parent = GetParent(nameof(WebsiteCMS_News)) };
             public static SystemOperation WebsiteCMS_News_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News_Delete), Parent = GetParent(nameof(WebsiteCMS_News)) };
 
+            // WebsiteCMS - Club
+            public static SystemOperation WebsiteCMS_Club => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club), Children = new List<SystemOperation>() { WebsiteCMS_Club_ViewAll, WebsiteCMS_Club_Add, WebsiteCMS_Club_Edit, WebsiteCMS_Club_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_Club_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_ViewAll), Parent = GetParent(nameof(WebsiteCMS_Club)) };
+            public static SystemOperation WebsiteCMS_Club_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Add), Parent = GetParent(nameof(WebsiteCMS_Club)) };
+            public static SystemOperation WebsiteCMS_Club_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Edit), Parent = GetParent(nameof(WebsiteCMS_Club)) };
+            public static SystemOperation WebsiteCMS_Club_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_Club_Delete), Parent = GetParent(nameof(WebsiteCMS_Club)) };
+
             #endregion
         }
 

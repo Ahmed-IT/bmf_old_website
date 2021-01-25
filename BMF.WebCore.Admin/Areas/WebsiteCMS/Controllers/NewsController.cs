@@ -2,7 +2,6 @@
 using AMK.Plugin.JQueryDataTable;
 using BMF.Shared;
 using BMF.Shared.Core.WebFramework;
-using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.Website;
 using BMF.Shared.Extensions;
 using BMF.Shared.Models.KatrikFile;
@@ -59,7 +58,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region Views
 
-        // GET: Admin/M_News
+        // GET: WebsiteCMS/M_News
         public async Task<IActionResult> Index()
         {
             if (!_permissionService.Authorize(SystemOperationsProvider.Website_CMS.WebsiteCMS_News_ViewAll.SystemName))
@@ -72,7 +71,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region Modal Place Holders
 
-        // GET: Admin/M_News/Add
+        // GET: WebsiteCMS/M_News/Add
         public async Task<IActionResult> _Add()
         {
             try
@@ -92,7 +91,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             }
         }
 
-        // GET: Admin/M_News/Edit
+        // GET: WebsiteCMS/M_News/Edit
         public async Task<IActionResult> _Edit()
         {
             try
@@ -114,7 +113,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             }
         }
 
-        // GET: Admin/M_News/EditImage
+        // GET: WebsiteCMS/M_News/EditImage
         public async Task<IActionResult> _EditImage()
         {
             try
@@ -134,7 +133,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             }
         }
 
-        // GET: Admin/M_News/Delete
+        // GET: WebsiteCMS/M_News/Delete
         public async Task<IActionResult> _Delete()
         {
             try
@@ -160,7 +159,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region JQuery Datatable Place Holders
 
-        // GET: Admin/M_News
+        // GET: WebsiteCMS/M_News
         public async Task<IActionResult> _IndexDT()
         {
             try
@@ -185,7 +184,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region JQuery APIs
 
-        // GET: Admin/M_News
+        // GET: WebsiteCMS/M_News
         [HttpPost]
         public async Task<JsonResult> _IndexT([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest _DTParams)
         {
@@ -221,7 +220,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region Partial Views
 
-        // GET: Admin/M_News/Add
+        // GET: WebsiteCMS/M_News/Add
         public async Task<IActionResult> _FormAdd()
         {
             try
@@ -242,7 +241,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
         }
 
-        // GET: Admin/M_News/Edit
+        // GET: WebsiteCMS/M_News/Edit
         public async Task<IActionResult> _FormEdit(long ID)
         {
             try
@@ -267,7 +266,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
         }
 
-        // GET: Admin/M_News/EditImage
+        // GET: WebsiteCMS/M_News/EditImage
         public async Task<IActionResult> _FormEditImage(long ID)
         {
             try
@@ -292,7 +291,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
         }
 
-        // GET: Admin/M_News/Delete
+        // GET: WebsiteCMS/M_News/Delete
         public async Task<IActionResult> _FormDelete(long ID)
         {
             try
@@ -321,7 +320,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
 
         #region API
 
-        // POST: Admin/M_News/Add
+        // POST: WebsiteCMS/M_News/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(M_News AddRecord)
@@ -368,7 +367,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, _Refresh._RefreshDTResponse());
         }
 
-        // POST: Admin/M_News/Edit/5
+        // POST: WebsiteCMS/M_News/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(M_News EditRecord)
@@ -447,7 +446,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, _Refresh._RefreshDTResponse());
         }
 
-        // POST: Admin/M_News/Delete
+        // POST: WebsiteCMS/M_News/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(M_News DeleteRecord)
