@@ -78,5 +78,15 @@ namespace BMF_WebSite.Controllers
         {
             return View();
         }
+
+        public ActionResult NewsDetail()
+        {
+            return View();
+        }
+
+        public ActionResult ResultsDetail()
+        {
+            return View();
+        }
     }
 }

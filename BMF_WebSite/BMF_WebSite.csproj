@@ -277,6 +277,8 @@
     <Content Include="Views\Home\CpdForm.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Home\Bulletins.cshtml" />
+    <Content Include="Views\Home\NewsDetail.cshtml" />
+    <Content Include="Views\Home\ResultsDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
