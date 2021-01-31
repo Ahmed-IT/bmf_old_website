@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\EMS\Views\Shared\" />
     <Folder Include="Areas\Location\Views\Shared\" />
     <Folder Include="Areas\Security\Controllers\" />
     <Folder Include="Areas\WebsiteCMS\Views\Shared\" />

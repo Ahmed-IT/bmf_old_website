@@ -88,6 +88,22 @@ namespace BMF.WebCore.Admin.Services.Security
             #endregion
         }
 
+        public static partial class EventMS
+        {
+            #region EMS
+
+            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason } };
+
+            // EMS - Event Season
+            public static SystemOperation EMS_EventSeason => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason), Children = new List<SystemOperation>() { EMS_EventSeason_ViewAll, EMS_EventSeason_Add, EMS_EventSeason_Edit, EMS_EventSeason_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventSeason_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_ViewAll), Parent = GetParent(nameof(EMS_EventSeason)) };
+            public static SystemOperation EMS_EventSeason_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Add), Parent = GetParent(nameof(EMS_EventSeason)) };
+            public static SystemOperation EMS_EventSeason_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Edit), Parent = GetParent(nameof(EMS_EventSeason)) };
+            public static SystemOperation EMS_EventSeason_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Delete), Parent = GetParent(nameof(EMS_EventSeason)) };
+
+            #endregion
+        }
+
         #region Methods
 
         public static SystemOperation GetParent(string SystemName)
@@ -103,6 +119,7 @@ namespace BMF.WebCore.Admin.Services.Security
                     Admin.Security,
                     Admin.SystemSettings,
                     Website_CMS.WebsiteCMS,
+                    EventMS.EMS,
                 };
             else
             {
