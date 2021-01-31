@@ -1,4 +1,5 @@
 ﻿using BMF.Shared.Core;
+using BMF.Shared.Entities.Events;
 using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.Security;
 using BMF.Shared.Entities.Website;
@@ -147,6 +148,26 @@ namespace BMF.WebCore.Admin.Services.Menu
                         }
                     },
 
+                    new SiteMapNode()
+                    {
+                        SystemName = nameof(SystemOperationsProvider.EventMS.EMS),
+                        Title = "Event Management System",
+                        IconClass = "fas fa-globe",
+                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS)),
+                        ChildNodes = new List<SiteMapNode>()
+                        {
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventSeason),
+                                Title = "Event Seasons",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventSeason._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-calendar",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventSeason)),
+                            },
+                        }
+                    },
                 };
             }
             else
