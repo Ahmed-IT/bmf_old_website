@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BMF.Shared.Entities.Events
@@ -8,6 +9,9 @@ namespace BMF.Shared.Entities.Events
     {
         #region Foreign Keys
 
+        [ForeignKey(nameof(EventSeason))]
+        [Display(Name = "Event Season", Prompt = "Event Season")]
+        [Required]
         [JsonProperty(PropertyName = nameof(ID_EventSeason))]
         public long ID_EventSeason { get; set; }
 
@@ -15,9 +19,13 @@ namespace BMF.Shared.Entities.Events
 
         #region Properties
 
+        [Display(Name = "Title", Prompt = "Title")]
+        [Required, MaxLength(60)]
         [JsonProperty(PropertyName = nameof(Title))]
         public string Title { get; set; }
 
+        [Display(Name = "Image URL", Prompt = "Image URL")]
+        [Required, MaxLength(1024)]
         [JsonProperty(PropertyName = nameof(Image_URL))]
         public string Image_URL { get; set; }
 
@@ -25,12 +33,15 @@ namespace BMF.Shared.Entities.Events
 
         #region Relationships
 
+        [Display(Name = "Event Season", Prompt = "Event Season")]
         [InverseProperty(nameof(M_EventSeason.EventCategories))]
         public M_EventSeason EventSeason { get; set; }
 
+        [Display(Name = "Rules", Prompt = "Rules")]
         [InverseProperty(nameof(M_EventCategoryRules.EventCategory))]
         public ICollection<M_EventCategoryRules> EventCategoryRules { get; set; }
 
+        [Display(Name = "Rounds", Prompt = "Rounds")]
         [InverseProperty(nameof(M_EventRound.EventCategory))]
         public ICollection<M_EventRound> EventRounds { get; set; }
 

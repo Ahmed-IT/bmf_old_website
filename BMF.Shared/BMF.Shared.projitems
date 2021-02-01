@@ -97,6 +97,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Data\IDataSeeder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Data\IRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Data\BMFDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Events\EventCategoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Events\EventSeasonService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Events\IEventCategoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Events\IEventSeasonService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Menu\ISiteMapService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminRoleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminUserService.cs" />

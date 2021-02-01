@@ -13,5 +13,8 @@ namespace BMF.Shared.Services.Azure
         public static string GalleryCategoryImage => $"websitecms-gallery";
 
         public static string GalleryImageImages => $"websitecms-galleryimages";
+
+        public static string EventCategory => $"events-category";
+
     }
 }

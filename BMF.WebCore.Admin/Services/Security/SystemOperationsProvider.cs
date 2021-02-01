@@ -92,7 +92,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region EMS
 
-            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason } };
+            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason , EMS_EventCategory, EMS_EventCategoryRules } };
 
             // EMS - Event Season
             public static SystemOperation EMS_EventSeason => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason), Children = new List<SystemOperation>() { EMS_EventSeason_ViewAll, EMS_EventSeason_Add, EMS_EventSeason_Edit, EMS_EventSeason_Delete }, Parent = GetParent(nameof(EMS)) };
@@ -100,6 +100,34 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation EMS_EventSeason_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Add), Parent = GetParent(nameof(EMS_EventSeason)) };
             public static SystemOperation EMS_EventSeason_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Edit), Parent = GetParent(nameof(EMS_EventSeason)) };
             public static SystemOperation EMS_EventSeason_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason_Delete), Parent = GetParent(nameof(EMS_EventSeason)) };
+
+            // EMS - Event Category
+            public static SystemOperation EMS_EventCategory => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategory), Children = new List<SystemOperation>() { EMS_EventCategory_ViewAll, EMS_EventCategory_Add, EMS_EventCategory_Edit, EMS_EventCategory_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventCategory_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategory_ViewAll), Parent = GetParent(nameof(EMS_EventCategory)) };
+            public static SystemOperation EMS_EventCategory_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategory_Add), Parent = GetParent(nameof(EMS_EventCategory)) };
+            public static SystemOperation EMS_EventCategory_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategory_Edit), Parent = GetParent(nameof(EMS_EventCategory)) };
+            public static SystemOperation EMS_EventCategory_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategory_Delete), Parent = GetParent(nameof(EMS_EventCategory)) };
+
+            // EMS - Event Category Rules
+            public static SystemOperation EMS_EventCategoryRules => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules), Children = new List<SystemOperation>() { EMS_EventCategoryRules_ViewAll, EMS_EventCategoryRules_Add, EMS_EventCategoryRules_Edit, EMS_EventCategoryRules_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventCategoryRules_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_ViewAll), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
+            public static SystemOperation EMS_EventCategoryRules_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Add), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
+            public static SystemOperation EMS_EventCategoryRules_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Edit), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
+            public static SystemOperation EMS_EventCategoryRules_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Delete), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
+
+            // EMS - Event Round
+            public static SystemOperation EMS_EventRound => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound), Children = new List<SystemOperation>() { EMS_EventRound_ViewAll, EMS_EventRound_Add, EMS_EventRound_Edit, EMS_EventRound_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventRound_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound_ViewAll), Parent = GetParent(nameof(EMS_EventRound)) };
+            public static SystemOperation EMS_EventRound_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound_Add), Parent = GetParent(nameof(EMS_EventRound)) };
+            public static SystemOperation EMS_EventRound_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound_Edit), Parent = GetParent(nameof(EMS_EventRound)) };
+            public static SystemOperation EMS_EventRound_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound_Delete), Parent = GetParent(nameof(EMS_EventRound)) };
+
+            // EMS - Event Round Session
+            public static SystemOperation EMS_EventRoundSession => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRoundSession), Children = new List<SystemOperation>() { EMS_EventRoundSession_ViewAll, EMS_EventRoundSession_Add, EMS_EventRoundSession_Edit, EMS_EventRoundSession_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventRoundSession_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRoundSession_ViewAll), Parent = GetParent(nameof(EMS_EventRoundSession)) };
+            public static SystemOperation EMS_EventRoundSession_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRoundSession_Add), Parent = GetParent(nameof(EMS_EventRoundSession)) };
+            public static SystemOperation EMS_EventRoundSession_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRoundSession_Edit), Parent = GetParent(nameof(EMS_EventRoundSession)) };
+            public static SystemOperation EMS_EventRoundSession_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRoundSession_Delete), Parent = GetParent(nameof(EMS_EventRoundSession)) };
 
             #endregion
         }

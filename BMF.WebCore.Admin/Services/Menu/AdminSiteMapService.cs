@@ -163,8 +163,38 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
                                 ControllerName = M_EventSeason._controllerName,
                                 ActionName = "Index",
-                                IconClass = "fas fa-calendar",
+                                IconClass = "fas fa-calendar-alt",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventSeason)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategory),
+                                Title = "Event Categories",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventCategory._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-object-group",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategory)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryRules),
+                                Title = "Event Category Rules",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventCategoryRules._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-ruler",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryRules)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventRound),
+                                Title = "Event Rounds",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventRound._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-redo-alt",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRound)),
                             },
                         }
                     },

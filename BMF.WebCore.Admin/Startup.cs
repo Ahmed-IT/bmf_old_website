@@ -2,6 +2,7 @@ using BMF.Shared.Core;
 using BMF.Shared.Services.Authentication;
 using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
+using BMF.Shared.Services.Events;
 using BMF.Shared.Services.Menu;
 using BMF.Shared.Services.Security;
 using BMF.Shared.UI;
@@ -72,6 +73,9 @@ namespace BMF.WebCore.Admin
             services.AddScoped<ISystemOperationsProvider, SystemOperationsProvider>();
             services.AddScoped<IPermissionService, PermissionService>();
             // ------ Send Grid
+            // ------ Events
+            services.AddScoped<IEventSeasonService, EventSeasonService>();
+            services.AddScoped<IEventCategoryService, EventCategoryService>();
 
             // System Builder Services
             services.AddScoped<ISiteMapService, AdminSiteMapService>();
