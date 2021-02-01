@@ -1,0 +1,85 @@
+﻿@model M_EventRound
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID_EventCategory, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.DropDownListFor(model => model.ID_EventCategory, null, new { @class = "form-control select2-edit", @required = "required", @style = "width:100%;", @data_placeholder = "Select category ...", @data_allow_clear = "true" })
+            @Html.ValidationMessageFor(model => model.ID_EventCategory, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Round_Number, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.EditorFor(model => model.Round_Number, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "50" } })
+            @Html.ValidationMessageFor(model => model.Round_Number, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateTime_Start, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="input-group date" id="DateTime_Start_Edit" data-target-input="nearest">
+                @Html.TextBox($"{nameof(Model.DateTime_Start)}", Model.Display_DateTime_Start, new { @class = "form-control datetimepicker-input datetimepicker-edit", @maxlength = "25", @autocomplete = "off", @data_toggle = "datetimepicker", @data_target = "#DateTime_Start_Edit" })
+                <div class="input-group-append" data-target="#DateTime_Start_Edit" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.DateTime_Start, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateTime_End, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="input-group date" id="DateTime_End_Edit" data-target-input="nearest">
+                @Html.TextBox($"{nameof(Model.DateTime_End)}", Model.Display_DateTime_End, new { @class = "form-control datetimepicker-input datetimepicker-edit", @maxlength = "25", @autocomplete = "off", @data_toggle = "datetimepicker", @data_target = "#DateTime_End_Edit" })
+                <div class="input-group-append" data-target="#DateTime_End_Edit" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.DateTime_End, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.AddTo_Calendar, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.AddTo_Calendar, true, new { id = "AddTo_Calendar_T" })
+                <label for="AddTo_Calendar_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.AddTo_Calendar, false, new { id = "AddTo_Calendar_F" })
+                <label for="AddTo_Calendar_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.AddTo_Calendar, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.AddTo_Countdown, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.AddTo_Countdown, true, new { id = "AddTo_Countdown_T" })
+                <label for="AddTo_Countdown_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.AddTo_Countdown, false, new { id = "AddTo_Countdown_F" })
+                <label for="AddTo_Countdown_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.AddTo_Countdown, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, true, new { id = "IsActive_T" })
+                <label for="IsActive_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, false, new { id = "IsActive_F" })
+                <label for="IsActive_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.IsActive, "")
+        </div>
+        <script>
+            $('.select2-edit').select2();
+            $('#DateTime_Start_Edit').datetimepicker({ format: 'DD-MMM-YYYY hh:mm A', ignoreReadonly: true, useCurrent: true });
+            $('#DateTime_End_Edit').datetimepicker({ format: 'DD-MMM-YYYY hh:mm A', ignoreReadonly: true, useCurrent: true });
+        </script>
+    }
+}

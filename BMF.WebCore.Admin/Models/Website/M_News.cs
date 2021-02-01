@@ -21,7 +21,7 @@ namespace BMF.Shared.Entities.Website
         #region Fields
 
         [NotMapped]
-        public string Display_NewsTimestampUtc => NewsTimestampUtc.ToString("dd-MMM-yyyy hh:mm");
+        public string Display_NewsTimestampUtc => NewsTimestampUtc.ToString("dd-MMM-yyyy hh:mm tt");
 
         #endregion
 

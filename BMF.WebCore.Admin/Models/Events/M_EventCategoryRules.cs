@@ -42,7 +42,7 @@ namespace BMF.Shared.Entities.Events
                 var BtnEdit = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Edit"}{ClassAcronym}' data-id='{ID}'><i class='{"fas fa-pencil-alt"}'></i></button>";
                 var BtnEditPDF = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
-                    $"data-target='#M_{"ECRPDF"}' data-id='{ID}'><i class='{"fas fa-image"}'></i></button>";
+                    $"data-target='#M_E{"ECRPDF"}' data-id='{ID}'><i class='{"fas fa-image"}'></i></button>";
                 var BtnDelete = "<button type='button' class='btn btn-danger btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Delete"}{ClassAcronym}' data-id='{ID}'><i class='fas fa-trash-alt'></i></button>";
                 return $"<div class='btn-group'>{BtnEdit}{BtnEditPDF}{BtnDelete}</div>";

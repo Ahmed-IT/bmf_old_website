@@ -3,6 +3,7 @@ using BMF.Shared.Extensions;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,6 +15,18 @@ namespace BMF.Shared.Entities.Events
         [NotMapped]
         public static string _controllerName => $"{nameof(M_EventRound)}".Replace("M_", "");
 
+        [NotMapped]
+        public string Display_DateTime_Start => DateTime_Start.ToString("dd-MMM-yyyy hh:mm tt");
+
+        [NotMapped]
+        public string Display_DateTime_End => DateTime_End.ToString("dd-MMM-yyyy hh:mm tt");
+
+        [NotMapped]
+        public string Display_AddTo_Calendar => AddTo_Calendar ? "Yes" : "No";
+
+        [NotMapped]
+        public string Display_AddTo_Countdown => AddTo_Countdown ? "Yes" : "No";
+
         #region Fields
 
         #endregion
@@ -22,6 +35,8 @@ namespace BMF.Shared.Entities.Events
 
         public M_EventRound()
         {
+            DateTime_Start = DateTime.Now;
+            DateTime_End = DateTime.Now;
             EventRoundSessions = new List<M_EventRoundSession>();
         }
 

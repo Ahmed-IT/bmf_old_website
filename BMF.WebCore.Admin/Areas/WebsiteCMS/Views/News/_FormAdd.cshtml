@@ -41,7 +41,7 @@
             @Html.ValidationMessageFor(model => model.IsActive, "")
         </div>
         <script>
-            $('#NewsTimestampUtc_Add').datetimepicker({ format: 'DD-MMM-YYYY hh:mm', ignoreReadonly: true, useCurrent: true });
+            $('#NewsTimestampUtc_Add').datetimepicker({ format: 'DD-MMM-YYYY hh:mm A', ignoreReadonly: true, useCurrent: true });
         </script>
     }
 }
