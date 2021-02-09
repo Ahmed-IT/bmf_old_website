@@ -92,7 +92,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region EMS
 
-            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason , EMS_EventCategory, EMS_EventCategoryRules } };
+            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason , EMS_EventCategory, EMS_EventCategoryRules, EMS_EventCategoryBulletins } };
 
             // EMS - Event Season
             public static SystemOperation EMS_EventSeason => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason), Children = new List<SystemOperation>() { EMS_EventSeason_ViewAll, EMS_EventSeason_Add, EMS_EventSeason_Edit, EMS_EventSeason_Delete }, Parent = GetParent(nameof(EMS)) };
@@ -114,6 +114,13 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation EMS_EventCategoryRules_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Add), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
             public static SystemOperation EMS_EventCategoryRules_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Edit), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
             public static SystemOperation EMS_EventCategoryRules_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryRules_Delete), Parent = GetParent(nameof(EMS_EventCategoryRules)) };
+
+            // EMS - Event Category Bulletins
+            public static SystemOperation EMS_EventCategoryBulletins => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryBulletins), Children = new List<SystemOperation>() { EMS_EventCategoryBulletins_ViewAll, EMS_EventCategoryBulletins_Add, EMS_EventCategoryBulletins_Edit, EMS_EventCategoryBulletins_Delete }, Parent = GetParent(nameof(EMS)) };
+            public static SystemOperation EMS_EventCategoryBulletins_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryBulletins_ViewAll), Parent = GetParent(nameof(EMS_EventCategoryBulletins)) };
+            public static SystemOperation EMS_EventCategoryBulletins_Add => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryBulletins_Add), Parent = GetParent(nameof(EMS_EventCategoryBulletins)) };
+            public static SystemOperation EMS_EventCategoryBulletins_Edit => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryBulletins_Edit), Parent = GetParent(nameof(EMS_EventCategoryBulletins)) };
+            public static SystemOperation EMS_EventCategoryBulletins_Delete => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventCategoryBulletins_Delete), Parent = GetParent(nameof(EMS_EventCategoryBulletins)) };
 
             // EMS - Event Round
             public static SystemOperation EMS_EventRound => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventRound), Children = new List<SystemOperation>() { EMS_EventRound_ViewAll, EMS_EventRound_Add, EMS_EventRound_Edit, EMS_EventRound_Delete }, Parent = GetParent(nameof(EMS)) };

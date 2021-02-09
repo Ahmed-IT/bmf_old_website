@@ -41,6 +41,10 @@ namespace BMF.Shared.Entities.Events
         [InverseProperty(nameof(M_EventCategoryRules.EventCategory))]
         public ICollection<M_EventCategoryRules> EventCategoryRules { get; set; }
 
+        [Display(Name = "Bulletins", Prompt = "Bulletins")]
+        [InverseProperty(nameof(M_EventCategoryBulletins.EventCategory))]
+        public ICollection<M_EventCategoryBulletins> EventCategoryBulletins { get; set; }
+
         [Display(Name = "Rounds", Prompt = "Rounds")]
         [InverseProperty(nameof(M_EventRound.EventCategory))]
         public ICollection<M_EventRound> EventRounds { get; set; }

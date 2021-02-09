@@ -188,6 +188,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                             },
                             new SiteMapNode()
                             {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins),
+                                Title = "Event Bulletins",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventCategoryBulletins._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-thumbtack",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins)),
+                            },
+                            new SiteMapNode()
+                            {
                                 SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventRound),
                                 Title = "Event Rounds",
                                 RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },

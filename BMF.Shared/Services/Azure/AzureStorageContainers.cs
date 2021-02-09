@@ -18,5 +18,7 @@ namespace BMF.Shared.Services.Azure
 
         public static string EventCategoryRulePDF => $"events-categoryrules-pdf";
 
+        public static string EventCategoryBulletinPDF => $"events-categorybulletins-pdf";
+
     }
 }

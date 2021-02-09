@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\WebWorkContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryBulletins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryRules.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRound.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRoundSession.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_News.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_QuickLinks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\EFCoreMappingBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryBulletins_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryRules_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategory_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSessionUserResults_EFCoreBuilder.cs" />

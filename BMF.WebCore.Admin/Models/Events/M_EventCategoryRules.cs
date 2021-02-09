@@ -15,7 +15,7 @@ namespace BMF.Shared.Entities.Events
         public static string _controllerName => $"{nameof(M_EventCategoryRules)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/events-categoryrules/default.jpg";
+        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/events-categoryrules-pdf/default.jpg";
 
         #region Fields
 
