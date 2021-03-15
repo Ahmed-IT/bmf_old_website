@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Users\506719\Source\Repos\BMF_NewApp\BMF_WebSite\bmfModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\ARamadan\Documents\Visual Studio 2017\Projects\BMF_New_App\BMF_WebSite\bmfModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

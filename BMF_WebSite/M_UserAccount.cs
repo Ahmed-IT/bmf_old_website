@@ -18,9 +18,6 @@ namespace BMF_WebSite
         public M_UserAccount()
         {
             this.M_EventRoundSessionUserResults = new HashSet<M_EventRoundSessionUserResults>();
-            this.M_MyFavRaces = new HashSet<M_MyFavRaces>();
-            this.M_MyRaces = new HashSet<M_MyRaces>();
-            this.M_UserLicense = new HashSet<M_UserLicense>();
         }
     
         public long ID { get; set; }
@@ -34,16 +31,9 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
-        public long ID_UserProfile { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_MyFavRaces> M_MyFavRaces { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_MyRaces> M_MyRaces { get; set; }
         public virtual M_UserProfile M_UserProfile { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_UserLicense> M_UserLicense { get; set; }
     }
 }
