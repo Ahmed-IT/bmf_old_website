@@ -7,17 +7,6 @@
   <Import Project="..\BMF.Shared\BMF.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <Compile Remove="Areas\BMFMS\Views\LicenseTypes\**" />
-    <Compile Remove="Areas\BMFMS\Views\Users\**" />
-    <Content Remove="Areas\BMFMS\Views\LicenseTypes\**" />
-    <Content Remove="Areas\BMFMS\Views\Users\**" />
-    <EmbeddedResource Remove="Areas\BMFMS\Views\LicenseTypes\**" />
-    <EmbeddedResource Remove="Areas\BMFMS\Views\Users\**" />
-    <None Remove="Areas\BMFMS\Views\LicenseTypes\**" />
-    <None Remove="Areas\BMFMS\Views\Users\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
     <PackageReference Include="LinqKit.Core" Version="1.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.11" />
@@ -41,6 +30,17 @@
     <Folder Include="Plugins\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\BMFMS\Views\LicenseTypes\Index.cshtml" />
+    <None Include="Areas\BMFMS\Views\LicenseTypes\_FormAdd.cshtml" />
+    <None Include="Areas\BMFMS\Views\LicenseTypes\_FormDelete.cshtml" />
+    <None Include="Areas\BMFMS\Views\LicenseTypes\_FormEdit.cshtml" />
+    <None Include="Areas\BMFMS\Views\Users\Index.cshtml" />
+    <None Include="Areas\BMFMS\Views\Users\_FormAdd.cshtml" />
+    <None Include="Areas\BMFMS\Views\Users\_FormDelete.cshtml" />
+    <None Include="Areas\BMFMS\Views\Users\_FormEdit.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

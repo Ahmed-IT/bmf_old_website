@@ -15,11 +15,11 @@ namespace BMF.Shared.Entities.Events
         [JsonProperty(PropertyName = nameof(ID_EventRoundSession))]
         public long ID_EventRoundSession { get; set; }
 
-        //[ForeignKey(nameof(User))]
-        //[Display(Name = "User", Prompt = "User")]
-        //[Required]
-        //[JsonProperty(PropertyName = nameof(ID_User))]
-        //public long ID_User { get; set; }
+        [ForeignKey(nameof(UserAccount))]
+        [Display(Name = "User", Prompt = "User")]
+        [Required]
+        [JsonProperty(PropertyName = nameof(ID_UserAccount))]
+        public long ID_UserAccount { get; set; }
 
         #endregion
 
@@ -36,9 +36,9 @@ namespace BMF.Shared.Entities.Events
 
         [InverseProperty(nameof(M_EventRoundSession.UserResults))]
         public M_EventRoundSession EventRoundSession { get; set; }
-        
-        //[InverseProperty(nameof(M_UserAccount.UserResults))]
-        //public M_UserAccount User { get; set; }
+
+        [InverseProperty(nameof(M_UserAccount.UserResults))]
+        public M_UserAccount UserAccount { get; set; }
 
         #endregion
     }

@@ -1,29 +1,29 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-//namespace BMF.Shared.Entities.UserManagement
-//{
-//    public partial class M_UserLicenseRenewalMedicForms : BaseEntity
-//    {
-//        #region Foreign Keys
+namespace BMF.Shared.Entities.UserManagement
+{
+    public partial class M_UserLicenseRenewalMedicForms : BaseEntity
+    {
+        #region Foreign Keys
 
-//        public long ID_UserLicenseRenewal { get; set; }
+        public long ID_UserLicenseRenewal { get; set; }
 
-//        #endregion
+        #endregion
 
-//        #region Properties
+        #region Properties
 
-//        public DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
-//        public string PDF_File { get; set; }
+        public string PDF_File { get; set; }
 
-//        #endregion
+        #endregion
 
-//        #region Relationships
+        #region Relationships
 
-//        public M_UserLicenseRenewal UserLicenseRenewal { get; set; }
+        public M_UserLicenseRenewal UserLicenseRenewal { get; set; }
 
-//        #endregion
-//    }
-//}
+        #endregion
+    }
+}

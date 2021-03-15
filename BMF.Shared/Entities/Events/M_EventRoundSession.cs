@@ -40,11 +40,11 @@ namespace BMF.Shared.Entities.Events
         [InverseProperty(nameof(M_EventRoundSessionUserResults.EventRoundSession))]
         public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
-        //[InverseProperty(nameof(M_MyRaces.EventRoundSession))]
-        //public ICollection<M_MyRaces> User_MyRaces { get; set; }
+        [InverseProperty(nameof(M_MyRaces.EventRoundSession))]
+        public ICollection<M_MyRaces> User_MyRaces { get; set; }
 
-        //[InverseProperty(nameof(M_MyFavRaces.EventRoundSession))]
-        //public ICollection<M_MyFavRaces> User_MyFavRaces { get; set; }
+        [InverseProperty(nameof(M_MyFavRaces.EventRoundSession))]
+        public ICollection<M_MyFavRaces> User_MyFavRaces { get; set; }
 
         #endregion
     }

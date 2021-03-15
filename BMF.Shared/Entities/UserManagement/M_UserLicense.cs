@@ -1,35 +1,35 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-//namespace BMF.Shared.Entities.UserManagement
-//{
-//    public partial class M_UserLicense : BaseEntity
-//    {
-//        #region Foreign Keys
+namespace BMF.Shared.Entities.UserManagement
+{
+    public partial class M_UserLicense : BaseEntity
+    {
+        #region Foreign Keys
 
-//        public long ID_User { get; set; }
+        public long ID_UserAccount { get; set; }
 
-//        public long ID_LicenseType { get; set; }
+        public long ID_LicenseType { get; set; }
 
-//        #endregion
+        #endregion
 
-//        #region Properties
+        #region Properties
 
-//        public string License_Number { get; set; }
+        public string License_Number { get; set; }
 
-//        public DateTime Expire_Date { get; set; }
+        public DateTime Expire_Date { get; set; }
 
-//        #endregion
+        #endregion
 
-//        #region Relationships
+        #region Relationships
 
-//        public M_UserAccount User { get; set; }
+        public M_UserAccount UserAccount { get; set; }
 
-//        public D_LicenseType LicenseType { get; set; }
+        public D_LicenseType LicenseType { get; set; }
 
-//        public ICollection<M_UserLicenseRenewal> UserLicenseRenewal { get; set; }
+        public ICollection<M_UserLicenseRenewal> UserLicenseRenewal { get; set; }
 
-//        #endregion
-//    }
-//}
+        #endregion
+    }
+}
