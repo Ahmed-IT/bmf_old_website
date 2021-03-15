@@ -871,17 +871,12 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("M_MyRaces");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_User", b =>
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
-
-                    b.Property<string>("CPR_Number")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -899,6 +894,9 @@ namespace BMF.WebCore.Admin.Migrations
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
+
+                    b.Property<long>("ID_UserProfile")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -921,7 +919,10 @@ namespace BMF.WebCore.Admin.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("M_User");
+                    b.HasIndex("ID_UserProfile")
+                        .IsUnique();
+
+                    b.ToTable("M_UserAccount");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
@@ -1086,12 +1087,17 @@ namespace BMF.WebCore.Admin.Migrations
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Blood_Group")
                         .IsRequired()
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("CPR")
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1118,6 +1124,9 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
+                    b.Property<long?>("ID_Nationality")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -1126,12 +1135,7 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("Nationality")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
                     b.Property<string>("Photo_URL")
-                        .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
@@ -1151,6 +1155,8 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("DATETIME2(7)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ID_Nationality");
 
                     b.ToTable("M_UserProfile");
                 });
@@ -1475,7 +1481,7 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_User", "User")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
                         .WithMany("UserResults")
                         .HasForeignKey("ID_User")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1541,7 +1547,7 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_User", "User")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
                         .WithMany("MyFavRaces")
                         .HasForeignKey("ID_User")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1560,7 +1566,7 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_User", "User")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
                         .WithMany("MyRaces")
                         .HasForeignKey("ID_User")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1571,6 +1577,17 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
+                        .WithOne("UserAccount")
+                        .HasForeignKey("BMF.Shared.Entities.UserManagement.M_UserAccount", "ID_UserProfile")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.UserManagement.D_LicenseType", "LicenseType")
@@ -1579,7 +1596,7 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_User", "User")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
                         .WithMany("UserLicense")
                         .HasForeignKey("ID_User")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1614,13 +1631,11 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
                 {
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_User", "User")
-                        .WithOne("UserProfile")
-                        .HasForeignKey("BMF.Shared.Entities.UserManagement.M_UserProfile", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("BMF.Shared.Entities.Location.Country", "Nationality")
+                        .WithMany("Users")
+                        .HasForeignKey("ID_Nationality");
 
-                    b.Navigation("User");
+                    b.Navigation("Nationality");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryImages", b =>
@@ -1662,6 +1677,11 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("EventCategories");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.Location.Country", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Security.AdminRole", b =>
                 {
                     b.Navigation("AssignedOperations");
@@ -1686,15 +1706,13 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("UserLicense");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_User", b =>
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
                 {
                     b.Navigation("MyFavRaces");
 
                     b.Navigation("MyRaces");
 
                     b.Navigation("UserLicense");
-
-                    b.Navigation("UserProfile");
 
                     b.Navigation("UserResults");
                 });
@@ -1707,6 +1725,11 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
                 {
                     b.Navigation("MedicForms");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
+                {
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryCategory", b =>

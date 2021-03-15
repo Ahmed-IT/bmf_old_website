@@ -139,6 +139,22 @@ namespace BMF.WebCore.Admin.Services.Security
             #endregion
         }
 
+        public static partial class BMFMS
+        {
+            #region UserMS
+
+            public static SystemOperation BmfMS => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS), Children = new List<SystemOperation>() { BmfMS_LicenseType } };
+
+            // EMS - Event Season
+            public static SystemOperation BmfMS_LicenseType => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType), Children = new List<SystemOperation>() { BmfMS_LicenseType_ViewAll, BmfMS_LicenseType_Add, BmfMS_LicenseType_Edit, BmfMS_LicenseType_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_LicenseType_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_ViewAll), Parent = GetParent(nameof(BmfMS_LicenseType)) };
+            public static SystemOperation BmfMS_LicenseType_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Add), Parent = GetParent(nameof(BmfMS_LicenseType)) };
+            public static SystemOperation BmfMS_LicenseType_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Edit), Parent = GetParent(nameof(BmfMS_LicenseType)) };
+            public static SystemOperation BmfMS_LicenseType_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Delete), Parent = GetParent(nameof(BmfMS_LicenseType)) };
+
+            #endregion
+        }
+
         #region Methods
 
         public static SystemOperation GetParent(string SystemName)
@@ -155,6 +171,7 @@ namespace BMF.WebCore.Admin.Services.Security
                     Admin.SystemSettings,
                     Website_CMS.WebsiteCMS,
                     EventMS.EMS,
+                    BMFMS.BmfMS,
                 };
             else
             {
@@ -162,6 +179,7 @@ namespace BMF.WebCore.Admin.Services.Security
                 Items.AddRange(typeof(Admin).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
                 Items.AddRange(typeof(Website_CMS).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
                 Items.AddRange(typeof(EventMS).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
+                Items.AddRange(typeof(BMFMS).GetProperties(BindingFlags.Static | BindingFlags.Public).Where(w => w.PropertyType == typeof(SystemOperation)).Select(s => (SystemOperation)s.GetValue(null)).ToList());
             }
             return Items;
         }

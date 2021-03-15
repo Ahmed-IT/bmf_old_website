@@ -7,6 +7,17 @@
   <Import Project="..\BMF.Shared\BMF.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
+    <Compile Remove="Areas\BMFMS\Views\LicenseTypes\**" />
+    <Compile Remove="Areas\BMFMS\Views\Users\**" />
+    <Content Remove="Areas\BMFMS\Views\LicenseTypes\**" />
+    <Content Remove="Areas\BMFMS\Views\Users\**" />
+    <EmbeddedResource Remove="Areas\BMFMS\Views\LicenseTypes\**" />
+    <EmbeddedResource Remove="Areas\BMFMS\Views\Users\**" />
+    <None Remove="Areas\BMFMS\Views\LicenseTypes\**" />
+    <None Remove="Areas\BMFMS\Views\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
     <PackageReference Include="LinqKit.Core" Version="1.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.11" />
@@ -17,7 +28,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
@@ -25,6 +36,7 @@
     <Folder Include="Areas\EMS\Views\Shared\" />
     <Folder Include="Areas\Location\Views\Shared\" />
     <Folder Include="Areas\Security\Controllers\" />
+    <Folder Include="Areas\BMFMS\Views\Shared\" />
     <Folder Include="Areas\WebsiteCMS\Views\Shared\" />
     <Folder Include="Plugins\" />
     <Folder Include="wwwroot\css\" />
@@ -41,6 +53,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\BMFMS\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\BMFMS\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Areas\WebsiteCMS\Views\GalleryCategory\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

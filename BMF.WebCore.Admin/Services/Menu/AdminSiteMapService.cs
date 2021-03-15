@@ -2,6 +2,7 @@
 using BMF.Shared.Entities.Events;
 using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.Security;
+using BMF.Shared.Entities.UserManagement;
 using BMF.Shared.Entities.Website;
 using BMF.Shared.Services.Data;
 using BMF.Shared.Services.Menu;
@@ -205,6 +206,27 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-redo-alt",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRound)),
+                            },
+                        }
+                    },
+
+                    new SiteMapNode()
+                    {
+                        SystemName = nameof(SystemOperationsProvider.BMFMS),
+                        Title = "BMF Management",
+                        IconClass = "fas fa-car",
+                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS)),
+                        ChildNodes = new List<SiteMapNode>()
+                        {
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_LicenseType),
+                                Title = "License Types",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.BmfMS } },
+                                ControllerName = D_LicenseType._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-tags",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_LicenseType)),
                             },
                         }
                     },

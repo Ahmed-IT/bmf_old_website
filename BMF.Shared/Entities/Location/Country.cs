@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BMF.Shared.Entities.UserManagement;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -55,6 +56,10 @@ namespace BMF.Shared.Entities.Location
         #endregion
 
         #region Relationships
+
+        [Display(Name = "Users", Prompt = "Users")]
+        [InverseProperty(nameof(M_UserProfile.Nationality))]
+        public ICollection<M_UserProfile> Users { get; set; }
 
         #endregion
     }

@@ -9,7 +9,7 @@ namespace BMF.Shared.Entities.UserManagement
         #region Foreign Keys
 
         public long ID_User { get; set; }
-        
+
         public long ID_LicenseType { get; set; }
 
         #endregion
@@ -24,7 +24,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         #region Relationships
 
-        public M_User User { get; set; }
+        public M_UserAccount User { get; set; }
 
         public D_LicenseType LicenseType { get; set; }
 

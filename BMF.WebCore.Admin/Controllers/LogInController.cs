@@ -88,7 +88,7 @@ namespace BMF.WebCore.Admin.Controllers
             }
             catch (Exception LogError)
             {
-                this.SetError("Error Occured.", "Failed to log in. Please try again later");
+                this.SetError("Error Occured.", "Failed to log in. Please try again later" + LogError.Message);
                 //throw;
             }
             return View(LogInRequest);

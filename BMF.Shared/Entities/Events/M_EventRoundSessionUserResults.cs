@@ -37,8 +37,8 @@ namespace BMF.Shared.Entities.Events
         [InverseProperty(nameof(M_EventRoundSession.UserResults))]
         public M_EventRoundSession EventRoundSession { get; set; }
         
-        [InverseProperty(nameof(M_User.UserResults))]
-        public M_User User { get; set; }
+        [InverseProperty(nameof(M_UserAccount.UserResults))]
+        public M_UserAccount User { get; set; }
 
         #endregion
     }

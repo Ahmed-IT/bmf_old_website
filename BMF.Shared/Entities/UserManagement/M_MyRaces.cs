@@ -17,7 +17,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         #region Relationships
 
-        public M_User User { get; set; }
+        public M_UserAccount User { get; set; }
 
         public M_EventRoundSession EventRoundSession { get; set; }
 

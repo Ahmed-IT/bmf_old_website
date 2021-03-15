@@ -39,7 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\D_LicenseType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyFavRaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyRaces.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserAccount.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicense.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicenseRenewal_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicense_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserProfile_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_User_Mapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserAccount_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_Club_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_GalleryCategory_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_GalleryImages_Mapping.cs" />
@@ -103,6 +103,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Events\EventSeasonService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Events\IEventCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Events\IEventSeasonService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Location\ILocationCountryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Location\LocationCountryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Menu\ISiteMapService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminRoleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\AdminUserService.cs" />
