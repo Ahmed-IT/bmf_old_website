@@ -1,5 +1,6 @@
 ﻿using AMK.Plugin.JQueryDataTable;
 using BMF.Shared.Extensions;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace BMF.Shared.Entities.UserManagement
         public static string _controllerName => $"{nameof(D_LicenseType)}s".Replace("D_", "");
 
         [NotMapped]
-        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/license-type/default.jpg";
+        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.LicenseType}/default.jpg";
 
         #region Fields
 
@@ -32,7 +33,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(D_LicenseType).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(D_LicenseType).Replace("D_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 
@@ -43,7 +44,7 @@ namespace BMF.Shared.Entities.UserManagement
                 var BtnEdit = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Edit"}{ClassAcronym}' data-id='{ID}'><i class='{"fas fa-pencil-alt"}'></i></button>";
                 var BtnEditImage = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
-                    $"data-target='#M_E{"UI"}' data-id='{ID}'><i class='{"fas fa-image"}'></i></button>";
+                    $"data-target='#M_E{"LTI"}' data-id='{ID}'><i class='{"fas fa-image"}'></i></button>";
                 var BtnDelete = "<button type='button' class='btn btn-danger btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Delete"}{ClassAcronym}' data-id='{ID}'><i class='fas fa-trash-alt'></i></button>";
                 return $"<div class='btn-group'>{BtnEdit}{BtnEditImage}{BtnDelete}</div>";
@@ -55,8 +56,8 @@ namespace BMF.Shared.Entities.UserManagement
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
-                new Column(nameof(Title), "Title"),
                 new Column(nameof(Type), "Type"),
+                new Column(nameof(Title), "Title"),
             };
             return IJQDataTableExtendDBViewModel<D_LicenseType, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
         }

@@ -5,14 +5,18 @@ using BMF.Shared.Core.WebFramework;
 using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.UserManagement;
 using BMF.Shared.Extensions;
+using BMF.Shared.Models.KatrikFile;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using BMF.Shared.Services.Security;
 using BMF.WebCore.Admin.Services.Security;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,11 +46,14 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
         // TODO: // Eventually we want to use the Service Layer directly and not even the Repository // The service layer should utilize the repository
         private readonly IPermissionService _permissionService;
         private readonly IRepository<D_LicenseType> _repository;
+        private readonly IAzureStorageManager _azureStorageManager;
 
         public LicenseTypesController(IPermissionService permissionService,
+            IAzureStorageManager azureStorageManager,
             IRepository<D_LicenseType> repository)
         {
             _permissionService = permissionService;
+            _azureStorageManager = azureStorageManager;
             _repository = repository;
         }
 
@@ -100,6 +107,26 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                     HighlightRecordDatatableName: $"DT_{JQDT_Index}"
                     );
                 return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalForm, Modal);
+            }
+            catch (Exception LogError)
+            {
+                this.SetError(FixedTerms.Message_Error_RefreshPage, IsPartialView: true);
+                return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
+            }
+        }
+
+        // GET: BMFMS/LicenseTypes/EditImage
+        public async Task<IActionResult> _EditImage()
+        {
+            try
+            {
+                var Modal = new ModalInformational($"Edit {_entityName} Images",
+                    Url.Action("_FormEditImage", _controllerName, new { area = _areaName }),
+                    Size: Size.Medium,
+                    HighlightRecordOnShow: true,
+                    HighlightRecordDatatableName: $"DT_{JQDT_Index}"
+                    );
+                return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalInformational, Modal);
             }
             catch (Exception LogError)
             {
@@ -241,6 +268,31 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
         }
 
+        // GET: EMS/Categorys/EditImage
+        public async Task<IActionResult> _FormEditImage(long ID)
+        {
+            try
+            {
+                if (!_permissionService.Authorize(SystemOperationsProvider.BMFMS.BmfMS_LicenseType_Edit.SystemName))
+                    return UnauthorizedModalView();
+
+                D_LicenseType ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
+                {
+                    this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
+                }
+                else
+                {
+                    return PartialView(ActualRecord);
+                }
+            }
+            catch (Exception LogError)
+            {
+                this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
+            }
+            return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
+        }
+
         // GET: BMFMS/LicenseTypes/Delete
         public async Task<IActionResult> _FormDelete(long ID)
         {
@@ -264,6 +316,284 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                 this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
             }
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
+        }
+
+        #endregion
+
+        #region API - File Upload
+
+        [HttpPost]
+        public async Task<ActionResult> UploadImage_Front(long ID, IFormFile ImageUpload)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to upload. Invalid selection." });
+                }
+                else
+                {
+                    if (ImageUpload == null || ImageUpload.Length == 0)
+                    {
+                        return Json(new KatrikFileResponse() { error = "Failed to upload. No uploaded image provided." });
+                    }
+                    else
+                    {
+                        D_LicenseType ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                        if (ActualRecord == null)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                        }
+                        else if (ActualRecord.DeletedOnUtc.HasValue)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+
+                            using var memoryStream = new MemoryStream();
+                            await ImageUpload.CopyToAsync(memoryStream);
+                            memoryStream.Position = 0; // Reset memory stream to upload correctly
+
+                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.EventCategory, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
+                            if (!uploadResult)
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to upload. Please try again later." });
+                            }
+                            else
+                            {
+                                ActualRecord.Image_Front_URL = imageURL;
+                                ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                                ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                                ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                                ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                                _repository.Entry(ActualRecord).State = EntityState.Modified;
+                                await _repository.SaveChangesAsync();
+
+                                return Json(new KatrikFileResponse()
+                                {
+                                    error = null,
+                                    initialPreview = new List<string>() { $"{imageURL}" },
+                                    initialPreviewConfig = new List<KatrikFilePreviewConfig>()
+                                    {
+                                        new KatrikFilePreviewConfig()
+                                        {
+                                            caption = "", //caption = $"{ActualRecord.Name} - {specSection.ToString()} - {AddRecord.ID}",
+                                            filename = "", //filename = $"{ActualRecord.Name} - {specSection.ToString()} {AddRecord.ID}",
+                                            downloadUrl = $"{imageURL}",
+                                            url  = $"{Url.Action("DeleteImage_Front", new { ActualRecord.ID })}",
+                                            key = ActualRecord.ID,
+                                        }
+                                    },
+                                    append = true
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to upload. Please contact system administrator." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteImage_Front(long ID, long key)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid selection." });
+                }
+                else
+                {
+                    D_LicenseType ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                    if (ActualRecord == null)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                    }
+                    else if (ActualRecord.DeletedOnUtc.HasValue)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                    }
+                    else
+                    {
+                        if (key == 0)
+                        {
+                            return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid image selected." });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+                            var actualFileName = ActualRecord.Image_Front_URL.Split('/').LastOrDefault();
+
+                            ActualRecord.Image_Front_URL = D_LicenseType._defaultImage;
+                            ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                            ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                            ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                            ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                            _repository.Entry(ActualRecord).State = EntityState.Modified;
+
+                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.EventCategory, actualFileName);
+                            if (_DeleteStatus)
+                            {
+                                await _repository.SaveChangesAsync();
+                                return Json("");
+                            }
+                            else
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to delete. Please try again later." });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to delete. Please contact system administrator." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UploadImage_Back(long ID, IFormFile ImageUpload)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to upload. Invalid selection." });
+                }
+                else
+                {
+                    if (ImageUpload == null || ImageUpload.Length == 0)
+                    {
+                        return Json(new KatrikFileResponse() { error = "Failed to upload. No uploaded image provided." });
+                    }
+                    else
+                    {
+                        D_LicenseType ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                        if (ActualRecord == null)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                        }
+                        else if (ActualRecord.DeletedOnUtc.HasValue)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+
+                            using var memoryStream = new MemoryStream();
+                            await ImageUpload.CopyToAsync(memoryStream);
+                            memoryStream.Position = 0; // Reset memory stream to upload correctly
+
+                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.EventCategory, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
+                            if (!uploadResult)
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to upload. Please try again later." });
+                            }
+                            else
+                            {
+                                ActualRecord.Image_Back_URL = imageURL;
+                                ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                                ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                                ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                                ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                                _repository.Entry(ActualRecord).State = EntityState.Modified;
+                                await _repository.SaveChangesAsync();
+
+                                return Json(new KatrikFileResponse()
+                                {
+                                    error = null,
+                                    initialPreview = new List<string>() { $"{imageURL}" },
+                                    initialPreviewConfig = new List<KatrikFilePreviewConfig>()
+                                    {
+                                        new KatrikFilePreviewConfig()
+                                        {
+                                            caption = "", //caption = $"{ActualRecord.Name} - {specSection.ToString()} - {AddRecord.ID}",
+                                            filename = "", //filename = $"{ActualRecord.Name} - {specSection.ToString()} {AddRecord.ID}",
+                                            downloadUrl = $"{imageURL}",
+                                            url  = $"{Url.Action("DeleteImage_Back", new { ActualRecord.ID })}",
+                                            key = ActualRecord.ID,
+                                        }
+                                    },
+                                    append = true
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to upload. Please contact system administrator." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteImage_Back(long ID, long key)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid selection." });
+                }
+                else
+                {
+                    D_LicenseType ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                    if (ActualRecord == null)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                    }
+                    else if (ActualRecord.DeletedOnUtc.HasValue)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                    }
+                    else
+                    {
+                        if (key == 0)
+                        {
+                            return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid image selected." });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+                            var actualFileName = ActualRecord.Image_Back_URL.Split('/').LastOrDefault();
+
+                            ActualRecord.Image_Back_URL = D_LicenseType._defaultImage;
+                            ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                            ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                            ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                            ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                            _repository.Entry(ActualRecord).State = EntityState.Modified;
+
+                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.EventCategory, actualFileName);
+                            if (_DeleteStatus)
+                            {
+                                await _repository.SaveChangesAsync();
+                                return Json("");
+                            }
+                            else
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to delete. Please try again later." });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to delete. Please contact system administrator." });
+            }
         }
 
         #endregion
@@ -294,7 +624,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                 {
                     try
                     {
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         AddRecord.CreatedOnUtc = AddRecord.UpdatedOnUtc = CurrentTimestamp;
                         AddRecord.CreatedBy = AddRecord.UpdatedBy = User.Identity.Name.ToString();
                         #region Database Interaction
@@ -352,7 +682,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                     {
                         try
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             EditRecord.UpdatedOnUtc = CurrentTimestamp;
                             EditRecord.UpdatedBy = User.Identity.Name.ToString();
                             #region Database Interaction
@@ -418,7 +748,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                     else
                     {
                         DeleteRecord = ActualRecord;
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         if (!DeleteRecord.RowVersion.SequenceEqual(ActualRecord.RowVersion))
                         {
                             throw new DbUpdateConcurrencyException();

@@ -24,7 +24,7 @@ namespace BMF.Shared.Entities.Website
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_QuickLinks).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_QuickLinks).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

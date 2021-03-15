@@ -1,5 +1,5 @@
 ﻿@{
-    var _classAcronym = nameof(M_EventCategory).GetUppercaseLettersAsString().Replace("M", "");
+    var _classAcronym = nameof(M_EventCategory).Replace("M_", "").GetUppercaseLettersAsString();
     var _controllerName = M_EventCategory._controllerName;
     ViewData["Title"] = "Event Categories";
     ViewData["Page_Header"] = "View All";

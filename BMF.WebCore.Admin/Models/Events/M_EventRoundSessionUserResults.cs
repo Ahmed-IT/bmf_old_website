@@ -27,7 +27,7 @@ namespace BMF.Shared.Entities.Events
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_EventRoundSessionUserResults).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_EventRoundSessionUserResults).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

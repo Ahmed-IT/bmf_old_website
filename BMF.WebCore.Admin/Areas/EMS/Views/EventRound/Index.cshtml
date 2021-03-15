@@ -1,5 +1,5 @@
 ﻿@{
-    var _classAcronym = nameof(M_EventRound).GetUppercaseLettersAsString().Replace("M", "");
+    var _classAcronym = nameof(M_EventRound).Replace("M_", "").GetUppercaseLettersAsString();
     var _controllerName = M_EventRound._controllerName;
     ViewData["Title"] = "Event Round";
     ViewData["Page_Header"] = "View All";

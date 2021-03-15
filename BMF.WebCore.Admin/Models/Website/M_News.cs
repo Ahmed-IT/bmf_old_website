@@ -1,5 +1,6 @@
 ﻿using AMK.Plugin.JQueryDataTable;
 using BMF.Shared.Extensions;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace BMF.Shared.Entities.Website
         public static string _controllerName => $"{nameof(M_News)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/websitecms-news/default.jpg";
+        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.NewsImage}/default.jpg";
 
         #region Fields
 
@@ -29,14 +30,14 @@ namespace BMF.Shared.Entities.Website
 
         public M_News()
         {
-            NewsTimestampUtc = DateTime.UtcNow;
+            NewsTimestampUtc = DateTime.Now;
         }
 
         #endregion
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_News).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_News).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

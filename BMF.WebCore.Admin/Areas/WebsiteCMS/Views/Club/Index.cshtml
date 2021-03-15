@@ -1,5 +1,5 @@
 ﻿@{
-    var _classAcronym = nameof(M_Club).GetUppercaseLettersAsString().Replace("M", "");
+    var _classAcronym = nameof(M_Club).Replace("M_", "").GetUppercaseLettersAsString();
     var _controllerName = M_Club._controllerName;
     ViewData["Title"] = "Clubs";
     ViewData["Page_Header"] = "View All";

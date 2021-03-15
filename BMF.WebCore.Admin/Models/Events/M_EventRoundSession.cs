@@ -1,6 +1,7 @@
 ﻿using AMK.Plugin.JQueryDataTable;
 using BMF.Shared.Entities.UserManagement;
 using BMF.Shared.Extensions;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace BMF.Shared.Entities.Events
         public static string _controllerName => $"{nameof(M_EventRoundSession)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/events-roundsession/default.jpg";
+        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.EventRoundSession}/default.jpg";
 
         #region Fields
 
@@ -34,7 +35,7 @@ namespace BMF.Shared.Entities.Events
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_EventRoundSession).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_EventRoundSession).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

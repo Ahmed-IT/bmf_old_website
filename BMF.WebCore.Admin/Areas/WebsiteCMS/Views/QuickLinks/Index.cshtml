@@ -1,5 +1,5 @@
 ﻿@{
-    var _classAcronym = nameof(M_QuickLinks).GetUppercaseLettersAsString().Replace("M", "");
+    var _classAcronym = nameof(M_QuickLinks).Replace("M_", "").GetUppercaseLettersAsString();
     var _controllerName = M_QuickLinks._controllerName;
     ViewData["Title"] = "Quick Links";
     ViewData["Page_Header"] = "View All";

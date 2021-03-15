@@ -37,7 +37,7 @@
 
 //        #region IJQDataTableExtendDBViewModel
 
-//        public string ClassAcronym => nameof(M_UserAccount).GetUppercaseLettersAsString().Replace("M", "");
+//        public string ClassAcronym => nameof(M_UserAccount).Replace("M_", "").GetUppercaseLettersAsString();
 
 //        public string Secondary_ClassAcronym => ClassAcronym;
 

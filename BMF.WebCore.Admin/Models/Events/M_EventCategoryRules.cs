@@ -1,5 +1,6 @@
 ﻿using AMK.Plugin.JQueryDataTable;
 using BMF.Shared.Extensions;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace BMF.Shared.Entities.Events
         public static string _controllerName => $"{nameof(M_EventCategoryRules)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/events-categoryrules-pdf/default.jpg";
+        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.EventCategoryRulePDF}/default.jpg";
 
         #region Fields
 
@@ -31,7 +32,7 @@ namespace BMF.Shared.Entities.Events
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_EventCategoryRules).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_EventCategoryRules).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

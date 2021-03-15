@@ -23,7 +23,7 @@ namespace BMF.Shared.Entities.Website
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_GalleryImages).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_GalleryImages).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

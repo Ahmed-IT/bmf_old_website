@@ -273,7 +273,6 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
             return PartialView(AMK.Plugin.BootstrapModal.Settings.ViewPath_PartialView_ModalResponse, new ModalResponse() { AllowSubmit = false });
         }
 
-
         // GET: EMS/Categorys/EditImage
         public async Task<IActionResult> _FormEditImage(long ID)
         {
@@ -351,7 +350,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 {
                     try
                     {
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         AddRecord.CreatedOnUtc = AddRecord.UpdatedOnUtc = CurrentTimestamp;
                         AddRecord.CreatedBy = AddRecord.UpdatedBy = User.Identity.Name.ToString();
                         #region Database Interaction
@@ -409,7 +408,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     {
                         try
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             EditRecord.UpdatedOnUtc = CurrentTimestamp;
                             EditRecord.UpdatedBy = User.Identity.Name.ToString();
                             #region Database Interaction
@@ -476,7 +475,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     else
                     {
                         DeleteRecord = ActualRecord;
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         if (!DeleteRecord.RowVersion.SequenceEqual(ActualRecord.RowVersion))
                         {
                             throw new DbUpdateConcurrencyException();
@@ -542,7 +541,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                         }
                         else
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
 
                             using var memoryStream = new MemoryStream();
                             await ImageUpload.CopyToAsync(memoryStream);
@@ -620,7 +619,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                         }
                         else
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             var actualFileName = ActualRecord.Image_URL.Split('/').LastOrDefault();
 
                             ActualRecord.Image_URL = M_EventCategory._defaultImage;

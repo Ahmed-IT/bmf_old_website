@@ -1,5 +1,6 @@
 ﻿using AMK.Plugin.JQueryDataTable;
 using BMF.Shared.Extensions;
+using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace BMF.Shared.Entities.Website
         public static string _controllerName => $"{nameof(M_Club)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/websitecms-club/default.jpg";
+        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.ClubImage}/default.jpg";
 
         #region Fields
 
@@ -27,7 +28,7 @@ namespace BMF.Shared.Entities.Website
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_Club).GetUppercaseLettersAsString().Replace("M", "");
+        public string ClassAcronym => nameof(M_Club).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 

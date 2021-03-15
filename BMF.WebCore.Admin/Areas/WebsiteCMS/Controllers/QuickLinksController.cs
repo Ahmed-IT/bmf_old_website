@@ -338,7 +338,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                 {
                     try
                     {
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         AddRecord.CreatedOnUtc = AddRecord.UpdatedOnUtc = CurrentTimestamp;
                         AddRecord.CreatedBy = AddRecord.UpdatedBy = User.Identity.Name.ToString();
                         #region Database Interaction
@@ -393,7 +393,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                     {
                         try
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             EditRecord.UpdatedOnUtc = CurrentTimestamp;
                             EditRecord.UpdatedBy = User.Identity.Name.ToString();
                             #region Database Interaction
@@ -459,7 +459,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                     else
                     {
                         DeleteRecord = ActualRecord;
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         if (!DeleteRecord.RowVersion.SequenceEqual(ActualRecord.RowVersion))
                         {
                             throw new DbUpdateConcurrencyException();

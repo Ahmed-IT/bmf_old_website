@@ -1,5 +1,5 @@
 ﻿@{
-    var _classAcronym = nameof(D_LicenseType).GetUppercaseLettersAsString();
+    var _classAcronym = nameof(D_LicenseType).Replace("D_", "").GetUppercaseLettersAsString();
     var _controllerName = D_LicenseType._controllerName;
     ViewData["Title"] = "License Types";
     ViewData["Page_Header"] = "View All";
@@ -11,6 +11,16 @@
     @{await Html.RenderPartialAsync("_DatatableStylesPartial");}
     <link href="~/lib/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.css" rel="stylesheet" />
     <link href="~/lib/adminlte/dist/css/alt/adminlte.plugins.css" rel="stylesheet" />
+    <link href="~/lib/kartik-bootstrap-fileinput/css/fileinput.css" rel="stylesheet" />
+    <style>
+        .krajee-default.file-preview-frame .file-thumbnail-footer {
+            height: auto;
+        }
+
+        .krajee-default .file-footer-caption {
+            display: none;
+        }
+    </style>
 }
 @if (ViewData["ErrorDie"] == null || (ViewData["ErrorDie"] != null && !(bool)ViewData["ErrorDie"]))
 {
@@ -33,9 +43,12 @@
     </div>
     <div class="partial" data-u="@Url.Action("_Add", _controllerName)"></div>
     <div class="partial" data-u="@Url.Action("_Edit", _controllerName)"></div>
+    <div class="partial" data-u="@Url.Action("_EditImage", _controllerName)"></div>
     <div class="partial" data-u="@Url.Action("_Delete", _controllerName)"></div>
 }
 @section Page_ImportedScripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     @{await Html.RenderPartialAsync("_DatatableScriptsPartial");}
+    <script src="~/lib/kartik-bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="~/lib/kartik-bootstrap-fileinput/themes/fas/theme.js"></script>
 }

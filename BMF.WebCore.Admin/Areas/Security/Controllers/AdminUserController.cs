@@ -406,7 +406,7 @@ namespace BMF.AdminWeb.Core.Areas.Admin.Controllers
                 {
                     try
                     {
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         AddRecord.CreatedOnUtc = AddRecord.UpdatedOnUtc = CurrentTimestamp;
                         AddRecord.CreatedBy = AddRecord.UpdatedBy = User.Identity.Name.ToString();
                         #region Database Interaction
@@ -476,7 +476,7 @@ namespace BMF.AdminWeb.Core.Areas.Admin.Controllers
                     {
                         try
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             EditRecord.UpdatedOnUtc = CurrentTimestamp;
                             EditRecord.UpdatedBy = User.Identity.Name.ToString();
                             #region Database Interaction
@@ -559,7 +559,7 @@ namespace BMF.AdminWeb.Core.Areas.Admin.Controllers
                     {
                         try
                         {
-                            DateTime CurrentTimestamp = DateTime.UtcNow;
+                            DateTime CurrentTimestamp = DateTime.Now;
                             EditRecord.UpdatedOnUtc = CurrentTimestamp;
                             EditRecord.UpdatedBy = User.Identity.Name.ToString();
                             byte[] _Password = Encoding.ASCII.GetBytes(ActualRecord.Password + ActualRecord.ID);
@@ -633,7 +633,7 @@ namespace BMF.AdminWeb.Core.Areas.Admin.Controllers
                 {
                     try
                     {
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         EditRecord.GetDatabaseValues(ActualRecord);
                         EditRecord.GetDefaults(ActualRecord);
                         List<long> _Roles = Request.Form.Keys.Contains("Roles") ? HttpContext.Request.Form["Roles"].ToList().Select(s => long.Parse(s)).ToList() : new List<long>();
@@ -728,7 +728,7 @@ namespace BMF.AdminWeb.Core.Areas.Admin.Controllers
                     else
                     {
                         DeleteRecord = ActualRecord;
-                        DateTime CurrentTimestamp = DateTime.UtcNow;
+                        DateTime CurrentTimestamp = DateTime.Now;
                         if (!DeleteRecord.RowVersion.SequenceEqual(ActualRecord.RowVersion))
                         {
                             throw new DbUpdateConcurrencyException();
