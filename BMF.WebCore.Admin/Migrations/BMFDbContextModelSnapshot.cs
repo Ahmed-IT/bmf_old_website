@@ -943,7 +943,7 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<long>("ID_LicenseType")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ID_UserAccount")
+                    b.Property<long>("ID_UserProfile")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsActive")
@@ -969,7 +969,7 @@ namespace BMF.WebCore.Admin.Migrations
 
                     b.HasIndex("ID_LicenseType");
 
-                    b.HasIndex("ID_UserAccount");
+                    b.HasIndex("ID_UserProfile");
 
                     b.ToTable("M_UserLicense");
                 });
@@ -1584,20 +1584,20 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.UserManagement.D_LicenseType", "LicenseType")
-                        .WithMany("UserLicense")
+                        .WithMany("UserLicenses")
                         .HasForeignKey("ID_LicenseType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "UserAccount")
-                        .WithMany("UserLicense")
-                        .HasForeignKey("ID_UserAccount")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
+                        .WithMany("UserLicenses")
+                        .HasForeignKey("ID_UserProfile")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("LicenseType");
 
-                    b.Navigation("UserAccount");
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
@@ -1696,7 +1696,7 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_LicenseType", b =>
                 {
-                    b.Navigation("UserLicense");
+                    b.Navigation("UserLicenses");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
@@ -1704,8 +1704,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("MyFavRaces");
 
                     b.Navigation("MyRaces");
-
-                    b.Navigation("UserLicense");
 
                     b.Navigation("UserResults");
                 });
@@ -1723,6 +1721,8 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
                 {
                     b.Navigation("UserAccount");
+
+                    b.Navigation("UserLicenses");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryCategory", b =>

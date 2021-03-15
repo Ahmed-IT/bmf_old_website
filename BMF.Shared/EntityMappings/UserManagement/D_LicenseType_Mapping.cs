@@ -24,7 +24,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             // Ignored Attributes
             // Foreign Keys
             // Relationships
-            entityBuilder.HasMany(g => g.UserLicense).WithOne(s => s.LicenseType).HasForeignKey(s => s.ID_LicenseType);
+            entityBuilder.HasMany(g => g.UserLicenses).WithOne(s => s.LicenseType).HasForeignKey(s => s.ID_LicenseType);
             // Indexes
         }
     }

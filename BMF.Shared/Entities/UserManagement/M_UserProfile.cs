@@ -68,6 +68,10 @@ namespace BMF.Shared.Entities.UserManagement
         [InverseProperty(nameof(M_UserAccount.UserProfile))]
         public M_UserAccount UserAccount { get; set; }
 
+        [Display(Name = "User Licenses", Prompt = "User Licenses")]
+        [InverseProperty(nameof(M_UserLicense.UserProfile))]
+        public ICollection<M_UserLicense> UserLicenses { get; set; }
+
         #endregion
     }
 }
