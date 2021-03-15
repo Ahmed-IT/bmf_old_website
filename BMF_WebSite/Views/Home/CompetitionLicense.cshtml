@@ -1,4 +1,4 @@
-﻿
+﻿@model BMF_WebSite.Models.ClsLicForm
 @{
     ViewBag.Title = "CompetitionLicense";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,18 +30,12 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6 org-item sm-style-h">
                 <h3 style="font-family:FjallaOneR;">
-                    <a href='@Url.Action("EventPermit","Home",null)'>EVENT PERMIT</a>
-                </h3>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item">
-                <h3 style="font-family:FjallaOneR;">
                     <a href='@Url.Action("CdpApplication","Home",null)'>CPD APPLICATION</a>
                 </h3>
-
             </div>
             <div class="col-lg-3 col-sm-6 org-item">
                 <h3 style="font-family:FjallaOneR;">
-                    <a href='@Url.Action("Bulletins","Home",null)'>BULLETINS</a>
+                    <a href='@Url.Action("CompetitionLicense","Home",null)'>COMPETITION LICENSE</a>
                 </h3>
 
             </div>
@@ -66,7 +60,7 @@
             </div>
             <div class="col-lg-7 about-txt">
 
-                <p>
+                <p style="font-size:16px;">
                     The Bahrain Motor Federation (BMF) has been empowered by the Federation International De L Automobile (FIA) to register and license Bahrain citizens wishing to compete nationally under the BMFs Motor Sports Regulations and/or internationally under the FlAs International Sporting Code.
                     <br /><br />
                     Under certain circumstances citizens of other countries may also apply for registration.
@@ -78,7 +72,7 @@
 
         <div class="row">
             <div class="col-lg-12 about-txt">
-                <p>
+                <p style="font-size:16px;">
                     Subject to certain conditions a status of license may be upgraded at any time during the year.
                     <br />
                     <br />
@@ -90,7 +84,7 @@
                     Important! Registration shall expire at the end of the year shown on the Competition License.
                 </p>
 
-                <p>
+                <p style="font-size:16px;">
                     Any person wishing to register must complete a Competition License application form. All applicants will be required to pass a medical examination.
                     <br /><br /><br />
                     <a href="#">Medical Test Form</a>
@@ -105,9 +99,36 @@
                 <form>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="Full Name">
+                            <select class="form-control">
+                                <option value="">Competion License Category</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control">
+                                <option value="">License Type</option>
+                                <option value="New">New</option>
+                                <option value="Renew">Renew</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="CPR Number">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Middle Name">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Last Name">
+                        </div>
+                        <div class="form-group col-md-3">
                             <select class="form-control">
                                 <option value="value">Select Nationality</option>
                             </select>
@@ -115,8 +136,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-md-12">
-                            <input type="text" class="form-control" placeholder="Address">
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="House/Building">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Road">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Block">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="City">
                         </div>
                     </div>
 
@@ -149,6 +179,15 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="Emergency Contact Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="Emergency Contact Number">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
                             <input type="text" class="form-control" placeholder="Name of Club">
                         </div>
                         <div class="form-group col-md-6">
@@ -160,9 +199,12 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <select class="form-control">
-                                <option value="value">License Type</option>
-                            </select>
+                            <label style="margin-bottom:10px;">CPR Copy</label>
+                            <input type="file" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;">Medical Form</label>
+                            <input type="file" class="form-control">
                         </div>
                     </div>
 
@@ -170,20 +212,31 @@
 
                     <br /><br />
 
-                          <div class="row">
-                              <div class="form-group col-md-6">
-                                  <input type="text" class="form-control" placeholder="Full Name">
-                              </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="Full Name">
+                        </div>
 
-                              <p>
-                                  I am the parent / guardian of the above-named minor who is under
-                                  18 years old. I have read this document and understand its
-                                  contents. I consent to the minor attending / participating in the event
-                                  at his / her own risk.
-                              </p>
-                          </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="CPR Number">
+                        </div>
+                    </div>
 
-                    
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;">Parents CPR Copy</label>
+                            <input type="file" class="form-control">
+                        </div>
+                    </div>
+
+                    <p>
+                        I am the parent / guardian of the above-named minor who is under
+                        18 years old. I have read this document and understand its
+                        contents. I consent to the minor attending / participating in the event
+                        at his / her own risk.
+                    </p>
+
+
 
                     <button type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
                 </form>

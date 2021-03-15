@@ -1,4 +1,4 @@
-﻿
+﻿@model BMF_WebSite.Models.ViewModels.EventCalendarVM.Calendar
 @{
     ViewBag.Title = "EventCalendar";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -37,52 +37,55 @@
 
         <br /><br />
 
-        <div style="color:red; font-family:LatoB; font-size:16px;"><a class="link-danger" href="#"><i class="fa fa-calendar"></i> View Full Calendar</a></div>
+        <div style="color:red; font-family:LatoB; font-size:16px;"><a class="link-danger" href="@Url.Action("Calendar","Home",null)"><i class="fa fa-calendar"></i> View Full Calendar</a></div>
         <br />
         <div class="row">
-            <div class="col-md-4">
-                <div class="card border-0 rounded-0 bg-dark text-white">
-                    <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
+            @foreach (var item in Model.EventsCategory)
+            {
+                <div class="col-md-4" style="margin-bottom:20px;">
+                    <div class="card border-0 rounded-0 bg-dark text-white">
+                        <a style="z-index: 999;" href="@Url.Action("EventFullCalendar","Home",new { ID = item.ID})"><img src="@item.Image_URL" class="card-img"></a>
 
 
-                    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                        <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                            <div style="margin:10px;">
-                                <h5 class="card-title" style="font-family:FjallaOneR">Bahrain National Race</h5>
-                                <p style="font-family:LatoR" class="card-subtitle">Next Race: Round 1 - 24 Jan 2020</p>
+                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                            <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;z-index: 9999;">
+                                <div style="margin:10px;">
+                                    <h5 class="card-title" style="font-family:FjallaOneR"><a style="color:white;" href="@Url.Action("EventFullCalendar","Home",new { ID = item.ID})">@item.Title</a></h5>
+                                    @if (item.NextRound != null)
+                                    {
+                                        if (item.NextRound.Round_Number != "NA")
+                                        {
+                                            if (item.NextRound.DateTime_Start.Day != item.NextRound.DateTime_End.Day)
+                                            {
+                                                <p style="font-family:LatoR" class="card-subtitle">Next Race: Round @item.NextRound.Round_Number - @item.NextRound.DateTime_Start.ToString("dd") to @item.NextRound.DateTime_End.ToString("dd MMM yyyy")</p>
+                                            }
+                                            else
+                                            {
+                                                <p style="font-family:LatoR" class="card-subtitle">Next Race: Round @item.NextRound.Round_Number - @item.NextRound.DateTime_Start.ToString("dd MMM yyyy")</p>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (item.NextRound.DateTime_Start.Day != item.NextRound.DateTime_End.Day)
+                                            {
+                                                <p style="font-family:LatoR" class="card-subtitle">Next Race: @item.NextRound.DateTime_Start.ToString("dd") to @item.NextRound.DateTime_End.ToString("dd MMM yyyy")</p>
+                                            }
+                                            else
+                                            {
+                                                <p style="font-family:LatoR" class="card-subtitle">Next Race: @item.NextRound.DateTime_Start.ToString("dd MMM yyyy")</p>
+                                            }
+
+                                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 rounded-0 bg-dark text-white">
-                    <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
+            }
 
 
-                    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                        <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                            <div style="margin:10px;">
-                                <h5 class="card-title" style="font-family:FjallaOneR">Bahrain Karting Championship</h5>
-                                <p style="font-family:LatoR" class="card-subtitle">Next Race: Round 1 - 24 Jan 2020</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 rounded-0 bg-dark text-white">
-                    <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
-                    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                        <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                            <div style="margin:10px;">
-                                <h5 class="card-title" style="font-family:FjallaOneR">Bahrain Drag Championship</h5>
-                                <p style="font-family:LatoR" class="card-subtitle">Next Race: Round 1 - 24 Jan 2020</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
 

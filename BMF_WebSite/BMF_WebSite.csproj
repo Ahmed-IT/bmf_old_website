@@ -43,8 +43,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -101,6 +109,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bmfModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>bmfModel.Context.cs</LastGenOutput>
+      <DependentUpon>bmfModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="bmfModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bmfModel.edmx</DependentUpon>
+      <LastGenOutput>bmfModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -125,8 +143,12 @@
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\fullcalendar.css" />
+    <Content Include="Content\css\fullcalendar.print.css" />
+    <Content Include="Content\css\jquery.countdown.css" />
     <Content Include="Content\css\jquery.mb.YTPlayer.min.css" />
     <Content Include="Content\css\lightbox.min.css" />
+    <Content Include="Content\css\main.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slick.css" />
     <Content Include="Content\css\style.css" />
@@ -146,6 +168,17 @@
     <Content Include="Content\images\blog4.jpg" />
     <Content Include="Content\images\BMF_Logo.png" />
     <Content Include="Content\images\BMF_Logo1.png" />
+    <Content Include="Content\images\Board\AbdulrahmanGhulom.jpg" />
+    <Content Include="Content\images\Board\AdelDarwish.jpg" />
+    <Content Include="Content\images\Board\DrNawaf.jpg" />
+    <Content Include="Content\images\Board\ElieSemaan.jpg" />
+    <Content Include="Content\images\Board\FayezRamzi.jpg" />
+    <Content Include="Content\images\Board\IsaAlAwadi.jpg" />
+    <Content Include="Content\images\Board\MazenAlHili.jpg" />
+    <Content Include="Content\images\Board\RashedAlZayani.jpg" />
+    <Content Include="Content\images\Board\SHAbdullaBinIsa.jpg" />
+    <Content Include="Content\images\Board\ShSalmanBinIsa.jpg" />
+    <Content Include="Content\images\Board\YasserAbdulla.jpg" />
     <Content Include="Content\images\brand1.png" />
     <Content Include="Content\images\brand2.png" />
     <Content Include="Content\images\brand3.png" />
@@ -209,14 +242,20 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\countdown.min.js" />
     <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\fullcalendar.js" />
+    <Content Include="Content\js\jquery-1.10.2.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\js\jquery-ui.custom.min.js" />
+    <Content Include="Content\js\jquery.countdown.js" />
     <Content Include="Content\js\jquery.counterup.min.js" />
     <Content Include="Content\js\jquery.isotope.min.js" />
     <Content Include="Content\js\jquery.mb.YTPlayer.min.js" />
     <Content Include="Content\js\jquery.nicescroll.min.js" />
+    <Content Include="Content\js\jquery.plugin.js" />
     <Content Include="Content\js\jquery.ripples-min.js" />
     <Content Include="Content\js\jquery.waypoints.min.js" />
     <Content Include="Content\js\lightbox.min.js" />
+    <Content Include="Content\js\main.js" />
     <Content Include="Content\js\particles.js" />
     <Content Include="Content\js\slick.min.js" />
     <Content Include="Content\js\venobox.min.js" />
@@ -224,13 +263,133 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminRole.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminRoleOperation.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUserRole.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="bmfModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bmfModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bmfModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bmfModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bmfModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LicenseController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Country.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverLicens.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverSignIn.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="D_LicenseType.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventRound.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventsCategory.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClsClubs.cs" />
+    <Compile Include="Models\ClsEventCategory.cs" />
+    <Compile Include="Models\ClsEventRound.cs" />
+    <Compile Include="Models\ClsLicForm.cs" />
+    <Compile Include="Models\ClsNews.cs" />
+    <Compile Include="Models\ClsRulesRegs.cs" />
+    <Compile Include="Models\ClsUser.cs" />
+    <Compile Include="Models\ViewModels\EventCalendarVM.cs" />
+    <Compile Include="Models\ViewModels\MainPageVM.cs" />
+    <Compile Include="M_Club.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventCategory.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventCategoryBulletins.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventCategoryRules.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventRound.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventRoundSession.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventRoundSessionUserResults.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_EventSeason.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_GalleryCategory.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_GalleryImages.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_MyFavRaces.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_MyRaces.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_News.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_QuickLinks.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_User.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_UserLicense.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_UserLicenseRenewal.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_UserLicenseRenewalMedicForms.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_UserProfile.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAccount.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -269,6 +428,13 @@
     <Content Include="Content\fonts\PermanentMarker-Regular.ttf" />
     <Content Include="Content\fonts\FjallaOne-Regular.ttf" />
     <Content Include="Content\fonts\Lato-Bold.ttf" />
+    <EntityDeploy Include="bmfModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>bmfModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="bmfModel.edmx.diagram">
+      <DependentUpon>bmfModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_SubLayout.cshtml" />
@@ -290,6 +456,9 @@
     <Content Include="Views\Home\Bulletins.cshtml" />
     <Content Include="Views\Home\NewsDetail.cshtml" />
     <Content Include="Views\Home\ResultsDetail.cshtml" />
+    <Content Include="Views\Home\EventFullCalendar.cshtml" />
+    <Content Include="Views\Home\EventRulesRegs.cshtml" />
+    <Content Include="Views\Home\Calendar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -299,7 +468,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

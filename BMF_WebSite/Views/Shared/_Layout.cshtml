@@ -56,7 +56,7 @@
             <div class="collapse navbar-collapse menu-main" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto menu-item">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home", null ,new { @class = "nav-link" })
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("About Us", "AboutUs", "Home", null, new { @class = "nav-link" })
@@ -66,6 +66,9 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Calendar", "EventCalendar", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Rules & Regs", "RulesRegulations", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Results", "Results", "Home", null, new { @class = "nav-link" })
@@ -99,9 +102,9 @@
                         </a>
                     </h3>
                     <div class="social-icons_2">
-                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/bahrainmotorfederation/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        @*<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>*@
                     </div>
                 </div>
             </div>
@@ -117,6 +120,7 @@
                         <a href='@Url.Action("AboutUs","Home",null)'>About</a>
                         <a href='@Url.Action("CdpApplication","Home",null)'>Services</a>
                         <a href='@Url.Action("EventCalendar","Home",null)'>Calendar</a>
+                        <a href='@Url.Action("RulesRegulations","Home",null)'>Rules & Regs</a>
                         <a href='@Url.Action("Results","Home",null)'>Results</a>
                         <a href='@Url.Action("News","Home",null)'>News</a>
                         <a href='@Url.Action("Gallery","Home",null)'>Gallery</a>
@@ -132,7 +136,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center copy-right-txt">
-                    <p>Copyright © 2020. All rights reserved by <a href="'@Url.Action("Index","Home")'">BMF</a></p>
+                    <p>Copyright © 2020. All rights reserved by <a href="'@Url.Action("Index","Home")'">BAHRAIN MOTOR FEDERADTION</a></p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfBarcode.XForms;assembly=Syncfusion.SfBarcode.XForms" NavigationPage.HasNavigationBar="false"
+             Title="{Binding Title}" BackgroundColor="#f5f5f5"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BMF_NewApp.Views.MyIDsPage">
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" DrawerHeaderHeight="200" DrawerWidth ="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" DrawerFooterHeight="30">
+                <navigationdrawer:SfNavigationDrawer.ContentView>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Grid.Row="0" BackgroundColor="#f5f5f5" Orientation="Horizontal">
+                                <Grid HorizontalOptions="FillAndExpand" Padding="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="90"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Margin="0,30,0,0" Grid.Column="0" x:Name="hamburgerButton" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" FontSize="20" BackgroundColor="#f5f5f5" Image="burgerIcon" Clicked="hamburgerButton_Clicked"/>
+
+                                </Grid>
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                                <Label TextColor="Black" Margin="20,20,20,0" Text="My ID" FontFamily="MontserratBold" FontSize="Title"></Label>
+                                <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
+
+
+
+                                <CarouselView Margin="0,20,0,0" ItemsSource="{Binding MyLicenseList}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <CarouselView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                    </CarouselView.ItemsLayout>
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
+                                                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <ScrollView.Content>
+                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="250" Margin="20,10,20,0">
+                                                                <Frame Margin="0,10,0,0" CornerRadius="75" BorderColor="#faf8f8"
+           HeightRequest="150"
+           WidthRequest="150"
+           HorizontalOptions="Center"
+           Padding="0"
+           HasShadow="False"
+           IsClippedToBounds="True">
+                                                                    <ffimageloading:CachedImage LoadingPlaceholder="bmcLogo.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
+                                                                </Frame>
+
+                                                                <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
+                                                                <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,0,0,0" Text="{Binding License_Number_Full}"></Label>
+
+
+
+
+                                                            </StackLayout>
+
+                                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,10,20,0">
+
+                                                                <Grid HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition></RowDefinition>
+                                                                        <RowDefinition></RowDefinition>
+                                                                        <RowDefinition></RowDefinition>
+                                                                        <RowDefinition></RowDefinition>
+                                                                        <RowDefinition></RowDefinition> 
+                                                                    </Grid.RowDefinitions>
+
+                                                                    <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="CPR Number"></Label>
+                                                                    <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.CPR}"></Label>
+
+                                                                    <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="1" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Catgory"></Label>
+                                                                    <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="1" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding LicenseType.Title}"></Label>
+
+                                                                    <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Expire Date"></Label>
+                                                                    <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="2" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Expire_Date, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+
+                                                                    <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="3" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Blood Group"></Label>
+                                                                    <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="3" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.Blood_Group}"></Label>
+
+                                                                    <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Date of Birth"></Label>
+                                                                    <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="4" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.DateOfBirth, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+
+                                                                </Grid>
+
+                                                                <syncfusion:SfBarcode ShowText="False" Margin="0,40,0,0" BackgroundColor="White" Text="{Binding License_Number}" WidthRequest="180" HeightRequest="180" HorizontalOptions="Center" Symbology="QRCode"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </ScrollView.Content>
+                                                </ScrollView>
+
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
+                            </StackLayout>
+                        </Grid>
+
+
+                    </StackLayout>
+
+
+
+                </navigationdrawer:SfNavigationDrawer.ContentView>
+                <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+                    <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
+           HeightRequest="100"
+           WidthRequest="100"
+           HorizontalOptions="Center"
+           Padding="0"
+           HasShadow="False"
+           IsClippedToBounds="True">
+                            <ffimageloading:CachedImage LoadingPlaceholder="bmcLogo.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
+                        </Frame>
+
+                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
+
+
+                    </StackLayout>
+                </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+
+                <navigationdrawer:SfNavigationDrawer.DrawerContentView >
+                    <!-- Custom Control to display Menu Bound to MainMenuPageViewModel -->
+                    <local:MainMenu Menu="{Binding MenuVM}"></local:MainMenu>
+                </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                <navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+                    <Grid BackgroundColor="#faf8f8">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="Bahrain Motor Federation" FontSize="Micro" TextColor="Black" VerticalOptions="End" HorizontalOptions="Center" ></Label>
+                        </StackLayout>
+                    </Grid>
+                </navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+            </navigationdrawer:SfNavigationDrawer>
+
+
+        </StackLayout>
+
+        <BoxView Color="Black" IsVisible="{Binding IsBusy}" Opacity="0.5" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+        <StackLayout IsVisible="{Binding IsBusy}" Padding="6" Orientation="Vertical" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Syncfusion:SfBusyIndicator
+				IsBusy="{Binding IsBusy}" Title="Please Wait ..."
+				TextColor="White" TextSize="12"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				WidthRequest="100" HeightRequest="100"
+				AnimationType="SingleCircle  ">
+            </Syncfusion:SfBusyIndicator>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

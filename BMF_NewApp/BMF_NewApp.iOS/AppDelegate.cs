@@ -1,6 +1,15 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Platform;
+using FFImageLoading.Transformations;
+using Foundation;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfBarcode.XForms.iOS;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.SfNavigationDrawer.XForms.iOS;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
 
@@ -22,10 +31,24 @@ namespace BMF_NewApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            SfTextInputLayoutRenderer.Init();  // Syncfusion SfTextInputLayout
+            SfListViewRenderer.Init();  //  Syncfusion List View
+            CachedImageRenderer.Init();  //  FF Image
+            new TintTransformation();
+            new SfNavigationDrawerRenderer();
+            new SfBusyIndicatorRenderer();
+            new SfBarcodeRenderer();
+            SfBorderRenderer.Init();
+            SfComboBoxRenderer.Init();
+
             LoadApplication(new App(new iOSInitializer()));
+
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 
             return base.FinishedLaunching(app, options);
         }
+
     }
 
     public class iOSInitializer : IPlatformInitializer

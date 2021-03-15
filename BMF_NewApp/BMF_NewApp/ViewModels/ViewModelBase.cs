@@ -1,15 +1,18 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BMF_NewApp.ViewModels
 {
-    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
+    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
+        protected IPageDialogService DialogService { get; private set; }
+
 
         private string _title;
         public string Title
@@ -18,14 +21,18 @@ namespace BMF_NewApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public ViewModelBase(INavigationService navigationService)
+        //  Boolean to track if viewmodel is busy
+        private bool _isBusy;
+        public bool IsBusy
         {
-            NavigationService = navigationService;
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
 
-        public virtual void Initialize(INavigationParameters parameters)
+        public ViewModelBase(INavigationService navigationService, IPageDialogService _dialogService)
         {
-
+            NavigationService = navigationService;
+            DialogService = _dialogService;
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
@@ -38,9 +45,15 @@ namespace BMF_NewApp.ViewModels
 
         }
 
+        public virtual void OnNavigatingTo(INavigationParameters parameters)
+        {
+
+        }
+
         public virtual void Destroy()
         {
 
         }
     }
+
 }

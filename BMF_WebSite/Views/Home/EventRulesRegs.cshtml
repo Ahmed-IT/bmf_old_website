@@ -1,0 +1,58 @@
+﻿@model BMF_WebSite.Models.ClsEventCategory
+@{
+    ViewBag.Title = "EventRulesRegs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3>Rules And Regualtions</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+        <h4 style="margin-bottom:20px; font-family:FjallaOneR;">@Model.Title Rules and Regs</h4>
+
+        <div class="row">
+            @foreach (var item in Model.RulesRegs)
+            {
+                <div class="col-lg-6 col-sm-4">
+                    <div class="about-item">
+                        <span><i class="fa fa-file-pdf-o"></i></span>
+                        <h3>@item.Title</h3>
+                        <p><a href="@item.PDF_Url"><i class="fa fa-download"></i> Download Document</a></p>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,4 +1,4 @@
-﻿
+﻿@model BMF_WebSite.Models.ViewModels.MainPageVM.Dashboard
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,8 +12,9 @@
     <div class="container zindex">
         <div class="row">
             <div class="col-lg-7 banner-txt">
-                <h1>Bahrain Motor Federation</h1>
-                <p style="text-align:justify; color:white; font-size:16px;">Founded on 23rd November, 1952, the Bahrain Motor Federation is proud of its long heritage and the close relationship. It has enjoyed with the government and leading families in the Kingdom of Bahrain. The Clubs first chairman was Mr. Ahmed Kanoo, Its Honorary Secretary, Mr. R A Allen, its Honorary Treasurer, Mr. G Thompson and Committee Members, Mr. M Rule, Mr. R Smyth, Mr. Khalil Kanoo and Mr. Al-Zayani</p>
+                <br /><br /><br /><br /><br /><br />
+                @*<h1>Bahrain Motor Federation</h1>
+                <p style="text-align:justify; color:white; font-size:16px;">Founded on 23rd November, 1952, the Bahrain Motor Federation is proud of its long heritage and the close relationship. It has enjoyed with the government and leading families in the Kingdom of Bahrain. The Clubs first chairman was Mr. Ahmed Kanoo, Its Honorary Secretary, Mr. R A Allen, its Honorary Treasurer, Mr. G Thompson and Committee Members, Mr. M Rule, Mr. R Smyth, Mr. Khalil Kanoo and Mr. Al-Zayani</p>*@
             </div>
         </div>
 
@@ -27,11 +28,13 @@
                     <div class="coundown_res">
                         <font style="color:white; font-family:PermanentMarkerR; font-size:20px;">Next Round</font>
                         <p style="color:white; line-height:40px; margin-top:10px; font-size:36px; font-family:FjallaOneR;">
-                            National Race Day Round 1
+                            @Model.Countdown.EventCategory.Title Round @Model.Countdown.Round_Number
                             <br />
-                            <font style="font-size:20px;">15 Jan 2021</font>
+                            <font style="font-size:20px;">@Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")</font>
+                            @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
                         </p>
                         <br />
+                        <div style="display:none;" id="countdown"></div>
                         <div class="row">
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
@@ -52,7 +55,7 @@
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
                                     <div class="coun_time">
-                                        <h2 style="font-family:FjallaOneR;" id="month" class="coming-data"></h2>
+                                        <h2 style="font-family:FjallaOneR;" id="minute" class="coming-data"></h2>
                                         <p style="font-family:PermanentMarkerR;" class="coming-data2">Min</p>
                                     </div>
                                 </div>
@@ -70,17 +73,17 @@
                 </div>
             </div>
             @*<div class="col-lg-3 col-md-4">
-                <p style="color:white; font-size:20px;">
-                    National Race Day Round 1
-                    <br />
-                    15 Jan 2021
-                </p>
-            </div>*@
+                    <p style="color:white; font-size:20px;">
+                        National Race Day Round 1
+                        <br />
+                        15 Jan 2021
+                    </p>
+                </div>*@
         </div>
     </div>
 </section>
 
-<section id="event">
+@*<section id="event">
     <div class="container zindex">
         <div class="row">
             <div class="col-lg-3">
@@ -88,12 +91,12 @@
                     <img class="rounded" src="~/Content/images/shabdullabinIsa.jpg" style="width:95%;" />
                     <figcaption class="figure-caption">Sh. Abdulla Bin Isa</figcaption>
                 </figure>
-                
-                
+
+
             </div>
             <div class="col-lg-9 about-txt">
                 <div class="speaker-heading">
-                    <h3>PRESEDENT SPEACH</h3>
+                    <h3>PRESEDENT SPEECH</h3>
                     <div class="header-style"></div>
                 </div>
                 <br />
@@ -104,10 +107,10 @@
             </div>
         </div>
 
-        
+
 
     </div>
-</section>
+</section>*@
 
 <section id="blog">
     <div class="container">
@@ -118,106 +121,40 @@
         </div>
         <div class="row blog-pa">
             <div>
-                <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="#">Show All <i class="fa fa-angle-double-right"></i></a>
+                <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="@Url.Action("EventCalendar","Home",null)">Show All <i class="fa fa-angle-double-right"></i></a>
             </div>
             <div class="col-lg-12">
                 <div class="blog-main">
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <div class="card border-0 rounded-0 bg-dark text-white">
-                                <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
-                                    <div style="margin:10px; float:right; margin-left:auto;">
-                                        <div class="events-date">
-                                            <h4>21</h4>
-                                            <h5>May</h5>
+                    @if (Model.ComingEvents != null)
+                    {
+                        foreach (var item in Model.ComingEvents)
+                        {
+                            <div class="col-lg-4 blog-item" style="margin:10px;">
+                                <div class="blog-shadow">
+                                    <div class="card border-0 rounded-0 bg-dark text-white">
+                                        <img src="@item.EventCategory.Image_URL" class="card-img">
+                                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
+                                            <div style="margin:10px; float:right; margin-left:auto;">
+                                                <div class="events-date">
+                                                    <h4>@item.DateTime_Start.ToString("dd")</h4>
+                                                    <h5>@item.DateTime_Start.ToString("MMM")</h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                        <div style="margin:10px;">
-                                            <h5 class="card-title" style="font-family:FjallaOneR">Porsche Super Cup</h5>
-                                            <p style="font-family:LatoR" class="card-subtitle">Round 1</p>
+                                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                                            <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
+                                                <div style="margin:10px;">
+                                                    <h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>
+                                                    <p style="font-family:LatoR" class="card-subtitle">Round @item.Round_Number</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <div class="card border-0 rounded-0 bg-dark text-white">
-                                <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
-                                    <div style="margin:10px; float:right; margin-left:auto;">
-                                        <div class="events-date">
-                                            <h4>21</h4>
-                                            <h5>May</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                        <div style="margin:10px;">
-                                            <h5 class="card-title" style="font-family:FjallaOneR">Porsche Super Cup</h5>
-                                            <p style="font-family:LatoR" class="card-subtitle">Round 1</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <div class="card border-0 rounded-0 bg-dark text-white">
-                                <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
-                                    <div style="margin:10px; float:right; margin-left:auto;">
-                                        <div class="events-date">
-                                            <h4>21</h4>
-                                            <h5>May</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                        <div style="margin:10px;">
-                                            <h5 class="card-title" style="font-family:FjallaOneR">Porsche Super Cup</h5>
-                                            <p style="font-family:LatoR" class="card-subtitle">Round 1</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <div class="card border-0 rounded-0 bg-dark text-white">
-                                <img src="~/Content/images/PorscheSuperCup.png" class="card-img">
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
-                                    <div style="margin:10px; float:right; margin-left:auto;">
-                                        <div class="events-date">
-                                            <h4>21</h4>
-                                            <h5>May</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                        <div style="margin:10px;">
-                                            <h5 class="card-title" style="font-family:FjallaOneR">Porsche Super Cup</h5>
-                                            <p style="font-family:LatoR" class="card-subtitle">Round 1</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -225,257 +162,199 @@
 </section>
 <!-- SCHEDULE AREA END -->
 <!-- BLOG AREA START -->
-<section id="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 speaker-heading">
-                <div class="row">
-                    <h3 style="font-family:FjallaOneR;">LATEST FROM BMF</h3>
+@if (Model.News.Count > 0)
+{
+    <section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 speaker-heading">
+                    <div class="row">
+                        <h3 style="font-family:FjallaOneR;">LATEST FROM BMF</h3>
+                    </div>
+                    <div class="header-style"></div>
                 </div>
-                <div class="header-style"></div>
             </div>
-        </div>
-        <div class="row blog-pa">
-            <div>
-                <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="#">Show All <i class="fa fa-angle-double-right"></i></a>
-            </div>
-            <div class="col-lg-12">
-                <div class="blog-main">
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                            <div class="blog-data">
-                                <div class="blog-date">
-                                    <h4>21</h4>
-                                    <h5>May</h5>
+            <div class="row blog-pa">
+                <div>
+                    <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="#">Show All <i class="fa fa-angle-double-right"></i></a>
+                </div>
+                <div class="col-lg-12">
+                    <div class="blog-main">
+                        @foreach (var item in Model.News)
+                        {
+                        <div class="col-lg-4 blog-item" style="margin:10px;">
+                            <div class="blog-shadow">
+                                <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
+                                <div class="blog-data">
+                                    <div class="blog-date">
+                                        <h4>@item.NewsTimestampUtc.ToString("dd")</h4>
+                                        <h5>@item.NewsTimestampUtc.ToString("MMM")</h5>
+                                    </div>
+                                    <span>
+                                        <a href="#">
+                                            <h3 style="font-family:FjallaOneR;">@item.Title</h3>
+                                        </a>
+                                        <p style="font-family:LatoR;">@item.Content.Take(50)</p>
+                                    </span>
                                 </div>
-                                <span>
-                                    <a href="#">
-                                        <h3 style="font-family:FjallaOneR;">Bahrain Karting Championship</h3>
-                                    </a>
-                                    <p style="font-family:LatoR;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ut, </p>
-                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                            <div class="blog-data">
-                                <div class="blog-date">
-                                    <h4>21</h4>
-                                    <h5>May</h5>
-                                </div>
-                                <span>
-                                    <a href="#">
-                                        <h3 style="font-family:FjallaOneR;">Bahrain Karting Championship</h3>
-                                    </a>
-                                    <p style="font-family:LatoR;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ut, </p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                            <div class="blog-data">
-                                <div class="blog-date">
-                                    <h4>21</h4>
-                                    <h5>May</h5>
-                                </div>
-                                <span>
-                                    <a href="#">
-                                        <h3 style="font-family:FjallaOneR;">Bahrain Karting Championship</h3>
-                                    </a>
-                                    <p style="font-family:LatoR;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ut, </p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                            <div class="blog-data">
-                                <div class="blog-date">
-                                    <h4>21</h4>
-                                    <h5>May</h5>
-                                </div>
-                                <span>
-                                    <a href="#">
-                                        <h3 style="font-family:FjallaOneR;">Bahrain Karting Championship</h3>
-                                    </a>
-                                    <p style="font-family:LatoR;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ut, </p>
-                                </span>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- BLOG AREA END -->
-
-<section id="organize_2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 org-item">
-                <i class="fa fa-certificate" aria-hidden="true"></i>
-                <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
-                <i class="fa fa-id-card" aria-hidden="true"></i>
-                <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item">
-                <i class="fa fa-file" aria-hidden="true"></i>
-                <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item or-i-none">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<br /><br />
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 speaker-heading">
-                <h3 style="font-family:FjallaOneR;">Clubs</h3>
-                <div class="header-style"></div>
+    </section>
+    <!-- BLOG AREA END -->
+}
+    <section id="organize_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 org-item">
+                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                    <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
+                </div>
+                <div class="col-lg-3 col-sm-6 org-item sm-style-h">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                    <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
+                </div>
+                <div class="col-lg-3 col-sm-6 org-item">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                    <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
+                </div>
+                <div class="col-lg-3 col-sm-6 org-item or-i-none">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <br /><br />
+    <br />
+    <br />
 
-              <div class="row">
-                  <div class="col-lg-3 blog-item" style="margin:10px;">
-                      <div class="blog-shadow">
-                          <div class="card border-0 rounded-0 bg-dark text-white">
-                              <img src="~/Content/images/logos/MMC_Logo2.png" class="card-img">
-                              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                  <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                      <div style="margin:10px;">
-                                          <h5 class="card-title" style="font-family:FjallaOneR; font-size:16px;">Motorsport Marshals Club (MMC)</h5>
-                                          <a href="#" style="font-family:LatoB; font-size:12px;" class="link-light">Visit Website</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 speaker-heading">
+                    <h3 style="font-family:FjallaOneR;">Clubs</h3>
+                    <div class="header-style"></div>
+                </div>
+            </div>
 
-                  <div class="col-lg-3 blog-item" style="margin:10px;">
-                      <div class="blog-shadow">
-                          <div class="card border-0 rounded-0 bg-dark text-white">
-                              <img src="~/Content/images/logos/BDRC_Logo2.png" class="card-img">
-                              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                  <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                      <div style="margin:10px;">
-                                          <h5 class="card-title" style="font-family:FjallaOneR; font-size:16px;">Bahrain Drag Racing Club (BDRC)</h5>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+            <br /><br />
 
-                  <div class="col-lg-3 blog-item" style="margin:10px;">
-                      <div class="blog-shadow">
-                          <div class="card border-0 rounded-0 bg-dark text-white">
-                              <img src="~/Content/images/logos/CRC_Logo2.png" class="card-img">
-                              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                  <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                      <div style="margin:10px;">
-                                          <h5 class="card-title" style="font-family:FjallaOneR; font-size:16px;">Bahrain Circuit Racing Club (CRC)</h5>
-                                          <a href="#" style="font-family:LatoB; font-size:12px;" class="link-light">Visit Website</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 blog-item" style="margin:10px;">
-                      <div class="blog-shadow">
-                          <div class="card border-0 rounded-0 bg-dark text-white">
-                              <img src="~/Content/images/logos/CRC_Logo2.png" class="card-img">
-                              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                  <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                      <div style="margin:10px;">
-                                          <h5 class="card-title" style="font-family:FjallaOneR; font-size:16px;">Bahrain Motorcycle Club (BMC)</h5>
-                                          <a href="#" style="font-family:LatoB; font-size:12px;" class="link-light">Visit Website</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-3 blog-item" style="margin:10px;">
-                      <div class="blog-shadow">
-                          <div class="card border-0 rounded-0 bg-dark text-white">
-                              <img src="~/Content/images/logos/BKC_Logo2.png" class="card-img">
-                              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                  <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                      <div style="margin:10px;">
-                                          <h5 class="card-title" style="font-family:FjallaOneR; font-size:16px;">Bahrain Karting Club (BKC)</h5>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <br /><br />
-              </div>
-        </div>
-</section>
-
-<!-- GALLERY AREA START -->
-
-<section id="gallery_2">
-    <div class="gallery-main">
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g1.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g1.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <div class="row">
+                @if (Model.Clubs != null)
+                {
+                    foreach (var item in Model.Clubs)
+                    {
+                        <div class="col-lg-2 blog-item" style="margin:10px;">
+                            <div class="blog-shadow">
+                                <div class="card border-0 rounded-0 bg-dark text-white">
+                                    <img src="@item.Image_URL" class="card-img">
+                                    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                                        <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
+                                            <div style="margin:10px;">
+                                                <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
+                                                @if (item.Website_Link != "#")
+                                                {
+                                                    <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                <br /><br />
             </div>
         </div>
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g2.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g2.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g4.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g4.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g3.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g3.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g5.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g5.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-2 gallery-item p-0">
-            <img src="~/Content/images/g6.jpg" alt="gallery-img" class="img-fluid w-100">
-            <div class="hover-overlay">
-                <a href="~/Content/images/g6.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- GALLERY AREA END -->
+    </section>
 
+    <!-- GALLERY AREA START -->
+
+    <section id="gallery_2">
+        <div class="gallery-main">
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g1.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g1.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g2.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g2.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g4.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g4.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g3.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g3.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g5.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g5.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 gallery-item p-0">
+                <img src="~/Content/images/g6.jpg" alt="gallery-img" class="img-fluid w-100">
+                <div class="hover-overlay">
+                    <a href="~/Content/images/g6.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- GALLERY AREA END -->
+
+    <script>
+        var date = document.getElementById("DateTime_Start").value;
+        //alert(date);
+
+        var end = new Date(date);
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                //document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById('countdown').innerHTML = days + 'days ';
+            document.getElementById('countdown').innerHTML += hours + 'hrs ';
+            document.getElementById('countdown').innerHTML += minutes + 'mins ';
+            document.getElementById('countdown').innerHTML += seconds + 'secs';
+
+            document.getElementById('day').innerText = days;
+            document.getElementById('hour').innerText = hours;
+            document.getElementById('minute').innerText  = minutes;
+            document.getElementById('second').innerText  = seconds;
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    </script>

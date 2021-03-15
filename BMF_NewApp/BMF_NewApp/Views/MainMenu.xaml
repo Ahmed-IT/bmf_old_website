@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Class="BMF_NewApp.Views.MainMenu">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#faf8f8" Margin="0,0,0,0">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView.Content>
+                    <StackLayout Margin="20,0,0,0">
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'MainPage'}" Text="Home" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding IsLoggedIn}" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'ProfilePage'}" Text="Profile" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding IsLoggedIn}" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'MyLicensePage'}" Text="My License" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'CalendarPage'}" Text="Calendar" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding IsLoggedIn}" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'MyIDsPage'}" Text="My ID" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'NewsPage'}" Text="News" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding ShowLogin}" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{Binding CommandLogin}" Text="Login" Margin="10,0,0,0" TextColor="Red" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout IsVisible="{Binding ShowLogout}" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{Binding CommandLogout}" Text="Logout" Margin="10,0,0,0" TextColor="Red" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView.Content>
+            </ScrollView>
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

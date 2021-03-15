@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace BMF_NewApp.Views
 {
     public partial class MainPage
@@ -6,6 +8,11 @@ namespace BMF_NewApp.Views
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void hamburgerButton_Clicked(object sender, EventArgs e)
+        {
+            navigationDrawer.ToggleDrawer();
         }
     }
 }
