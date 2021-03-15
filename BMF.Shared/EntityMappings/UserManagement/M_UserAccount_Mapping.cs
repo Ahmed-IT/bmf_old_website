@@ -23,7 +23,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             // Foreign Keys
             entityBuilder.Property(t => t.ID_UserProfile).IsRequired(true);
             // Relationships
-            entityBuilder.HasOne(g => g.UserProfile).WithOne(s => s.UserAccount).HasForeignKey<M_UserAccount>(s => s.ID_UserProfile);
+            //entityBuilder.HasOne(g => g.UserProfile).WithOne(s => s.UserAccount).HasForeignKey<M_UserAccount>(s => s.ID_UserProfile);
             entityBuilder.HasMany(g => g.UserLicense).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
             entityBuilder.HasMany(g => g.UserResults).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
             entityBuilder.HasMany(g => g.MyRaces).WithOne(s => s.User).HasForeignKey(s => s.ID_User);
