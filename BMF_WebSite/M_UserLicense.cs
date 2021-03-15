@@ -35,8 +35,8 @@ namespace BMF_WebSite
         public byte[] RowVersion { get; set; }
     
         public virtual D_LicenseType D_LicenseType { get; set; }
-        public virtual M_User M_User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserLicenseRenewal> M_UserLicenseRenewal { get; set; }
+        public virtual M_UserAccount M_UserAccount { get; set; }
     }
 }

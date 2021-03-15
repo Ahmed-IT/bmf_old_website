@@ -6,6 +6,7 @@ using Prism.Ioc;
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfBarcode.XForms.iOS;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.SfCarousel.XForms.iOS;
 using Syncfusion.SfNavigationDrawer.XForms.iOS;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.XForms.iOS.ComboBox;
@@ -41,6 +42,7 @@ namespace BMF_NewApp.iOS
             new SfBarcodeRenderer();
             SfBorderRenderer.Init();
             SfComboBoxRenderer.Init();
+            new SfCarouselRenderer();
 
             LoadApplication(new App(new iOSInitializer()));
 

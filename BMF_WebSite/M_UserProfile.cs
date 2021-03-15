@@ -14,9 +14,16 @@ namespace BMF_WebSite
     
     public partial class M_UserProfile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public M_UserProfile()
+        {
+            this.M_UserAccount = new HashSet<M_UserAccount>();
+        }
+    
         public long ID { get; set; }
+        public Nullable<long> ID_Nationality { get; set; }
         public string FullName { get; set; }
-        public string Nationality { get; set; }
+        public string CPR { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string Mobile_Number { get; set; }
         public string Full_Address { get; set; }
@@ -31,8 +38,9 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
-        public string CPR { get; set; }
     
-        public virtual M_User M_User { get; set; }
+        public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_UserAccount> M_UserAccount { get; set; }
     }
 }

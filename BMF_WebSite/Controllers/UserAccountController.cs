@@ -20,13 +20,13 @@ namespace BMF_WebSite.Controllers
         {
             try
             {
-                var query = await (from u in db.M_User
-                                   where (u.CPR_Number == user.CPR_Number || u.Email_Address == user.CPR_Number)
+                var query = await (from u in db.M_UserAccount
+                                   where (u.M_UserProfile.CPR == user.CPR_Number || u.Email_Address == user.CPR_Number)
                                    && u.Password == user.Password && u.IsActive == true
                                    select new
                                    {
                                        u.Email_Address,
-                                       u.CPR_Number,
+                                       u.M_UserProfile.CPR,
                                        u.ID,
                                        u.IsActive
                                    }).FirstOrDefaultAsync();
@@ -59,34 +59,23 @@ namespace BMF_WebSite.Controllers
 
                 if (query == null)
                 {
-                    var CheckLicense = await (from p in db.M_User
-                                              where p.CPR_Number == user.CPR_Number
+                    var CheckLicense = await (from p in db.M_UserAccount
+                                              where p.Email_Address == user.Email_Address
                                               select p).FirstOrDefaultAsync();
 
                     if (CheckLicense != null)
                     {
-                        var add = db.M_User.Add(new M_User
+                        var add = db.M_UserAccount.Add(new M_UserAccount
                         {
+                            ID = query.ID,
                             Email_Address = user.Email_Address,
                             IsActive = true,
-                            CPR_Number = user.CPR_Number,
                             CreatedOnUtc = DateTime.Now,
                             Password = user.Password,
                             UpdatedOnUtc = DateTime.Now
                         });
 
                         await db.SaveChangesAsync();
-
-                        var updateProfile = await (from p in db.M_UserProfile
-                                                  where p.CPR == user.CPR_Number
-                                                  select p).FirstOrDefaultAsync();
-
-                        if(updateProfile != null)
-                        {
-                            updateProfile.ID = add.ID;
-
-                            await db.SaveChangesAsync();
-                        }
 
                         return Content(HttpStatusCode.OK, "Account Created");
                     }
@@ -112,8 +101,8 @@ namespace BMF_WebSite.Controllers
         {
             try
             {
-                var query = await (from u in db.M_User
-                                   where u.CPR_Number == user.CPR_Number
+                var query = await (from u in db.M_UserAccount
+                                   where u.Email_Address == user.Email_Address
                                    select u).FirstOrDefaultAsync();
 
                 if (query != null)
@@ -149,15 +138,15 @@ namespace BMF_WebSite.Controllers
         {
             try
             {
-                var query = await (from u in db.M_User
-                                   where u.CPR_Number == user.CPR_Number || u.Email_Address
-                                   == user.CPR_Number
+                var query = await (from u in db.M_UserAccount
+                                   where u.Email_Address
+                                   == user.Email_Address
                                    select u).FirstOrDefaultAsync();
 
                 if (query != null)
                 {
                     var profile = await (from u in db.M_UserProfile
-                                         where u.CPR == query.CPR_Number
+                                         where u.ID == query.ID
                                          select u).FirstOrDefaultAsync();
 
                     string emailSubject = "Dear " + profile.FullName + "," +

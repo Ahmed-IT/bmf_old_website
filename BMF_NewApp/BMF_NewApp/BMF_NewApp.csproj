@@ -90,6 +90,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.4.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="18.4.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.4.0.46" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="18.4.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.4.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="18.4.0.46" />

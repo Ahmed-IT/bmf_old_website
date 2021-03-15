@@ -14,6 +14,12 @@ namespace BMF_WebSite
     
     public partial class Country
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Country()
+        {
+            this.M_UserProfile = new HashSet<M_UserProfile>();
+        }
+    
         public long ID { get; set; }
         public string Name { get; set; }
         public string AlphaCode_2 { get; set; }
@@ -31,5 +37,8 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_UserProfile> M_UserProfile { get; set; }
     }
 }

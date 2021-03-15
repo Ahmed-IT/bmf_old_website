@@ -27,6 +27,6 @@ namespace BMF_WebSite
         public byte[] RowVersion { get; set; }
     
         public virtual M_EventRoundSession M_EventRoundSession { get; set; }
-        public virtual M_User M_User { get; set; }
+        public virtual M_UserAccount M_UserAccount { get; set; }
     }
 }

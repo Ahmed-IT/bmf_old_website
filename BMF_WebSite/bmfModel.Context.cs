@@ -37,6 +37,7 @@ namespace BMF_WebSite
         public virtual DbSet<EventsCategory> EventsCategories { get; set; }
         public virtual DbSet<M_Club> M_Club { get; set; }
         public virtual DbSet<M_EventCategory> M_EventCategory { get; set; }
+        public virtual DbSet<M_EventCategoryBulletins> M_EventCategoryBulletins { get; set; }
         public virtual DbSet<M_EventCategoryRules> M_EventCategoryRules { get; set; }
         public virtual DbSet<M_EventRound> M_EventRound { get; set; }
         public virtual DbSet<M_EventRoundSession> M_EventRoundSession { get; set; }
@@ -48,12 +49,11 @@ namespace BMF_WebSite
         public virtual DbSet<M_MyRaces> M_MyRaces { get; set; }
         public virtual DbSet<M_News> M_News { get; set; }
         public virtual DbSet<M_QuickLinks> M_QuickLinks { get; set; }
-        public virtual DbSet<M_User> M_User { get; set; }
         public virtual DbSet<M_UserLicense> M_UserLicense { get; set; }
         public virtual DbSet<M_UserLicenseRenewal> M_UserLicenseRenewal { get; set; }
         public virtual DbSet<M_UserLicenseRenewalMedicForms> M_UserLicenseRenewalMedicForms { get; set; }
-        public virtual DbSet<M_UserProfile> M_UserProfile { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
-        public virtual DbSet<M_EventCategoryBulletins> M_EventCategoryBulletins { get; set; }
+        public virtual DbSet<M_UserAccount> M_UserAccount { get; set; }
+        public virtual DbSet<M_UserProfile> M_UserProfile { get; set; }
     }
 }

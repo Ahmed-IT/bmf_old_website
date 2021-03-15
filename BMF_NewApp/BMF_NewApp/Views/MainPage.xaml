@@ -5,7 +5,7 @@
              xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" 
              xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
              x:Class="BMF_NewApp.Views.MainPage"  NavigationPage.HasNavigationBar="false"
              Title="{Binding Title}" BackgroundColor="#f5f5f5">
 
@@ -99,12 +99,9 @@
                                             <Label TextColor="Black" Margin="20,20,20,0" Text="Upcoming Events" FontFamily="MontserratBold" FontSize="Title"></Label>
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>                                            
                                             
-                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="260" Margin="20,10,20,0">
-                                                <CarouselView ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="250">
-                                                    <CarouselView.ItemsLayout>
-                                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
-                                                    </CarouselView.ItemsLayout>
-                                                    <CarouselView.ItemTemplate>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="280" Margin="20,10,20,0">
+                                                <carousel:SfCarousel ItemHeight="260" ViewMode="Linear" ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="280">
+                                                    <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="260" Margin="20,10,20,0">
                                                                 <border:SfBorder CornerRadius="10" BorderColor="White" BorderWidth="0"
@@ -125,8 +122,10 @@
 
                                                             </StackLayout>
                                                         </DataTemplate>
-                                                    </CarouselView.ItemTemplate>
-                                                </CarouselView>
+                                                    </carousel:SfCarousel.ItemTemplate>
+                                                </carousel:SfCarousel>
+
+
                                             </StackLayout>
 
 
@@ -134,11 +133,8 @@
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
-                                                <CarouselView ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390">
-                                                    <CarouselView.ItemsLayout>
-                                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
-                                                    </CarouselView.ItemsLayout>
-                                                    <CarouselView.ItemTemplate>
+                                                <carousel:SfCarousel ItemHeight="390" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390">
+                                                    <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
                                                                 <border:SfBorder CornerRadius="10" BorderColor="White" BorderWidth="0"
@@ -160,10 +156,9 @@
 
                                                             </StackLayout>
                                                         </DataTemplate>
-                                                    </CarouselView.ItemTemplate>
-                                                </CarouselView>
+                                                    </carousel:SfCarousel.ItemTemplate>
+                                                </carousel:SfCarousel>
                                                 
-
                                             </StackLayout>
 
 

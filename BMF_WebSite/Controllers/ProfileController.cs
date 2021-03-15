@@ -30,14 +30,12 @@ namespace BMF_WebSite.Controllers
                                        p.DateOfBirth,
                                        p.Full_Address,
                                        p.Mobile_Number,
-                                       p.Nationality,
+                                       p.Country.Name,
                                        p.Photo_URL,
                                        p.Place_Of_Birth,
                                        Account = new
                                        {
-                                           p.M_User.ID,
-                                           p.M_User.Email_Address,
-                                           p.M_User.CPR_Number
+                                           
                                        }
                                    }).FirstOrDefaultAsync();
 

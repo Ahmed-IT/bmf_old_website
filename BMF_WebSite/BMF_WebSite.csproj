@@ -371,7 +371,7 @@
     <Compile Include="M_QuickLinks.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="M_User.cs">
+    <Compile Include="M_UserAccount.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="M_UserLicense.cs">

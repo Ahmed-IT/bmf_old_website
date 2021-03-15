@@ -12,10 +12,10 @@ namespace BMF_WebSite
     using System;
     using System.Collections.Generic;
     
-    public partial class M_User
+    public partial class M_UserAccount
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public M_User()
+        public M_UserAccount()
         {
             this.M_EventRoundSessionUserResults = new HashSet<M_EventRoundSessionUserResults>();
             this.M_MyFavRaces = new HashSet<M_MyFavRaces>();
@@ -25,7 +25,6 @@ namespace BMF_WebSite
     
         public long ID { get; set; }
         public string Email_Address { get; set; }
-        public string CPR_Number { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
@@ -35,6 +34,7 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+        public long ID_UserProfile { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
@@ -42,8 +42,8 @@ namespace BMF_WebSite
         public virtual ICollection<M_MyFavRaces> M_MyFavRaces { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_MyRaces> M_MyRaces { get; set; }
+        public virtual M_UserProfile M_UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserLicense> M_UserLicense { get; set; }
-        public virtual M_UserProfile M_UserProfile { get; set; }
     }
 }

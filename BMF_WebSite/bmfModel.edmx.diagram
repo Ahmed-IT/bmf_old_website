@@ -5,60 +5,61 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c8ab36a209104063b3c4e70861175e51" Name="Diagram1" ZoomLevel="91">
-        <EntityTypeShape EntityType="BMFModel.AdminRole" Width="1.5" PointX="8.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.AdminRoleOperation" Width="1.5" PointX="11" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.AdminUser" Width="1.5" PointX="11.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.AdminUserRole" Width="1.5" PointX="14" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.Country" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.D_LicenseType" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.DriverLicens" Width="1.5" PointX="6" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.DriverSignIn" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.EventRound" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.EventsCategory" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_Club" Width="1.5" PointX="13.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventCategory" Width="1.5" PointX="1.5" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventCategoryRules" Width="1.5" PointX="3.75" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventRound" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventRoundSession" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventRoundSessionUserResults" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_EventSeason" Width="1.5" PointX="1.5" PointY="34.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_GalleryCategory" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_GalleryImages" Width="1.5" PointX="11" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_MyFavRaces" Width="1.5" PointX="6" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_MyRaces" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_News" Width="1.5" PointX="13.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_QuickLinks" Width="1.5" PointX="15.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_User" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_UserLicense" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_UserLicenseRenewal" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_UserLicenseRenewalMedicForms" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.M_UserProfile" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMFModel.UserAccount" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
-        <AssociationConnector Association="BMFModel.FK_AdminRoleOperation_AdminRole_ID_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_AdminUserRole_AdminRole_ID_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_AdminUserRole_AdminUser_ID_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_UserLicense_D_LicenseType_ID_LicenseType" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_DriverLicense_UserAccount" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_DriverSignIn_DriverLicense" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_DriverSignIn_EventRounds" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_EventRounds_EventsCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventCategory_M_EventSeason_ID_EventSeason" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventRound_M_EventCategory_ID_EventCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventRoundSession_M_EventRound_ID_EventRound" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_MyFavRaces_M_EventRoundSession_ID_EventRoundSession" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_MyRaces_M_EventRoundSession_ID_EventRoundSession" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_EventRoundSessionUserResults_M_User_ID_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_MyFavRaces_M_User_ID_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_MyRaces_M_User_ID_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_UserLicense_M_User_ID_User" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_UserProfile_M_User_ID" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" ManuallyRouted="false" />
-        <AssociationConnector Association="BMFModel.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="BMFModel.M_EventCategoryBulletins" Width="1.5" PointX="3.75" PointY="40.75" />
+        <EntityTypeShape EntityType="BMFModel.AdminRole" Width="1.5" PointX="14.75" PointY="17.5" />
+        <EntityTypeShape EntityType="BMFModel.AdminRoleOperation" Width="1.5" PointX="17" PointY="22" />
+        <EntityTypeShape EntityType="BMFModel.AdminUser" Width="1.5" PointX="14.75" PointY="22.375" />
+        <EntityTypeShape EntityType="BMFModel.AdminUserRole" Width="1.5" PointX="17" PointY="17.625" />
+        <EntityTypeShape EntityType="BMFModel.Country" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="BMFModel.D_LicenseType" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="BMFModel.DriverLicens" Width="1.5" PointX="12" PointY="15.75" />
+        <EntityTypeShape EntityType="BMFModel.DriverSignIn" Width="1.5" PointX="14.25" PointY="6.625" />
+        <EntityTypeShape EntityType="BMFModel.EventRound" Width="1.5" PointX="12" PointY="6.375" />
+        <EntityTypeShape EntityType="BMFModel.EventsCategory" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BMFModel.M_Club" Width="1.5" PointX="3.75" PointY="16.125" />
+        <EntityTypeShape EntityType="BMFModel.M_EventCategory" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="BMFModel.M_EventCategoryBulletins" Width="1.5" PointX="3" PointY="20.625" />
+        <EntityTypeShape EntityType="BMFModel.M_EventCategoryRules" Width="1.5" PointX="3" PointY="24.875" />
+        <EntityTypeShape EntityType="BMFModel.M_EventRound" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="BMFModel.M_EventRoundSession" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="BMFModel.M_EventRoundSessionUserResults" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="BMFModel.M_EventSeason" Width="1.5" PointX="1.5" PointY="16" />
+        <EntityTypeShape EntityType="BMFModel.M_GalleryCategory" Width="1.5" PointX="16.75" PointY="3.375" />
+        <EntityTypeShape EntityType="BMFModel.M_GalleryImages" Width="1.5" PointX="19" PointY="3.375" />
+        <EntityTypeShape EntityType="BMFModel.M_MyFavRaces" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="BMFModel.M_MyRaces" Width="1.5" PointX="7.5" PointY="15.875" />
+        <EntityTypeShape EntityType="BMFModel.M_News" Width="1.5" PointX="17.75" PointY="8.125" />
+        <EntityTypeShape EntityType="BMFModel.M_QuickLinks" Width="1.5" PointX="5.75" PointY="20.125" />
+        <EntityTypeShape EntityType="BMFModel.M_UserLicense" Width="1.5" PointX="10.5" PointY="10.5" />
+        <EntityTypeShape EntityType="BMFModel.M_UserLicenseRenewal" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BMFModel.M_UserLicenseRenewalMedicForms" Width="1.5" PointX="15" PointY="10.875" />
+        <EntityTypeShape EntityType="BMFModel.UserAccount" Width="1.5" PointX="9.75" PointY="16.5" />
+        <AssociationConnector Association="BMFModel.FK_AdminRoleOperation_AdminRole_ID_Role" />
+        <AssociationConnector Association="BMFModel.FK_AdminUserRole_AdminRole_ID_Role" />
+        <AssociationConnector Association="BMFModel.FK_AdminUserRole_AdminUser_ID_User" />
+        <AssociationConnector Association="BMFModel.FK_M_UserLicense_D_LicenseType_ID_LicenseType" />
+        <AssociationConnector Association="BMFModel.FK_DriverLicense_UserAccount" />
+        <AssociationConnector Association="BMFModel.FK_DriverSignIn_DriverLicense" />
+        <AssociationConnector Association="BMFModel.FK_DriverSignIn_EventRounds" />
+        <AssociationConnector Association="BMFModel.FK_EventRounds_EventsCategory" />
+        <AssociationConnector Association="BMFModel.FK_M_EventCategory_M_EventSeason_ID_EventSeason" />
         <AssociationConnector Association="BMFModel.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" />
+        <AssociationConnector Association="BMFModel.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" />
+        <AssociationConnector Association="BMFModel.FK_M_EventRound_M_EventCategory_ID_EventCategory" />
+        <AssociationConnector Association="BMFModel.FK_M_EventRoundSession_M_EventRound_ID_EventRound" />
+        <AssociationConnector Association="BMFModel.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" />
+        <AssociationConnector Association="BMFModel.FK_M_MyFavRaces_M_EventRoundSession_ID_EventRoundSession" />
+        <AssociationConnector Association="BMFModel.FK_M_MyRaces_M_EventRoundSession_ID_EventRoundSession" />
+        <AssociationConnector Association="BMFModel.FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory" />
+        <AssociationConnector Association="BMFModel.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" />
+        <AssociationConnector Association="BMFModel.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" />
+        <EntityTypeShape EntityType="BMFModel.M_UserAccount" Width="1.5" PointX="5.25" PointY="10.5" />
+        <EntityTypeShape EntityType="BMFModel.M_UserProfile" Width="1.5" PointX="3" PointY="10.125" />
+        <AssociationConnector Association="BMFModel.FK_M_UserProfile_Country_ID_Nationality" />
+        <AssociationConnector Association="BMFModel.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_User" />
+        <AssociationConnector Association="BMFModel.FK_M_MyFavRaces_M_UserAccount_ID_User" />
+        <AssociationConnector Association="BMFModel.FK_M_MyRaces_M_UserAccount_ID_User" />
+        <AssociationConnector Association="BMFModel.FK_M_UserAccount_M_UserProfile_ID_UserProfile" />
+        <AssociationConnector Association="BMFModel.FK_M_UserLicense_M_UserAccount_ID_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
