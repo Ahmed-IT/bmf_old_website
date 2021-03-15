@@ -64,7 +64,19 @@ namespace BMF_NewApp.Models
                     var json = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<string>(json);
 
-                    return result;
+                    return "Account Created";
+                }
+                else if(response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                {
+                    return "Exist";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return "Not Found";
+                }
+                else
+                {
+                    return "Error";
                 }
             }
             catch (Exception ex)

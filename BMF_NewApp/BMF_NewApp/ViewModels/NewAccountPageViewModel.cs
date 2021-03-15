@@ -77,11 +77,11 @@ namespace BMF_NewApp.ViewModels
 
                                 await NavigationService.GoBackAsync();
                             }
-                            else if (postUser == "Membership Not Found")
+                            else if (postUser == "Not Found")
                             {
-                                await DialogService.DisplayAlertAsync("New Account", "Membership Not Found.", "OK");
+                                await DialogService.DisplayAlertAsync("New Account", "Profile Not Found.", "OK");
                             }
-                            else if (postUser == "Account Exist")
+                            else if (postUser == "Exist")
                             {
                                 await DialogService.DisplayAlertAsync("New Account", "Account Already Exist.", "OK");
                             }

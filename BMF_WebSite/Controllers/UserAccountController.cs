@@ -97,7 +97,7 @@ namespace BMF_WebSite.Controllers
                 }
                 else
                 {
-                    return Content(HttpStatusCode.NotFound, "Account Exist");
+                    return Content(HttpStatusCode.Conflict, "Account Exist");
                 }
             }
             catch (Exception ex)
