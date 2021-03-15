@@ -111,8 +111,8 @@
   <ItemGroup>
     <Content Include="bmfModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>bmfModel.Context.cs</LastGenOutput>
       <DependentUpon>bmfModel.edmx</DependentUpon>
+      <LastGenOutput>bmfModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="bmfModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -302,21 +302,6 @@
     <Compile Include="Country.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DriverLicens.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DriverSignIn.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="D_LicenseType.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EventRound.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EventsCategory.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -359,12 +344,6 @@
     <Compile Include="M_GalleryImages.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="M_MyFavRaces.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M_MyRaces.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="M_News.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
@@ -374,22 +353,10 @@
     <Compile Include="M_UserAccount.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="M_UserLicense.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M_UserLicenseRenewal.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M_UserLicenseRenewalMedicForms.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="M_UserProfile.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccount.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
