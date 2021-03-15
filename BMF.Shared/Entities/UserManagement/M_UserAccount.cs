@@ -8,14 +8,14 @@ namespace BMF.Shared.Entities.UserManagement
 {
     public partial class M_UserAccount : BaseEntity
     {
-        #region Foreign Keys
+        //#region Foreign Keys
 
-        [ForeignKey(nameof(UserProfile))]
-        [Display(Name = "User Profile")]
-        [JsonProperty(PropertyName = nameof(ID_UserProfile))]
-        public long ID_UserProfile { get; set; }
+        //[ForeignKey(nameof(UserProfile))]
+        //[Display(Name = "User Profile")]
+        //[JsonProperty(PropertyName = nameof(ID_UserProfile))]
+        //public long ID_UserProfile { get; set; }
 
-        #endregion
+        //#endregion
 
         #region Properties
 
@@ -39,13 +39,13 @@ namespace BMF.Shared.Entities.UserManagement
         [InverseProperty(nameof(M_UserProfile.UserAccount))]
         public M_UserProfile UserProfile { get; set; }
 
-        public ICollection<M_UserLicense> UserLicense { get; set; }
+        //public ICollection<M_UserLicense> UserLicense { get; set; }
 
         public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
-        public ICollection<M_MyRaces> MyRaces { get; set; }
+        //public ICollection<M_MyRaces> MyRaces { get; set; }
 
-        public ICollection<M_MyFavRaces> MyFavRaces { get; set; }
+        //public ICollection<M_MyFavRaces> MyFavRaces { get; set; }
 
         #endregion
     }

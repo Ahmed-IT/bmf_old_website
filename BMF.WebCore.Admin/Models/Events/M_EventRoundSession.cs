@@ -26,8 +26,8 @@ namespace BMF.Shared.Entities.Events
         public M_EventRoundSession()
         {
             UserResults = new List<M_EventRoundSessionUserResults>();
-            User_MyRaces = new List<M_MyRaces>();
-            User_MyFavRaces = new List<M_MyFavRaces>();
+            //User_MyRaces = new List<M_MyRaces>();
+            //User_MyFavRaces = new List<M_MyFavRaces>();
         }
 
         #endregion

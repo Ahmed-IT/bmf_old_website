@@ -25,7 +25,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         public D_LicenseType()
         {
-            UserLicense = new List<M_UserLicense>();
+            //UserLicense = new List<M_UserLicense>();
         }
 
         #endregion

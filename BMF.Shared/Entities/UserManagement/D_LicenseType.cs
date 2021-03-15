@@ -35,9 +35,9 @@ namespace BMF.Shared.Entities.UserManagement
 
         #region Relationships
 
-        [Display(Name = "User Licenses", Prompt = "User Licenses")]
-        [InverseProperty(nameof(M_UserLicense.LicenseType))]
-        public ICollection<M_UserLicense> UserLicense { get; set; }
+        //[Display(Name = "User Licenses", Prompt = "User Licenses")]
+        //[InverseProperty(nameof(M_UserLicense.LicenseType))]
+        //public ICollection<M_UserLicense> UserLicense { get; set; }
 
         #endregion
     }

@@ -310,11 +310,11 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<long>("ID_EventRoundSession")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ID_User")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<long?>("M_UserAccountID")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
@@ -334,7 +334,7 @@ namespace BMF.WebCore.Admin.Migrations
 
                     b.HasIndex("ID_EventRoundSession");
 
-                    b.HasIndex("ID_User");
+                    b.HasIndex("M_UserAccountID");
 
                     b.ToTable("M_EventRoundSessionUserResults");
                 });
@@ -717,166 +717,11 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("SystemOperation");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_LicenseType", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("Image_Back_URL")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<string>("Image_Front_URL")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("D_LicenseType");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_MyFavRaces", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_EventRoundSession")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ID_User")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_EventRoundSession");
-
-                    b.HasIndex("ID_User");
-
-                    b.ToTable("M_MyFavRaces");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_MyRaces", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_EventRoundSession")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ID_User")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_EventRoundSession");
-
-                    b.HasIndex("ID_User");
-
-                    b.ToTable("M_MyRaces");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -894,9 +739,6 @@ namespace BMF.WebCore.Admin.Migrations
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
-
-                    b.Property<long>("ID_UserProfile")
-                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -919,168 +761,7 @@ namespace BMF.WebCore.Admin.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ID_UserProfile")
-                        .IsUnique();
-
                     b.ToTable("M_UserAccount");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<DateTime>("Expire_Date")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_LicenseType")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ID_User")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("License_Number")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_LicenseType");
-
-                    b.HasIndex("ID_User");
-
-                    b.ToTable("M_UserLicense");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_UserLicense")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Issue_Date")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("Issue_Type")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_UserLicense");
-
-                    b.ToTable("M_UserLicenseRenewal");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewalMedicForms", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_UserLicenseRenewal")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PDF_File")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_UserLicenseRenewal");
-
-                    b.ToTable("M_UserLicenseRenewalMedicForms");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
@@ -1481,15 +1162,11 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", null)
                         .WithMany("UserResults")
-                        .HasForeignKey("ID_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("M_UserAccountID");
 
                     b.Navigation("EventRoundSession");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Security.AdminRoleOperation", b =>
@@ -1539,94 +1216,15 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_MyFavRaces", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.Events.M_EventRoundSession", "EventRoundSession")
-                        .WithMany("User_MyFavRaces")
-                        .HasForeignKey("ID_EventRoundSession")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
-                        .WithMany("MyFavRaces")
-                        .HasForeignKey("ID_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventRoundSession");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_MyRaces", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.Events.M_EventRoundSession", "EventRoundSession")
-                        .WithMany("User_MyRaces")
-                        .HasForeignKey("ID_EventRoundSession")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
-                        .WithMany("MyRaces")
-                        .HasForeignKey("ID_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventRoundSession");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
                         .WithOne("UserAccount")
-                        .HasForeignKey("BMF.Shared.Entities.UserManagement.M_UserAccount", "ID_UserProfile")
+                        .HasForeignKey("BMF.Shared.Entities.UserManagement.M_UserAccount", "ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("UserProfile");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.UserManagement.D_LicenseType", "LicenseType")
-                        .WithMany("UserLicense")
-                        .HasForeignKey("ID_LicenseType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "User")
-                        .WithMany("UserLicense")
-                        .HasForeignKey("ID_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LicenseType");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserLicense", "UserLicense")
-                        .WithMany("UserLicenseRenewal")
-                        .HasForeignKey("ID_UserLicense")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserLicense");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewalMedicForms", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", "UserLicenseRenewal")
-                        .WithMany("MedicForms")
-                        .HasForeignKey("ID_UserLicenseRenewal")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserLicenseRenewal");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
@@ -1665,10 +1263,6 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventRoundSession", b =>
                 {
-                    b.Navigation("User_MyFavRaces");
-
-                    b.Navigation("User_MyRaces");
-
                     b.Navigation("UserResults");
                 });
 
@@ -1701,30 +1295,9 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("Children");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_LicenseType", b =>
-                {
-                    b.Navigation("UserLicense");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserAccount", b =>
                 {
-                    b.Navigation("MyFavRaces");
-
-                    b.Navigation("MyRaces");
-
-                    b.Navigation("UserLicense");
-
                     b.Navigation("UserResults");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
-                {
-                    b.Navigation("UserLicenseRenewal");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
-                {
-                    b.Navigation("MedicForms");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>

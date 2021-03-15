@@ -61,14 +61,14 @@ namespace BMF.Shared.Entities.Events
         public void GetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             ID_EventRoundSession = Database.ID_EventRoundSession;
-            ID_User = Database.ID_User;
+            //ID_User = Database.ID_User;
             Points = Database.Points;
         }
 
         public void SetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             Database.ID_EventRoundSession = ID_EventRoundSession;
-            Database.ID_User = ID_User;
+            //Database.ID_User = ID_User;
             Database.Points = Points;
         }
 
@@ -84,10 +84,10 @@ namespace BMF.Shared.Entities.Events
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventRoundSession)}", "Event round session must be selected.");
             }
-            if (ID_User == 0)
-            {
-                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_User)}", "User must be selected.");
-            }
+            //if (ID_User == 0)
+            //{
+            //    ModelState.AddModelError($"{propertyQualifier}{nameof(ID_User)}", "User must be selected.");
+            //}
         }
 
         public void GetDefaults(M_EventRoundSessionUserResults Database)

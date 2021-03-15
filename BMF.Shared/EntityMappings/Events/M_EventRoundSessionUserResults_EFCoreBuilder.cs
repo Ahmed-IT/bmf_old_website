@@ -21,10 +21,10 @@ namespace BMF.Web.Admin.DBMappings.Events
             // Ignored Attributes
             // Foreign Keys
             entityBuilder.Property(t => t.ID_EventRoundSession).IsRequired(true);
-            entityBuilder.Property(t => t.ID_User).IsRequired(true);
+            //entityBuilder.Property(t => t.ID_User).IsRequired(true);
             // Relationships
             entityBuilder.HasOne(g => g.EventRoundSession).WithMany(s => s.UserResults).HasForeignKey(s => s.ID_EventRoundSession);
-            entityBuilder.HasOne(g => g.User).WithMany(s => s.UserResults).HasForeignKey(s => s.ID_User);
+            //entityBuilder.HasOne(g => g.User).WithMany(s => s.UserResults).HasForeignKey(s => s.ID_User);
             // Indexes
         }
     }

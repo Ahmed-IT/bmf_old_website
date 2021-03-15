@@ -31,7 +31,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             entityBuilder.Property(t => t.ID_Nationality).IsRequired(false);
             // Relationships
             entityBuilder.HasOne(g => g.Nationality).WithMany(s => s.Users).HasForeignKey(s => s.ID_Nationality);
-            entityBuilder.HasOne(g => g.UserAccount).WithOne(s => s.UserProfile).HasForeignKey<M_UserAccount>(s => s.ID_UserProfile);
+            entityBuilder.HasOne(g => g.UserAccount).WithOne(s => s.UserProfile).HasForeignKey<M_UserAccount>(s => s.ID);
             // Indexes
         }
     }
