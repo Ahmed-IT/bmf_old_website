@@ -1154,6 +1154,62 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("M_UserProfile");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserRoundSignIn", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<long>("ID_EventRound")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ID_UserLicense")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ID_UserProfile")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("SignIn")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ID_EventRound");
+
+                    b.HasIndex("ID_UserLicense");
+
+                    b.HasIndex("ID_UserProfile");
+
+                    b.ToTable("M_UserRoundSignIn");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_Club", b =>
                 {
                     b.Property<long>("ID")
@@ -1631,6 +1687,33 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("Nationality");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserRoundSignIn", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.Events.M_EventRound", "EventRound")
+                        .WithMany("UserRoundSignIns")
+                        .HasForeignKey("ID_EventRound")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserLicense", "UserLicense")
+                        .WithMany("UserRoundSignIns")
+                        .HasForeignKey("ID_UserLicense")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
+                        .WithMany("UserRoundSignIns")
+                        .HasForeignKey("ID_UserProfile")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("EventRound");
+
+                    b.Navigation("UserLicense");
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryImages", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.Website.M_GalleryCategory", "GalleryCategory")
@@ -1654,6 +1737,8 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventRound", b =>
                 {
                     b.Navigation("EventRoundSessions");
+
+                    b.Navigation("UserRoundSignIns");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventRoundSession", b =>
@@ -1711,6 +1796,8 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
                 {
                     b.Navigation("UserLicenseRenewal");
+
+                    b.Navigation("UserRoundSignIns");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
@@ -1723,6 +1810,8 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("UserAccount");
 
                     b.Navigation("UserLicenses");
+
+                    b.Navigation("UserRoundSignIns");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryCategory", b =>

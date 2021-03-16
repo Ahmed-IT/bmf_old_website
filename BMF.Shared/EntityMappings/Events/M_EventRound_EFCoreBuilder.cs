@@ -29,6 +29,7 @@ namespace BMF.Web.Admin.DBMappings.Events
             // Relationships
             entityBuilder.HasOne(g => g.EventCategory).WithMany(s => s.EventRounds).HasForeignKey(s => s.ID_EventCategory);
             entityBuilder.HasMany(g => g.EventRoundSessions).WithOne(s => s.EventRound).HasForeignKey(s => s.ID_EventRound);
+            entityBuilder.HasMany(g => g.UserRoundSignIns).WithOne(s => s.EventRound).HasForeignKey(s => s.ID_EventRound);
             // Indexes
         }
     }

@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserRoundSignIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_Club.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_GalleryCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_GalleryImages.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicense_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserProfile_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserAccount_Mapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserRoundSignIn_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_Club_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_GalleryCategory_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Website\M_GalleryImages_Mapping.cs" />

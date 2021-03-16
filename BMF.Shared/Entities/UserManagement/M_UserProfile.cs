@@ -72,6 +72,10 @@ namespace BMF.Shared.Entities.UserManagement
         [InverseProperty(nameof(M_UserLicense.UserProfile))]
         public ICollection<M_UserLicense> UserLicenses { get; set; }
 
+        [Display(Name = "User Round Sign Ins", Prompt = "User Round Sign Ins")]
+        [InverseProperty(nameof(M_UserRoundSignIn.UserProfile))]
+        public ICollection<M_UserRoundSignIn> UserRoundSignIns { get; set; }
+
         #endregion
     }
 }

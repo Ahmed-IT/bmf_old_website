@@ -27,13 +27,13 @@ namespace BMF.Shared.Entities.UserManagement
 
         #region Properties
 
-        [Display(Name = "License_Number", Prompt = "License_Number")]
+        [Display(Name = "License Number", Prompt = "License Number")]
         [Required]
         [JsonProperty(PropertyName = nameof(License_Number))]
         [MaxLength(50)]
         public string License_Number { get; set; }
 
-        [Display(Name = "Expire_Date", Prompt = "Expire_Date")]
+        [Display(Name = "Expiry Date", Prompt = "Expiry Date")]
         [Required]
         [JsonProperty(PropertyName = nameof(Expire_Date))]
         public DateTime Expire_Date { get; set; }
@@ -49,6 +49,10 @@ namespace BMF.Shared.Entities.UserManagement
         [Display(Name = "License Type", Prompt = "License Type")]
         [InverseProperty(nameof(D_LicenseType.UserLicenses))]
         public D_LicenseType LicenseType { get; set; }
+
+        [Display(Name = "User Round Sign Ins", Prompt = "User Round Sign Ins")]
+        [InverseProperty(nameof(M_UserRoundSignIn.UserLicense))]
+        public ICollection<M_UserRoundSignIn> UserRoundSignIns { get; set; }
 
         [Display(Name = "License Renewals", Prompt = "License Renewals")]
         [InverseProperty(nameof(M_UserLicenseRenewal.UserLicense))]

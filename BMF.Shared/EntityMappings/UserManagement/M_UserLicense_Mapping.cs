@@ -27,6 +27,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             // Relationships
             entityBuilder.HasOne(g => g.UserProfile).WithMany(s => s.UserLicenses).HasForeignKey(s => s.ID_UserProfile);
             entityBuilder.HasOne(g => g.LicenseType).WithMany(s => s.UserLicenses).HasForeignKey(s => s.ID_LicenseType);
+            entityBuilder.HasMany(g => g.UserRoundSignIns).WithOne(s => s.UserLicense).HasForeignKey(s => s.ID_UserLicense);
             entityBuilder.HasMany(g => g.UserLicenseRenewal).WithOne(s => s.UserLicense).HasForeignKey(s => s.ID_UserLicense);
             // Indexes
         }
