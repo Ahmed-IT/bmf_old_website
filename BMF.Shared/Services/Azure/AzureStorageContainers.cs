@@ -24,5 +24,7 @@ namespace BMF.Shared.Services.Azure
 
         public static string LicenseType => $"license-type";
 
+        public static string UserProfile => $"user-profile";
+
     }
 }

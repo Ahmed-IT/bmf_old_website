@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\SystemUserLoginType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\SystemUserType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\D_LicenseType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\D_MarshalRole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyFavRaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyRaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserAccount.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\AdminUser_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Security\SystemOperation_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\D_LicenseType_Mapping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\D_MarshalRole_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyFavRaces_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyRaces_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicenseRenewalMedicForms_Mapping.cs" />

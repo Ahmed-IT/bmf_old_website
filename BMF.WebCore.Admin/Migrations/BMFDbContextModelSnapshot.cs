@@ -775,6 +775,49 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("D_LicenseType");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_MarshalRole", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("D_MarshalRole");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_MyFavRaces", b =>
                 {
                     b.Property<long>("ID")
@@ -943,6 +986,9 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<long>("ID_LicenseType")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("ID_MarshalRole")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ID_UserProfile")
                         .HasColumnType("bigint");
 
@@ -968,6 +1014,8 @@ namespace BMF.WebCore.Admin.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("ID_LicenseType");
+
+                    b.HasIndex("ID_MarshalRole");
 
                     b.HasIndex("ID_UserProfile");
 
@@ -1084,13 +1132,12 @@ namespace BMF.WebCore.Admin.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Blood_Group")
-                        .IsRequired()
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("CPR")
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1113,7 +1160,6 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Full_Address")
-                        .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
@@ -1124,7 +1170,6 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Mobile_Number")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
@@ -1133,8 +1178,8 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("nvarchar(1024)");
 
                     b.Property<string>("Place_Of_Birth")
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -1645,6 +1690,10 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BMF.Shared.Entities.UserManagement.D_MarshalRole", "MarshalRole")
+                        .WithMany("UserLicenses")
+                        .HasForeignKey("ID_MarshalRole");
+
                     b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
                         .WithMany("UserLicenses")
                         .HasForeignKey("ID_UserProfile")
@@ -1652,6 +1701,8 @@ namespace BMF.WebCore.Admin.Migrations
                         .IsRequired();
 
                     b.Navigation("LicenseType");
+
+                    b.Navigation("MarshalRole");
 
                     b.Navigation("UserProfile");
                 });
@@ -1780,6 +1831,11 @@ namespace BMF.WebCore.Admin.Migrations
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_LicenseType", b =>
+                {
+                    b.Navigation("UserLicenses");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.D_MarshalRole", b =>
                 {
                     b.Navigation("UserLicenses");
                 });

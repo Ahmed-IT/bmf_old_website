@@ -19,11 +19,11 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
         {
             // Attributes
             entityBuilder.Property(t => t.FullName).HasMaxLength(255).IsRequired(true);
-            entityBuilder.Property(t => t.CPR).HasMaxLength(9).IsRequired(false);
-            entityBuilder.Property(t => t.Mobile_Number).HasMaxLength(60).IsRequired(true);
-            entityBuilder.Property(t => t.Full_Address).HasMaxLength(1024).IsRequired(true);
-            entityBuilder.Property(t => t.Blood_Group).HasMaxLength(5).IsRequired(true);
-            entityBuilder.Property(t => t.Place_Of_Birth).HasMaxLength(1024);
+            entityBuilder.Property(t => t.CPR).HasMaxLength(60).IsRequired(false);
+            entityBuilder.Property(t => t.Mobile_Number).HasMaxLength(60).IsRequired(false);
+            entityBuilder.Property(t => t.Full_Address).HasMaxLength(1024).IsRequired(false);
+            entityBuilder.Property(t => t.Blood_Group).HasMaxLength(5).IsRequired(false);
+            entityBuilder.Property(t => t.Place_Of_Birth).HasMaxLength(60).IsRequired(false);
             entityBuilder.Property(t => t.Photo_URL).HasMaxLength(1024).IsRequired(false);
             entityBuilder.Property(t => t.DateOfBirth).HasColumnType("DATETIME2(7)").IsRequired(true);
             // Ignored Attributes

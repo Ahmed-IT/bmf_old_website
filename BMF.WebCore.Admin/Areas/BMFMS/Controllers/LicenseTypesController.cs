@@ -356,7 +356,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                             await ImageUpload.CopyToAsync(memoryStream);
                             memoryStream.Position = 0; // Reset memory stream to upload correctly
 
-                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.EventCategory, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
+                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.LicenseType, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
                             if (!uploadResult)
                             {
                                 return Json(new KatrikFileResponse() { error = "Failed to upload. Please try again later." });
@@ -439,7 +439,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
 
                             _repository.Entry(ActualRecord).State = EntityState.Modified;
 
-                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.EventCategory, actualFileName);
+                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.LicenseType, actualFileName);
                             if (_DeleteStatus)
                             {
                                 await _repository.SaveChangesAsync();
@@ -493,7 +493,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
                             await ImageUpload.CopyToAsync(memoryStream);
                             memoryStream.Position = 0; // Reset memory stream to upload correctly
 
-                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.EventCategory, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
+                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.LicenseType, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
                             if (!uploadResult)
                             {
                                 return Json(new KatrikFileResponse() { error = "Failed to upload. Please try again later." });
@@ -576,7 +576,7 @@ namespace BMF.WebCore.Admin.Areas.UserManagement.Controllers
 
                             _repository.Entry(ActualRecord).State = EntityState.Modified;
 
-                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.EventCategory, actualFileName);
+                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.LicenseType, actualFileName);
                             if (_DeleteStatus)
                             {
                                 await _repository.SaveChangesAsync();

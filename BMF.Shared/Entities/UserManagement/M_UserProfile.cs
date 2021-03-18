@@ -29,7 +29,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         [Display(Name = "CPR", Prompt = "CPR")]
         [JsonProperty(PropertyName = nameof(CPR))]
-        [MaxLength(9)]
+        [MaxLength(60)]
         public string CPR { get; set; }
 
         [Display(Name = "Date Of Birth", Prompt = "Date Of Birth")]
@@ -38,22 +38,27 @@ namespace BMF.Shared.Entities.UserManagement
 
         [Display(Name = "Mobile Number", Prompt = "Mobile Number")]
         [JsonProperty(PropertyName = nameof(Mobile_Number))]
+        [MaxLength(60)]
         public string Mobile_Number { get; set; }
 
         [Display(Name = "Full Address", Prompt = "Full Address")]
         [JsonProperty(PropertyName = nameof(Full_Address))]
+        [MaxLength(1024)]
         public string Full_Address { get; set; }
 
         [Display(Name = "Blood Group", Prompt = "Blood Group")]
         [JsonProperty(PropertyName = nameof(Blood_Group))]
+        [MaxLength(5)]
         public string Blood_Group { get; set; }
 
         [Display(Name = "Place Of Birth", Prompt = "Place Of Birth")]
         [JsonProperty(PropertyName = nameof(Place_Of_Birth))]
+        [MaxLength(60)]
         public string Place_Of_Birth { get; set; }
 
         [Display(Name = "Photo URL", Prompt = "Photo URL")]
         [JsonProperty(PropertyName = nameof(Photo_URL))]
+        [MaxLength(1024)]
         public string Photo_URL { get; set; }
 
         #endregion

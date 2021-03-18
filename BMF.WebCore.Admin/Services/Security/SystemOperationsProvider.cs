@@ -143,14 +143,28 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region UserMS
 
-            public static SystemOperation BmfMS => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS), Children = new List<SystemOperation>() { BmfMS_LicenseType } };
+            public static SystemOperation BmfMS => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS), Children = new List<SystemOperation>() { BmfMS_LicenseType, BmfMS_MarshalRole, BmfMS_UserProfile } };
 
-            // EMS - Event Season
+            // BMF - License Type
             public static SystemOperation BmfMS_LicenseType => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType), Children = new List<SystemOperation>() { BmfMS_LicenseType_ViewAll, BmfMS_LicenseType_Add, BmfMS_LicenseType_Edit, BmfMS_LicenseType_Delete }, Parent = GetParent(nameof(BmfMS)) };
             public static SystemOperation BmfMS_LicenseType_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_ViewAll), Parent = GetParent(nameof(BmfMS_LicenseType)) };
             public static SystemOperation BmfMS_LicenseType_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Add), Parent = GetParent(nameof(BmfMS_LicenseType)) };
             public static SystemOperation BmfMS_LicenseType_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Edit), Parent = GetParent(nameof(BmfMS_LicenseType)) };
             public static SystemOperation BmfMS_LicenseType_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType_Delete), Parent = GetParent(nameof(BmfMS_LicenseType)) };
+
+            // BMF - Marshal Role
+            public static SystemOperation BmfMS_MarshalRole => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_MarshalRole), Children = new List<SystemOperation>() { BmfMS_MarshalRole_ViewAll, BmfMS_MarshalRole_Add, BmfMS_MarshalRole_Edit, BmfMS_MarshalRole_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_MarshalRole_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_MarshalRole_ViewAll), Parent = GetParent(nameof(BmfMS_MarshalRole)) };
+            public static SystemOperation BmfMS_MarshalRole_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_MarshalRole_Add), Parent = GetParent(nameof(BmfMS_MarshalRole)) };
+            public static SystemOperation BmfMS_MarshalRole_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_MarshalRole_Edit), Parent = GetParent(nameof(BmfMS_MarshalRole)) };
+            public static SystemOperation BmfMS_MarshalRole_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_MarshalRole_Delete), Parent = GetParent(nameof(BmfMS_MarshalRole)) };
+
+            // BMF - User Profile
+            public static SystemOperation BmfMS_UserProfile => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile), Children = new List<SystemOperation>() { BmfMS_UserProfile_ViewAll, BmfMS_UserProfile_Add, BmfMS_UserProfile_Edit, BmfMS_UserProfile_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_UserProfile_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_ViewAll), Parent = GetParent(nameof(BmfMS_UserProfile)) };
+            public static SystemOperation BmfMS_UserProfile_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Add), Parent = GetParent(nameof(BmfMS_UserProfile)) };
+            public static SystemOperation BmfMS_UserProfile_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Edit), Parent = GetParent(nameof(BmfMS_UserProfile)) };
+            public static SystemOperation BmfMS_UserProfile_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Delete), Parent = GetParent(nameof(BmfMS_UserProfile)) };
 
             #endregion
         }

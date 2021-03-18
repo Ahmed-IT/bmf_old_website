@@ -23,6 +23,11 @@ namespace BMF.Shared.Entities.UserManagement
         [Required]
         public long ID_LicenseType { get; set; }
 
+        [ForeignKey(nameof(MarshalRole))]
+        [Display(Name = "Marshal Role", Prompt = "Marshal Role")]
+        [JsonProperty(PropertyName = nameof(ID_MarshalRole))]
+        public long? ID_MarshalRole { get; set; }
+
         #endregion
 
         #region Properties
@@ -49,6 +54,10 @@ namespace BMF.Shared.Entities.UserManagement
         [Display(Name = "License Type", Prompt = "License Type")]
         [InverseProperty(nameof(D_LicenseType.UserLicenses))]
         public D_LicenseType LicenseType { get; set; }
+
+        [Display(Name = "Marshal Role", Prompt = "Marshal Role")]
+        [InverseProperty(nameof(D_MarshalRole.UserLicenses))]
+        public D_MarshalRole MarshalRole { get; set; }
 
         [Display(Name = "User Round Sign Ins", Prompt = "User Round Sign Ins")]
         [InverseProperty(nameof(M_UserRoundSignIn.UserLicense))]

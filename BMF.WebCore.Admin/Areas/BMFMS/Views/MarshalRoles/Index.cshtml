@@ -1,9 +1,9 @@
 ﻿@{
-    var _classAcronym = nameof(Country).GetUppercaseLettersAsString();
-    var _controllerName = Country._controllerName;
-    ViewData["Title"] = "Countries";
+    var _classAcronym = nameof(D_MarshalRole).Replace("D_", "").GetUppercaseLettersAsString();
+    var _controllerName = D_MarshalRole._controllerName;
+    ViewData["Title"] = "Marshal Roles";
     ViewData["Page_Header"] = "View All";
-    Html.SetActiveMenuItemSystemName(nameof(SystemOperationsProvider.Admin.SystemSettingsCountry), pageHeadBuilder);
+    Html.SetActiveMenuItemSystemName(nameof(SystemOperationsProvider.BMFMS.BmfMS_MarshalRole), pageHeadBuilder);
 }
 @{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedback); }
 
