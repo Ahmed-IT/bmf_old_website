@@ -17,6 +17,7 @@ namespace BMF_NewApp.Services
         Task<List<ClsNews>> GetNews();
         Task<ClsAccount> AuthUser(ClsAccount user);
         Task<string> CreateMemebrAccount(ClsAccount UserAccount);
-        Task<string> SendAccountPassword(ClsAccount CPR);
+        Task<string> SendAccountPassword(ClsAccount user);
+        Task<string> ChangePassword(ClsAccount user);
     }
 }

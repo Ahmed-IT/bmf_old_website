@@ -14,6 +14,12 @@ namespace BMF_WebSite
     
     public partial class M_UserProfile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public M_UserProfile()
+        {
+            this.M_UserLicense = new HashSet<M_UserLicense>();
+        }
+    
         public long ID { get; set; }
         public Nullable<long> ID_Nationality { get; set; }
         public string FullName { get; set; }
@@ -35,5 +41,7 @@ namespace BMF_WebSite
     
         public virtual Country Country { get; set; }
         public virtual M_UserAccount M_UserAccount { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_UserLicense> M_UserLicense { get; set; }
     }
 }

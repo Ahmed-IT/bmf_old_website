@@ -105,6 +105,7 @@ namespace BMF_NewApp
             containerRegistry.RegisterForNavigation<NewAccountPage, NewAccountPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsPage, NewsPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsDetailsPage, NewsDetailsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
         }
 
         protected override void OnStart()

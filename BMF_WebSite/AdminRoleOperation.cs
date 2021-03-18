@@ -27,5 +27,6 @@ namespace BMF_WebSite
         public byte[] RowVersion { get; set; }
     
         public virtual AdminRole AdminRole { get; set; }
+        public virtual SystemOperation SystemOperation { get; set; }
     }
 }

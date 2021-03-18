@@ -11,7 +11,7 @@ namespace BMF_WebSite.Controllers
 {
     public class DashboardController : ApiController
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         [HttpGet]
         [Route("api/GetDashboard/{CPR}")]
@@ -34,9 +34,8 @@ namespace BMF_WebSite.Controllers
                                    p.Photo_URL,
                                    Account = new
                                    {
-                                       p.M_User.Email_Address,
-                                       p.M_User.CPR_Number,
-                                       p.M_User.ID
+                                       p.M_UserAccount.Email_Address,
+                                       p.M_UserAccount.ID,
                                    }
                                }).FirstOrDefaultAsync(),
                     Countdown = await (from r in db.M_EventRound

@@ -11,7 +11,7 @@ namespace BMF_WebSite.Controllers
 {
     public class ProfileController : ApiController
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         [HttpGet]
         [Route("api/GetProfile/{CPR}")]
@@ -30,12 +30,13 @@ namespace BMF_WebSite.Controllers
                                        p.DateOfBirth,
                                        p.Full_Address,
                                        p.Mobile_Number,
-                                       p.Country.Name,
+                                       Nationality = p.Country.Name,
                                        p.Photo_URL,
                                        p.Place_Of_Birth,
                                        Account = new
                                        {
-                                           
+                                           p.M_UserAccount.ID,
+                                           p.M_UserAccount.Email_Address
                                        }
                                    }).FirstOrDefaultAsync();
 

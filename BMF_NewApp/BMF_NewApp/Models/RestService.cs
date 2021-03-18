@@ -52,6 +52,37 @@ namespace BMF_NewApp.Models
             return default(ClsAccount);
         }
 
+        public async Task<string> ChangePassword(ClsAccount user)
+        {
+            try
+            {
+                var content = JsonConvert.SerializeObject(user);
+                var response = await client.PostAsync("ChangePassword", new StringContent(content, Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<string>(json);
+
+                    return result;
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return "Not Found";
+                }
+                else
+                {
+                    return "Error";
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return "Error";
+        }
+
         public async Task<string> CreateMemebrAccount(ClsAccount UserAccount)
         {
             try
@@ -218,9 +249,35 @@ namespace BMF_NewApp.Models
             return default(ClsProfile);
         }
 
-        public Task<string> SendAccountPassword(ClsAccount CPR)
+        public async Task<string> SendAccountPassword(ClsAccount user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var content = JsonConvert.SerializeObject(user);
+                var response = await client.PostAsync("SendAccountPassword", new StringContent(content, Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<string>(json);
+
+                    return "Sent";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return "Not Found";
+                }
+                else
+                {
+                    return "Error";
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return "Error";
         }
     }
 

@@ -24,7 +24,7 @@
                                     <Label FontFamily="MontserratMedium" FontSize="Large" HorizontalOptions="Start" TextColor="Black" Text="Login to your Account" Margin="0,10,0,10"></Label>
 
                                     <inputLayout:SfTextInputLayout Hint="Email / CPR Number" ContainerType="Outlined" FocusedColor="#D90000" UnfocusedColor="LightGray">
-                                        <Entry Text="{Binding User.CPR_Number}" Keyboard="Email" TextColor="Gray" />
+                                        <Entry Text="{Binding User.Email_Address}" Keyboard="Email" TextColor="Gray" />
                                     </inputLayout:SfTextInputLayout>
 
                                     <inputLayout:SfTextInputLayout EnablePasswordVisibilityToggle="True" Hint="Password" ContainerType="Outlined" FocusedColor="#D90000" UnfocusedColor="LightGray">

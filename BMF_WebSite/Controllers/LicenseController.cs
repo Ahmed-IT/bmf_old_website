@@ -11,7 +11,7 @@ namespace BMF_WebSite.Controllers
 {
     public class LicenseController : ApiController
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         [HttpGet]
         [Route("api/GetMyLicense/{Id}")]
@@ -20,14 +20,14 @@ namespace BMF_WebSite.Controllers
             try
             {
                 var query = await (from l in db.M_UserLicense
-                                   where l.ID_User == Id &&
+                                   where l.M_UserProfile.ID == Id &&
                                    l.IsActive == true
                                    select new
                                    {
                                        l.Expire_Date,
                                        l.ID,
                                        l.ID_LicenseType,
-                                       l.ID_User,
+                                       l.ID_UserProfile,
                                        l.License_Number,
                                        LicenseType = new
                                        {
@@ -39,11 +39,11 @@ namespace BMF_WebSite.Controllers
                                        },
                                        Profile = new
                                        {
-                                           l.M_User.M_UserProfile.CPR,
-                                           l.M_User.M_UserProfile.Photo_URL,
-                                           l.M_User.M_UserProfile.FullName,
-                                           l.M_User.M_UserProfile.Blood_Group,
-                                           l.M_User.M_UserProfile.DateOfBirth
+                                           l.M_UserProfile.CPR,
+                                           l.M_UserProfile.Photo_URL,
+                                           l.M_UserProfile.FullName,
+                                           l.M_UserProfile.Blood_Group,
+                                           l.M_UserProfile.DateOfBirth
                                        }
                                    }).ToListAsync();
 

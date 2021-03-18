@@ -12,7 +12,7 @@ namespace BMF_WebSite.Controllers
 {
     public class HomeController : Controller
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         // GET: Home
         public async Task<ActionResult> Index()

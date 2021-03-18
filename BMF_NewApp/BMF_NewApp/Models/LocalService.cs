@@ -15,7 +15,7 @@ namespace BMF_NewApp.Models
             try
             {
                 var query = (from user in await App.Database.GetItemsAsync<TblUsersAccount>()
-                             where user.CPR == CPR
+                             where user.Email == CPR
                              select new TblUsersAccount
                              {
                                  CPR = user.CPR,

@@ -17,6 +17,11 @@ namespace BMF_NewApp.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }

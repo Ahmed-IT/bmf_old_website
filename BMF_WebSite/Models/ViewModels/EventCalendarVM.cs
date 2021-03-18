@@ -14,7 +14,7 @@ namespace BMF_WebSite.Models.ViewModels
             public List<ClsEventCategory> EventsCategory { get; set; }
         }
 
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         public async Task<Calendar> GetCalendarPage()
         {

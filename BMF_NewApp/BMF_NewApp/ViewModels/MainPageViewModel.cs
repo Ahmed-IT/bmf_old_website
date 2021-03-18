@@ -90,6 +90,8 @@ namespace BMF_NewApp.ViewModels
         public DelegateCommand CommandLogin =>
             _commandLogin ?? (_commandLogin = new DelegateCommand(ExecuteLogin));
 
+        public DelegateCommand<object> NewsCommand { get; set; }
+
         private async void ExecuteLogin()
         {
             if(IsLoggedIn == false)
@@ -110,7 +112,9 @@ namespace BMF_NewApp.ViewModels
             Title = "Main Page";
 
             Dashboard = new DashboardVM();
-            Countdown = new ClsCountdown();           
+            Countdown = new ClsCountdown();
+
+            NewsCommand = new DelegateCommand<object>(ViewNews);
 
             _localService = localService;
             _restService = restService;
@@ -282,6 +286,31 @@ namespace BMF_NewApp.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        private async void ViewNews(object news)
+        {
+            try
+            {
+                if (news != null)
+                {
+                    var parameter = new NavigationParameters
+            {
+                { "news", news }
+            };
+
+                    await NavigationService.NavigateAsync("NewsDetailsPage", parameter);
+                }
+            }
+            catch (Exception ex)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "MainPageViewModel", "ViewNews" }
+                };
+
+                Crashes.TrackError(ex, properties);
             }
         }
 

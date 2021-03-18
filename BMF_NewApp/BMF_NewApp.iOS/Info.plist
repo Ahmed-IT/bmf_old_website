@@ -18,7 +18,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>14.1</string>
+	<string>11.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
@@ -33,5 +33,19 @@
 	<string>1.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app requires contacts access to function properly.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app requires Calendar access to function properly.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app will not use Microphone access</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app requires Media access to function properly.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>This app will not use Siri access</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app will not use Location access</string>
+	<key>Privacy - Bluetooth Always Usage Description</key>
+	<string>This app will not use Bluetooth access</string>
 </dict>
 </plist>

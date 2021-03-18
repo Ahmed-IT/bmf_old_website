@@ -12,7 +12,7 @@ namespace BMF_WebSite.Controllers
 {
     public class UserAccountController : ApiController
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         [HttpPost]
         [Route("api/AccountAuth")]
@@ -20,24 +20,38 @@ namespace BMF_WebSite.Controllers
         {
             try
             {
-                var query = await (from u in db.M_UserAccount
-                                   where (u.M_UserProfile.CPR == user.CPR_Number || u.Email_Address == user.CPR_Number)
-                                   && u.Password == user.Password && u.IsActive == true
-                                   select new
-                                   {
-                                       u.Email_Address,
-                                       u.M_UserProfile.CPR,
-                                       u.ID,
-                                       u.IsActive
-                                   }).FirstOrDefaultAsync();
-
-                if (query != null)
+                if(user != null)
                 {
-                    return Ok(query);
+                    if (user.Email_Address != null && user.Password != null)
+                    {
+                        var query = await (from u in db.M_UserAccount
+                                           where (u.Email_Address == user.Email_Address || u.M_UserProfile.CPR == user.Email_Address)
+                                           && u.Password == user.Password && u.IsActive == true
+                                           select new
+                                           {
+                                               u.Email_Address,
+                                               u.ID,
+                                               CPR_Number = u.M_UserProfile.CPR,
+                                               u.IsActive
+                                           }).FirstOrDefaultAsync();
+
+                        if (query != null)
+                        {
+                            return Ok(query);
+                        }
+                        else
+                        {
+                            return Content(HttpStatusCode.NoContent, "No Content");
+                        }
+                    }
+                    else
+                    {
+                        return Content(HttpStatusCode.InternalServerError, "No Parameters");
+                    }
                 }
                 else
                 {
-                    return Content(HttpStatusCode.NoContent, "No Content");
+                    return Content(HttpStatusCode.InternalServerError, "No Parameters");
                 }
             }
             catch (Exception ex)
@@ -57,13 +71,13 @@ namespace BMF_WebSite.Controllers
                                    where u.CPR == user.CPR_Number
                                    select u).FirstOrDefaultAsync();
 
-                if (query == null)
+                if (query != null)
                 {
-                    var CheckLicense = await (from p in db.M_UserAccount
+                    var CheckAccount = await (from p in db.M_UserAccount
                                               where p.Email_Address == user.Email_Address
                                               select p).FirstOrDefaultAsync();
 
-                    if (CheckLicense != null)
+                    if (CheckAccount == null)
                     {
                         var add = db.M_UserAccount.Add(new M_UserAccount
                         {
@@ -77,16 +91,16 @@ namespace BMF_WebSite.Controllers
 
                         await db.SaveChangesAsync();
 
-                        return Content(HttpStatusCode.OK, "Account Created");
+                        return Content(HttpStatusCode.OK, "Created");
                     }
                     else
                     {
-                        return Content(HttpStatusCode.NotFound, "Membership Not Found");
+                        return Content(HttpStatusCode.Conflict, "Exist");
                     }
                 }
                 else
                 {
-                    return Content(HttpStatusCode.Conflict, "Account Exist");
+                    return Content(HttpStatusCode.NotFound, "Not Found");
                 }
             }
             catch (Exception ex)
@@ -109,7 +123,6 @@ namespace BMF_WebSite.Controllers
                 {
                     if (query.Password == user.OldPassword)
                     {
-
                         query.Password = user.Password;
 
                         await db.SaveChangesAsync();

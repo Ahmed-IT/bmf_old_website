@@ -11,7 +11,7 @@ namespace BMF_WebSite.Controllers
 {
     public class NewsController : ApiController
     {
-        BMFEntities db = new BMFEntities();
+        BMFEntities1 db = new BMFEntities1();
 
         [HttpGet]
         [Route("api/GetNews")]

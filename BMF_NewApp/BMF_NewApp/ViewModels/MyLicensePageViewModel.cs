@@ -87,7 +87,7 @@ namespace BMF_NewApp.ViewModels
                     ShowLogin = true;
                 }
 
-                var getLicense = await _restService.GetMyLicense(2);
+                var getLicense = await _restService.GetMyLicense(App.ID);
 
                 MyLicenseList = new ObservableRangeCollection<ClsLicense>(getLicense);
 

@@ -55,7 +55,7 @@ namespace BMF_NewApp.ViewModels
         {
             try
             {
-                if (User.CPR_Number != "" && User.Password != "")
+                if (User.Email_Address != "" && User.Password != "")
                 {
                     IsBusy = true;
 
@@ -65,7 +65,7 @@ namespace BMF_NewApp.ViewModels
                     if (login != null)
                     {
                         //Get User Info from local DB
-                        var CheckUserInfo = await _localService.GetUserAccount(login.CPR_Number);
+                        var CheckUserInfo = await _localService.GetUserAccount(login.Email_Address);
 
                         //Check if User Account Exist Locally
                         if (CheckUserInfo == null)
@@ -74,7 +74,7 @@ namespace BMF_NewApp.ViewModels
                             var userInfo = await _localService.InsertUserAccount(new TblUsersAccount
                             {
                                 CPR = login.CPR_Number,
-                                Email = login.CPR_Number,
+                                Email = login.Email_Address,
                                 LoggedIn = true,
                                 Id = login.ID
                             });

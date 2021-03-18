@@ -18,6 +18,8 @@ namespace BMF_WebSite
         public M_EventRoundSession()
         {
             this.M_EventRoundSessionUserResults = new HashSet<M_EventRoundSessionUserResults>();
+            this.M_MyFavRaces = new HashSet<M_MyFavRaces>();
+            this.M_MyRaces = new HashSet<M_MyRaces>();
         }
     
         public long ID { get; set; }
@@ -36,5 +38,9 @@ namespace BMF_WebSite
         public virtual M_EventRound M_EventRound { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_MyFavRaces> M_MyFavRaces { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_MyRaces> M_MyRaces { get; set; }
     }
 }

@@ -13,7 +13,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="50"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -99,18 +99,18 @@
                 </navigationdrawer:SfNavigationDrawer.ContentView>
                 <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Frame Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
+                        <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
+                        <Frame IsVisible="{Binding ShowLogout}" Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
            HeightRequest="100"
            WidthRequest="100"
            HorizontalOptions="Center"
            Padding="0"
            HasShadow="False"
            IsClippedToBounds="True">
-                            <ffimageloading:CachedImage LoadingPlaceholder="bmcLogo.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
                         </Frame>
 
-                        <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
-
+                        <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 
                     </StackLayout>
                 </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
