@@ -40,6 +40,14 @@
     <None Include="Areas\BMFMS\Views\MarshalRoles\_FormAdd.cshtml" />
     <None Include="Areas\BMFMS\Views\MarshalRoles\_FormDelete.cshtml" />
     <None Include="Areas\BMFMS\Views\MarshalRoles\_FormEdit.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserAccounts\Index.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserAccounts\_FormAdd.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserAccounts\_FormDelete.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserAccounts\_FormEdit.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenses\Index.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenses\_FormAdd.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenses\_FormDelete.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenses\_FormEdit.cshtml" />
     <None Include="Areas\BMFMS\Views\UserProfiles\Index.cshtml" />
     <None Include="Areas\BMFMS\Views\UserProfiles\_FormAdd.cshtml" />
     <None Include="Areas\BMFMS\Views\UserProfiles\_FormDelete.cshtml" />

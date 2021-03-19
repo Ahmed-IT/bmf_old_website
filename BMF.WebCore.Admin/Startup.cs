@@ -6,6 +6,7 @@ using BMF.Shared.Services.Events;
 using BMF.Shared.Services.Location;
 using BMF.Shared.Services.Menu;
 using BMF.Shared.Services.Security;
+using BMF.Shared.Services.UserManagement;
 using BMF.Shared.UI;
 using BMF.WebCore.Admin.Data;
 using BMF.WebCore.Admin.Services.Menu;
@@ -79,6 +80,10 @@ namespace BMF.WebCore.Admin
             // ------ Events
             services.AddScoped<IEventSeasonService, EventSeasonService>();
             services.AddScoped<IEventCategoryService, EventCategoryService>();
+            // ------ User Management
+            services.AddScoped<ILicenseTypeService, LicenseTypeService>();
+            services.AddScoped<IMarshalRoleService, MarshalRoleService>();
+            services.AddScoped<IUserProfileService, UserProfileService>();
 
             // System Builder Services
             services.AddScoped<ISiteMapService, AdminSiteMapService>();

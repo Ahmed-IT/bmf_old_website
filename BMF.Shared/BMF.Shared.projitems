@@ -119,6 +119,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\ISystemOperationsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\PermissionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Security\SystemOperationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\IMarshalRoleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\ILicenseTypeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\IUserProfileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\MarshalRoleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\LicenseTypeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserManagement\UserProfileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\IPageHeadBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\PageHeadBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LogInViewModel.cs" />

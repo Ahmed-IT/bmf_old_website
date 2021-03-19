@@ -2,7 +2,6 @@
 using AMK.Plugin.JQueryDataTable;
 using BMF.Shared;
 using BMF.Shared.Core.WebFramework;
-using BMF.Shared.Entities.Location;
 using BMF.Shared.Entities.UserManagement;
 using BMF.Shared.Extensions;
 using BMF.Shared.Models.KatrikFile;

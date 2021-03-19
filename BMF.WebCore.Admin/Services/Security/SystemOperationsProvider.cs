@@ -143,7 +143,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region UserMS
 
-            public static SystemOperation BmfMS => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS), Children = new List<SystemOperation>() { BmfMS_LicenseType, BmfMS_MarshalRole, BmfMS_UserProfile } };
+            public static SystemOperation BmfMS => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS), Children = new List<SystemOperation>() { BmfMS_LicenseType, BmfMS_MarshalRole, BmfMS_UserProfile, BmfMS_UserLicense, BmfMS_UserAccount } };
 
             // BMF - License Type
             public static SystemOperation BmfMS_LicenseType => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_LicenseType), Children = new List<SystemOperation>() { BmfMS_LicenseType_ViewAll, BmfMS_LicenseType_Add, BmfMS_LicenseType_Edit, BmfMS_LicenseType_Delete }, Parent = GetParent(nameof(BmfMS)) };
@@ -165,6 +165,20 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation BmfMS_UserProfile_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Add), Parent = GetParent(nameof(BmfMS_UserProfile)) };
             public static SystemOperation BmfMS_UserProfile_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Edit), Parent = GetParent(nameof(BmfMS_UserProfile)) };
             public static SystemOperation BmfMS_UserProfile_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserProfile_Delete), Parent = GetParent(nameof(BmfMS_UserProfile)) };
+
+            // BMF - User License
+            public static SystemOperation BmfMS_UserLicense => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicense), Children = new List<SystemOperation>() { BmfMS_UserLicense_ViewAll, BmfMS_UserLicense_Add, BmfMS_UserLicense_Edit, BmfMS_UserLicense_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_UserLicense_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicense_ViewAll), Parent = GetParent(nameof(BmfMS_UserLicense)) };
+            public static SystemOperation BmfMS_UserLicense_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicense_Add), Parent = GetParent(nameof(BmfMS_UserLicense)) };
+            public static SystemOperation BmfMS_UserLicense_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicense_Edit), Parent = GetParent(nameof(BmfMS_UserLicense)) };
+            public static SystemOperation BmfMS_UserLicense_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicense_Delete), Parent = GetParent(nameof(BmfMS_UserLicense)) };
+
+            // BMF - User Account
+            public static SystemOperation BmfMS_UserAccount => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount), Children = new List<SystemOperation>() { BmfMS_UserAccount_ViewAll, BmfMS_UserAccount_Add, BmfMS_UserAccount_Edit, BmfMS_UserAccount_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_UserAccount_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_ViewAll), Parent = GetParent(nameof(BmfMS_UserAccount)) };
+            public static SystemOperation BmfMS_UserAccount_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_Add), Parent = GetParent(nameof(BmfMS_UserAccount)) };
+            public static SystemOperation BmfMS_UserAccount_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_Edit), Parent = GetParent(nameof(BmfMS_UserAccount)) };
+            public static SystemOperation BmfMS_UserAccount_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_Delete), Parent = GetParent(nameof(BmfMS_UserAccount)) };
 
             #endregion
         }

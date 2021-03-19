@@ -248,6 +248,26 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 IconClass = "fas fa-users",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserProfile)),
                             },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_UserAccount),
+                                Title = "User Accounts",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.BmfMS } },
+                                ControllerName = M_UserAccount._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-users",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserAccount)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicense),
+                                Title = "User Licenses",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.BmfMS } },
+                                ControllerName = M_UserLicense._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-id-card",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicense)),
+                            },
                         }
                     },
                 };

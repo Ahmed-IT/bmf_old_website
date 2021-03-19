@@ -18,6 +18,9 @@ namespace BMF.Shared.Entities.UserManagement
         [NotMapped]
         public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.LicenseType}/default.jpg";
 
+        [NotMapped]
+        public string Display_LicenseType => $"{Title} (Type: {Type})";
+
         #region Fields
 
         #endregion
