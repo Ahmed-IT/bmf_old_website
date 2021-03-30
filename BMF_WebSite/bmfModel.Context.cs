@@ -58,5 +58,7 @@ namespace BMF_WebSite
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<SystemOperation> SystemOperations { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
+        public virtual DbSet<D_MarshalRole> D_MarshalRole { get; set; }
+        public virtual DbSet<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
     }
 }

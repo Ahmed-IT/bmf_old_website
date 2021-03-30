@@ -13,6 +13,8 @@ using System.Linq;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using static BMF_NewApp.Models.BMFAppTables;
 
 [assembly: ExportFont("Montserrat-Black.ttf", Alias = "MontserratBlack")]
@@ -92,7 +94,7 @@ namespace BMF_NewApp
 
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<Xamarin.Forms.NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<BaseNavigationPage, BaseNavigationPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
@@ -112,6 +114,9 @@ namespace BMF_NewApp
         {
             try
             {
+                Xamarin.Forms.Application.Current.On<iOS>().SetEnableAccessibilityScalingForNamedFontSizes(false);
+
+
                 AppCenter.Start("ios=52474204-5180-4298-9ae3-356ca41d35e6;" + "android=2b308c1a-7a40-4d46-be69-5b710a6b7562;", typeof(Analytics), typeof(Crashes));
             }
             catch (System.Exception ex)

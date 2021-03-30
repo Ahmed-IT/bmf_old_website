@@ -47,5 +47,9 @@
 	<string>This app will not use Location access</string>
 	<key>Privacy - Bluetooth Always Usage Description</key>
 	<string>This app will not use Bluetooth access</string>
+	<key>UIViewControllerBasedStatusBarAppearance </key>
+	<true/>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

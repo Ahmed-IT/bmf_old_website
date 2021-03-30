@@ -18,6 +18,7 @@ namespace BMF_WebSite
         public M_EventRound()
         {
             this.M_EventRoundSession = new HashSet<M_EventRoundSession>();
+            this.M_UserRoundSignIn = new HashSet<M_UserRoundSignIn>();
         }
     
         public long ID { get; set; }
@@ -39,5 +40,7 @@ namespace BMF_WebSite
         public virtual M_EventCategory M_EventCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRoundSession> M_EventRoundSession { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
     }
 }

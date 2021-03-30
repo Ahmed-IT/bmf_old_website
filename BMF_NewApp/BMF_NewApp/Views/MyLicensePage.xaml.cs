@@ -9,10 +9,5 @@ namespace BMF_NewApp.Views
         {
             InitializeComponent();
         }
-
-        private void hamburgerButton_Clicked(object sender, EventArgs e)
-        {
-            navigationDrawer.ToggleDrawer();
-        }
     }
 }

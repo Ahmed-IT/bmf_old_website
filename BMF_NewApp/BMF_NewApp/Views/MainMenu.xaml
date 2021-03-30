@@ -16,10 +16,6 @@
                             <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'ProfilePage'}" Text="Profile" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
                         </StackLayout>
 
-                        <StackLayout IsVisible="{Binding IsLoggedIn}" Margin="0,10,0,0" Orientation="Horizontal">
-                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'MyLicensePage'}" Text="My License" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
-                        </StackLayout>
-
                         <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
                             <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'CalendarPage'}" Text="Calendar" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
                         </StackLayout>

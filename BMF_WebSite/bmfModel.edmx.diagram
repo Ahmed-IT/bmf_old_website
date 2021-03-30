@@ -65,6 +65,12 @@
         <AssociationConnector Association="BMFEntities.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" />
         <AssociationConnector Association="BMFEntities.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" />
         <AssociationConnector Association="BMFEntities.FK_SystemOperation_SystemOperation_ID_Parent" />
+        <EntityTypeShape EntityType="BMFEntities.D_MarshalRole" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="BMFEntities.M_UserRoundSignIn" Width="1.5" PointX="7.5" PointY="26.75" />
+        <AssociationConnector Association="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" />
+        <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" />
+        <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" />
+        <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

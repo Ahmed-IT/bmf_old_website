@@ -5,6 +5,7 @@
              Title="{Binding Title}" BackgroundColor="#f5f5f5"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BMF_NewApp.Views.MyIDsPage">
+
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
@@ -13,7 +14,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="70"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -31,92 +32,84 @@
                             </StackLayout>
 
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
-                                <Label TextColor="Black" Margin="20,20,20,0" Text="My ID" FontFamily="MontserratBold" FontSize="Title"></Label>
-                                <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
+                                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <ScrollView.Content>
+                                        <StackLayout VerticalOptions="Start">
 
+                                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                                <Label HorizontalOptions="FillAndExpand" TextColor="Black" Margin="20,20,0,0" Text="My ID" FontFamily="MontserratBold" FontSize="Title"></Label>
+                                                <Button Command="{prism:NavigateTo 'MyLicensePage'}" VerticalOptions="End" Margin="0,20,20,0" Text="My License" FontSize="Small" FontFamily="MontserratMedium" BackgroundColor="Transparent" TextColor="#D90000" HorizontalOptions="End"></Button>
+                                            </StackLayout>
 
+                                            <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
-
-                                <carousel:SfCarousel ItemHeight="650" ViewMode="Linear" ItemsSource="{Binding MyLicenseList}" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                    <carousel:SfCarousel.ItemTemplate>
-                                        <DataTemplate>
-                                            <ScrollView HeightRequest="650" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                                <ScrollView.Content>
-                                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,10,20,0">
-                                                            <Frame Margin="0,10,0,0" CornerRadius="75" BorderColor="#faf8f8"
-           HeightRequest="150"
-           WidthRequest="150"
-           HorizontalOptions="Center"
-           Padding="0"
-           HasShadow="False"
-           IsClippedToBounds="True">
-                                                                <ffimageloading:CachedImage LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
-                                                            </Frame>
-
-                                                            <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
-                                                            <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,0,0,0" Text="{Binding License_Number_Full}"></Label>
-
-
-
-
-                                                        </StackLayout>
-
-                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,10,20,0">
-
-                                                            <Grid HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+                                            <carousel:SfCarousel Margin="0,50,0,0" ItemSpacing="10" ViewMode="Linear" ItemsSource="{Binding MyLicenseList}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                <carousel:SfCarousel.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20,50,20,0">
                                                                 <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                                                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                                    <ColumnDefinition></ColumnDefinition>
+                                                                    <ColumnDefinition></ColumnDefinition>
                                                                 </Grid.ColumnDefinitions>
                                                                 <Grid.RowDefinitions>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
+                                                                    <RowDefinition Height="120"></RowDefinition>
+                                                                    <RowDefinition Height="80"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
+                                                                    <RowDefinition Height="40"></RowDefinition>
                                                                 </Grid.RowDefinitions>
 
-                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="CPR Number"></Label>
-                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.CPR}"></Label>
+                                                                <border:SfBorder Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Margin="0" BorderColor="LightGray" IsClippedToBounds="True" HeightRequest="120" WidthRequest="120" VerticalOptions="Start" CornerRadius="60">
+                                                                    <ffimageloading:CachedImage HeightRequest="120" WidthRequest="120" LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
 
-                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="1" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Catgory"></Label>
-                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="1" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding LicenseType.Title}"></Label>
+                                                                </border:SfBorder>
 
-                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Expire Date"></Label>
-                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="2" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Expire_Date, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+                                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                                                                    <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
+                                                                    <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,0,0,0" Text="{Binding License_Number_Full}"></Label>
+                                                                </StackLayout>
 
-                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="3" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Blood Group"></Label>
-                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="3" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.Blood_Group}"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="CPR Number"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="2" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.CPR}"></Label>
 
-                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Date of Birth"></Label>
-                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="4" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.DateOfBirth, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="3" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Category"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="3" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding LicenseType.Type}"></Label>
 
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Title"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="4" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding LicenseType.Title}"></Label>
+
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="5" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Expire Date"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="5" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Expire_Date, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="6" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Blood Group"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="6" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.Blood_Group}"></Label>
+
+                                                                <Label Margin="0,10,0,0" Grid.Column="0" Grid.Row="7" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Date of Birth"></Label>
+                                                                <Label Margin="0,10,0,0" Grid.Column="1" Grid.Row="7" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding Profile.DateOfBirth, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+
+                                                                
                                                             </Grid>
 
-                                                            <syncfusion:SfBarcode ShowText="False" Margin="0,40,0,120" BackgroundColor="White" Text="{Binding License_Number}" WidthRequest="180" HeightRequest="180" HorizontalOptions="Center" Symbology="QRCode"/>
+                                                            <StackLayout>
+                                                                <syncfusion:SfBarcode ShowText="False" Margin="0" BackgroundColor="White" Text="{Binding License_Number}" WidthRequest="180" HeightRequest="180" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Symbology="QRCode"/>
 
+                                                            </StackLayout>
                                                         </StackLayout>
-                                                    </StackLayout>
+                                                    </DataTemplate>
+                                                </carousel:SfCarousel.ItemTemplate>
+                                            </carousel:SfCarousel>
 
-                                                </ScrollView.Content>
-                                            </ScrollView>
-
-
-                                        </DataTemplate>
-                                    </carousel:SfCarousel.ItemTemplate>
-                                </carousel:SfCarousel>
-
+                                        </StackLayout>
+                                    </ScrollView.Content>
+                                </ScrollView>
 
                             </StackLayout>
                         </Grid>
-
-
                     </StackLayout>
-
-
-
                 </navigationdrawer:SfNavigationDrawer.ContentView>
                 <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -164,4 +157,5 @@
             </Syncfusion:SfBusyIndicator>
         </StackLayout>
     </AbsoluteLayout>
+
 </ContentPage>

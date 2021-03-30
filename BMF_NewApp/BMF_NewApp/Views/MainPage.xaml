@@ -17,7 +17,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="70"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -100,7 +100,7 @@
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>                                            
                                             
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="280" Margin="20,10,20,0">
-                                                <carousel:SfCarousel ItemHeight="260" ViewMode="Linear" ItemSpacing="5" ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="280">
+                                                <carousel:SfCarousel HorizontalOptions="CenterAndExpand" ItemHeight="260" ViewMode="Linear" ItemSpacing="10" ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="280">
                                                     <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="260" Margin="20,10,20,0">
@@ -133,7 +133,7 @@
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
-                                                <carousel:SfCarousel ItemHeight="390" ItemSpacing="5" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390">
+                                                <carousel:SfCarousel HorizontalOptions="FillAndExpand" ItemHeight="390" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390">
                                                     
                                                     <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>

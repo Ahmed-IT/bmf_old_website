@@ -27,6 +27,7 @@ namespace BMF_WebSite.Controllers
                         var query = await (from u in db.M_UserAccount
                                            where (u.Email_Address == user.Email_Address || u.M_UserProfile.CPR == user.Email_Address)
                                            && u.Password == user.Password && u.IsActive == true
+                                           && u.DeletedOnUtc == null
                                            select new
                                            {
                                                u.Email_Address,
@@ -41,7 +42,7 @@ namespace BMF_WebSite.Controllers
                         }
                         else
                         {
-                            return Content(HttpStatusCode.NoContent, "No Content");
+                            return Content(HttpStatusCode.NotFound, "Not Found");
                         }
                     }
                     else
@@ -154,6 +155,7 @@ namespace BMF_WebSite.Controllers
                 var query = await (from u in db.M_UserAccount
                                    where u.Email_Address
                                    == user.Email_Address
+                                   && u.IsActive == true && u.DeletedOnUtc == null
                                    select u).FirstOrDefaultAsync();
 
                 if (query != null)
@@ -164,21 +166,18 @@ namespace BMF_WebSite.Controllers
 
                     string emailSubject = "Dear " + profile.FullName + "," +
                                             "</br>" +
-                                            "We have sent you this email response to your request to get your password for BMC App. " +
+                                            "We have sent you this email response to your request to get your password for BMF App. " +
                                             "</br></br>" +
                                             "Please find below your password:" +
                                             "</br>" +
                                             query.Password +
                                             "</br></br>" +
-                                            "If you need help or you have any other questions, feel free to email info@bmcbahrain.com" +
-                                            "</br></br>" +
                                             "Thank You," +
                                             "</br>" +
-                                            "BMC Bahrain" +
-                                            "</br>" +
-                                            "<img src=''>";
+                                            "BMF" +
+                                            "</br>";
 
-                    //var sendMail = EmailHelper.SendMail(query.EmailAddress, "BMC APP - FORGOT PASSWORD", emailSubject);
+                    var sendMail = EmailHelper.SendMail(query.Email_Address, "BMF APP - FORGOT PASSWORD", emailSubject);
 
                     return Content(HttpStatusCode.OK, "Sent");
                 }

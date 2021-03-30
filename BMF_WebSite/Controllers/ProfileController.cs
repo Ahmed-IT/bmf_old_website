@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BMF_WebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace BMF_WebSite.Controllers
             try
             {
                 var query = await (from p in db.M_UserProfile
-                                   where p.CPR == CPR
+                                   where p.CPR == CPR &&
+                                   p.IsActive == true && p.DeletedOnUtc == null
                                    select new
                                    {
                                        p.ID,
@@ -47,6 +49,43 @@ namespace BMF_WebSite.Controllers
                 else
                 {
                     return Content(HttpStatusCode.NoContent, "No Content");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/UpdateMarshalProfile")]
+        public async Task<IHttpActionResult> UpdateMarshalProfile(ClsProfile item)
+        {
+            try
+            {
+                var query = await (from p in db.M_UserProfile
+                                   where p.CPR == item.CPR
+                                   select p).FirstOrDefaultAsync();
+
+                if (query != null)
+                {
+                    query.Blood_Group = item.Blood_Group;
+
+                    query.ID_Nationality = db.Countries.Where(a => a.Name == item.Nationality).FirstOrDefault() == null ? 168 :
+                        db.Countries.Where(a => a.Name == item.Nationality).FirstOrDefault().ID;
+                    
+                    query.DateOfBirth = item.DateOfBirth;
+                    query.FullName = item.FullName;
+                    query.Full_Address = item.Full_Address;
+                    query.Mobile_Number = item.Mobile_Number;
+
+                    await db.SaveChangesAsync();
+
+                    return Content(HttpStatusCode.OK, "Updated");
+                }
+                else
+                {                   
+                    return Content(HttpStatusCode.NotFound, "Not Found");
                 }
             }
             catch (Exception ex)

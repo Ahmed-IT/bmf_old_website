@@ -21,7 +21,7 @@ namespace BMF_WebSite.Controllers
             {
                 var query = await (from l in db.M_UserLicense
                                    where l.M_UserProfile.ID == Id &&
-                                   l.IsActive == true
+                                   l.IsActive == true && l.DeletedOnUtc == null
                                    select new
                                    {
                                        l.Expire_Date,
@@ -34,7 +34,7 @@ namespace BMF_WebSite.Controllers
                                            l.D_LicenseType.ID,
                                            l.D_LicenseType.Image_Front_URL,
                                            l.D_LicenseType.Image_Back_URL,
-                                           l.D_LicenseType.Title,
+                                           Title = l.D_LicenseType.Title != "Official" ? l.D_LicenseType.Title : l.D_MarshalRole.Name,
                                            l.D_LicenseType.Type
                                        },
                                        Profile = new

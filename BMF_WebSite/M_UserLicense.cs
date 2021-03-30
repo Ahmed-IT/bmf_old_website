@@ -18,6 +18,7 @@ namespace BMF_WebSite
         public M_UserLicense()
         {
             this.M_UserLicenseRenewal = new HashSet<M_UserLicenseRenewal>();
+            this.M_UserRoundSignIn = new HashSet<M_UserRoundSignIn>();
         }
     
         public long ID { get; set; }
@@ -33,10 +34,14 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+        public Nullable<long> ID_MarshalRole { get; set; }
     
         public virtual D_LicenseType D_LicenseType { get; set; }
         public virtual M_UserProfile M_UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserLicenseRenewal> M_UserLicenseRenewal { get; set; }
+        public virtual D_MarshalRole D_MarshalRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
     }
 }
