@@ -34,7 +34,7 @@
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
                                 <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <ScrollView.Content>
-                                        <StackLayout VerticalOptions="Start">
+                                        <StackLayout VerticalOptions="StartAndExpand">
 
                                             <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                                 <Label HorizontalOptions="FillAndExpand" TextColor="Black" Margin="20,20,0,0" Text="My ID" FontFamily="MontserratBold" FontSize="Title"></Label>
@@ -43,10 +43,10 @@
 
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
-                                            <carousel:SfCarousel Margin="0,50,0,0" ItemSpacing="10" ViewMode="Linear" ItemsSource="{Binding MyLicenseList}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <carousel:SfCarousel Margin="0,20,0,0" ItemSpacing="10" ViewMode="Linear" ItemsSource="{Binding MyLicenseList}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                                 <carousel:SfCarousel.ItemTemplate>
                                                     <DataTemplate>
-                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20,50,20,0">
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition></ColumnDefinition>

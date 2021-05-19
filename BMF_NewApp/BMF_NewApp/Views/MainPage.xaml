@@ -100,7 +100,8 @@
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>                                            
                                             
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="280" Margin="20,10,20,0">
-                                                <carousel:SfCarousel HorizontalOptions="CenterAndExpand" ItemHeight="260" ViewMode="Linear" ItemSpacing="10" ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="280">
+                                                <carousel:SfCarousel HorizontalOptions="CenterAndExpand" ItemHeight="260" ViewMode="Linear" ItemSpacing="10" ItemsSource="{Binding ComingEventsList}" BackgroundColor="Transparent" HeightRequest="280"
+                                                                     RotationAngle="0" SelectedItemOffset="10" Offset="0.5" ScaleOffset="0">
                                                     <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="260" Margin="20,10,20,0">
@@ -133,7 +134,8 @@
                                             <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
-                                                <carousel:SfCarousel HorizontalOptions="FillAndExpand" ItemHeight="390" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390">
+                                                <carousel:SfCarousel HorizontalOptions="FillAndExpand" ItemHeight="390" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390"
+                                                                     RotationAngle="0" SelectedItemOffset="10" Offset="0.5" ScaleOffset="0">
                                                     
                                                     <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>

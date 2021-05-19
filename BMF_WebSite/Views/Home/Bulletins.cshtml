@@ -1,4 +1,4 @@
-﻿
+﻿@model List<BMF_WebSite.Models.ClsEventCategory>
 @{
     ViewBag.Title = "Bulletins";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -54,90 +54,34 @@
         </div>
 
         <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Sporting Regulations
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
+            @if (Model != null)
+            {
+                int i = 1;
+
+                foreach (var category in Model)
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="@("heading"+i)">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="@("#collapse"+i)" aria-expanded="false" aria-controls="@("#collapse"+i)">
+                                @category.Title
+                            </button>
+                        </h2>
+                        @foreach (var item in category.Bulletins)
+                        {
+                            <div id="@("collapse"+i)" class="accordion-collapse collapse" aria-labelledby="@("heading"+i)" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <a href="@item.PDF_Url">@item.Title</a>
+                                </div>
+                            </div>
+                        }
+
                     </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        FIA Championship Regulation GT3CCME
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Bahrain Drag Racing Championship Rules & Regulations
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading4">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                        Bahrain Karting Championship Rules & Regulation
-                    </button>
-                </h2>
-                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading5">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                        Circuit Racing Rules & Regulation
-                    </button>
-                </h2>
-                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading6">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                        Bahrain AutoX Championship Rules & Regulation
-                    </button>
-                </h2>
-                <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading7">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-                        Bahrain Motor Federation -National Sporting Code
-                    </button>
-                </h2>
-                <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a href="#">Regulation 2020-2021</a>
-                    </div>
-                </div>
-            </div>
+
+                    i++;
+                }
+            }
+
+
         </div>
     </div>
 </section>

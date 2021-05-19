@@ -61,7 +61,15 @@ namespace BMF_WebSite.Controllers
                                  ID = c.ID,
                                  ID_EventSeason = c.ID_EventSeason,
                                  Image_URL = c.Image_URL,
-                                 Title = c.Title
+                                 Title = c.Title,
+                                 RulesRegs = c.M_EventCategoryRules.Where(a => a.IsActive == true && a.DeletedBy == null).Select(a => new ClsRulesRegs
+                                 {
+                                     IsActive = a.IsActive,
+                                     ID = a.ID,
+                                     ID_EventCategory = a.ID_EventCategory,
+                                     PDF_Url = a.PDF_Url,
+                                     Title = a.Title
+                                 }).ToList()
                              }).ToList();
 
                 return View(query);
@@ -180,10 +188,57 @@ namespace BMF_WebSite.Controllers
             return View();
         }
 
-        public ActionResult Gallery()
+        public async Task<ActionResult> Gallery()
         {
-            return View();
+            var query = await (from g in db.M_GalleryCategory
+                               where g.DeletedOnUtc == null &&
+                               g.IsActive == true
+                               select new ClsGalleryCategory
+                               {
+                                   ID = g.ID,
+                                   Image_URL = g.Image_URL,
+                                   Title = g.Title
+                               }).ToListAsync();
+
+            if(query.Count > 0)
+            {
+                return View(query);
+            }
+            else
+            {
+                return View();
+            }            
         }
+
+        public async Task<ActionResult> GalleryImages(long ID)
+        {
+            if(ID != 0)
+            {
+                var query = await (from g in db.M_GalleryCategory
+                                   where g.ID == ID
+                                   select new ClsGalleryCategory
+                                   {
+                                       ID = g.ID,
+                                       Image_URL = g.Image_URL,
+                                       Title = g.Title,
+                                       GalleryImages = g.M_GalleryImages.Select(i => new ClsGalleryImage
+                                       {
+                                           ID = i.ID,
+                                           ID_GalleryCategory = i.ID_GalleryCategory,
+                                           Image_URL = i.Image_URL
+                                       }).ToList()
+                                   }).FirstOrDefaultAsync();
+
+                return View(query);
+            }
+            else
+            {
+                return RedirectToAction("Gallery");
+            }
+
+            
+        }
+        
 
         public ActionResult ContactUs()
         {
@@ -195,9 +250,27 @@ namespace BMF_WebSite.Controllers
             return View();
         }
 
-        public ActionResult Bulletins()
+        public async Task<ActionResult> Bulletins()
         {
-            return View();
+            var query = await(from c in db.M_EventCategory
+                         where c.IsActive == true && c.DeletedOnUtc == null
+                         && c.M_EventCategoryBulletins.Count > 0
+                         select new ClsEventCategory
+                         {
+                             ID = c.ID,
+                             Image_URL = c.Image_URL,
+                             Title = c.Title,
+                             Bulletins = c.M_EventCategoryBulletins.Where(a => 
+                             a.IsActive == true && a.DeletedOnUtc == null).Select(a => new ClsBulletins
+                             {
+                                 ID = a.ID,
+                                 ID_EventCategory = a.ID_EventCategory,
+                                 PDF_Url = a.PDF_Url,
+                                 Title = a.Title
+                             }).ToList()
+                         }).ToListAsync();
+
+            return View(query);
         }
 
         public ActionResult NewsDetail()

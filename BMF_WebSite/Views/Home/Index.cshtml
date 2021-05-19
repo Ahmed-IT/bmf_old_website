@@ -143,10 +143,10 @@
                                         </div>
 
                                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                            <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                                <div style="margin:10px;">
-                                                    <h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>
-                                                    <p style="font-family:LatoR" class="card-subtitle">Round @item.Round_Number</p>
+                                            <div style="background-color: rgba(0, 0, 0, 0.7); height:40px;">
+                                                <div style="margin:7px;">
+                                                    @*<h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>*@
+                                                    <p style="font-family:LatoR" class="card-subtitle">Next: Round @item.Round_Number</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,15 +253,13 @@
                             <div class="blog-shadow">
                                 <div class="card border-0 rounded-0 bg-dark text-white">
                                     <img src="@item.Image_URL" class="card-img">
-                                    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                        <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                            <div style="margin:10px;">
-                                                <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
-                                                @if (item.Website_Link != "#")
-                                                {
-                                                    <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
-                                                }
-                                            </div>
+                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
+                                        <div style="margin:10px;">
+                                            <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
+                                            @if (item.Website_Link != "#")
+                                            {
+                                                <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -278,45 +276,27 @@
 
     <section id="gallery_2">
         <div class="gallery-main">
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g1.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g1.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g2.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g2.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g4.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g4.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g3.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g3.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g5.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g5.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 gallery-item p-0">
-                <img src="~/Content/images/g6.jpg" alt="gallery-img" class="img-fluid w-100">
-                <div class="hover-overlay">
-                    <a href="~/Content/images/g6.jpg" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                </div>
-            </div>
+            @if (Model.Images.Count > 0)
+            {
+                foreach (var item in Model.Images)
+                {
+                    <div class="col-lg-2 gallery-item p-0">
+                        <img src="@item.Image_URL" alt="gallery-img" style="height:180px;" class="img-fluid w-100">
+                        <div class="hover-overlay">
+                            <a href="@item.Image_URL" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </section>
     <!-- GALLERY AREA END -->
+
+    <script>
+        $(document).ready(function () {
+            $(".lb-data").css("display","none");
+        });
+    </script>
 
     <script>
         var date = document.getElementById("DateTime_Start").value;

@@ -15,6 +15,7 @@ namespace BMF_WebSite.Models.ViewModels
             public List<ClsEventRound> ComingEvents { get; set; }
             public ClsEventRound Countdown { get; set; }
             public List<ClsNews> News { get; set; }
+            public List<ClsGalleryImage> Images { get; set; }
         }
 
         BMFEntities1 db = new BMFEntities1();
@@ -92,6 +93,18 @@ namespace BMF_WebSite.Models.ViewModels
                                                NewsTimestampUtc = c.NewsTimestampUtc,
                                                Title = c.Title                                               
                                            }).OrderBy(a => a.NewsTimestampUtc).Take(5).ToListAsync();
+
+                var rand = new Random();
+
+                dash.Images = await (from c in db.M_GalleryImages
+                                   where c.IsActive == true && c.DeletedOnUtc == null
+                                   && c.M_GalleryCategory.IsActive == true && c.M_GalleryCategory.DeletedOnUtc == null
+                                   select new ClsGalleryImage
+                                   {
+                                       ID = c.ID,
+                                       ID_GalleryCategory = c.ID_GalleryCategory,
+                                       Image_URL = c.Image_URL
+                                   }).OrderBy(x => Guid.NewGuid()).Take(6).ToListAsync();
             }
             catch (Exception)
             {

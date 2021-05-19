@@ -335,9 +335,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClsBulletins.cs" />
     <Compile Include="Models\ClsClubs.cs" />
     <Compile Include="Models\ClsEventCategory.cs" />
     <Compile Include="Models\ClsEventRound.cs" />
+    <Compile Include="Models\ClsGalleryCategory.cs" />
+    <Compile Include="Models\ClsGalleryImage.cs" />
     <Compile Include="Models\ClsLicForm.cs" />
     <Compile Include="Models\ClsNews.cs" />
     <Compile Include="Models\ClsProfile.cs" />
@@ -486,6 +489,7 @@
     <Content Include="Views\Home\EventFullCalendar.cshtml" />
     <Content Include="Views\Home\EventRulesRegs.cshtml" />
     <Content Include="Views\Home\Calendar.cshtml" />
+    <Content Include="Views\Home\GalleryImages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

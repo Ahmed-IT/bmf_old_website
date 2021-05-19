@@ -1,0 +1,62 @@
+﻿@model BMF_WebSite.Models.ClsGalleryCategory
+@{
+    ViewBag.Title = "GalleryImages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3>@Model.Title Gallery</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+              
+              <div class="row">
+                  @if (Model != null)
+                  {
+                      if (Model.GalleryImages != null)
+                      {
+                          foreach (var item in Model.GalleryImages)
+                          {
+                              <div class="col-md-3 gallery-item p-1">
+                                  <img src="@item.Image_URL" alt="gallery-img" class="img-fluid w-100">
+                                  <div class="hover-overlay">
+                                      <a href="@item.Image_URL" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          }
+                      }
+                  }
+
+              </div>
+
+
+    </div>
+</section>
+
+
