@@ -37,6 +37,10 @@ namespace BMF.Shared.Entities.Events
         [InverseProperty(nameof(M_EventSeason.EventCategories))]
         public M_EventSeason EventSeason { get; set; }
 
+        [Display(Name = "Heats", Prompt = "Heats")]
+        [InverseProperty(nameof(M_EventCategoryHeat.EventCategory))]
+        public ICollection<M_EventCategoryHeat> EventCategoryHeats { get; set; }
+
         [Display(Name = "Rules", Prompt = "Rules")]
         [InverseProperty(nameof(M_EventCategoryRules.EventCategory))]
         public ICollection<M_EventCategoryRules> EventCategoryRules { get; set; }

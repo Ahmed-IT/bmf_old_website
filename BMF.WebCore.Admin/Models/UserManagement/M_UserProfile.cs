@@ -79,6 +79,10 @@ namespace BMF.Shared.Entities.UserManagement
             Full_Address = Database.Full_Address;
             Blood_Group = Database.Blood_Group;
             Place_Of_Birth = Database.Place_Of_Birth;
+            EmergencyContact_Name = Database.EmergencyContact_Name;
+            EmergencyContact_MobileNumber = Database.EmergencyContact_MobileNumber;
+            Parent_FullName = Database.Parent_FullName;
+            Parent_CPR = Database.Parent_CPR;
             Photo_URL = Database.Photo_URL;
         }
 
@@ -92,6 +96,10 @@ namespace BMF.Shared.Entities.UserManagement
             Database.Full_Address = Full_Address;
             Database.Blood_Group = Blood_Group;
             Database.Place_Of_Birth = Place_Of_Birth;
+            Database.EmergencyContact_Name = EmergencyContact_Name;
+            Database.EmergencyContact_MobileNumber = EmergencyContact_MobileNumber;
+            Database.Parent_FullName = Parent_FullName;
+            Database.Parent_CPR = Parent_CPR;
             Database.Photo_URL = Photo_URL;
         }
 

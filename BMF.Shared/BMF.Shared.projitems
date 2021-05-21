@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BaseEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryBulletins.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryHeat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventCategoryRules.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRound.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Events\M_EventRoundSession.cs" />
@@ -38,12 +39,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Security\SystemUserType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\D_LicenseType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\D_MarshalRole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\Enum_ApprovalStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyFavRaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_MyRaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserAccount.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicense.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewal.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\UserManagement\M_UserRoundSignIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_Club.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Website\M_QuickLinks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\EFCoreMappingBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryBulletins_EFCoreBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryHeat_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategoryRules_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventCategory_EFCoreBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\Events\M_EventRoundSessionUserResults_EFCoreBuilder.cs" />
@@ -69,7 +71,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\D_MarshalRole_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyFavRaces_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_MyRaces_Mapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicenseRenewalMedicForms_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicenseRenewal_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserLicense_Mapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EntityMappings\UserManagement\M_UserProfile_Mapping.cs" />

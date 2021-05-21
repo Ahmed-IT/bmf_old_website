@@ -26,6 +26,7 @@ namespace BMF.Shared.Entities.Events
 
         public M_EventCategory()
         {
+            EventCategoryHeats = new List<M_EventCategoryHeat>();
             EventCategoryRules = new List<M_EventCategoryRules>();
             EventRounds = new List<M_EventRound>();
         }

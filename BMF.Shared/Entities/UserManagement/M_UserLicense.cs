@@ -65,7 +65,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         [Display(Name = "License Renewals", Prompt = "License Renewals")]
         [InverseProperty(nameof(M_UserLicenseRenewal.UserLicense))]
-        public ICollection<M_UserLicenseRenewal> UserLicenseRenewal { get; set; }
+        public ICollection<M_UserLicenseRenewal> UserLicenseRenewals { get; set; }
 
         #endregion
     }

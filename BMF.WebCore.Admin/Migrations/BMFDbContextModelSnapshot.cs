@@ -123,6 +123,54 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("M_EventCategoryBulletins");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryHeat", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<long>("ID_EventCategory")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ID_EventCategory");
+
+                    b.ToTable("M_EventCategoryHeat");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryRules", b =>
                 {
                     b.Property<long>("ID")
@@ -1029,10 +1077,24 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
+                    b.Property<int>("ApprovalStatus")
+                        .HasMaxLength(120)
+                        .HasColumnType("int");
+
+                    b.Property<string>("CPR_URL")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<DateTime>("DateIssued")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<DateTime>("DateOfExpiry")
                         .HasColumnType("DATETIME2(7)");
 
                     b.Property<string>("DeletedBy")
@@ -1047,13 +1109,17 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("Issue_Date")
-                        .HasColumnType("DATETIME2(7)");
+                    b.Property<string>("MedicalForm_URL")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
 
-                    b.Property<string>("Issue_Type")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                    b.Property<string>("NoObjectionLetter_URL")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("Parent_CPR_URL")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -1071,57 +1137,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.HasIndex("ID_UserLicense");
 
                     b.ToTable("M_UserLicenseRenewal");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewalMedicForms", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_UserLicenseRenewal")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PDF_File")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_UserLicenseRenewal");
-
-                    b.ToTable("M_UserLicenseRenewalMedicForms");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
@@ -1154,6 +1169,14 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<DateTime?>("DeletedOnUtc")
                         .HasColumnType("DATETIME2(7)");
 
+                    b.Property<string>("EmergencyContact_MobileNumber")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("EmergencyContact_Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -1172,6 +1195,14 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<string>("Mobile_Number")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Parent_CPR")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Parent_FullName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Photo_URL")
                         .HasMaxLength(1024)
@@ -1534,6 +1565,17 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("EventCategory");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryHeat", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
+                        .WithMany("EventCategoryHeats")
+                        .HasForeignKey("ID_EventCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventCategory");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryRules", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
@@ -1710,23 +1752,12 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.UserManagement.M_UserLicense", "UserLicense")
-                        .WithMany("UserLicenseRenewal")
+                        .WithMany("UserLicenseRenewals")
                         .HasForeignKey("ID_UserLicense")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("UserLicense");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewalMedicForms", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", "UserLicenseRenewal")
-                        .WithMany("MedicForms")
-                        .HasForeignKey("ID_UserLicenseRenewal")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserLicenseRenewal");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>
@@ -1779,6 +1810,8 @@ namespace BMF.WebCore.Admin.Migrations
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategory", b =>
                 {
                     b.Navigation("EventCategoryBulletins");
+
+                    b.Navigation("EventCategoryHeats");
 
                     b.Navigation("EventCategoryRules");
 
@@ -1851,14 +1884,9 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
                 {
-                    b.Navigation("UserLicenseRenewal");
+                    b.Navigation("UserLicenseRenewals");
 
                     b.Navigation("UserRoundSignIns");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicenseRenewal", b =>
-                {
-                    b.Navigation("MedicForms");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserProfile", b =>

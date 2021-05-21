@@ -56,6 +56,26 @@
             @Html.EditorFor(model => model.Place_Of_Birth, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
             @Html.ValidationMessageFor(model => model.Place_Of_Birth, "")
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmergencyContact_Name, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.EmergencyContact_Name, new { htmlAttributes = new { @class = "form-control", @maxlength = "120" } })
+            @Html.ValidationMessageFor(model => model.EmergencyContact_Name, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmergencyContact_MobileNumber, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.EmergencyContact_MobileNumber, new { htmlAttributes = new { @class = "form-control", @maxlength = "120" } })
+            @Html.ValidationMessageFor(model => model.EmergencyContact_MobileNumber, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent_FullName, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Parent_FullName, new { htmlAttributes = new { @class = "form-control", @maxlength = "120" } })
+            @Html.ValidationMessageFor(model => model.Parent_FullName, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent_CPR, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Parent_CPR, new { htmlAttributes = new { @class = "form-control", @maxlength = "120" } })
+            @Html.ValidationMessageFor(model => model.Parent_CPR, "")
+        </div>
         <div class="form-group clearfix">
             @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
             <div class="icheck-primary d--inline">

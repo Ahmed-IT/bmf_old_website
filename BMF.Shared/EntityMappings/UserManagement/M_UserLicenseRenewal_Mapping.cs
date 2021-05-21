@@ -18,14 +18,18 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
         public override void MapCustomProperties(EntityTypeBuilder<M_UserLicenseRenewal> entityBuilder)
         {
             // Attributes
-            entityBuilder.Property(t => t.Issue_Type).HasMaxLength(15).IsRequired(true);
-            entityBuilder.Property(t => t.Issue_Date).HasColumnType("DATETIME2(7)").IsRequired(true);
+            entityBuilder.Property(t => t.ApprovalStatus).HasMaxLength(120).IsRequired(true);
+            entityBuilder.Property(t => t.DateIssued).HasColumnType("DATETIME2(7)").IsRequired(true);
+            entityBuilder.Property(t => t.DateOfExpiry).HasColumnType("DATETIME2(7)").IsRequired(true);
+            entityBuilder.Property(t => t.CPR_URL).HasMaxLength(1024).IsRequired(false);
+            entityBuilder.Property(t => t.Parent_CPR_URL).HasMaxLength(1024).IsRequired(false);
+            entityBuilder.Property(t => t.MedicalForm_URL).HasMaxLength(1024).IsRequired(false);
+            entityBuilder.Property(t => t.NoObjectionLetter_URL).HasMaxLength(1024).IsRequired(false);
             // Ignored Attributes
             // Foreign Keys
             entityBuilder.Property(t => t.ID_UserLicense).IsRequired(true);
             // Relationships
-            entityBuilder.HasOne(g => g.UserLicense).WithMany(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicense);
-            entityBuilder.HasMany(g => g.MedicForms).WithOne(s => s.UserLicenseRenewal).HasForeignKey(s => s.ID_UserLicenseRenewal);
+            entityBuilder.HasOne(g => g.UserLicense).WithMany(s => s.UserLicenseRenewals).HasForeignKey(s => s.ID_UserLicense);
             // Indexes
         }
     }

@@ -56,6 +56,26 @@ namespace BMF.Shared.Entities.UserManagement
         [MaxLength(60)]
         public string Place_Of_Birth { get; set; }
 
+        [Display(Name = "Emergency Contact Name", Prompt = "Emergency Contact Name")]
+        [MaxLength(255)]
+        [JsonProperty(PropertyName = nameof(EmergencyContact_Name))]
+        public string EmergencyContact_Name { get; set; }
+
+        [Display(Name = "Emergency Contact Mobile Number", Prompt = "Emergency Contact Mobile Number")]
+        [MaxLength(60)]
+        [JsonProperty(PropertyName = nameof(EmergencyContact_MobileNumber))]
+        public string EmergencyContact_MobileNumber { get; set; }
+
+        [Display(Name = "Parent Full Name", Prompt = "Parent Full Name")]
+        [JsonProperty(PropertyName = nameof(Parent_FullName))]
+        [MaxLength(255)]
+        public string Parent_FullName { get; set; }
+
+        [Display(Name = "Parent CPR", Prompt = "Parent CPR")]
+        [JsonProperty(PropertyName = nameof(Parent_CPR))]
+        [MaxLength(60)]
+        public string Parent_CPR { get; set; }
+
         [Display(Name = "Photo URL", Prompt = "Photo URL")]
         [JsonProperty(PropertyName = nameof(Photo_URL))]
         [MaxLength(1024)]
