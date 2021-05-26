@@ -37,10 +37,10 @@ namespace BMF_WebSite
         public Nullable<long> ID_MarshalRole { get; set; }
     
         public virtual D_LicenseType D_LicenseType { get; set; }
+        public virtual D_MarshalRole D_MarshalRole { get; set; }
         public virtual M_UserProfile M_UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserLicenseRenewal> M_UserLicenseRenewal { get; set; }
-        public virtual D_MarshalRole D_MarshalRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
     }

@@ -5,13 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BMFEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__EFMigrationsHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="AdminRole">
           <Key>
             <PropertyRef Name="ID" />
@@ -226,6 +219,22 @@
           <Property Name="ID_EventCategory" Type="bigint" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="PDF_Url" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="M_EventCategoryHeat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EventCategory" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -460,8 +469,7 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_UserLicense" Type="bigint" Nullable="false" />
-          <Property Name="Issue_Type" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="Issue_Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateOfExpiry" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -470,23 +478,12 @@
           <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
           <Property Name="DeletedBy" Type="nvarchar(max)" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="M_UserLicenseRenewalMedicForms">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_UserLicenseRenewal" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="PDF_File" Type="nvarchar" MaxLength="1024" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar(max)" />
-          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
-          <Property Name="DeletedBy" Type="nvarchar(max)" />
-          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="ApprovalStatus" Type="int" Nullable="false" />
+          <Property Name="CPR_URL" Type="nvarchar" MaxLength="1024" />
+          <Property Name="DateIssued" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MedicalForm_URL" Type="nvarchar" MaxLength="1024" />
+          <Property Name="NoObjectionLetter_URL" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Parent_CPR_URL" Type="nvarchar" MaxLength="1024" />
         </EntityType>
         <EntityType Name="M_UserProfile">
           <Key>
@@ -510,6 +507,10 @@
           <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
           <Property Name="DeletedBy" Type="nvarchar(max)" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="EmergencyContact_MobileNumber" Type="nvarchar" MaxLength="60" />
+          <Property Name="EmergencyContact_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Parent_CPR" Type="nvarchar" MaxLength="60" />
+          <Property Name="Parent_FullName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="M_UserRoundSignIn">
           <Key>
@@ -527,26 +528,6 @@
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
           <Property Name="DeletedBy" Type="nvarchar(max)" />
-          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="SystemOperation">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SystemName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ID_Parent" Type="bigint" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="UserAccounts">
@@ -571,20 +552,6 @@
             </Principal>
             <Dependent Role="AdminRoleOperation">
               <PropertyRef Name="ID_Role" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AdminRoleOperation_SystemOperation_ID_Operation">
-          <End Role="SystemOperation" Type="Self.SystemOperation" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AdminRoleOperation" Type="Self.AdminRoleOperation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemOperation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AdminRoleOperation">
-              <PropertyRef Name="ID_Operation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,6 +655,20 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventCategoryBulletins">
+              <PropertyRef Name="ID_EventCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
+          <End Role="M_EventCategory" Type="Self.M_EventCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_EventCategoryHeat" Type="Self.M_EventCategoryHeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_EventCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_EventCategoryHeat">
               <PropertyRef Name="ID_EventCategory" />
             </Dependent>
           </ReferentialConstraint>
@@ -900,20 +881,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal">
-          <End Role="M_UserLicenseRenewal" Type="Self.M_UserLicenseRenewal" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="M_UserLicenseRenewalMedicForms" Type="Self.M_UserLicenseRenewalMedicForms" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_UserLicenseRenewal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_UserLicenseRenewalMedicForms">
-              <PropertyRef Name="ID_UserLicenseRenewal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_M_UserProfile_Country_ID_Nationality">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="M_UserProfile" Type="Self.M_UserProfile" Multiplicity="*" />
@@ -966,20 +933,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SystemOperation_SystemOperation_ID_Parent">
-          <End Role="SystemOperation" Type="Self.SystemOperation" Multiplicity="0..1" />
-          <End Role="SystemOperation1" Type="Self.SystemOperation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemOperation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SystemOperation1">
-              <PropertyRef Name="ID_Parent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BMFEntitiesStoreContainer">
-          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRole" EntityType="Self.AdminRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminRoleOperation" EntityType="Self.AdminRoleOperation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
@@ -994,6 +948,7 @@
           <EntitySet Name="M_Club" EntityType="Self.M_Club" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventCategory" EntityType="Self.M_EventCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventCategoryBulletins" EntityType="Self.M_EventCategoryBulletins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_EventCategoryHeat" EntityType="Self.M_EventCategoryHeat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventCategoryRules" EntityType="Self.M_EventCategoryRules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventRound" EntityType="Self.M_EventRound" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventRoundSession" EntityType="Self.M_EventRoundSession" Schema="dbo" store:Type="Tables" />
@@ -1008,18 +963,11 @@
           <EntitySet Name="M_UserAccount" EntityType="Self.M_UserAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_UserLicense" EntityType="Self.M_UserLicense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_UserLicenseRenewal" EntityType="Self.M_UserLicenseRenewal" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="M_UserLicenseRenewalMedicForms" EntityType="Self.M_UserLicenseRenewalMedicForms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_UserProfile" EntityType="Self.M_UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_UserRoundSignIn" EntityType="Self.M_UserRoundSignIn" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemOperation" EntityType="Self.SystemOperation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AdminRoleOperation_AdminRole_ID_Role" Association="Self.FK_AdminRoleOperation_AdminRole_ID_Role">
             <End Role="AdminRole" EntitySet="AdminRole" />
-            <End Role="AdminRoleOperation" EntitySet="AdminRoleOperation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AdminRoleOperation_SystemOperation_ID_Operation" Association="Self.FK_AdminRoleOperation_SystemOperation_ID_Operation">
-            <End Role="SystemOperation" EntitySet="SystemOperation" />
             <End Role="AdminRoleOperation" EntitySet="AdminRoleOperation" />
           </AssociationSet>
           <AssociationSet Name="FK_AdminUserRole_AdminRole_ID_Role" Association="Self.FK_AdminUserRole_AdminRole_ID_Role">
@@ -1053,6 +1001,10 @@
           <AssociationSet Name="FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
             <End Role="M_EventCategoryBulletins" EntitySet="M_EventCategoryBulletins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
+            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
+            <End Role="M_EventCategoryHeat" EntitySet="M_EventCategoryHeat" />
           </AssociationSet>
           <AssociationSet Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
@@ -1114,10 +1066,6 @@
             <End Role="M_UserLicense" EntitySet="M_UserLicense" />
             <End Role="M_UserLicenseRenewal" EntitySet="M_UserLicenseRenewal" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" Association="Self.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal">
-            <End Role="M_UserLicenseRenewal" EntitySet="M_UserLicenseRenewal" />
-            <End Role="M_UserLicenseRenewalMedicForms" EntitySet="M_UserLicenseRenewalMedicForms" />
-          </AssociationSet>
           <AssociationSet Name="FK_M_UserProfile_Country_ID_Nationality" Association="Self.FK_M_UserProfile_Country_ID_Nationality">
             <End Role="Country" EntitySet="Country" />
             <End Role="M_UserProfile" EntitySet="M_UserProfile" />
@@ -1134,23 +1082,19 @@
             <End Role="M_UserProfile" EntitySet="M_UserProfile" />
             <End Role="M_UserRoundSignIn" EntitySet="M_UserRoundSignIn" />
           </AssociationSet>
-          <AssociationSet Name="FK_SystemOperation_SystemOperation_ID_Parent" Association="Self.FK_SystemOperation_SystemOperation_ID_Parent">
-            <End Role="SystemOperation" EntitySet="SystemOperation" />
-            <End Role="SystemOperation1" EntitySet="SystemOperation" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BMFEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BMFEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__EFMigrationsHistory" EntityType="BMFEntities.C__EFMigrationsHistory" />
           <EntitySet Name="AdminRoles" EntityType="BMFEntities.AdminRole" />
           <EntitySet Name="AdminRoleOperations" EntityType="BMFEntities.AdminRoleOperation" />
           <EntitySet Name="AdminUsers" EntityType="BMFEntities.AdminUser" />
           <EntitySet Name="AdminUserRoles" EntityType="BMFEntities.AdminUserRole" />
           <EntitySet Name="Countries" EntityType="BMFEntities.Country" />
           <EntitySet Name="D_LicenseType" EntityType="BMFEntities.D_LicenseType" />
+          <EntitySet Name="D_MarshalRole" EntityType="BMFEntities.D_MarshalRole" />
           <EntitySet Name="DriverLicenses" EntityType="BMFEntities.DriverLicens" />
           <EntitySet Name="DriverSignIns" EntityType="BMFEntities.DriverSignIn" />
           <EntitySet Name="EventRounds" EntityType="BMFEntities.EventRound" />
@@ -1158,6 +1102,7 @@
           <EntitySet Name="M_Club" EntityType="BMFEntities.M_Club" />
           <EntitySet Name="M_EventCategory" EntityType="BMFEntities.M_EventCategory" />
           <EntitySet Name="M_EventCategoryBulletins" EntityType="BMFEntities.M_EventCategoryBulletins" />
+          <EntitySet Name="M_EventCategoryHeat" EntityType="BMFEntities.M_EventCategoryHeat" />
           <EntitySet Name="M_EventCategoryRules" EntityType="BMFEntities.M_EventCategoryRules" />
           <EntitySet Name="M_EventRound" EntityType="BMFEntities.M_EventRound" />
           <EntitySet Name="M_EventRoundSession" EntityType="BMFEntities.M_EventRoundSession" />
@@ -1172,10 +1117,8 @@
           <EntitySet Name="M_UserAccount" EntityType="BMFEntities.M_UserAccount" />
           <EntitySet Name="M_UserLicense" EntityType="BMFEntities.M_UserLicense" />
           <EntitySet Name="M_UserLicenseRenewal" EntityType="BMFEntities.M_UserLicenseRenewal" />
-          <EntitySet Name="M_UserLicenseRenewalMedicForms" EntityType="BMFEntities.M_UserLicenseRenewalMedicForms" />
           <EntitySet Name="M_UserProfile" EntityType="BMFEntities.M_UserProfile" />
-          <EntitySet Name="sysdiagrams" EntityType="BMFEntities.sysdiagram" />
-          <EntitySet Name="SystemOperations" EntityType="BMFEntities.SystemOperation" />
+          <EntitySet Name="M_UserRoundSignIn" EntityType="BMFEntities.M_UserRoundSignIn" />
           <EntitySet Name="UserAccounts" EntityType="BMFEntities.UserAccount" />
           <AssociationSet Name="FK_AdminRoleOperation_AdminRole_ID_Role" Association="BMFEntities.FK_AdminRoleOperation_AdminRole_ID_Role">
             <End Role="AdminRole" EntitySet="AdminRoles" />
@@ -1184,10 +1127,6 @@
           <AssociationSet Name="FK_AdminUserRole_AdminRole_ID_Role" Association="BMFEntities.FK_AdminUserRole_AdminRole_ID_Role">
             <End Role="AdminRole" EntitySet="AdminRoles" />
             <End Role="AdminUserRole" EntitySet="AdminUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AdminRoleOperation_SystemOperation_ID_Operation" Association="BMFEntities.FK_AdminRoleOperation_SystemOperation_ID_Operation">
-            <End Role="SystemOperation" EntitySet="SystemOperations" />
-            <End Role="AdminRoleOperation" EntitySet="AdminRoleOperations" />
           </AssociationSet>
           <AssociationSet Name="FK_AdminUserRole_AdminUser_ID_User" Association="BMFEntities.FK_AdminUserRole_AdminUser_ID_User">
             <End Role="AdminUser" EntitySet="AdminUsers" />
@@ -1199,6 +1138,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_M_UserLicense_D_LicenseType_ID_LicenseType" Association="BMFEntities.FK_M_UserLicense_D_LicenseType_ID_LicenseType">
             <End Role="D_LicenseType" EntitySet="D_LicenseType" />
+            <End Role="M_UserLicense" EntitySet="M_UserLicense" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" Association="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole">
+            <End Role="D_MarshalRole" EntitySet="D_MarshalRole" />
             <End Role="M_UserLicense" EntitySet="M_UserLicense" />
           </AssociationSet>
           <AssociationSet Name="FK_DriverLicense_UserAccount" Association="BMFEntities.FK_DriverLicense_UserAccount">
@@ -1225,6 +1168,10 @@
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
             <End Role="M_EventCategoryBulletins" EntitySet="M_EventCategoryBulletins" />
           </AssociationSet>
+          <AssociationSet Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
+            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
+            <End Role="M_EventCategoryHeat" EntitySet="M_EventCategoryHeat" />
+          </AssociationSet>
           <AssociationSet Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
             <End Role="M_EventCategoryRules" EntitySet="M_EventCategoryRules" />
@@ -1236,6 +1183,10 @@
           <AssociationSet Name="FK_M_EventRoundSession_M_EventRound_ID_EventRound" Association="BMFEntities.FK_M_EventRoundSession_M_EventRound_ID_EventRound">
             <End Role="M_EventRound" EntitySet="M_EventRound" />
             <End Role="M_EventRoundSession" EntitySet="M_EventRoundSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" Association="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound">
+            <End Role="M_EventRound" EntitySet="M_EventRound" />
+            <End Role="M_UserRoundSignIn" EntitySet="M_UserRoundSignIn" />
           </AssociationSet>
           <AssociationSet Name="FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession">
             <End Role="M_EventRoundSession" EntitySet="M_EventRoundSession" />
@@ -1277,24 +1228,6 @@
             <End Role="M_UserLicense" EntitySet="M_UserLicense" />
             <End Role="M_UserLicenseRenewal" EntitySet="M_UserLicenseRenewal" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" Association="BMFEntities.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal">
-            <End Role="M_UserLicenseRenewal" EntitySet="M_UserLicenseRenewal" />
-            <End Role="M_UserLicenseRenewalMedicForms" EntitySet="M_UserLicenseRenewalMedicForms" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemOperation_SystemOperation_ID_Parent" Association="BMFEntities.FK_SystemOperation_SystemOperation_ID_Parent">
-            <End Role="SystemOperation" EntitySet="SystemOperations" />
-            <End Role="SystemOperation1" EntitySet="SystemOperations" />
-          </AssociationSet>
-          <EntitySet Name="D_MarshalRole" EntityType="BMFEntities.D_MarshalRole" />
-          <EntitySet Name="M_UserRoundSignIn" EntityType="BMFEntities.M_UserRoundSignIn" />
-          <AssociationSet Name="FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" Association="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole">
-            <End Role="D_MarshalRole" EntitySet="D_MarshalRole" />
-            <End Role="M_UserLicense" EntitySet="M_UserLicense" />
-          </AssociationSet>
-          <AssociationSet Name="FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" Association="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound">
-            <End Role="M_EventRound" EntitySet="M_EventRound" />
-            <End Role="M_UserRoundSignIn" EntitySet="M_UserRoundSignIn" />
-          </AssociationSet>
           <AssociationSet Name="FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" Association="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense">
             <End Role="M_UserLicense" EntitySet="M_UserLicense" />
             <End Role="M_UserRoundSignIn" EntitySet="M_UserRoundSignIn" />
@@ -1304,13 +1237,6 @@
             <End Role="M_UserRoundSignIn" EntitySet="M_UserRoundSignIn" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__EFMigrationsHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="AdminRole">
           <Key>
             <PropertyRef Name="ID" />
@@ -1346,7 +1272,6 @@
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="AdminRole" Relationship="BMFEntities.FK_AdminRoleOperation_AdminRole_ID_Role" FromRole="AdminRoleOperation" ToRole="AdminRole" />
-          <NavigationProperty Name="SystemOperation" Relationship="BMFEntities.FK_AdminRoleOperation_SystemOperation_ID_Operation" FromRole="AdminRoleOperation" ToRole="SystemOperation" />
         </EntityType>
         <EntityType Name="AdminUser">
           <Key>
@@ -1427,6 +1352,22 @@
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_D_LicenseType_ID_LicenseType" FromRole="D_LicenseType" ToRole="M_UserLicense" />
+        </EntityType>
+        <EntityType Name="D_MarshalRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" FromRole="D_MarshalRole" ToRole="M_UserLicense" />
         </EntityType>
         <EntityType Name="DriverLicens">
           <Key>
@@ -1519,6 +1460,7 @@
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="M_EventSeason" Relationship="BMFEntities.FK_M_EventCategory_M_EventSeason_ID_EventSeason" FromRole="M_EventCategory" ToRole="M_EventSeason" />
           <NavigationProperty Name="M_EventCategoryBulletins" Relationship="BMFEntities.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryBulletins" />
+          <NavigationProperty Name="M_EventCategoryHeat" Relationship="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryHeat" />
           <NavigationProperty Name="M_EventCategoryRules" Relationship="BMFEntities.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryRules" />
           <NavigationProperty Name="M_EventRound" Relationship="BMFEntities.FK_M_EventRound_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventRound" />
         </EntityType>
@@ -1539,6 +1481,23 @@
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="M_EventCategory" Relationship="BMFEntities.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" FromRole="M_EventCategoryBulletins" ToRole="M_EventCategory" />
+        </EntityType>
+        <EntityType Name="M_EventCategoryHeat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EventCategory" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_EventCategory" Relationship="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" FromRole="M_EventCategoryHeat" ToRole="M_EventCategory" />
         </EntityType>
         <EntityType Name="M_EventCategoryRules">
           <Key>
@@ -1778,11 +1737,11 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ID_MarshalRole" Type="Int64" />
           <NavigationProperty Name="D_LicenseType" Relationship="BMFEntities.FK_M_UserLicense_D_LicenseType_ID_LicenseType" FromRole="M_UserLicense" ToRole="D_LicenseType" />
+          <NavigationProperty Name="D_MarshalRole" Relationship="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" FromRole="M_UserLicense" ToRole="D_MarshalRole" />
           <NavigationProperty Name="M_UserProfile" Relationship="BMFEntities.FK_M_UserLicense_M_UserProfile_ID_UserProfile" FromRole="M_UserLicense" ToRole="M_UserProfile" />
           <NavigationProperty Name="M_UserLicenseRenewal" Relationship="BMFEntities.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" FromRole="M_UserLicense" ToRole="M_UserLicenseRenewal" />
-          <Property Name="ID_MarshalRole" Type="Int64" />
-          <NavigationProperty Name="D_MarshalRole" Relationship="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" FromRole="M_UserLicense" ToRole="D_MarshalRole" />
           <NavigationProperty Name="M_UserRoundSignIn" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" FromRole="M_UserLicense" ToRole="M_UserRoundSignIn" />
         </EntityType>
         <EntityType Name="M_UserLicenseRenewal">
@@ -1791,8 +1750,7 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_UserLicense" Type="Int64" Nullable="false" />
-          <Property Name="Issue_Type" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Issue_Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateOfExpiry" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1801,26 +1759,13 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ApprovalStatus" Type="Int32" Nullable="false" />
+          <Property Name="CPR_URL" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DateIssued" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MedicalForm_URL" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="NoObjectionLetter_URL" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_CPR_URL" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" FromRole="M_UserLicenseRenewal" ToRole="M_UserLicense" />
-          <NavigationProperty Name="M_UserLicenseRenewalMedicForms" Relationship="BMFEntities.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" FromRole="M_UserLicenseRenewal" ToRole="M_UserLicenseRenewalMedicForms" />
-        </EntityType>
-        <EntityType Name="M_UserLicenseRenewalMedicForms">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_UserLicenseRenewal" Type="Int64" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="PDF_File" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
-          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_UserLicenseRenewal" Relationship="BMFEntities.FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal" FromRole="M_UserLicenseRenewalMedicForms" ToRole="M_UserLicenseRenewal" />
         </EntityType>
         <EntityType Name="M_UserProfile">
           <Key>
@@ -1844,33 +1789,35 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EmergencyContact_MobileNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="EmergencyContact_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_CPR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Country" Relationship="BMFEntities.FK_M_UserProfile_Country_ID_Nationality" FromRole="M_UserProfile" ToRole="Country" />
           <NavigationProperty Name="M_UserAccount" Relationship="BMFEntities.FK_M_UserAccount_M_UserProfile_ID" FromRole="M_UserProfile" ToRole="M_UserAccount" />
           <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserLicense" />
           <NavigationProperty Name="M_UserRoundSignIn" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserRoundSignIn" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="SystemOperation">
+        <EntityType Name="M_UserRoundSignIn">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SystemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Parent" Type="Int64" />
+          <Property Name="ID_UserProfile" Type="Int64" Nullable="false" />
+          <Property Name="ID_UserLicense" Type="Int64" Nullable="false" />
+          <Property Name="ID_EventRound" Type="Int64" Nullable="false" />
+          <Property Name="SignIn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="AdminRoleOperations" Relationship="BMFEntities.FK_AdminRoleOperation_SystemOperation_ID_Operation" FromRole="SystemOperation" ToRole="AdminRoleOperation" />
-          <NavigationProperty Name="SystemOperation1" Relationship="BMFEntities.FK_SystemOperation_SystemOperation_ID_Parent" FromRole="SystemOperation" ToRole="SystemOperation1" />
-          <NavigationProperty Name="SystemOperation2" Relationship="BMFEntities.FK_SystemOperation_SystemOperation_ID_Parent" FromRole="SystemOperation1" ToRole="SystemOperation" />
+          <NavigationProperty Name="M_EventRound" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" FromRole="M_UserRoundSignIn" ToRole="M_EventRound" />
+          <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" FromRole="M_UserRoundSignIn" ToRole="M_UserLicense" />
+          <NavigationProperty Name="M_UserProfile" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" FromRole="M_UserRoundSignIn" ToRole="M_UserProfile" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -1912,20 +1859,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AdminRoleOperation_SystemOperation_ID_Operation">
-          <End Type="BMFEntities.SystemOperation" Role="SystemOperation" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BMFEntities.AdminRoleOperation" Role="AdminRoleOperation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemOperation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AdminRoleOperation">
-              <PropertyRef Name="ID_Operation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AdminUserRole_AdminUser_ID_User">
           <End Type="BMFEntities.AdminUser" Role="AdminUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1963,6 +1896,18 @@
             </Principal>
             <Dependent Role="M_UserLicense">
               <PropertyRef Name="ID_LicenseType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserLicense_D_MarshalRole_ID_MarshalRole">
+          <End Type="BMFEntities.D_MarshalRole" Role="D_MarshalRole" Multiplicity="0..1" />
+          <End Type="BMFEntities.M_UserLicense" Role="M_UserLicense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_MarshalRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_UserLicense">
+              <PropertyRef Name="ID_MarshalRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2042,6 +1987,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
+          <End Type="BMFEntities.M_EventCategory" Role="M_EventCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BMFEntities.M_EventCategoryHeat" Role="M_EventCategoryHeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_EventCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_EventCategoryHeat">
+              <PropertyRef Name="ID_EventCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
           <End Type="BMFEntities.M_EventCategory" Role="M_EventCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2080,6 +2039,20 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventRoundSession">
+              <PropertyRef Name="ID_EventRound" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_UserRoundSignIn_M_EventRound_ID_EventRound">
+          <End Type="BMFEntities.M_EventRound" Role="M_EventRound" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BMFEntities.M_UserRoundSignIn" Role="M_UserRoundSignIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_EventRound">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_UserRoundSignIn">
               <PropertyRef Name="ID_EventRound" />
             </Dependent>
           </ReferentialConstraint>
@@ -2224,95 +2197,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_UserLicenseRenewalMedicForms_M_UserLicenseRenewal_ID_UserLicenseRenewal">
-          <End Type="BMFEntities.M_UserLicenseRenewal" Role="M_UserLicenseRenewal" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BMFEntities.M_UserLicenseRenewalMedicForms" Role="M_UserLicenseRenewalMedicForms" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_UserLicenseRenewal">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_UserLicenseRenewalMedicForms">
-              <PropertyRef Name="ID_UserLicenseRenewal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemOperation_SystemOperation_ID_Parent">
-          <End Type="BMFEntities.SystemOperation" Role="SystemOperation" Multiplicity="0..1" />
-          <End Type="BMFEntities.SystemOperation" Role="SystemOperation1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemOperation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SystemOperation1">
-              <PropertyRef Name="ID_Parent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="D_MarshalRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
-          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_D_MarshalRole_ID_MarshalRole" FromRole="D_MarshalRole" ToRole="M_UserLicense" />
-        </EntityType>
-        <EntityType Name="M_UserRoundSignIn">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_UserProfile" Type="Int64" Nullable="false" />
-          <Property Name="ID_UserLicense" Type="Int64" Nullable="false" />
-          <Property Name="ID_EventRound" Type="Int64" Nullable="false" />
-          <Property Name="SignIn" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
-          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_EventRound" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" FromRole="M_UserRoundSignIn" ToRole="M_EventRound" />
-          <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" FromRole="M_UserRoundSignIn" ToRole="M_UserLicense" />
-          <NavigationProperty Name="M_UserProfile" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" FromRole="M_UserRoundSignIn" ToRole="M_UserProfile" />
-        </EntityType>
-        <Association Name="FK_M_UserLicense_D_MarshalRole_ID_MarshalRole">
-          <End Type="BMFEntities.D_MarshalRole" Role="D_MarshalRole" Multiplicity="0..1" />
-          <End Type="BMFEntities.M_UserLicense" Role="M_UserLicense" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="D_MarshalRole">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_UserLicense">
-              <PropertyRef Name="ID_MarshalRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_M_UserRoundSignIn_M_EventRound_ID_EventRound">
-          <End Type="BMFEntities.M_EventRound" Role="M_EventRound" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BMFEntities.M_UserRoundSignIn" Role="M_UserRoundSignIn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_EventRound">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_UserRoundSignIn">
-              <PropertyRef Name="ID_EventRound" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense">
           <End Type="BMFEntities.M_UserLicense" Role="M_UserLicense" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2345,14 +2229,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BMFEntitiesStoreContainer" CdmEntityContainer="BMFEntities1">
-          <EntitySetMapping Name="C__EFMigrationsHistory">
-            <EntityTypeMapping TypeName="BMFEntities.C__EFMigrationsHistory">
-              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdminRoles">
             <EntityTypeMapping TypeName="BMFEntities.AdminRole">
               <MappingFragment StoreEntitySet="AdminRole">
@@ -2467,6 +2343,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="D_MarshalRole">
+            <EntityTypeMapping TypeName="BMFEntities.D_MarshalRole">
+              <MappingFragment StoreEntitySet="D_MarshalRole">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DriverLicenses">
             <EntityTypeMapping TypeName="BMFEntities.DriverLicens">
               <MappingFragment StoreEntitySet="DriverLicenses">
@@ -2569,6 +2461,23 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="PDF_Url" ColumnName="PDF_Url" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_EventCategory" ColumnName="ID_EventCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_EventCategoryHeat">
+            <EntityTypeMapping TypeName="BMFEntities.M_EventCategoryHeat">
+              <MappingFragment StoreEntitySet="M_EventCategoryHeat">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_EventCategory" ColumnName="ID_EventCategory" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -2809,6 +2718,12 @@
           <EntitySetMapping Name="M_UserLicenseRenewal">
             <EntityTypeMapping TypeName="BMFEntities.M_UserLicenseRenewal">
               <MappingFragment StoreEntitySet="M_UserLicenseRenewal">
+                <ScalarProperty Name="Parent_CPR_URL" ColumnName="Parent_CPR_URL" />
+                <ScalarProperty Name="NoObjectionLetter_URL" ColumnName="NoObjectionLetter_URL" />
+                <ScalarProperty Name="MedicalForm_URL" ColumnName="MedicalForm_URL" />
+                <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
+                <ScalarProperty Name="CPR_URL" ColumnName="CPR_URL" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
@@ -2817,27 +2732,8 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
-                <ScalarProperty Name="Issue_Type" ColumnName="Issue_Type" />
+                <ScalarProperty Name="DateOfExpiry" ColumnName="DateOfExpiry" />
                 <ScalarProperty Name="ID_UserLicense" ColumnName="ID_UserLicense" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="M_UserLicenseRenewalMedicForms">
-            <EntityTypeMapping TypeName="BMFEntities.M_UserLicenseRenewalMedicForms">
-              <MappingFragment StoreEntitySet="M_UserLicenseRenewalMedicForms">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PDF_File" ColumnName="PDF_File" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ID_UserLicenseRenewal" ColumnName="ID_UserLicenseRenewal" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2845,6 +2741,10 @@
           <EntitySetMapping Name="M_UserProfile">
             <EntityTypeMapping TypeName="BMFEntities.M_UserProfile">
               <MappingFragment StoreEntitySet="M_UserProfile">
+                <ScalarProperty Name="Parent_FullName" ColumnName="Parent_FullName" />
+                <ScalarProperty Name="Parent_CPR" ColumnName="Parent_CPR" />
+                <ScalarProperty Name="EmergencyContact_Name" ColumnName="EmergencyContact_Name" />
+                <ScalarProperty Name="EmergencyContact_MobileNumber" ColumnName="EmergencyContact_MobileNumber" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
@@ -2866,56 +2766,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BMFEntities.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemOperations">
-            <EntityTypeMapping TypeName="BMFEntities.SystemOperation">
-              <MappingFragment StoreEntitySet="SystemOperation">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ID_Parent" ColumnName="ID_Parent" />
-                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAccounts">
-            <EntityTypeMapping TypeName="BMFEntities.UserAccount">
-              <MappingFragment StoreEntitySet="UserAccounts">
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="CPR" ColumnName="CPR" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="D_MarshalRole">
-            <EntityTypeMapping TypeName="BMFEntities.D_MarshalRole">
-              <MappingFragment StoreEntitySet="D_MarshalRole">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="M_UserRoundSignIn">
             <EntityTypeMapping TypeName="BMFEntities.M_UserRoundSignIn">
               <MappingFragment StoreEntitySet="M_UserRoundSignIn">
@@ -2932,6 +2782,18 @@
                 <ScalarProperty Name="ID_UserLicense" ColumnName="ID_UserLicense" />
                 <ScalarProperty Name="ID_UserProfile" ColumnName="ID_UserProfile" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="BMFEntities.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccounts">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CPR" ColumnName="CPR" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

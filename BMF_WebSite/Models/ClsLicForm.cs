@@ -10,10 +10,17 @@ namespace BMF_WebSite.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please selected compition license category")]
+        //[Required(ErrorMessage = "Please selected compition license category")]
         [Display(Name = "Compition License")]
         [DataType(DataType.Text)]
         public string CompitionLicense { get; set; }
+
+        [Required(ErrorMessage = "Please enter your CPR number")]
+        [Display(Name = "CPR")]
+        [DataType(DataType.Text)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Please enter valid CPR number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please use only numbers")]
+        public string CPR { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First Name")]
@@ -33,12 +40,12 @@ namespace BMF_WebSite.Models
         [DataType(DataType.Text)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please select license type")]
+        //[Required(ErrorMessage = "Please select license type")]
         [Display(Name = "License Type")]
         [DataType(DataType.Text)]
         public string LicenseType { get; set; }
 
-        [Required(ErrorMessage = "Please select Nationality")]
+        //[Required(ErrorMessage = "Please select Nationality")]
         [Display(Name = "Nationality")]
         [DataType(DataType.Text)]
         public string Nationality { get; set; }
@@ -120,6 +127,11 @@ namespace BMF_WebSite.Models
         [Display(Name = "Medical Form")]
         public HttpPostedFileBase MedicalFile { get; set; }
 
+        [Required(ErrorMessage = "Please select photo")]
+        //[FileExtensions(Extensions = "jpg|png|jpeg", ErrorMessage = "Please use only jpg,jpeg,png")]
+        [Display(Name = "Photo")]
+        public HttpPostedFileBase Photo { get; set; }
+
         [Display(Name = "Parent FullName")]
         [DataType(DataType.Text)]
         public string ParentFullName { get; set; }
@@ -132,8 +144,24 @@ namespace BMF_WebSite.Models
         [Display(Name = "Parent CPR")]
         public HttpPostedFileBase ParentCPRFile { get; set; }
 
+        [Display(Name = "IsUnder18")]
+        public bool IsUnder18 { get; set; }
+
+        public string Photo_Url { get; set; }
         public string CPR_Url { get; set; }
         public string Medical_Url { get; set; }
         public string ParentCPR_Url { get; set; }
+
+        [Required(ErrorMessage = "Please select license catogory")]
+        [Display(Name = "License Category")]
+        public long LicenseCategoryId { get; set; }
+
+        [Required(ErrorMessage = "Please select nationality")]
+        [Display(Name = "Nationality")]
+        public long CountryId { get; set; }
+
+        [Required(ErrorMessage = "Please select license request type")]
+        [Display(Name = "License Request Type")]
+        public string LicenseRequestType { get; set; }
     }
 }

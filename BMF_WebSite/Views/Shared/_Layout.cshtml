@@ -30,12 +30,13 @@
     <!-- perloader part start -->
     <div id="main-preloader" class="main-preloader semi-dark-background">
         <div id="status" class="main-preloader-inner center">
-            <div class="preloader-percentage center">
-                <div class="object object_one"></div>
+            <div style="text-align:center;" class="preloader-percentage center">
+                <img style="width:200px;" src="~/Content/images/bmflogowhite.png" />
+                @*<div class="object object_one"></div>
                 <div class="object object_two"></div>
                 <div class="object object_three"></div>
                 <div class="object object_four"></div>
-                <div class="object object_five"></div>
+                <div class="object object_five"></div>*@
             </div>
             <div class="preloader-bar-outer">
                 <div class="preloader-bar"></div>
@@ -66,6 +67,9 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Calendar", "EventCalendar", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Bulletins", "Bulletins", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Rules & Regs", "RulesRegulations", "Home", null, new { @class = "nav-link" })
@@ -120,6 +124,7 @@
                         <a href='@Url.Action("AboutUs","Home",null)'>About</a>
                         <a href='@Url.Action("CdpApplication","Home",null)'>Services</a>
                         <a href='@Url.Action("EventCalendar","Home",null)'>Calendar</a>
+                        <a href='@Url.Action("Bulletins","Home",null)'>Bulletins</a>
                         <a href='@Url.Action("RulesRegulations","Home",null)'>Rules & Regs</a>
                         <a href='@Url.Action("Results","Home",null)'>Results</a>
                         <a href='@Url.Action("News","Home",null)'>News</a>

@@ -12,12 +12,11 @@ namespace BMF_WebSite
     using System;
     using System.Collections.Generic;
     
-    public partial class M_UserLicenseRenewalMedicForms
+    public partial class M_EventCategoryHeat
     {
         public long ID { get; set; }
-        public long ID_UserLicenseRenewal { get; set; }
-        public System.DateTime Date { get; set; }
-        public string PDF_File { get; set; }
+        public long ID_EventCategory { get; set; }
+        public string Name { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
         public string CreatedBy { get; set; }
@@ -27,6 +26,6 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_UserLicenseRenewal M_UserLicenseRenewal { get; set; }
+        public virtual M_EventCategory M_EventCategory { get; set; }
     }
 }

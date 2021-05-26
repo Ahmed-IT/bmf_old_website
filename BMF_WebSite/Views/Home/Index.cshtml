@@ -14,7 +14,7 @@
             <div class="col-lg-7 banner-txt">
                 <br /><br /><br /><br /><br /><br />
                 @*<h1>Bahrain Motor Federation</h1>
-                <p style="text-align:justify; color:white; font-size:16px;">Founded on 23rd November, 1952, the Bahrain Motor Federation is proud of its long heritage and the close relationship. It has enjoyed with the government and leading families in the Kingdom of Bahrain. The Clubs first chairman was Mr. Ahmed Kanoo, Its Honorary Secretary, Mr. R A Allen, its Honorary Treasurer, Mr. G Thompson and Committee Members, Mr. M Rule, Mr. R Smyth, Mr. Khalil Kanoo and Mr. Al-Zayani</p>*@
+                    <p style="text-align:justify; color:white; font-size:16px;">Founded on 23rd November, 1952, the Bahrain Motor Federation is proud of its long heritage and the close relationship. It has enjoyed with the government and leading families in the Kingdom of Bahrain. The Clubs first chairman was Mr. Ahmed Kanoo, Its Honorary Secretary, Mr. R A Allen, its Honorary Treasurer, Mr. G Thompson and Committee Members, Mr. M Rule, Mr. R Smyth, Mr. Khalil Kanoo and Mr. Al-Zayani</p>*@
             </div>
         </div>
 
@@ -84,33 +84,33 @@
 </section>
 
 @*<section id="event">
-    <div class="container zindex">
-        <div class="row">
-            <div class="col-lg-3">
-                <figure class="figure">
-                    <img class="rounded" src="~/Content/images/shabdullabinIsa.jpg" style="width:95%;" />
-                    <figcaption class="figure-caption">Sh. Abdulla Bin Isa</figcaption>
-                </figure>
+        <div class="container zindex">
+            <div class="row">
+                <div class="col-lg-3">
+                    <figure class="figure">
+                        <img class="rounded" src="~/Content/images/shabdullabinIsa.jpg" style="width:95%;" />
+                        <figcaption class="figure-caption">Sh. Abdulla Bin Isa</figcaption>
+                    </figure>
 
 
-            </div>
-            <div class="col-lg-9 about-txt">
-                <div class="speaker-heading">
-                    <h3>PRESEDENT SPEECH</h3>
-                    <div class="header-style"></div>
                 </div>
-                <br />
-                <p style="font-size:16px; text-align:justify;">
-                    The Bahrain Motor Federation is the oldest racing club in the region with the first event organised in 1952. We are a dedicated team with a proactive approach and continue to introduce new initiatives,
-                    that leads to our sport genuinely welcoming people from all walks of life.
-                </p>
+                <div class="col-lg-9 about-txt">
+                    <div class="speaker-heading">
+                        <h3>PRESEDENT SPEECH</h3>
+                        <div class="header-style"></div>
+                    </div>
+                    <br />
+                    <p style="font-size:16px; text-align:justify;">
+                        The Bahrain Motor Federation is the oldest racing club in the region with the first event organised in 1952. We are a dedicated team with a proactive approach and continue to introduce new initiatives,
+                        that leads to our sport genuinely welcoming people from all walks of life.
+                    </p>
+                </div>
             </div>
+
+
+
         </div>
-
-
-
-    </div>
-</section>*@
+    </section>*@
 
 <section id="blog">
     <div class="container">
@@ -182,23 +182,23 @@
                     <div class="blog-main">
                         @foreach (var item in Model.News)
                         {
-                        <div class="col-lg-4 blog-item" style="margin:10px;">
-                            <div class="blog-shadow">
-                                <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                                <div class="blog-data">
-                                    <div class="blog-date">
-                                        <h4>@item.NewsTimestampUtc.ToString("dd")</h4>
-                                        <h5>@item.NewsTimestampUtc.ToString("MMM")</h5>
+                            <div class="col-lg-4 blog-item" style="margin:10px;">
+                                <div class="blog-shadow">
+                                    <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
+                                    <div class="blog-data">
+                                        <div class="blog-date">
+                                            <h4>@item.NewsTimestampUtc.ToString("dd")</h4>
+                                            <h5>@item.NewsTimestampUtc.ToString("MMM")</h5>
+                                        </div>
+                                        <span>
+                                            <a href="#">
+                                                <h3 style="font-family:FjallaOneR;">@item.Title</h3>
+                                            </a>
+                                            <p style="font-family:LatoR;">@item.Content.Take(50)</p>
+                                        </span>
                                     </div>
-                                    <span>
-                                        <a href="#">
-                                            <h3 style="font-family:FjallaOneR;">@item.Title</h3>
-                                        </a>
-                                        <p style="font-family:LatoR;">@item.Content.Take(50)</p>
-                                    </span>
                                 </div>
                             </div>
-                        </div>
                         }
                     </div>
                 </div>
@@ -207,134 +207,166 @@
     </section>
     <!-- BLOG AREA END -->
 }
-    <section id="organize_2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 org-item">
-                    <i class="fa fa-certificate" aria-hidden="true"></i>
-                    <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
-                </div>
-                <div class="col-lg-3 col-sm-6 org-item sm-style-h">
-                    <i class="fa fa-id-card" aria-hidden="true"></i>
-                    <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
-                </div>
-                <div class="col-lg-3 col-sm-6 org-item">
-                    <i class="fa fa-file" aria-hidden="true"></i>
-                    <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
-                </div>
-                <div class="col-lg-3 col-sm-6 org-item or-i-none">
-                    <i class="fa fa-list" aria-hidden="true"></i>
-                    <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
-                </div>
+<section id="organize_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 org-item">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+                <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item or-i-none">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <br />
-    <br />
+<br />
+<br />
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 speaker-heading">
-                    <h3 style="font-family:FjallaOneR;">Clubs</h3>
-                    <div class="header-style"></div>
-                </div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style="font-family:FjallaOneR;">Clubs</h3>
+                <div class="header-style"></div>
             </div>
+        </div>
 
-            <br /><br />
+        <br /><br />
 
-            <div class="row">
-                @if (Model.Clubs != null)
+        <div class="row">
+            @if (Model.Clubs != null)
+            {
+                foreach (var item in Model.Clubs)
                 {
-                    foreach (var item in Model.Clubs)
-                    {
-                        <div class="col-lg-2 blog-item" style="margin:10px;">
-                            <div class="blog-shadow">
-                                <div class="card border-0 rounded-0 bg-dark text-white">
-                                    <img src="@item.Image_URL" class="card-img">
-                                    <div style="background-color: rgba(0, 0, 0, 0.7); height:70px;">
-                                        <div style="margin:10px;">
-                                            <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
-                                            @if (item.Website_Link != "#")
-                                            {
-                                                <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
-                                            }
-                                        </div>
+                    <div class="col-lg-2 blog-item" style="margin:10px;">
+                        <div class="blog-shadow">
+                            <div class="card border-0 rounded-0 bg-dark text-white">
+                                <img src="@item.Image_URL" class="card-img">
+                                <div style="background-color:#1c1c1c; height:70px;">
+                                    <div style="margin:10px;">
+                                        <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
+                                        @if (item.Website_Link != "#")
+                                        {
+                                            <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    }
-                }
-                <br /><br />
-            </div>
-        </div>
-    </section>
-
-    <!-- GALLERY AREA START -->
-
-    <section id="gallery_2">
-        <div class="gallery-main">
-            @if (Model.Images.Count > 0)
-            {
-                foreach (var item in Model.Images)
-                {
-                    <div class="col-lg-2 gallery-item p-0">
-                        <img src="@item.Image_URL" alt="gallery-img" style="height:180px;" class="img-fluid w-100">
-                        <div class="hover-overlay">
-                            <a href="@item.Image_URL" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        </div>
                     </div>
                 }
             }
+            <br /><br />
         </div>
-    </section>
-    <!-- GALLERY AREA END -->
+    </div>
+</section>
 
-    <script>
-        $(document).ready(function () {
-            $(".lb-data").css("display","none");
-        });
-    </script>
 
-    <script>
-        var date = document.getElementById("DateTime_Start").value;
-        //alert(date);
+<!-- GALLERY AREA START -->
 
-        var end = new Date(date);
-
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
-
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
-
-                clearInterval(timer);
-                //document.getElementById('countdown').innerHTML = 'EXPIRED!';
-
-                return;
+<section id="gallery_2">
+    <div class="gallery-main">
+        @if (Model.Images.Count > 0)
+        {
+            foreach (var item in Model.Images)
+            {
+                <div class="col-lg-2 gallery-item p-0">
+                    <img src="@item.Image_URL" alt="gallery-img" style="height:180px;" class="img-fluid w-100">
+                    <div class="hover-overlay">
+                        <a href="@item.Image_URL" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </div>
+                </div>
             }
-            var days = Math.floor(distance / _day);
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
-
-            document.getElementById('countdown').innerHTML = days + 'days ';
-            document.getElementById('countdown').innerHTML += hours + 'hrs ';
-            document.getElementById('countdown').innerHTML += minutes + 'mins ';
-            document.getElementById('countdown').innerHTML += seconds + 'secs';
-
-            document.getElementById('day').innerText = days;
-            document.getElementById('hour').innerText = hours;
-            document.getElementById('minute').innerText  = minutes;
-            document.getElementById('second').innerText  = seconds;
         }
+    </div>
+</section>
+<!-- GALLERY AREA END -->
 
-        timer = setInterval(showRemaining, 1000);
-    </script>
+<section id="gallery_2">
+    <div style="background-color: #1c1c1c; height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/3500lives" target="_blank">
+                    <img src="~/Content/images/SFRS_logo.png" style="height:70px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h3 style="font-family: LatoB; color:white;">#3500LIVES - SUPPORT MAINFESTO FOR GLOBAL ROAD SAFETY</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery_2">
+    <div style="background-image: url('../../Content/images/Banner-1.jpg'); height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/news/marshals-officials-and-medical-staff-honoured-over-fia-volunteers-weekend" target="_blank">
+                    <img src="~/Content/images/FIAV.png" style="height:120px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h3 style="font-family: LatoB; color:white;">FIA Volunteers Weekend brings the global motor sport community together and gives thanks and support to those who make events possible.</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $(".lb-data").css("display", "none");
+    });
+</script>
+
+<script>
+    var date = document.getElementById("DateTime_Start").value;
+    //alert(date);
+
+    var end = new Date(date);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            //document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+
+        document.getElementById('day').innerText = days;
+        document.getElementById('hour').innerText = hours;
+        document.getElementById('minute').innerText = minutes;
+        document.getElementById('second').innerText = seconds;
+    }
+
+    timer = setInterval(showRemaining, 1000);
+</script>

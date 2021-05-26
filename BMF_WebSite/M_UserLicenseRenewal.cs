@@ -14,16 +14,9 @@ namespace BMF_WebSite
     
     public partial class M_UserLicenseRenewal
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public M_UserLicenseRenewal()
-        {
-            this.M_UserLicenseRenewalMedicForms = new HashSet<M_UserLicenseRenewalMedicForms>();
-        }
-    
         public long ID { get; set; }
         public long ID_UserLicense { get; set; }
-        public string Issue_Type { get; set; }
-        public System.DateTime Issue_Date { get; set; }
+        public System.DateTime DateOfExpiry { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
         public string CreatedBy { get; set; }
@@ -32,9 +25,13 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+        public int ApprovalStatus { get; set; }
+        public string CPR_URL { get; set; }
+        public System.DateTime DateIssued { get; set; }
+        public string MedicalForm_URL { get; set; }
+        public string NoObjectionLetter_URL { get; set; }
+        public string Parent_CPR_URL { get; set; }
     
         public virtual M_UserLicense M_UserLicense { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_UserLicenseRenewalMedicForms> M_UserLicenseRenewalMedicForms { get; set; }
     }
 }

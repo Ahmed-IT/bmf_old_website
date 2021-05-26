@@ -39,6 +39,10 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+        public string EmergencyContact_MobileNumber { get; set; }
+        public string EmergencyContact_Name { get; set; }
+        public string Parent_CPR { get; set; }
+        public string Parent_FullName { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual M_UserAccount M_UserAccount { get; set; }

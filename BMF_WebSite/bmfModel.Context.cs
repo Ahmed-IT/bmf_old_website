@@ -25,13 +25,13 @@ namespace BMF_WebSite
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
         public virtual DbSet<AdminRole> AdminRoles { get; set; }
         public virtual DbSet<AdminRoleOperation> AdminRoleOperations { get; set; }
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
         public virtual DbSet<AdminUserRole> AdminUserRoles { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<D_LicenseType> D_LicenseType { get; set; }
+        public virtual DbSet<D_MarshalRole> D_MarshalRole { get; set; }
         public virtual DbSet<DriverLicens> DriverLicenses { get; set; }
         public virtual DbSet<DriverSignIn> DriverSignIns { get; set; }
         public virtual DbSet<EventRound> EventRounds { get; set; }
@@ -39,6 +39,7 @@ namespace BMF_WebSite
         public virtual DbSet<M_Club> M_Club { get; set; }
         public virtual DbSet<M_EventCategory> M_EventCategory { get; set; }
         public virtual DbSet<M_EventCategoryBulletins> M_EventCategoryBulletins { get; set; }
+        public virtual DbSet<M_EventCategoryHeat> M_EventCategoryHeat { get; set; }
         public virtual DbSet<M_EventCategoryRules> M_EventCategoryRules { get; set; }
         public virtual DbSet<M_EventRound> M_EventRound { get; set; }
         public virtual DbSet<M_EventRoundSession> M_EventRoundSession { get; set; }
@@ -53,12 +54,8 @@ namespace BMF_WebSite
         public virtual DbSet<M_UserAccount> M_UserAccount { get; set; }
         public virtual DbSet<M_UserLicense> M_UserLicense { get; set; }
         public virtual DbSet<M_UserLicenseRenewal> M_UserLicenseRenewal { get; set; }
-        public virtual DbSet<M_UserLicenseRenewalMedicForms> M_UserLicenseRenewalMedicForms { get; set; }
         public virtual DbSet<M_UserProfile> M_UserProfile { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<SystemOperation> SystemOperations { get; set; }
-        public virtual DbSet<UserAccount> UserAccounts { get; set; }
-        public virtual DbSet<D_MarshalRole> D_MarshalRole { get; set; }
         public virtual DbSet<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
+        public virtual DbSet<UserAccount> UserAccounts { get; set; }
     }
 }
