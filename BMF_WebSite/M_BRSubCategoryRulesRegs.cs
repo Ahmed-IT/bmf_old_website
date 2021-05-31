@@ -12,10 +12,10 @@ namespace BMF_WebSite
     using System;
     using System.Collections.Generic;
     
-    public partial class M_EventCategoryRules
+    public partial class M_BRSubCategoryRulesRegs
     {
         public long ID { get; set; }
-        public long ID_EventCategory { get; set; }
+        public long ID_SubCategory { get; set; }
         public string Title { get; set; }
         public string PDF_Url { get; set; }
         public bool IsActive { get; set; }
@@ -27,6 +27,6 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_EventCategory M_EventCategory { get; set; }
+        public virtual M_BRSubCategory M_BRSubCategory { get; set; }
     }
 }

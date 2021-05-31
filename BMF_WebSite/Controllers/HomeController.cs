@@ -48,30 +48,32 @@ namespace BMF_WebSite.Controllers
             return View();
         }
 
-        public ActionResult RulesRegulations()
+        public async Task<ActionResult> RulesRegulations()
         {
             try
             {
-                var query = (from c in db.M_EventCategory
-                             where c.IsActive == true
-                             && c.DeletedBy == null &&
-                             c.M_EventCategoryRules.Count != 0
-                             select new ClsEventCategory
-                             {
-                                 IsActive = c.IsActive,
-                                 ID = c.ID,
-                                 ID_EventSeason = c.ID_EventSeason,
-                                 Image_URL = c.Image_URL,
-                                 Title = c.Title,
-                                 RulesRegs = c.M_EventCategoryRules.Where(a => a.IsActive == true && a.DeletedBy == null).Select(a => new ClsRulesRegs
-                                 {
-                                     IsActive = a.IsActive,
-                                     ID = a.ID,
-                                     ID_EventCategory = a.ID_EventCategory,
-                                     PDF_Url = a.PDF_Url,
-                                     Title = a.Title
-                                 }).ToList()
-                             }).ToList();
+                var query = await (from c in db.M_BRCategory
+                                  where c.IsActive == true && c.DeletedOnUtc == null
+                                   select new ClsBRCategory
+                                  {
+                                      ID = c.ID,
+                                      Title = c.Title,
+                                      SubCategory = c.M_BRSubCategory.Where(b => b.IsActive == true
+                                      && b.DeletedOnUtc == null).Select(a => new ClsBRSubCategory
+                                      {
+                                          ID = a.ID,
+                                          ID_Category = a.ID_Category,
+                                          Title = a.Title,
+                                          RulesRegs = a.M_BRSubCategoryRulesRegs.Where(b => b.IsActive == true
+                                                      && b.DeletedOnUtc == null).Select(b => new ClsRulesRegs
+                                                      {
+                                                          ID = b.ID,
+                                                          ID_SubCategory = b.ID_SubCategory,
+                                                          PDF_Url = b.PDF_Url,
+                                                          Title = b.Title
+                                                      }).ToList()
+                                      }).ToList()
+                                  }).Where(x => x.SubCategory.Where(v => v.RulesRegs.Count() > 0).Count() > 0).ToListAsync();
 
                 return View(query);
             }
@@ -87,28 +89,7 @@ namespace BMF_WebSite.Controllers
         {
             try
             {
-                var query = (from c in db.M_EventCategory
-                             where c.ID == ID && c.IsActive == true
-                             && c.DeletedBy == null &&
-                             c.M_EventCategoryRules.Count != 0
-                             select new ClsEventCategory
-                             {
-                                 IsActive = c.IsActive,
-                                 ID = c.ID,
-                                 ID_EventSeason = c.ID_EventSeason,
-                                 Image_URL = c.Image_URL,
-                                 Title = c.Title,
-                                 RulesRegs = c.M_EventCategoryRules.Where(a => a.IsActive == true && a.DeletedBy == null).Select(a => new ClsRulesRegs
-                                 {
-                                     IsActive = a.IsActive,
-                                     ID = a.ID,
-                                     ID_EventCategory = a.ID_EventCategory,
-                                     PDF_Url = a.PDF_Url,
-                                     Title = a.Title
-                                 }).ToList()
-                             }).FirstOrDefault();
-
-                return View(query);
+               
             }
             catch (Exception ex)
             {
@@ -692,23 +673,29 @@ namespace BMF_WebSite.Controllers
 
         public async Task<ActionResult> Bulletins()
         {
-            var query = await(from c in db.M_EventCategory
-                         where c.IsActive == true && c.DeletedOnUtc == null
-                         && c.M_EventCategoryBulletins.Count > 0
-                         select new ClsEventCategory
-                         {
-                             ID = c.ID,
-                             Image_URL = c.Image_URL,
-                             Title = c.Title,
-                             Bulletins = c.M_EventCategoryBulletins.Where(a => 
-                             a.IsActive == true && a.DeletedOnUtc == null).Select(a => new ClsBulletins
-                             {
-                                 ID = a.ID,
-                                 ID_EventCategory = a.ID_EventCategory,
-                                 PDF_Url = a.PDF_Url,
-                                 Title = a.Title
-                             }).ToList()
-                         }).ToListAsync();
+            var query = await (from c in db.M_BRCategory
+                               where c.IsActive == true && c.DeletedOnUtc == null
+                               select new ClsBRCategory
+                               {
+                                   ID = c.ID,
+                                   Title = c.Title,
+                                   SubCategory = c.M_BRSubCategory.Where(b => b.IsActive == true
+                                   && b.DeletedOnUtc == null
+                                   && c.M_BRSubCategory.Select(sb => sb.M_BRSubCategoryBulletin).Count() != 0).Select(a => new ClsBRSubCategory
+                                   {
+                                       ID = a.ID,
+                                       ID_Category = a.ID_Category,
+                                       Title = a.Title,
+                                       Bulletins = a.M_BRSubCategoryBulletin.Where(b => b.IsActive == true
+                                   && b.DeletedOnUtc == null).Select(b => new ClsBulletins
+                                   {
+                                       ID = b.ID,
+                                       ID_SubCategory = b.ID_SubCategory,
+                                       PDF_Url = b.PDF_Url,
+                                       Title = b.Title
+                                   }).ToList()
+                                   }).ToList()
+                               }).Where(x => x.SubCategory.Where(v => v.Bulletins.Count() > 0).Count() > 0).ToListAsync();
 
             return View(query);
         }

@@ -12,12 +12,18 @@ namespace BMF_WebSite
     using System;
     using System.Collections.Generic;
     
-    public partial class M_EventCategoryBulletins
+    public partial class M_BRSubCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public M_BRSubCategory()
+        {
+            this.M_BRSubCategoryBulletin = new HashSet<M_BRSubCategoryBulletin>();
+            this.M_BRSubCategoryRulesRegs = new HashSet<M_BRSubCategoryRulesRegs>();
+        }
+    
         public long ID { get; set; }
-        public long ID_EventCategory { get; set; }
+        public long ID_Category { get; set; }
         public string Title { get; set; }
-        public string PDF_Url { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
         public string CreatedBy { get; set; }
@@ -27,6 +33,10 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_EventCategory M_EventCategory { get; set; }
+        public virtual M_BRCategory M_BRCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_BRSubCategoryBulletin> M_BRSubCategoryBulletin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_BRSubCategoryRulesRegs> M_BRSubCategoryRulesRegs { get; set; }
     }
 }

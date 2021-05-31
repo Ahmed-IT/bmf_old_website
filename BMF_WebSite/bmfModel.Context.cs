@@ -36,11 +36,13 @@ namespace BMF_WebSite
         public virtual DbSet<DriverSignIn> DriverSignIns { get; set; }
         public virtual DbSet<EventRound> EventRounds { get; set; }
         public virtual DbSet<EventsCategory> EventsCategories { get; set; }
+        public virtual DbSet<M_BRCategory> M_BRCategory { get; set; }
+        public virtual DbSet<M_BRSubCategory> M_BRSubCategory { get; set; }
+        public virtual DbSet<M_BRSubCategoryBulletin> M_BRSubCategoryBulletin { get; set; }
+        public virtual DbSet<M_BRSubCategoryRulesRegs> M_BRSubCategoryRulesRegs { get; set; }
         public virtual DbSet<M_Club> M_Club { get; set; }
         public virtual DbSet<M_EventCategory> M_EventCategory { get; set; }
-        public virtual DbSet<M_EventCategoryBulletins> M_EventCategoryBulletins { get; set; }
         public virtual DbSet<M_EventCategoryHeat> M_EventCategoryHeat { get; set; }
-        public virtual DbSet<M_EventCategoryRules> M_EventCategoryRules { get; set; }
         public virtual DbSet<M_EventRound> M_EventRound { get; set; }
         public virtual DbSet<M_EventRoundSession> M_EventRoundSession { get; set; }
         public virtual DbSet<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }

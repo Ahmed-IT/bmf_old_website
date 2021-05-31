@@ -14,7 +14,5 @@ namespace BMF_WebSite.Models
         public bool IsActive { get; set; }
         public ClsEventRound NextRound { get; set; }
         public List<ClsEventRound> EventRound { get; set; }
-        public List<ClsRulesRegs> RulesRegs { get; set; }
-        public List<ClsBulletins> Bulletins { get; set; }
     }
 }

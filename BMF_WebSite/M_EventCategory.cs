@@ -17,9 +17,7 @@ namespace BMF_WebSite
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public M_EventCategory()
         {
-            this.M_EventCategoryBulletins = new HashSet<M_EventCategoryBulletins>();
             this.M_EventCategoryHeat = new HashSet<M_EventCategoryHeat>();
-            this.M_EventCategoryRules = new HashSet<M_EventCategoryRules>();
             this.M_EventRound = new HashSet<M_EventRound>();
         }
     
@@ -38,11 +36,7 @@ namespace BMF_WebSite
     
         public virtual M_EventSeason M_EventSeason { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_EventCategoryBulletins> M_EventCategoryBulletins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventCategoryHeat> M_EventCategoryHeat { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_EventCategoryRules> M_EventCategoryRules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRound> M_EventRound { get; set; }
     }

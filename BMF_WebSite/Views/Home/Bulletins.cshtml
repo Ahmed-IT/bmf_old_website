@@ -1,4 +1,4 @@
-﻿@model List<BMF_WebSite.Models.ClsEventCategory>
+﻿@model List<BMF_WebSite.Models.ClsBRCategory>
 @{
     ViewBag.Title = "Bulletins";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -37,10 +37,10 @@
         <br /><br />
 
         <div class="row">
-            <div class="col-lg-5">
+            @*<div class="col-lg-5">
                 <img class="rounded float-start" src="~/Content/images/Rotax.png" style="width:95%;" />
-            </div>
-            <div class="col-lg-7 about-txt">
+            </div>*@
+            <div class="col-lg-12 about-txt">
 
                 <p>
                     The Bahrain Motor Federation (BMF) is recognized as the sole motor sport governing body for the Kingdom of Bahrain by the world governing body, the Federation International de L' Automobile (FIA).
@@ -60,22 +60,41 @@
 
                 foreach (var category in Model)
                 {
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="@("heading"+i)">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="@("#collapse"+i)" aria-expanded="false" aria-controls="@("#collapse"+i)">
-                                @category.Title
-                            </button>
-                        </h2>
-                        @foreach (var item in category.Bulletins)
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="@("heading"+i)">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="@("#collapse"+i)" aria-expanded="false" aria-controls="@("#collapse"+i)">
+                        @category.Title
+                    </button>
+                </h2>
+
+                <div id="@("collapse"+i)" class="accordion-collapse collapse" aria-labelledby="@("heading"+i)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        @foreach (var item in category.SubCategory.Where(a => a.Bulletins.Count != 0))
                         {
-                            <div id="@("collapse"+i)" class="accordion-collapse collapse" aria-labelledby="@("heading"+i)" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <a href="@item.PDF_Url">@item.Title</a>
-                                </div>
-                            </div>
+                            <figure>
+                                <blockquote class="blockquote">
+                                    <p>@item.Title</p>
+                                </blockquote>
+
+                                @foreach (var item2 in item.Bulletins)
+                                {
+                                    <figcaption class="blockquote-footer">
+                                        <a href="@item2.PDF_Url">@item2.Title</a>
+                                    </figcaption>
+                                }
+
+
+                            </figure>
+
                         }
 
                     </div>
+                </div>
+
+            </div>
+
 
                     i++;
                 }

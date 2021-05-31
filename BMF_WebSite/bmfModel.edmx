@@ -176,6 +176,71 @@
           <Property Name="EventType" Type="varchar" MaxLength="50" />
           <Property Name="ImageUrl" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="M_BRCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Category" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategoryBulletin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SubCategory" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="PDF_Url" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategoryRulesRegs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SubCategory" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="PDF_Url" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar(max)" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="M_Club">
           <Key>
             <PropertyRef Name="ID" />
@@ -211,23 +276,6 @@
           <Property Name="DeletedBy" Type="nvarchar(max)" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
-        <EntityType Name="M_EventCategoryBulletins">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EventCategory" Type="bigint" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="PDF_Url" Type="nvarchar" MaxLength="1024" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar(max)" />
-          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
-          <Property Name="DeletedBy" Type="nvarchar(max)" />
-          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="M_EventCategoryHeat">
           <Key>
             <PropertyRef Name="ID" />
@@ -235,23 +283,6 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_EventCategory" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="UpdatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar(max)" />
-          <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
-          <Property Name="DeletedBy" Type="nvarchar(max)" />
-          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="M_EventCategoryRules">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EventCategory" Type="bigint" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="PDF_Url" Type="nvarchar" MaxLength="1024" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -631,6 +662,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_M_BRSubCategory_M_BRCategory_ID_Category">
+          <End Role="M_BRCategory" Type="Self.M_BRCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_BRSubCategory" Type="Self.M_BRSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategory">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory">
+          <End Role="M_BRSubCategory" Type="Self.M_BRSubCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_BRSubCategoryBulletin" Type="Self.M_BRSubCategoryBulletin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategoryBulletin">
+              <PropertyRef Name="ID_SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory">
+          <End Role="M_BRSubCategory" Type="Self.M_BRSubCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_BRSubCategoryRulesRegs" Type="Self.M_BRSubCategoryRulesRegs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategoryRulesRegs">
+              <PropertyRef Name="ID_SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_M_EventCategory_M_EventSeason_ID_EventSeason">
           <End Role="M_EventSeason" Type="Self.M_EventSeason" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -645,20 +718,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory">
-          <End Role="M_EventCategory" Type="Self.M_EventCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="M_EventCategoryBulletins" Type="Self.M_EventCategoryBulletins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_EventCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_EventCategoryBulletins">
-              <PropertyRef Name="ID_EventCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
           <End Role="M_EventCategory" Type="Self.M_EventCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -669,20 +728,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventCategoryHeat">
-              <PropertyRef Name="ID_EventCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
-          <End Role="M_EventCategory" Type="Self.M_EventCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="M_EventCategoryRules" Type="Self.M_EventCategoryRules" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_EventCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_EventCategoryRules">
               <PropertyRef Name="ID_EventCategory" />
             </Dependent>
           </ReferentialConstraint>
@@ -945,11 +990,13 @@
           <EntitySet Name="DriverSignIns" EntityType="Self.DriverSignIns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventRounds" EntityType="Self.EventRounds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventsCategories" EntityType="Self.EventsCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_BRCategory" EntityType="Self.M_BRCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_BRSubCategory" EntityType="Self.M_BRSubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_BRSubCategoryBulletin" EntityType="Self.M_BRSubCategoryBulletin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_BRSubCategoryRulesRegs" EntityType="Self.M_BRSubCategoryRulesRegs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Club" EntityType="Self.M_Club" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventCategory" EntityType="Self.M_EventCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="M_EventCategoryBulletins" EntityType="Self.M_EventCategoryBulletins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventCategoryHeat" EntityType="Self.M_EventCategoryHeat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="M_EventCategoryRules" EntityType="Self.M_EventCategoryRules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventRound" EntityType="Self.M_EventRound" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventRoundSession" EntityType="Self.M_EventRoundSession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_EventRoundSessionUserResults" EntityType="Self.M_EventRoundSessionUserResults" Schema="dbo" store:Type="Tables" />
@@ -994,21 +1041,25 @@
             <End Role="EventsCategories" EntitySet="EventsCategories" />
             <End Role="EventRounds" EntitySet="EventRounds" />
           </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategory_M_BRCategory_ID_Category" Association="Self.FK_M_BRSubCategory_M_BRCategory_ID_Category">
+            <End Role="M_BRCategory" EntitySet="M_BRCategory" />
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory" Association="Self.FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory">
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+            <End Role="M_BRSubCategoryBulletin" EntitySet="M_BRSubCategoryBulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory" Association="Self.FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory">
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+            <End Role="M_BRSubCategoryRulesRegs" EntitySet="M_BRSubCategoryRulesRegs" />
+          </AssociationSet>
           <AssociationSet Name="FK_M_EventCategory_M_EventSeason_ID_EventSeason" Association="Self.FK_M_EventCategory_M_EventSeason_ID_EventSeason">
             <End Role="M_EventSeason" EntitySet="M_EventSeason" />
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory">
-            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
-            <End Role="M_EventCategoryBulletins" EntitySet="M_EventCategoryBulletins" />
-          </AssociationSet>
           <AssociationSet Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
             <End Role="M_EventCategoryHeat" EntitySet="M_EventCategoryHeat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
-            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
-            <End Role="M_EventCategoryRules" EntitySet="M_EventCategoryRules" />
           </AssociationSet>
           <AssociationSet Name="FK_M_EventRound_M_EventCategory_ID_EventCategory" Association="Self.FK_M_EventRound_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
@@ -1099,11 +1150,13 @@
           <EntitySet Name="DriverSignIns" EntityType="BMFEntities.DriverSignIn" />
           <EntitySet Name="EventRounds" EntityType="BMFEntities.EventRound" />
           <EntitySet Name="EventsCategories" EntityType="BMFEntities.EventsCategory" />
+          <EntitySet Name="M_BRCategory" EntityType="BMFEntities.M_BRCategory" />
+          <EntitySet Name="M_BRSubCategory" EntityType="BMFEntities.M_BRSubCategory" />
+          <EntitySet Name="M_BRSubCategoryBulletin" EntityType="BMFEntities.M_BRSubCategoryBulletin" />
+          <EntitySet Name="M_BRSubCategoryRulesRegs" EntityType="BMFEntities.M_BRSubCategoryRulesRegs" />
           <EntitySet Name="M_Club" EntityType="BMFEntities.M_Club" />
           <EntitySet Name="M_EventCategory" EntityType="BMFEntities.M_EventCategory" />
-          <EntitySet Name="M_EventCategoryBulletins" EntityType="BMFEntities.M_EventCategoryBulletins" />
           <EntitySet Name="M_EventCategoryHeat" EntityType="BMFEntities.M_EventCategoryHeat" />
-          <EntitySet Name="M_EventCategoryRules" EntityType="BMFEntities.M_EventCategoryRules" />
           <EntitySet Name="M_EventRound" EntityType="BMFEntities.M_EventRound" />
           <EntitySet Name="M_EventRoundSession" EntityType="BMFEntities.M_EventRoundSession" />
           <EntitySet Name="M_EventRoundSessionUserResults" EntityType="BMFEntities.M_EventRoundSessionUserResults" />
@@ -1160,21 +1213,25 @@
             <End Role="EventsCategory" EntitySet="EventsCategories" />
             <End Role="EventRound" EntitySet="EventRounds" />
           </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategory_M_BRCategory_ID_Category" Association="BMFEntities.FK_M_BRSubCategory_M_BRCategory_ID_Category">
+            <End Role="M_BRCategory" EntitySet="M_BRCategory" />
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory" Association="BMFEntities.FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory">
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+            <End Role="M_BRSubCategoryBulletin" EntitySet="M_BRSubCategoryBulletin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory" Association="BMFEntities.FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory">
+            <End Role="M_BRSubCategory" EntitySet="M_BRSubCategory" />
+            <End Role="M_BRSubCategoryRulesRegs" EntitySet="M_BRSubCategoryRulesRegs" />
+          </AssociationSet>
           <AssociationSet Name="FK_M_EventCategory_M_EventSeason_ID_EventSeason" Association="BMFEntities.FK_M_EventCategory_M_EventSeason_ID_EventSeason">
             <End Role="M_EventSeason" EntitySet="M_EventSeason" />
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory">
-            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
-            <End Role="M_EventCategoryBulletins" EntitySet="M_EventCategoryBulletins" />
-          </AssociationSet>
           <AssociationSet Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
             <End Role="M_EventCategoryHeat" EntitySet="M_EventCategoryHeat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
-            <End Role="M_EventCategory" EntitySet="M_EventCategory" />
-            <End Role="M_EventCategoryRules" EntitySet="M_EventCategoryRules" />
           </AssociationSet>
           <AssociationSet Name="FK_M_EventRound_M_EventCategory_ID_EventCategory" Association="BMFEntities.FK_M_EventRound_M_EventCategory_ID_EventCategory">
             <End Role="M_EventCategory" EntitySet="M_EventCategory" />
@@ -1424,6 +1481,77 @@
           <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EventRounds" Relationship="BMFEntities.FK_EventRounds_EventsCategory" FromRole="EventsCategory" ToRole="EventRound" />
         </EntityType>
+        <EntityType Name="M_BRCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_BRSubCategory" Relationship="BMFEntities.FK_M_BRSubCategory_M_BRCategory_ID_Category" FromRole="M_BRCategory" ToRole="M_BRSubCategory" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Category" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_BRCategory" Relationship="BMFEntities.FK_M_BRSubCategory_M_BRCategory_ID_Category" FromRole="M_BRSubCategory" ToRole="M_BRCategory" />
+          <NavigationProperty Name="M_BRSubCategoryBulletin" Relationship="BMFEntities.FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory" FromRole="M_BRSubCategory" ToRole="M_BRSubCategoryBulletin" />
+          <NavigationProperty Name="M_BRSubCategoryRulesRegs" Relationship="BMFEntities.FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory" FromRole="M_BRSubCategory" ToRole="M_BRSubCategoryRulesRegs" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategoryBulletin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SubCategory" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PDF_Url" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_BRSubCategory" Relationship="BMFEntities.FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory" FromRole="M_BRSubCategoryBulletin" ToRole="M_BRSubCategory" />
+        </EntityType>
+        <EntityType Name="M_BRSubCategoryRulesRegs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SubCategory" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PDF_Url" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="M_BRSubCategory" Relationship="BMFEntities.FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory" FromRole="M_BRSubCategoryRulesRegs" ToRole="M_BRSubCategory" />
+        </EntityType>
         <EntityType Name="M_Club">
           <Key>
             <PropertyRef Name="ID" />
@@ -1459,28 +1587,8 @@
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="M_EventSeason" Relationship="BMFEntities.FK_M_EventCategory_M_EventSeason_ID_EventSeason" FromRole="M_EventCategory" ToRole="M_EventSeason" />
-          <NavigationProperty Name="M_EventCategoryBulletins" Relationship="BMFEntities.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryBulletins" />
           <NavigationProperty Name="M_EventCategoryHeat" Relationship="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryHeat" />
-          <NavigationProperty Name="M_EventCategoryRules" Relationship="BMFEntities.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventCategoryRules" />
           <NavigationProperty Name="M_EventRound" Relationship="BMFEntities.FK_M_EventRound_M_EventCategory_ID_EventCategory" FromRole="M_EventCategory" ToRole="M_EventRound" />
-        </EntityType>
-        <EntityType Name="M_EventCategoryBulletins">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EventCategory" Type="Int64" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="PDF_Url" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
-          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_EventCategory" Relationship="BMFEntities.FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory" FromRole="M_EventCategoryBulletins" ToRole="M_EventCategory" />
         </EntityType>
         <EntityType Name="M_EventCategoryHeat">
           <Key>
@@ -1498,24 +1606,6 @@
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="M_EventCategory" Relationship="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" FromRole="M_EventCategoryHeat" ToRole="M_EventCategory" />
-        </EntityType>
-        <EntityType Name="M_EventCategoryRules">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EventCategory" Type="Int64" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="PDF_Url" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
-          <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_EventCategory" Relationship="BMFEntities.FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory" FromRole="M_EventCategoryRules" ToRole="M_EventCategory" />
         </EntityType>
         <EntityType Name="M_EventRound">
           <Key>
@@ -1959,6 +2049,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_M_BRSubCategory_M_BRCategory_ID_Category">
+          <End Type="BMFEntities.M_BRCategory" Role="M_BRCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BMFEntities.M_BRSubCategory" Role="M_BRSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategory">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory">
+          <End Type="BMFEntities.M_BRSubCategory" Role="M_BRSubCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BMFEntities.M_BRSubCategoryBulletin" Role="M_BRSubCategoryBulletin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategoryBulletin">
+              <PropertyRef Name="ID_SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory">
+          <End Type="BMFEntities.M_BRSubCategory" Role="M_BRSubCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BMFEntities.M_BRSubCategoryRulesRegs" Role="M_BRSubCategoryRulesRegs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_BRSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_BRSubCategoryRulesRegs">
+              <PropertyRef Name="ID_SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_M_EventCategory_M_EventSeason_ID_EventSeason">
           <End Type="BMFEntities.M_EventSeason" Role="M_EventSeason" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1973,20 +2105,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_EventCategoryBulletins_M_EventCategory_ID_EventCategory">
-          <End Type="BMFEntities.M_EventCategory" Role="M_EventCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BMFEntities.M_EventCategoryBulletins" Role="M_EventCategoryBulletins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_EventCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_EventCategoryBulletins">
-              <PropertyRef Name="ID_EventCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory">
           <End Type="BMFEntities.M_EventCategory" Role="M_EventCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1997,20 +2115,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventCategoryHeat">
-              <PropertyRef Name="ID_EventCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_M_EventCategoryRules_M_EventCategory_ID_EventCategory">
-          <End Type="BMFEntities.M_EventCategory" Role="M_EventCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BMFEntities.M_EventCategoryRules" Role="M_EventCategoryRules" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_EventCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="M_EventCategoryRules">
               <PropertyRef Name="ID_EventCategory" />
             </Dependent>
           </ReferentialConstraint>
@@ -2411,6 +2515,75 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="M_BRCategory">
+            <EntityTypeMapping TypeName="BMFEntities.M_BRCategory">
+              <MappingFragment StoreEntitySet="M_BRCategory">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_BRSubCategory">
+            <EntityTypeMapping TypeName="BMFEntities.M_BRSubCategory">
+              <MappingFragment StoreEntitySet="M_BRSubCategory">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_BRSubCategoryBulletin">
+            <EntityTypeMapping TypeName="BMFEntities.M_BRSubCategoryBulletin">
+              <MappingFragment StoreEntitySet="M_BRSubCategoryBulletin">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PDF_Url" ColumnName="PDF_Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_SubCategory" ColumnName="ID_SubCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_BRSubCategoryRulesRegs">
+            <EntityTypeMapping TypeName="BMFEntities.M_BRSubCategoryRulesRegs">
+              <MappingFragment StoreEntitySet="M_BRSubCategoryRulesRegs">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PDF_Url" ColumnName="PDF_Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_SubCategory" ColumnName="ID_SubCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="M_Club">
             <EntityTypeMapping TypeName="BMFEntities.M_Club">
               <MappingFragment StoreEntitySet="M_Club">
@@ -2448,24 +2621,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="M_EventCategoryBulletins">
-            <EntityTypeMapping TypeName="BMFEntities.M_EventCategoryBulletins">
-              <MappingFragment StoreEntitySet="M_EventCategoryBulletins">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PDF_Url" ColumnName="PDF_Url" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID_EventCategory" ColumnName="ID_EventCategory" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="M_EventCategoryHeat">
             <EntityTypeMapping TypeName="BMFEntities.M_EventCategoryHeat">
               <MappingFragment StoreEntitySet="M_EventCategoryHeat">
@@ -2478,24 +2633,6 @@
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID_EventCategory" ColumnName="ID_EventCategory" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="M_EventCategoryRules">
-            <EntityTypeMapping TypeName="BMFEntities.M_EventCategoryRules">
-              <MappingFragment StoreEntitySet="M_EventCategoryRules">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PDF_Url" ColumnName="PDF_Url" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID_EventCategory" ColumnName="ID_EventCategory" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

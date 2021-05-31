@@ -496,6 +496,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClsBloodGroup.cs" />
+    <Compile Include="Models\ClsBRCategory.cs" />
+    <Compile Include="Models\ClsBRSubCategory.cs" />
     <Compile Include="Models\ClsBulletins.cs" />
     <Compile Include="Models\ClsClubs.cs" />
     <Compile Include="Models\ClsCountry.cs" />
@@ -515,19 +517,25 @@
     <Compile Include="Models\StorageManager.cs" />
     <Compile Include="Models\ViewModels\EventCalendarVM.cs" />
     <Compile Include="Models\ViewModels\MainPageVM.cs" />
+    <Compile Include="M_BRCategory.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_BRSubCategory.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_BRSubCategoryBulletin.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="M_BRSubCategoryRulesRegs.cs">
+      <DependentUpon>bmfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="M_Club.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="M_EventCategory.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="M_EventCategoryBulletins.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="M_EventCategoryHeat.cs">
-      <DependentUpon>bmfModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="M_EventCategoryRules.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="M_EventRound.cs">
