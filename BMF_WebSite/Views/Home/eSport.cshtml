@@ -1,0 +1,605 @@
+﻿@model BMF_WebSite.Models.eSportRegForm
+@{
+    ViewBag.Title = "eSport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.8.0.js"></script>
+    <link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="schedule">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3>Bahrain eSport Championship</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-lg-7 about-txt">
+                <h4 style="letter-spacing:5px;">
+                    About
+                    <br />
+                    eSport (BEGTC)
+                </h4>
+
+                <p style="font-size:16px;">
+                    Esport is form of sport which involves video games as means of competition.
+                    <br />
+                    This form of sport is take’s the form of controlled, organized video game championships specifically concerning professional individual / team players.
+                    <br />
+                    Motorsport Games, part of the Motorsport Network, is dedicated to virtual racing. Our mission is to combine video game with Esports to deliver exciting, innovative experiences people will race online at home, watch and engage with.
+                    <br />
+                </p>
+
+            </div>
+            <div class="col-lg-5">
+                <img class="rounded" src="~/Content/images/IMG_2018.jpg" style="width:80%;" />
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 about-txt">
+                <h4 style="letter-spacing:5px;">
+                    CHAMPIONSHIP
+                    <br />
+                    DETAILS
+                </h4>
+
+                <p style="font-size:16px;">
+                    Online Racing in Gran Turismo Sport Game.
+                    <br />
+                    Racers will take place between persons of the same region only. (no online playing between different regions)
+                    <br />
+                    The game (Garn Turismo Sport) does not hold a utility in system which can administer a championship. This will be managed externally (e.g. Signup, Incidents, protests, points, calendar etc.)
+                    <br />
+                    The First Bahraini Championship will consist of 5 Rounds in 5 different randomly selected international FIA circuits
+                    <br />
+                    The 5 rounds will be hosted over a period of 5 weeks with 1 round per weekend.
+                    <br />
+                    A Maximum of 15 Maximum Competitors / Drivers will be allowed to participate. (limited participants due to game limitation)
+                    <br />
+                    Per Championship entry qualifying will be conducted over a period of 1 day.
+                    <br />
+                    A total of 15 drivers will be selected based on their fastest lap time.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 about-txt">
+                <h4 style="letter-spacing:5px;">
+                    BAHRAIN ESPORT
+                    <br />
+                    NATIONAL RACE
+                </h4>
+
+                <p style="font-size:16px;">
+                    The idea is to host an online championship, where racers or pro gamers who are interested in motorsport can race online and enjoy racing experience during the current global situation.
+                    <br />
+                    Digital motorsport is a good opportunity to keep the motorsport community in Bahrain active, entertained and united, while waiting for the world to recover and promoting stay at home.
+
+                </p>
+            </div>
+        </div>
+
+        <section id="event">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 event-header mobile-t-p">
+                        <h3>
+                            WHO CAN JOIN THE CHAMPIONSHIP
+                        </h3>
+                        <p>
+                            The Championship is aimed towards and not limited to:
+
+                        </p>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="about-item">
+                                    <span>01</span>
+                                    <h3>Drivers</h3>
+                                    <p>Any racing driver who is interested in esport racing</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="about-item">
+                                    <span>02</span>
+                                    <h3>Gamers</h3>
+                                    <p>Gamers who are interested in esport racing</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="about-item">
+                                    <span>03</span>
+                                    <h3>Fans</h3>
+                                    <p>
+                                        Motorsport Fans
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="about-item">
+                                    <span>04</span>
+                                    <h3>Age</h3>
+                                    <p>Ages from 16 years and above</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-lg-12 about-txt">
+                <h4 style="letter-spacing:5px;">
+                    PRIZE MONEY
+                </h4>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">PER ROUND</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1st</td>
+                            <td>BHD 50</td>
+                        </tr>
+                        <tr>
+                            <td>2nd</td>
+                            <td>BHD 30</td>
+                        </tr>
+                        <tr>
+                            <td>3rd</td>
+                            <td>BHD 20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">GRAND PRIZE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1st</td>
+                            <td>BHD 500</td>
+                        </tr>
+                        <tr>
+                            <td>2nd</td>
+                            <td>BHD 300</td>
+                        </tr>
+                        <tr>
+                            <td>3rd</td>
+                            <td>BHD 200</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-lg-12 about-txt">
+                <h4 style="letter-spacing:5px;">
+                    RACE SETTINGS/TIMING
+                </h4>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">SETTINGS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Qualyfing Round</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 1</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 2</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 3</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 4</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 5</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">TIMING</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Qualyfing Round</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 1</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 2</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 3</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 4</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Round 5</td>
+                            <td><a href="#">Download</a></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-12 about-txt">
+            <h4 style="letter-spacing:5px;">
+                CARS LIST (EXAMPLE)
+            </h4>
+        </div>
+
+        <div class="row price-pa">
+
+            <div class="col-lg-4 col-md-8 m-md-auto col-sm-8 m-sm-auto">
+                <div class="price-item">
+                    <h3>Group 3</h3>
+                    <span class="cl">GT3 Cars</span>
+
+                    <div class="gap-p">
+                        <p>ex. Lexus RC GT3, Toyota FT-1, Aston Martin V12 Vantage GT3</p>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="~/Content/images/GT3.png" />
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-8 m-md-auto col-sm-8 m-sm-auto">
+                <div class="price-item">
+                    <h3>Group 3</h3>
+                    <span class="cl">GTE Cars</span>
+
+                    <div class="gap-p">
+                        <p>ex. Porsche, BMW M4, Ford Mustange, Toyota Supra</p>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="~/Content/images/GTE.png" />
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-8 m-md-auto col-sm-8 m-sm-auto">
+                <div class="price-item">
+                    <h3>Group 3</h3>
+                    <span class="cl">GT2 Cars</span>
+
+                    <div class="gap-p">
+                        <p>ex. NSX GT2, Porsche GT2,Opel Tigra Ice Race Car GT2</p>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="~/Content/images/GT2.png" />
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row price-pa">
+
+            <div class="col-lg-4 col-md-8 m-md-auto col-sm-8 m-sm-auto">
+                <div class="price-item">
+                    <h3>Group 3</h3>
+                    <span class="cl">GT1 Cars</span>
+
+                    <div class="gap-p">
+                        <p>ex. Aston Martin DBR9 GT1, GTR GT1, Mclaren F1 GT1</p>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="~/Content/images/GT1.png" />
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-8 m-md-auto col-sm-8 m-sm-auto">
+                <div class="price-item">
+                    <h3>Group 4</h3>
+                    <span class="cl">GT4 Cars</span>
+
+                    <div class="gap-p">
+                        <p>ex. Mustang GT4, Porsche Cayman GT4, BMW M4 GT4</p>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                        <img src="~/Content/images/GT4.png" />
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-12">
+            <div class="purchase-box">
+                <h4>Registration Form</h4>
+                @using (Html.BeginForm("eSport", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">CPR Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.CPR, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">First Name <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">Middle Name <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.MiddleName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">Last Name <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">Nationality <b style="color: red;">*</b></label>
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.Countries, "ID", "Name"), "Select Nationality", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label style="font-family:LatoB;">House Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.HouseNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-family:LatoB;">Road Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.RoadNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.RoadNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-family:LatoB;">Block Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.BlockNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.BlockNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-family:LatoB;">City <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.City, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Place of Birth <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.PlaceOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Date of Birth <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.DateOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field", @type = "date" })
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Mobile Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.MobileNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Email Address <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.EmailAddress, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">PSN ID <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.PSN, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                            @Html.ValidationMessageFor(model => model.PSN, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Instagram Username</label>
+                            @Html.TextBoxFor(u => u.Instagram, new { @class = "form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Facebook Username</label>
+                            @Html.TextBoxFor(u => u.Facebook, new { @class = "form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Racing Mode</label>
+                            @Html.TextBoxFor(u => u.RacingMode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RacingMode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Most Racing Game Played</label>
+                            @Html.TextBoxFor(u => u.MotorsportGame, new { @class = "form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.MotorsportGame, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Other Motorsport Participation</label>
+                            @Html.TextBoxFor(u => u.OtherMotorsport, new { @class = "form-control", @placeholder = "" })
+                            @Html.ValidationMessageFor(model => model.OtherMotorsport, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">CPR Copy <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.CPRFile, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.CPRFile, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Photo <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.Photo, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                            an example applicable to the requirements
+                            <br />
+                            <img src="~/Content/images/PhotoSample.png" style="height:150px;" />
+
+
+                        </div>
+                    </div>
+
+                    <h3>Consent Statement for Applicants Under 18 Years</h3>
+
+                    <br />
+
+                    <div class="form-group" style="color:black; font-size:16px; color:red;">
+                        @Html.CheckBoxFor(model => model.IsUnder18)
+                        Please check the box if you are under 18
+                        <br />
+                        @Html.ValidationMessageFor(model => model.IsUnder18, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.TextBoxFor(u => u.ParentFullName, new { @class = "form-control", @type = "text", @placeholder = "Parent Full Name" })
+                            @Html.ValidationMessageFor(model => model.ParentFullName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.TextBoxFor(u => u.ParentCPR, new { @class = "form-control", @type = "text", @placeholder = "Parent CPR Number" })
+                            @Html.ValidationMessageFor(model => model.ParentCPR, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;">Parents CPR Copy</label>
+                            @Html.TextBoxFor(u => u.ParentCPRFile, new { @class = "form-control", @type = "file" })
+                            @Html.ValidationMessageFor(model => model.ParentCPRFile, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" style="color:black; font-size:16px;">
+                                @*<input name="ChkAccept" required="" type="checkbox">*@
+                                @Html.CheckBoxFor(model => model.ChkAccept, new { @required = "required" })
+                                I hereby accept the  <a href="~/docs/RulesRegs/BEGTC_Regulations_V2.1_FINAL.pdf" target="_blank" style="color:Red;">rules / regulations</a> and confirm that the information submitted on this registration page is true & correct.  <font style="color:red; font-weight:bold;">*</font>
+                                <br />
+                                @Html.ValidationMessageFor(model => model.ChkAccept, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
+
+

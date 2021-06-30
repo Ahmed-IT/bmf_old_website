@@ -542,6 +542,7 @@
           <Property Name="EmergencyContact_Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Parent_CPR" Type="nvarchar" MaxLength="60" />
           <Property Name="Parent_FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SystemRemarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="M_UserRoundSignIn">
           <Key>
@@ -1887,6 +1888,7 @@
           <NavigationProperty Name="M_UserAccount" Relationship="BMFEntities.FK_M_UserAccount_M_UserProfile_ID" FromRole="M_UserProfile" ToRole="M_UserAccount" />
           <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserLicense" />
           <NavigationProperty Name="M_UserRoundSignIn" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserRoundSignIn" />
+          <Property Name="SystemRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_UserRoundSignIn">
           <Key>
@@ -2878,6 +2880,7 @@
           <EntitySetMapping Name="M_UserProfile">
             <EntityTypeMapping TypeName="BMFEntities.M_UserProfile">
               <MappingFragment StoreEntitySet="M_UserProfile">
+                <ScalarProperty Name="SystemRemarks" ColumnName="SystemRemarks" />
                 <ScalarProperty Name="Parent_FullName" ColumnName="Parent_FullName" />
                 <ScalarProperty Name="Parent_CPR" ColumnName="Parent_CPR" />
                 <ScalarProperty Name="EmergencyContact_Name" ColumnName="EmergencyContact_Name" />

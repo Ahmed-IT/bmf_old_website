@@ -44,6 +44,7 @@ namespace BMF_WebSite.Models.ViewModels
                 dash.ComingEvents = await (from c in db.M_EventRound
                                     where DbFunctions.TruncateTime(c.DateTime_Start)
                                     >= DbFunctions.TruncateTime(dateTime)
+                                    && c.IsActive == true && c.DeletedOnUtc == null
                                     select new ClsEventRound
                                     {
                                         ID = c.ID,
@@ -64,6 +65,7 @@ namespace BMF_WebSite.Models.ViewModels
                 dash.Countdown = await (from c in db.M_EventRound
                                            where DbFunctions.TruncateTime(c.DateTime_Start)
                                            > DbFunctions.TruncateTime(dateTime)
+                                           && c.IsActive == true && c.DeletedOnUtc == null
                                            select new ClsEventRound
                                            {
                                                ID = c.ID,

@@ -22,6 +22,8 @@ namespace BMF_WebSite.Controllers
                 var query = await (from l in db.M_UserLicense
                                    where l.M_UserProfile.ID == Id &&
                                    l.IsActive == true && l.DeletedOnUtc == null
+                                   && l.D_LicenseType.IsActive == true && 
+                                   l.D_LicenseType.DeletedOnUtc == null
                                    select new
                                    {
                                        l.Expire_Date,

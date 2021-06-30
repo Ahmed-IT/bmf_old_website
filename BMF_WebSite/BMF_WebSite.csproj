@@ -205,6 +205,32 @@
     <Content Include="Content\images\e3.jpg" />
     <Content Include="Content\images\e4.jpg" />
     <Content Include="Content\images\e5.jpg" />
+    <Content Include="Content\images\favicons\android-icon-144x144.png" />
+    <Content Include="Content\images\favicons\android-icon-192x192.png" />
+    <Content Include="Content\images\favicons\android-icon-36x36.png" />
+    <Content Include="Content\images\favicons\android-icon-48x48.png" />
+    <Content Include="Content\images\favicons\android-icon-72x72.png" />
+    <Content Include="Content\images\favicons\android-icon-96x96.png" />
+    <Content Include="Content\images\favicons\apple-icon-114x114.png" />
+    <Content Include="Content\images\favicons\apple-icon-120x120.png" />
+    <Content Include="Content\images\favicons\apple-icon-144x144.png" />
+    <Content Include="Content\images\favicons\apple-icon-152x152.png" />
+    <Content Include="Content\images\favicons\apple-icon-180x180.png" />
+    <Content Include="Content\images\favicons\apple-icon-57x57.png" />
+    <Content Include="Content\images\favicons\apple-icon-60x60.png" />
+    <Content Include="Content\images\favicons\apple-icon-72x72.png" />
+    <Content Include="Content\images\favicons\apple-icon-76x76.png" />
+    <Content Include="Content\images\favicons\apple-icon-precomposed.png" />
+    <Content Include="Content\images\favicons\apple-icon.png" />
+    <Content Include="Content\images\favicons\browserconfig.xml" />
+    <Content Include="Content\images\favicons\favicon-16x16.png" />
+    <Content Include="Content\images\favicons\favicon-32x32.png" />
+    <Content Include="Content\images\favicons\favicon-96x96.png" />
+    <Content Include="Content\images\favicons\favicon.ico" />
+    <Content Include="Content\images\favicons\ms-icon-144x144.png" />
+    <Content Include="Content\images\favicons\ms-icon-150x150.png" />
+    <Content Include="Content\images\favicons\ms-icon-310x310.png" />
+    <Content Include="Content\images\favicons\ms-icon-70x70.png" />
     <Content Include="Content\images\FIAV.png" />
     <Content Include="Content\images\g1.jpg" />
     <Content Include="Content\images\g2.jpg" />
@@ -213,6 +239,12 @@
     <Content Include="Content\images\g5.jpg" />
     <Content Include="Content\images\g6.jpg" />
     <Content Include="Content\images\gallery-main.jpg" />
+    <Content Include="Content\images\GT1.png" />
+    <Content Include="Content\images\GT2.png" />
+    <Content Include="Content\images\GT3.png" />
+    <Content Include="Content\images\GT4.png" />
+    <Content Include="Content\images\GTE.png" />
+    <Content Include="Content\images\IMG_2018.jpg" />
     <Content Include="Content\images\Karting.jpg" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logos\BDRC_Logo.png" />
@@ -234,6 +266,7 @@
     <Content Include="Content\images\next.png" />
     <Content Include="Content\images\organize-main.jpg" />
     <Content Include="Content\images\payment.png" />
+    <Content Include="Content\images\PhotoSample.png" />
     <Content Include="Content\images\PorscheSuperCup.png" />
     <Content Include="Content\images\price1.png" />
     <Content Include="Content\images\price2.png" />
@@ -424,6 +457,7 @@
     <Content Include="Content\plugins\moment\moment-with-locales.min.js" />
     <Content Include="Content\plugins\moment\moment.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Content\images\favicons\manifest.json" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
@@ -513,6 +547,7 @@
     <Compile Include="Models\ClsRulesRegs.cs" />
     <Compile Include="Models\ClsUser.cs" />
     <Compile Include="Models\EmailHelper.cs" />
+    <Compile Include="Models\eSportRegForm.cs" />
     <Compile Include="Models\Helper.cs" />
     <Compile Include="Models\StorageManager.cs" />
     <Compile Include="Models\ViewModels\EventCalendarVM.cs" />
@@ -660,6 +695,8 @@
     <Content Include="Views\Home\Calendar.cshtml" />
     <Content Include="Views\Home\GalleryImages.cshtml" />
     <Content Include="Views\Home\LicenseSubmitted.cshtml" />
+    <Content Include="Views\Home\eSport.cshtml" />
+    <Content Include="Views\Home\RegThankYou.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

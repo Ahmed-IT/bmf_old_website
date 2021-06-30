@@ -33,6 +33,8 @@ namespace BMF_NewApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            Rg.Plugins.Popup.Popup.Init();  //  RG Popup initialization
+
             SfTextInputLayoutRenderer.Init();  // Syncfusion SfTextInputLayout
             SfListViewRenderer.Init();  //  Syncfusion List View
             CachedImageRenderer.Init();  //  FF Image
@@ -52,6 +54,7 @@ namespace BMF_NewApp.iOS
         }
 
     }
+
 
     public class iOSInitializer : IPlatformInitializer
     {

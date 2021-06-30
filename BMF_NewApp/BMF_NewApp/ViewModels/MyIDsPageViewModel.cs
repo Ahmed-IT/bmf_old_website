@@ -22,6 +22,8 @@ namespace BMF_NewApp.ViewModels
             set { SetProperty(ref _myLicenseList, value); }
         }
 
+        public DelegateCommand<ClsLicense> ViewLicenseCommand { get; set; }
+
         private ClsProfile _profile;
         public ClsProfile Profile
         {
@@ -62,8 +64,35 @@ namespace BMF_NewApp.ViewModels
 
             Profile = new ClsProfile();
 
+            ViewLicenseCommand = new DelegateCommand<ClsLicense>(ViewLicense);
+
             _localService = localService;
             _restService = restService;
+        }
+
+        private async void ViewLicense(ClsLicense license)
+        {
+            try
+            {
+                if (license != null)
+                {
+                    var parameter = new NavigationParameters
+                        {
+                            { "license", license }
+                        };
+
+                    await NavigationService.NavigateAsync("ViewLicenseModalPage", parameter);
+                }
+            }
+            catch (Exception ex)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "IncidentReportsViewModel", "View" }
+                };
+
+                Crashes.TrackError(ex, properties);
+            }
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)

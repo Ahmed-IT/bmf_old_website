@@ -163,5 +163,32 @@ namespace BMF_WebSite.Models
         [Required(ErrorMessage = "Please select license request type")]
         [Display(Name = "License Request Type")]
         public string LicenseRequestType { get; set; }
+
+        [Required(ErrorMessage = "Please accept the rules and regulations")]
+        public bool ChkAccept { get; set; }
+
+        [Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "PSN")]
+        public string PSN { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "Instagram")]
+        public string Instagram { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "Facebook")]
+        public string Facebook { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "RacingMode")]
+        public string RacingMode { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "MotorsportGame")]
+        public string MotorsportGame { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your PSN Code")]
+        [Display(Name = "OtherMotorsport")]
+        public string OtherMotorsport { get; set; }
     }
 }

@@ -11,13 +11,13 @@
             <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" DrawerHeaderHeight="200" DrawerWidth ="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" DrawerFooterHeight="30">
                 <navigationdrawer:SfNavigationDrawer.ContentView>
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand">
+                        <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="80"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackLayout Grid.Row="0" BackgroundColor="#f5f5f5" Orientation="Horizontal">
+                            <StackLayout Grid.Row="0" BackgroundColor="#D90000" Orientation="Horizontal">
                                 <Grid HorizontalOptions="FillAndExpand" Padding="0,10,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="90"/>
@@ -25,70 +25,64 @@
                                         <ColumnDefinition Width="90"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button Margin="0,30,0,0" Grid.Column="0" x:Name="hamburgerButton" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" FontSize="20" BackgroundColor="#f5f5f5" Image="burgerIcon" Clicked="hamburgerButton_Clicked"/>
+                                    <Button Margin="0,30,0,0" Grid.Column="0" x:Name="hamburgerButton" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" FontSize="20" BackgroundColor="#D90000" Image="burgerIcon" Clicked="hamburgerButton_Clicked"/>
 
                                 </Grid>
                             </StackLayout>
 
-                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-                                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Label TextColor="Black" Margin="20,20,20,0" Text="News" FontFamily="MontserratBold" FontSize="Title" HorizontalOptions="FillAndExpand"></Label>
-                                    </StackLayout>
-
-                                    <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
-
-
-                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
-                                        <sflistview:SfListView  ItemsSource="{Binding News}"
-                                                        ItemSpacing="10"
+                            <Grid Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                                <sflistview:SfListView  ItemsSource="{Binding News}"
+                                                        ItemSpacing="0"
                                                         SelectionMode="Single"
                                                         SelectionBackgroundColor="Transparent"
+                                                        HeaderSize="80"
                                                         ItemSize="390"
                                                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                                                        Padding="0">
-                                            <sflistview:SfListView.Behaviors>
-                                                <prism:EventToCommandBehavior EventName="ItemTapped"
+                                                        Padding="0"
+                                                        Margin="0">
+                                    <sflistview:SfListView.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#D90000">
+                                                <Label Text="News" FontSize="Title" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </sflistview:SfListView.HeaderTemplate>
+                                    <sflistview:SfListView.Behaviors>
+                                        <prism:EventToCommandBehavior EventName="ItemTapped"
                                                                     Command="{Binding NewsTappedCommand}"
                                                                     EventArgsParameterPath="ItemData">
-                                                </prism:EventToCommandBehavior>
-                                            </sflistview:SfListView.Behaviors>
-                                            <sflistview:SfListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <ViewCell>
-                                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
-                                                            <border:SfBorder CornerRadius="10" BorderColor="White" BorderWidth="0"
+                                        </prism:EventToCommandBehavior>
+                                    </sflistview:SfListView.Behaviors>
+                                    <sflistview:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
                                     BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
-                                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                                    <ffimageloading:CachedImage LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" HeightRequest="150" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}"></ffimageloading:CachedImage>
-                                                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition/>
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <StackLayout Grid.Column="0" Margin="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                                            <Label Margin="20,-5,0,0" TextColor="Black" Text="{Binding Title}" FontFamily="MontserratBold" FontSize="Large"></Label>
-                                                                            <Label Margin="20,-5,20,0" TextColor="Black" Text="{Binding ContentCard}" FontFamily="MontserratLight" FontSize="Small"></Label>
+                                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <ffimageloading:CachedImage LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" HeightRequest="150" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}"></ffimageloading:CachedImage>
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackLayout Grid.Column="0" Margin="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Label Margin="20,-5,0,0" TextColor="Black" Text="{Binding Title}" FontFamily="MontserratBold" FontSize="Large"></Label>
+                                                                <Label Margin="20,-5,20,0" TextColor="Black" Text="{Binding ContentCard}" FontFamily="MontserratLight" FontSize="Small"></Label>
 
-                                                                            <Label VerticalOptions="End" HorizontalOptions="End" FontFamily="MontserratMedium" FontSize="Micro" Margin="0,20,20,0" TextColor="Gray" Text="{Binding NewsTimestampUtc, StringFormat='Published Date: {0:dd MMM yyyy}'}"></Label>
-                                                                        </StackLayout>
-                                                                    </Grid>
-                                                                </StackLayout>
-                                                            </border:SfBorder>
-
-
-                                                        </StackLayout>
-                                                    </ViewCell>
-                                                </DataTemplate>
-                                            </sflistview:SfListView.ItemTemplate>
-                                        </sflistview:SfListView>
-
-                                    </StackLayout>
-                                </StackLayout>
+                                                                <Label VerticalOptions="End" HorizontalOptions="End" FontFamily="MontserratMedium" FontSize="Micro" Margin="0,20,20,0" TextColor="Gray" Text="{Binding NewsTimestampUtc, StringFormat='Published Date: {0:dd MMM yyyy}'}"></Label>
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </border:SfBorder>
 
 
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </sflistview:SfListView.ItemTemplate>
+                                </sflistview:SfListView>
 
-                            </StackLayout>
+                            </Grid>
+
+
                         </Grid>
 
 
@@ -111,6 +105,7 @@
                         </Frame>
 
                         <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
+
 
                     </StackLayout>
                 </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>

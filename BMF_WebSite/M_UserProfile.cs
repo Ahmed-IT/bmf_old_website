@@ -43,6 +43,7 @@ namespace BMF_WebSite
         public string EmergencyContact_Name { get; set; }
         public string Parent_CPR { get; set; }
         public string Parent_FullName { get; set; }
+        public string SystemRemarks { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual M_UserAccount M_UserAccount { get; set; }

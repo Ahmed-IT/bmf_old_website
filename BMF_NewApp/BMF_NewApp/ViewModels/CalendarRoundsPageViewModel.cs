@@ -103,6 +103,11 @@ namespace BMF_NewApp.ViewModels
 
                     Calendar = _Category;
 
+                    if(Calendar != null)
+                    {
+                        Title = Calendar.Title + " Calendar";
+                    }
+
                     if (Calendar.Rounds.Count > 0)
                     {
                         Rounds = new ObservableRangeCollection<ClsRound>(Calendar.Rounds.OrderBy(a => a.DateTime_Start));

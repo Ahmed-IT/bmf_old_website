@@ -83,24 +83,26 @@
     <PackageReference Include="Microsoft.AppCenter" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.54" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="19.1.0.69" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.1" />
-    <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
@@ -150,6 +152,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewLicenseModalPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

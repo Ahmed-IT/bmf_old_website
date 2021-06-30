@@ -25,6 +25,18 @@
                         </StackLayout>
 
                         <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'BulletinsPage'}" Text="Bulletins" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'RulesRegsPage'}" Text="Rules and Regs" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                            <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'ResultsPage'}" Text="Results" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
                             <Button HorizontalOptions="Start" Command="{prism:NavigateTo 'NewsPage'}" Text="News" Margin="10,0,0,0" TextColor="Black" FontSize="Large" FontFamily="MontserratLight" BackgroundColor="Transparent"></Button>
                         </StackLayout>
 

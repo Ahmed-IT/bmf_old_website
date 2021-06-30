@@ -8,6 +8,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Ioc;
+using Prism.Plugin.Popups;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Essentials.Implementation;
@@ -92,6 +93,9 @@ namespace BMF_NewApp
             ILocalService localService = new LocalService();
             containerRegistry.RegisterInstance<ILocalService>(localService);
 
+            // This updates INavigationService and registers PopupNavigation.Instance
+            containerRegistry.RegisterPopupNavigationService();
+
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.RegisterForNavigation<Xamarin.Forms.NavigationPage>();
@@ -108,6 +112,7 @@ namespace BMF_NewApp
             containerRegistry.RegisterForNavigation<NewsPage, NewsPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsDetailsPage, NewsDetailsPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewLicenseModalPage, ViewLicenseModalPageViewModel>();
         }
 
         protected override void OnStart()
