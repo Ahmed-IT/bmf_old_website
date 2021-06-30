@@ -145,6 +145,46 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-images",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_GalleryCategory)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRCategory),
+                                Title = "Bulletins & Rules/Regs Categories",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_BRCategory._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-bars",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRCategory)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategory),
+                                Title = "Bulletins & Rules/Regs Sub-Categories",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_BRSubCategory._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-bars",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategory)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategoryBulletin),
+                                Title = "Bulletins & Rules/Regs Sub-Categories Bulletins",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_BRSubCategoryBulletin._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-bars",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategoryBulletin)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategoryRulesRegs),
+                                Title = "Bulletins & Rules/Regs Sub-Categories Rules&Regs.",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.WebsiteCMS } },
+                                ControllerName = M_BRSubCategoryRulesRegs._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-bars",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Website_CMS.WebsiteCMS_BRSubCategoryRulesRegs)),
                             }
                         }
                     },
@@ -176,26 +216,6 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-object-group",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategory)),
-                            },
-                            new SiteMapNode()
-                            {
-                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryRules),
-                                Title = "Event Category Rules",
-                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
-                                ControllerName = M_EventCategoryRules._controllerName,
-                                ActionName = "Index",
-                                IconClass = "fas fa-ruler",
-                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryRules)),
-                            },
-                            new SiteMapNode()
-                            {
-                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins),
-                                Title = "Event Bulletins",
-                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
-                                ControllerName = M_EventCategoryBulletins._controllerName,
-                                ActionName = "Index",
-                                IconClass = "fas fa-thumbtack",
-                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins)),
                             },
                             new SiteMapNode()
                             {

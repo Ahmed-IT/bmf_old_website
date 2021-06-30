@@ -55,7 +55,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region Website CMS
 
-            public static SystemOperation WebsiteCMS => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS), Children = new List<SystemOperation>() { WebsiteCMS_News, WebsiteCMS_Club, WebsiteCMS_QuickLinks, WebsiteCMS_GalleryCategory } };
+            public static SystemOperation WebsiteCMS => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS), Children = new List<SystemOperation>() { WebsiteCMS_News, WebsiteCMS_Club, WebsiteCMS_QuickLinks, WebsiteCMS_GalleryCategory, WebsiteCMS_BRCategory, WebsiteCMS_BRSubCategory, WebsiteCMS_BRSubCategoryBulletin, WebsiteCMS_BRSubCategoryRulesRegs } };
 
             // WebsiteCMS - News
             public static SystemOperation WebsiteCMS_News => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_News), Children = new List<SystemOperation>() { WebsiteCMS_News_ViewAll, WebsiteCMS_News_Add, WebsiteCMS_News_Edit, WebsiteCMS_News_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
@@ -78,12 +78,40 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation WebsiteCMS_QuickLinks_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_Edit), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
             public static SystemOperation WebsiteCMS_QuickLinks_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_QuickLinks_Delete), Parent = GetParent(nameof(WebsiteCMS_QuickLinks)) };
 
-            // WebsiteCMS - QuickLinks
+            // WebsiteCMS - Gallery
             public static SystemOperation WebsiteCMS_GalleryCategory => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_GalleryCategory), Children = new List<SystemOperation>() { WebsiteCMS_GalleryCategory_ViewAll, WebsiteCMS_GalleryCategory_Add, WebsiteCMS_GalleryCategory_Edit, WebsiteCMS_GalleryCategory_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
             public static SystemOperation WebsiteCMS_GalleryCategory_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_GalleryCategory_ViewAll), Parent = GetParent(nameof(WebsiteCMS_GalleryCategory)) };
             public static SystemOperation WebsiteCMS_GalleryCategory_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_GalleryCategory_Add), Parent = GetParent(nameof(WebsiteCMS_GalleryCategory)) };
             public static SystemOperation WebsiteCMS_GalleryCategory_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_GalleryCategory_Edit), Parent = GetParent(nameof(WebsiteCMS_GalleryCategory)) };
             public static SystemOperation WebsiteCMS_GalleryCategory_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_GalleryCategory_Delete), Parent = GetParent(nameof(WebsiteCMS_GalleryCategory)) };
+
+            // WebsiteCMS - BR Category
+            public static SystemOperation WebsiteCMS_BRCategory => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRCategory), Children = new List<SystemOperation>() { WebsiteCMS_BRCategory_ViewAll, WebsiteCMS_BRCategory_Add, WebsiteCMS_BRCategory_Edit, WebsiteCMS_BRCategory_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_BRCategory_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRCategory_ViewAll), Parent = GetParent(nameof(WebsiteCMS_BRCategory)) };
+            public static SystemOperation WebsiteCMS_BRCategory_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRCategory_Add), Parent = GetParent(nameof(WebsiteCMS_BRCategory)) };
+            public static SystemOperation WebsiteCMS_BRCategory_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRCategory_Edit), Parent = GetParent(nameof(WebsiteCMS_BRCategory)) };
+            public static SystemOperation WebsiteCMS_BRCategory_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRCategory_Delete), Parent = GetParent(nameof(WebsiteCMS_BRCategory)) };
+
+            // WebsiteCMS - BR SubCategory
+            public static SystemOperation WebsiteCMS_BRSubCategory => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategory), Children = new List<SystemOperation>() { WebsiteCMS_BRSubCategory_ViewAll, WebsiteCMS_BRSubCategory_Add, WebsiteCMS_BRSubCategory_Edit, WebsiteCMS_BRSubCategory_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_BRSubCategory_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategory_ViewAll), Parent = GetParent(nameof(WebsiteCMS_BRSubCategory)) };
+            public static SystemOperation WebsiteCMS_BRSubCategory_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategory_Add), Parent = GetParent(nameof(WebsiteCMS_BRSubCategory)) };
+            public static SystemOperation WebsiteCMS_BRSubCategory_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategory_Edit), Parent = GetParent(nameof(WebsiteCMS_BRSubCategory)) };
+            public static SystemOperation WebsiteCMS_BRSubCategory_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategory_Delete), Parent = GetParent(nameof(WebsiteCMS_BRSubCategory)) };
+
+            // WebsiteCMS - BR SubCategory Bulletin
+            public static SystemOperation WebsiteCMS_BRSubCategoryBulletin => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryBulletin), Children = new List<SystemOperation>() { WebsiteCMS_BRSubCategoryBulletin_ViewAll, WebsiteCMS_BRSubCategoryBulletin_Add, WebsiteCMS_BRSubCategoryBulletin_Edit, WebsiteCMS_BRSubCategoryBulletin_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryBulletin_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryBulletin_ViewAll), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryBulletin)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryBulletin_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryBulletin_Add), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryBulletin)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryBulletin_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryBulletin_Edit), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryBulletin)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryBulletin_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryBulletin_Delete), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryBulletin)) };
+
+            // WebsiteCMS - BR SubCategory Rules & Regs
+            public static SystemOperation WebsiteCMS_BRSubCategoryRulesRegs => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryRulesRegs), Children = new List<SystemOperation>() { WebsiteCMS_BRSubCategoryRulesRegs_ViewAll, WebsiteCMS_BRSubCategoryRulesRegs_Add, WebsiteCMS_BRSubCategoryRulesRegs_Edit, WebsiteCMS_BRSubCategoryRulesRegs_Delete }, Parent = GetParent(nameof(WebsiteCMS)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryRulesRegs_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryRulesRegs_ViewAll), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryRulesRegs)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryRulesRegs_Add => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryRulesRegs_Add), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryRulesRegs)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryRulesRegs_Edit => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryRulesRegs_Edit), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryRulesRegs)) };
+            public static SystemOperation WebsiteCMS_BRSubCategoryRulesRegs_Delete => new SystemOperation { IsActive = true, SystemName = nameof(WebsiteCMS_BRSubCategoryRulesRegs_Delete), Parent = GetParent(nameof(WebsiteCMS_BRSubCategoryRulesRegs)) };
 
             #endregion
         }
@@ -92,7 +120,7 @@ namespace BMF.WebCore.Admin.Services.Security
         {
             #region EMS
 
-            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason , EMS_EventCategory, EMS_EventCategoryRules, EMS_EventCategoryBulletins } };
+            public static SystemOperation EMS => new SystemOperation { IsActive = true, SystemName = nameof(EMS), Children = new List<SystemOperation>() { EMS_EventSeason, EMS_EventCategory, EMS_EventCategoryRules, EMS_EventCategoryBulletins } };
 
             // EMS - Event Season
             public static SystemOperation EMS_EventSeason => new SystemOperation { IsActive = true, SystemName = nameof(EMS_EventSeason), Children = new List<SystemOperation>() { EMS_EventSeason_ViewAll, EMS_EventSeason_Add, EMS_EventSeason_Edit, EMS_EventSeason_Delete }, Parent = GetParent(nameof(EMS)) };

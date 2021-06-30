@@ -29,7 +29,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
     {
         public static string _entityName => "Event Category Bulletins";
         public static string _areaName => AreaNames.EMS;
-        public static string _controllerName => M_EventCategoryBulletins._controllerName;
+        public static string _controllerName => M_BRSubCategoryBulletins._controllerName;
         public static string JQDT_Index => $"dt{_controllerName}";
         public static class _Refresh
         {
@@ -46,12 +46,12 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
         // TODO: // Eventually we want to use the Service Layer directly and not even the Repository // The service layer should utilize the repository
         private readonly IPermissionService _permissionService;
-        private readonly IRepository<M_EventCategoryBulletins> _repository;
+        private readonly IRepository<M_BRSubCategoryBulletins> _repository;
         private readonly IAzureStorageManager _azureStorageManager;
         private readonly IEventCategoryService _eventCategoryService;
 
         public EventCategoryBulletinsController(IPermissionService permissionService,
-            IRepository<M_EventCategoryBulletins> repository,
+            IRepository<M_BRSubCategoryBulletins> repository,
             IAzureStorageManager azureStorageManager,
             IEventCategoryService eventCategoryService)
         {
@@ -174,7 +174,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
                 var jQDataTable = new JQDataTable(JQDT_Index, $"{_entityName} - List", Url.Action("_IndexT", _controllerName, new { area = _areaName }))
                 {
-                    columns = M_EventCategoryBulletins.JQDT_Index()
+                    columns = M_BRSubCategoryBulletins.JQDT_Index()
                 };
                 return PartialView(AMK.Plugin.JQueryDataTable.Settings.ViewPath_PartialView_DTPlaceholder, jQDataTable);
             }
@@ -204,7 +204,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 #endregion
 
                 #region // Filter Data
-                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_EventCategoryBulletins.JQDT_Index(), RawData.AsQueryable());
+                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_BRSubCategoryBulletins.JQDT_Index(), RawData.AsQueryable());
                 #endregion
 
                 #region // Order Data
@@ -233,7 +233,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins_Add.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategoryBulletins AddRecord = new M_EventCategoryBulletins()
+                M_BRSubCategoryBulletins AddRecord = new M_BRSubCategoryBulletins()
                 {
                     IsActive = true,
                 };
@@ -255,7 +255,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins_Edit.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategoryBulletins ActualRecord = await _repository.QTable.FindAsync(ID);
+                M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.FindAsync(ID);
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
                     this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -281,7 +281,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins_Edit.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
+                M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
                     this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -306,7 +306,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategoryBulletins_Delete.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
+                M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
                     this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -330,7 +330,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
         // POST: EMS/EventCategoryBulletin/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add(M_EventCategoryBulletins AddRecord)
+        public async Task<IActionResult> Add(M_BRSubCategoryBulletins AddRecord)
         {
             try
             {
@@ -338,7 +338,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     return UnauthorizedModalView();
 
                 ModelState.Clear();
-                AddRecord.PDF_Url = M_EventCategoryBulletins._defaultPDF;
+                AddRecord.PDF_Url = M_BRSubCategoryBulletins._defaultPDF;
                 #region Validation
                 AddRecord.Validate(ModelState, databaseContext: _repository.QTable);
                 if (!ModelState.IsValid)
@@ -378,7 +378,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
         // POST: EMS/EventCategoryBulletin/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(M_EventCategoryBulletins EditRecord)
+        public async Task<IActionResult> Edit(M_BRSubCategoryBulletins EditRecord)
         {
             try
             {
@@ -458,7 +458,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
         // POST: EMS/EventCategoryBulletin/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(M_EventCategoryBulletins DeleteRecord)
+        public async Task<IActionResult> Delete(M_BRSubCategoryBulletins DeleteRecord)
         {
             try
             {
@@ -467,7 +467,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
                 try
                 {
-                    M_EventCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == DeleteRecord.ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
+                    M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == DeleteRecord.ID).Include(i => i.EventCategory).SingleOrDefaultAsync();
                     if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                     {
                         this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -530,7 +530,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     }
                     else
                     {
-                        M_EventCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                        M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
                         if (ActualRecord == null)
                         {
                             return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
@@ -602,7 +602,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 }
                 else
                 {
-                    M_EventCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                    M_BRSubCategoryBulletins ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
                     if (ActualRecord == null)
                     {
                         return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
@@ -622,7 +622,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                             DateTime CurrentTimestamp = DateTime.Now;
                             var actualFileName = ActualRecord.PDF_Url.Split('/').LastOrDefault();
 
-                            ActualRecord.PDF_Url = M_EventCategoryBulletins._defaultPDF;
+                            ActualRecord.PDF_Url = M_BRSubCategoryBulletins._defaultPDF;
                             ActualRecord.CreatedOnUtc = CurrentTimestamp;
                             ActualRecord.CreatedBy = User.Identity.Name.ToString();
                             ActualRecord.UpdatedOnUtc = CurrentTimestamp;
@@ -654,7 +654,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
         #region Functions
 
-        public void Set_SelectList(M_EventCategoryBulletins DefineRecord)
+        public void Set_SelectList(M_BRSubCategoryBulletins DefineRecord)
         {
             var ID_EventCategory = _eventCategoryService.Get_SelectList();
             ViewBag.ID_EventCategory = new SelectList(ID_EventCategory, "Value", "Text", DefineRecord.ID_EventCategory);

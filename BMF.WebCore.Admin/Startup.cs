@@ -1,6 +1,7 @@
 using BMF.Shared.Core;
 using BMF.Shared.Services.Authentication;
 using BMF.Shared.Services.Azure;
+using BMF.Shared.Services.BMF.WebsiteCMS;
 using BMF.Shared.Services.Data;
 using BMF.Shared.Services.Events;
 using BMF.Shared.Services.Location;
@@ -84,6 +85,9 @@ namespace BMF.WebCore.Admin
             services.AddScoped<ILicenseTypeService, LicenseTypeService>();
             services.AddScoped<IMarshalRoleService, MarshalRoleService>();
             services.AddScoped<IUserProfileService, UserProfileService>();
+            // ------ Website CMS
+            services.AddScoped<IBRCategoryService, BRCategoryService>();
+            services.AddScoped<IBRSubCategoryService, BRSubCategoryService>();
 
             // System Builder Services
             services.AddScoped<ISiteMapService, AdminSiteMapService>();

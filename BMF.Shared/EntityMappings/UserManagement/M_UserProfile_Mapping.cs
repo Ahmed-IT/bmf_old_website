@@ -30,6 +30,7 @@ namespace BMF.Web.Admin.DBMappings.UserManagement
             entityBuilder.Property(t => t.Parent_FullName).HasMaxLength(255).IsRequired(false);
             entityBuilder.Property(t => t.Parent_CPR).HasMaxLength(60).IsRequired(false);
             entityBuilder.Property(t => t.Photo_URL).HasMaxLength(1024).IsRequired(false);
+            entityBuilder.Property(t => t.SystemRemarks).IsRequired(false);
             // Ignored Attributes
             // Foreign Keys
             entityBuilder.Property(t => t.ID_Nationality).IsRequired(false);

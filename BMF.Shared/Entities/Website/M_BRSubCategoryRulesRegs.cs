@@ -2,17 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BMF.Shared.Entities.Events
+namespace BMF.Shared.Entities.Website
 {
-    public partial class M_EventCategoryRules : BaseEntity
+    public partial class M_BRSubCategoryRulesRegs : BaseEntity
     {
         #region Foreign Keys
 
-        [ForeignKey(nameof(EventCategory))]
-        [Display(Name = "Event Category", Prompt = "Event Category")]
+        [ForeignKey(nameof(SubCategory))]
+        [Display(Name = "Sub-Category", Prompt = "Sub-Category")]
         [Required]
-        [JsonProperty(PropertyName = nameof(ID_EventCategory))]
-        public long ID_EventCategory { get; set; }
+        [JsonProperty(PropertyName = nameof(ID_SubCategory))]
+        public long ID_SubCategory { get; set; }
 
         #endregion
 
@@ -32,8 +32,9 @@ namespace BMF.Shared.Entities.Events
 
         #region Relationships
 
-        [InverseProperty(nameof(M_EventCategory.EventCategoryRules))]
-        public M_EventCategory EventCategory { get; set; }
+        [Display(Name = "Sub-Category", Prompt = "Sub-Category")]
+        [InverseProperty(nameof(M_BRSubCategory.RulesAndRegs))]
+        public M_BRSubCategory SubCategory { get; set; }
 
         #endregion
     }

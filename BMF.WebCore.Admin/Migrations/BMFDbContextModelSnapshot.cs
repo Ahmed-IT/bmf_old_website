@@ -71,58 +71,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("M_EventCategory");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryBulletins", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_EventCategory")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PDF_Url")
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_EventCategory");
-
-                    b.ToTable("M_EventCategoryBulletins");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryHeat", b =>
                 {
                     b.Property<long>("ID")
@@ -169,58 +117,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.HasIndex("ID_EventCategory");
 
                     b.ToTable("M_EventCategoryHeat");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryRules", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.Property<long>("ID_EventCategory")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PDF_Url")
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOnUtc")
-                        .HasColumnType("DATETIME2(7)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ID_EventCategory");
-
-                    b.ToTable("M_EventCategoryRules");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventRound", b =>
@@ -1217,6 +1113,9 @@ namespace BMF.WebCore.Admin.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
+                    b.Property<string>("SystemRemarks")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -1284,6 +1183,201 @@ namespace BMF.WebCore.Admin.Migrations
                     b.HasIndex("ID_UserProfile");
 
                     b.ToTable("M_UserRoundSignIn");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRCategory", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("M_BRCategory");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategory", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<long>("ID_Category")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ID_Category");
+
+                    b.ToTable("M_BRSubCategory");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategoryBulletin", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<long>("ID_SubCategory")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PDF_Url")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ID_SubCategory");
+
+                    b.ToTable("M_BRSubCategoryBulletin");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategoryRulesRegs", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.Property<long>("ID_SubCategory")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PDF_Url")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOnUtc")
+                        .HasColumnType("DATETIME2(7)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ID_SubCategory");
+
+                    b.ToTable("M_BRSubCategoryRulesRegs");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_Club", b =>
@@ -1554,32 +1648,10 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("EventSeason");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryBulletins", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
-                        .WithMany("EventCategoryBulletins")
-                        .HasForeignKey("ID_EventCategory")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventCategory");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryHeat", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
                         .WithMany("EventCategoryHeats")
-                        .HasForeignKey("ID_EventCategory")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventCategory");
-                });
-
-            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryRules", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
-                        .WithMany("EventCategoryRules")
                         .HasForeignKey("ID_EventCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1796,6 +1868,39 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("UserProfile");
                 });
 
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategory", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.Website.M_BRCategory", "Category")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("ID_Category")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategoryBulletin", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.Website.M_BRSubCategory", "SubCategory")
+                        .WithMany("Bulletins")
+                        .HasForeignKey("ID_SubCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategoryRulesRegs", b =>
+                {
+                    b.HasOne("BMF.Shared.Entities.Website.M_BRSubCategory", "SubCategory")
+                        .WithMany("RulesAndRegs")
+                        .HasForeignKey("ID_SubCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
+                });
+
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryImages", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.Website.M_GalleryCategory", "GalleryCategory")
@@ -1809,11 +1914,7 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategory", b =>
                 {
-                    b.Navigation("EventCategoryBulletins");
-
                     b.Navigation("EventCategoryHeats");
-
-                    b.Navigation("EventCategoryRules");
 
                     b.Navigation("EventRounds");
                 });
@@ -1896,6 +1997,18 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("UserLicenses");
 
                     b.Navigation("UserRoundSignIns");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRCategory", b =>
+                {
+                    b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("BMF.Shared.Entities.Website.M_BRSubCategory", b =>
+                {
+                    b.Navigation("Bulletins");
+
+                    b.Navigation("RulesAndRegs");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Website.M_GalleryCategory", b =>

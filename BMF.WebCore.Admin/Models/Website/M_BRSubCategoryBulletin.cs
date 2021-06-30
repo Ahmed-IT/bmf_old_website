@@ -8,15 +8,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace BMF.Shared.Entities.Events
+namespace BMF.Shared.Entities.Website
 {
-    public partial class M_EventCategoryBulletins : IJQDataTableExtendDBViewModel<M_EventCategoryBulletins, BMFDbContext>, IDBViewModel<M_EventCategoryBulletins, BMFDbContext>
+    public partial class M_BRSubCategoryBulletin : IJQDataTableExtendDBViewModel<M_BRSubCategoryBulletin, BMFDbContext>, IDBViewModel<M_BRSubCategoryBulletin, BMFDbContext>
     {
         [NotMapped]
-        public static string _controllerName => $"{nameof(M_EventCategoryBulletins)}".Replace("M_", "");
+        public static string _controllerName => $"{nameof(M_BRSubCategoryBulletin)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.EventCategoryBulletinPDF}/default.jpg";
+        public static string _defaultPDF => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.BRSubCategoryBulletinPDF}/default.jpg";
 
         #region Fields
 
@@ -24,7 +24,7 @@ namespace BMF.Shared.Entities.Events
 
         #region Ctor
 
-        public M_EventCategoryBulletins()
+        public M_BRSubCategoryBulletin()
         {
         }
 
@@ -32,7 +32,7 @@ namespace BMF.Shared.Entities.Events
 
         #region IJQDataTableExtendDBViewModel
 
-        public string ClassAcronym => nameof(M_EventCategoryBulletins).Replace("M_", "").GetUppercaseLettersAsString();
+        public string ClassAcronym => nameof(M_BRSubCategoryBulletin).Replace("M_", "").GetUppercaseLettersAsString();
 
         public string Secondary_ClassAcronym => ClassAcronym;
 
@@ -43,7 +43,7 @@ namespace BMF.Shared.Entities.Events
                 var BtnEdit = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Edit"}{ClassAcronym}' data-id='{ID}'><i class='{"fas fa-pencil-alt"}'></i></button>";
                 var BtnEditPDF = "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' " +
-                    $"data-target='#M_E{"ECBPDF"}' data-id='{ID}'><i class='{"fas fa-file-pdf"}'></i></button>";
+                    $"data-target='#M_E{"BRSCBPDF"}' data-id='{ID}'><i class='{"fas fa-file-pdf"}'></i></button>";
                 var BtnDelete = "<button type='button' class='btn btn-danger btn-sm' data-toggle='modal' " +
                     $"data-target='#M_{"Delete"}{ClassAcronym}' data-id='{ID}'><i class='fas fa-trash-alt'></i></button>";
                 return $"<div class='btn-group'>{BtnEdit}{BtnEditPDF}{BtnDelete}</div>";
@@ -55,41 +55,41 @@ namespace BMF.Shared.Entities.Events
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
-                new Column($"{nameof(EventCategory)}.{nameof(M_EventCategory.Title)}", "Event Category"),
+                new Column($"{nameof(SubCategory)}.{nameof(M_BRSubCategory.Title)}", "Sub-Category"),
                 new Column(nameof(Title), "Title"),
             };
-            return IJQDataTableExtendDBViewModel<M_EventCategoryBulletins, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
+            return IJQDataTableExtendDBViewModel<M_BRSubCategoryBulletin, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
         }
 
         #endregion
 
         #region IDBViewModel
 
-        public void GetDatabaseValues(M_EventCategoryBulletins Database)
+        public void GetDatabaseValues(M_BRSubCategoryBulletin Database)
         {
-            ID_EventCategory = Database.ID_EventCategory;
+            ID_SubCategory = Database.ID_SubCategory;
             Title = Database.Title;
             PDF_Url = Database.PDF_Url;
         }
 
-        public void SetDatabaseValues(M_EventCategoryBulletins Database)
+        public void SetDatabaseValues(M_BRSubCategoryBulletin Database)
         {
-            Database.ID_EventCategory = ID_EventCategory;
+            Database.ID_SubCategory = ID_SubCategory;
             Database.Title = Title;
             Database.PDF_Url = PDF_Url;
         }
 
-        public void AsDatabaseUpdate(M_EventCategoryBulletins Database)
+        public void AsDatabaseUpdate(M_BRSubCategoryBulletin Database)
         {
             SetDatabaseValues(Database);
             UpdateDefaults(Database);
         }
 
-        public void Validate(ModelStateDictionary ModelState, string propertyQualifier = "", DbSet<M_EventCategoryBulletins> databaseContext = null)
+        public void Validate(ModelStateDictionary ModelState, string propertyQualifier = "", DbSet<M_BRSubCategoryBulletin> databaseContext = null)
         {
-            if (ID_EventCategory == 0)
+            if (ID_SubCategory == 0)
             {
-                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event category must be selected.");
+                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_SubCategory)}", "Category must be selected.");
             }
             if (string.IsNullOrWhiteSpace(Title))
             {
@@ -103,24 +103,24 @@ namespace BMF.Shared.Entities.Events
             {
                 if (ID == 0)
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventCategory == ID_EventCategory && c.Title.ToLower().Trim() == Title.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_SubCategory == ID_SubCategory && c.Title.ToLower().Trim() == Title.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
                     {
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event category bulletin already exists.");
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Event category bulletin already exists.");
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_SubCategory)}", "Category bulletin already exists.");
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Category bulletin already exists.");
                     }
                 }
                 else
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventCategory == ID_EventCategory && c.Title.ToLower().Trim() == Title.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_SubCategory == ID_SubCategory && c.Title.ToLower().Trim() == Title.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
                     {
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event category bulletin already exists.");
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Event category bulletin already exists.");
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_SubCategory)}", "Category bulletin already exists.");
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Category bulletin already exists.");
                     }
                 }
             }
         }
 
-        public void GetDefaults(M_EventCategoryBulletins Database)
+        public void GetDefaults(M_BRSubCategoryBulletin Database)
         {
             ID = Database.ID;
             IsActive = Database.IsActive;
@@ -133,7 +133,7 @@ namespace BMF.Shared.Entities.Events
             RowVersion = Database.RowVersion;
         }
 
-        public void UpdateDefaults(M_EventCategoryBulletins Database)
+        public void UpdateDefaults(M_BRSubCategoryBulletin Database)
         {
             Database.IsActive = IsActive;
             Database.DeletedBy = DeletedBy;

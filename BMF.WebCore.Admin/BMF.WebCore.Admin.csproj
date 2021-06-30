@@ -7,6 +7,22 @@
   <Import Project="..\BMF.Shared\BMF.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
+    <Compile Remove="Areas\EMS\Views\EventCategoryBulletins\**" />
+    <Compile Remove="Areas\EMS\Views\EventCategoryRules\**" />
+    <Content Remove="Areas\EMS\Views\EventCategoryBulletins\**" />
+    <Content Remove="Areas\EMS\Views\EventCategoryRules\**" />
+    <EmbeddedResource Remove="Areas\EMS\Views\EventCategoryBulletins\**" />
+    <EmbeddedResource Remove="Areas\EMS\Views\EventCategoryRules\**" />
+    <None Remove="Areas\EMS\Views\EventCategoryBulletins\**" />
+    <None Remove="Areas\EMS\Views\EventCategoryRules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\EMS\Controllers\EventCategoryBulletinsController.cs" />
+    <Compile Remove="Areas\EMS\Controllers\EventCategoryRulesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
     <PackageReference Include="LinqKit.Core" Version="1.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.11" />

@@ -18,9 +18,13 @@ namespace BMF.Shared.Services.Azure
 
         public static string EventRoundSession => $"events-roundsession";
 
-        public static string EventCategoryRulePDF => $"events-categoryrules-pdf";
+        //public static string EventCategoryRulePDF => $"events-categoryrules-pdf";
 
-        public static string EventCategoryBulletinPDF => $"events-categorybulletins-pdf";
+        //public static string EventCategoryBulletinPDF => $"events-categorybulletins-pdf";
+        
+        public static string BRSubCategoryBulletinPDF => $"br-subcategorybulletins-pdf";
+        
+        public static string BRSubCategoryRulesRegsPDF => $"br-subcategoryrulesregs-pdf";
 
         public static string LicenseType => $"license-type";
 

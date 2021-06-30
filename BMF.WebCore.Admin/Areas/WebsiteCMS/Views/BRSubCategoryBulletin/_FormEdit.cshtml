@@ -1,0 +1,36 @@
+﻿@model M_BRSubCategoryBulletin
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID_SubCategory, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.DropDownListFor(model => model.ID_SubCategory, null, new { @class = "form-control select2-edit", @required = "required", @style = "width:100%;", @data_placeholder = "Select ...", @data_allow_clear = "true" })
+            @Html.ValidationMessageFor(model => model.ID_SubCategory, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "50" } })
+            @Html.ValidationMessageFor(model => model.Title, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, true, new { id = "IsActive_T" })
+                <label for="IsActive_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, false, new { id = "IsActive_F" })
+                <label for="IsActive_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.IsActive, "")
+        </div>
+    }
+}

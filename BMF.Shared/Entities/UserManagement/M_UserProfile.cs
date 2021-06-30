@@ -81,6 +81,10 @@ namespace BMF.Shared.Entities.UserManagement
         [MaxLength(1024)]
         public string Photo_URL { get; set; }
 
+        [Display(Name = "System Remarks", Prompt = "System Remarks")]
+        [JsonProperty(PropertyName = nameof(SystemRemarks))]
+        public string SystemRemarks { get; set; }
+
         #endregion
 
         #region Relationships
