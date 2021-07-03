@@ -1,4 +1,5 @@
 ﻿using AMK.Plugin.JQueryDataTable;
+using BMF.Shared.Entities.UserManagement;
 using BMF.Shared.Extensions;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -48,8 +49,11 @@ namespace BMF.Shared.Entities.Events
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
-                
-                new Column(nameof(Points), "Title"),
+                new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.EventCategory)}.{nameof(M_EventCategory.Title)}", "Event Category"),
+                new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.Round_Number)}", "Event Round Number"),
+                new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.Title)}", "Round Session"),
+                new Column($"{nameof(UserAccount)}.{nameof(M_UserAccount.UserProfile)}.{nameof(M_UserProfile.FullName)}", "Full Name"),
+                new Column(nameof(Points), "Points"),
             };
             return IJQDataTableExtendDBViewModel<M_EventRoundSessionUserResults, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
         }
@@ -61,14 +65,14 @@ namespace BMF.Shared.Entities.Events
         public void GetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             ID_EventRoundSession = Database.ID_EventRoundSession;
-            //ID_User = Database.ID_User;
+            ID_UserAccount = Database.ID_UserAccount;
             Points = Database.Points;
         }
 
         public void SetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             Database.ID_EventRoundSession = ID_EventRoundSession;
-            //Database.ID_User = ID_User;
+            Database.ID_UserAccount = ID_UserAccount;
             Database.Points = Points;
         }
 
@@ -84,10 +88,10 @@ namespace BMF.Shared.Entities.Events
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventRoundSession)}", "Event round session must be selected.");
             }
-            //if (ID_User == 0)
-            //{
-            //    ModelState.AddModelError($"{propertyQualifier}{nameof(ID_User)}", "User must be selected.");
-            //}
+            if (ID_UserAccount == 0)
+            {
+                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_UserAccount)}", "User must be selected.");
+            }
         }
 
         public void GetDefaults(M_EventRoundSessionUserResults Database)

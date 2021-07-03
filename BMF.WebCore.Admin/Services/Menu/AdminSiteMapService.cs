@@ -192,7 +192,7 @@ namespace BMF.WebCore.Admin.Services.Menu
                     new SiteMapNode()
                     {
                         SystemName = nameof(SystemOperationsProvider.EventMS.EMS),
-                        Title = "Event Management System",
+                        Title = "Event Management",
                         IconClass = "fas fa-globe",
                         IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS)),
                         ChildNodes = new List<SiteMapNode>()
@@ -246,6 +246,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-redo-alt",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRoundSession)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventRoundSessionUserResults),
+                                Title = "Event Round Sessions - User Results",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventRoundSessionUserResults._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-check",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRoundSessionUserResults)),
                             },
                         }
                     },

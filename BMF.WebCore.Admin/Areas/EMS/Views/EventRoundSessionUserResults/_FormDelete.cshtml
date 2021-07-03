@@ -1,0 +1,41 @@
+﻿@model M_EventRoundSessionUserResults
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <h4>Are you sure you want to delete this Event Round Session - User Results?</h4>
+        <table class="table table-striped table-hover table-bordered table-sm">
+            <tr>
+                <th>@Html.LabelFor(model => model.EventRoundSession.EventRound.EventCategory)</th>
+                <td>@Model.EventRoundSession.EventRound.EventCategory.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.EventRoundSession.EventRound)</th>
+                <td>@Model.EventRoundSession.EventRound.Round_Number</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.EventRoundSession)</th>
+                <td>@Model.EventRoundSession.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserAccount)</th>
+                <td>@Model.UserAccount.UserProfile.FullName</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Points)</th>
+                <td>@Model.Points</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_IsActive)</th>
+                <td>@Model.Display_IsActive</td>
+            </tr>
+        </table>
+    }
+}
