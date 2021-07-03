@@ -14,6 +14,7 @@ namespace BMF.Shared.Entities.UserManagement
     {
         [NotMapped]
         public static string _controllerName => $"{nameof(M_UserProfile)}s".Replace("M_", "");
+        public static string _controllerName_Report_ProfileLicense => $"UserProfileLicense";
 
         [NotMapped]
         public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.UserProfile}/default.jpg";

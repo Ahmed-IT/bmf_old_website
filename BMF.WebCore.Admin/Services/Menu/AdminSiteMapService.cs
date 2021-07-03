@@ -219,6 +219,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                             },
                             new SiteMapNode()
                             {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryHeat),
+                                Title = "Event Category Heats",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventCategoryHeat._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-object-group",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventCategoryHeat)),
+                            },
+                            new SiteMapNode()
+                            {
                                 SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventRound),
                                 Title = "Event Rounds",
                                 RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
@@ -226,6 +236,16 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-redo-alt",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRound)),
+                            },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.EventMS.EMS_EventRoundSession),
+                                Title = "Event Round Sessions",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.EMS } },
+                                ControllerName = M_EventRoundSession._controllerName,
+                                ActionName = "Index",
+                                IconClass = "fas fa-redo-alt",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.EventMS.EMS_EventRoundSession)),
                             },
                         }
                     },
@@ -287,6 +307,27 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 ActionName = "Index",
                                 IconClass = "fas fa-id-card",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicense)),
+                            },
+                        }
+                    },
+
+                    new SiteMapNode()
+                    {
+                        SystemName = nameof(SystemOperationsProvider.Report.Reports),
+                        Title = "Reports",
+                        IconClass = "fas fa-tachometer-alt",
+                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Report.Reports)),
+                        ChildNodes = new List<SiteMapNode>()
+                        {
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.Report.Reports_UserProfiles),
+                                Title = "User Profiles + Licenses",
+                                RouteValues = new RouteValueDictionary{ {"area", AreaNames.Reports } },
+                                ControllerName = M_UserProfile._controllerName_Report_ProfileLicense,
+                                ActionName = "Index",
+                                IconClass = "fas fa-file-excel",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.Report.Reports_UserProfiles)),
                             },
                         }
                     },

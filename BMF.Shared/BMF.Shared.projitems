@@ -104,6 +104,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Azure\AzureStorageContainers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Azure\AzureStorageManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Azure\IAzureStorageManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\Events\EventRoundService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\Events\IEventRoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\BRSubCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\BRCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\IBRSubCategoryService.cs" />

@@ -81,6 +81,7 @@ namespace BMF.WebCore.Admin
             // ------ Events
             services.AddScoped<IEventSeasonService, EventSeasonService>();
             services.AddScoped<IEventCategoryService, EventCategoryService>();
+            services.AddScoped<IEventRoundService, EventRoundService>();
             // ------ User Management
             services.AddScoped<ILicenseTypeService, LicenseTypeService>();
             services.AddScoped<IMarshalRoleService, MarshalRoleService>();

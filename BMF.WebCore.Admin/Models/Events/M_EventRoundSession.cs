@@ -16,7 +16,7 @@ namespace BMF.Shared.Entities.Events
         public static string _controllerName => $"{nameof(M_EventRoundSession)}".Replace("M_", "");
 
         [NotMapped]
-        public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.EventRoundSession}/default.jpg";
+        public static string _defaultResultsPDF => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.EventRoundSession}/default.jpg";
 
         #region Fields
 

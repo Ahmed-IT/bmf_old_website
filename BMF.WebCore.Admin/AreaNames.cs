@@ -14,6 +14,8 @@ namespace BMF.WebCore.Admin
 
         public const string BmfMS = "BMFMS";
 
-        public static List<string> All = new List<string>() { Security, Location, WebsiteCMS, EMS, BmfMS };
+        public const string Reports = "Reports";
+
+        public static List<string> All = new List<string>() { Security, Location, WebsiteCMS, EMS, BmfMS, Reports };
     }
 }
