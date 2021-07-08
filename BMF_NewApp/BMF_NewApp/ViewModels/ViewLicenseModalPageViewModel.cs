@@ -25,6 +25,20 @@ namespace BMF_NewApp.ViewModels
             set { SetProperty(ref _myLicense, value); }
         }
 
+        private string _status;
+        public string Status
+        {
+            get { return _status; }
+            set { SetProperty(ref _status, value); }
+        }
+
+        private string _statusColor;
+        public string StatusColor
+        {
+            get { return _statusColor; }
+            set { SetProperty(ref _statusColor, value); }
+        }
+
         public DelegateCommand CloseCommand { get; set; }
 
         public ViewLicenseModalPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
@@ -60,6 +74,17 @@ namespace BMF_NewApp.ViewModels
                 if (parameters["license"] is ClsLicense _License)
                 {
                     MyLicense = _License;
+
+                    if(MyLicense.Expire_Date > DateTime.Now)
+                    {
+                        Status = "Status: Active";
+                        StatusColor = "DarkGreen";
+                    }
+                    else
+                    {
+                        Status = "Status: Expired";
+                        StatusColor = "Red";
+                    }
                 }
             }
             catch (Exception ex)

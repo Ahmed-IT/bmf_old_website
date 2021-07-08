@@ -4,29 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/jquery-1.8.0.js"></script>
-    <link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
 
-<section id="banner-2">
-    <div class="container">
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Content/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+<section id="banner">
+    <div class="backtotop">
+
+    </div>
+    <div class="container zindex">
         <div class="row">
-            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
-                <div class="luanch">
-                    <div class="coundown_res">
-                        <div class="row">
-                            <br />
-                            <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-1"></div>
-            <div class="col-lg-3 col-md-4">
-
+            <div class="col-lg-12 banner-txt" style="text-align:center;">
+                <br /><br /><br /><br /><br /><br />
+                @*<h1>Bahrain Motor Federation</h1>>*@
+                <a style="text-align: center;" href="#divRegForm">
+                    <img src="~/Content/images/RegisterNowBtn.png" style="width:250px;" />
+                </a>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -236,28 +235,35 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>Livery guidelines</td>
+                            <td>
+                                <a href="https://bmfstorage.blob.core.windows.net/begtc-files/LiveryDesign.pdf">Livery Design</a>
+                                <a href="https://bmfstorage.blob.core.windows.net/begtc-files/ObtainingDecals.pdf">Obtaining Decals</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Qualyfing Round</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCqualifyingRoundSettings.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 1</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround1Settings.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 2</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround2Settings.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 3</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround3Settings.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 4</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround4Settings.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 5</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround5Settings.pdf">Download</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -273,27 +279,27 @@
                     <tbody>
                         <tr>
                             <td>Qualyfing Round</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCroundQualifyingSchedule.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 1</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround1Schedule.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 2</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround2Schedule.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 3</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround3Schedule.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 4</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround4Schedule.pdf">Download</a></td>
                         </tr>
                         <tr>
                             <td>Round 5</td>
-                            <td><a href="#">Download</a></td>
+                            <td><a href="https://bmfstorage.blob.core.windows.net/begtc-files/BEGTCround5Schedule.pdf">Download</a></td>
                         </tr>
                     </tbody>
 
@@ -406,199 +412,248 @@
 
         </div>
 
+        <section id="divRegForm">
+            <div class="col-lg-12">
+                <div class="purchase-box">
+                    <h4>Registration Form</h4>
 
-        <div class="col-lg-12">
-            <div class="purchase-box">
-                <h4>Registration Form</h4>
-                @using (Html.BeginForm("eSport", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
+                    @try
+                    {
+                        if (TempData["Status"] != null)
+                        {
+                            if (TempData["Status"].ToString() == "Exist")
+                            {
+                                <script>
+                                    $(document).ready(function () {
+                                        // Handler for .ready() called.
+                                        $('html, body').animate({
+                                            scrollTop: $('#divRegForm').offset().top
+                                        }, 'slow');
+                                    });
+                                </script>
 
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label style="font-family:LatoB;">CPR Number <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.CPR, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label style="font-family:LatoB;">First Name <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label style="font-family:LatoB;">Middle Name <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.MiddleName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label style="font-family:LatoB;">Last Name <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label style="font-family:LatoB;">Nationality <b style="color: red;">*</b></label>
-                            @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.Countries, "ID", "Name"), "Select Nationality", new { @class = "form-control", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                                <br /><br />
+                                <div class="alert alert-danger" role="alert" style="text-align:center; color:red; font-size:18px;">
+                                    Your information already exist and enrolled.
+                                </div>
+                            }
+                            else
+                            {
+                                <script>
+                                    $(document).ready(function () {
+                                        // Handler for .ready() called.
+                                        $('html, body').animate({
+                                            scrollTop: $('#divRegForm').offset().top
+                                        }, 'slow');
+                                    });
+                                </script>
 
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                            <label style="font-family:LatoB;">House Number <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.HouseNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label style="font-family:LatoB;">Road Number <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.RoadNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.RoadNumber, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label style="font-family:LatoB;">Block Number <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.BlockNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.BlockNumber, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label style="font-family:LatoB;">City <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.City, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                                <br /><br />
+                                <div class="alert alert-danger" role="alert" style="text-align:center; color:red; font-size:18px;">
+                                    Error in submitting your form, please check your information.
+                                </div>
+                            }
+                        }
+                    }
+                    catch (global::System.Exception)
+                    {
 
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Place of Birth <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.PlaceOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Date of Birth <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.DateOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field", @type = "date" })
-                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Mobile Number <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.MobileNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Email Address <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.EmailAddress, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">PSN ID <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.PSN, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
-                            @Html.ValidationMessageFor(model => model.PSN, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Instagram Username</label>
-                            @Html.TextBoxFor(u => u.Instagram, new { @class = "form-control", @placeholder = "" })
-                            @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Facebook Username</label>
-                            @Html.TextBoxFor(u => u.Facebook, new { @class = "form-control", @placeholder = "" })
-                            @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Racing Mode</label>
-                            @Html.TextBoxFor(u => u.RacingMode, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.RacingMode, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Most Racing Game Played</label>
-                            @Html.TextBoxFor(u => u.MotorsportGame, new { @class = "form-control", @placeholder = "" })
-                            @Html.ValidationMessageFor(model => model.MotorsportGame, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Other Motorsport Participation</label>
-                            @Html.TextBoxFor(u => u.OtherMotorsport, new { @class = "form-control", @placeholder = "" })
-                            @Html.ValidationMessageFor(model => model.OtherMotorsport, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">CPR Copy <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.CPRFile, new { @class = "form-control", @type = "file", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.CPRFile, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Photo <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.Photo, new { @class = "form-control", @type = "file", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
-                            an example applicable to the requirements
-                            <br />
-                            <img src="~/Content/images/PhotoSample.png" style="height:150px;" />
+                    }
 
 
-                        </div>
-                    </div>
+                    @using (Html.BeginForm("eSport", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <h3>Consent Statement for Applicants Under 18 Years</h3>
-
-                    <br />
-
-                    <div class="form-group" style="color:black; font-size:16px; color:red;">
-                        @Html.CheckBoxFor(model => model.IsUnder18)
-                        Please check the box if you are under 18
-                        <br />
-                        @Html.ValidationMessageFor(model => model.IsUnder18, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            @Html.TextBoxFor(u => u.ParentFullName, new { @class = "form-control", @type = "text", @placeholder = "Parent Full Name" })
-                            @Html.ValidationMessageFor(model => model.ParentFullName, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            @Html.TextBoxFor(u => u.ParentCPR, new { @class = "form-control", @type = "text", @placeholder = "Parent CPR Number" })
-                            @Html.ValidationMessageFor(model => model.ParentCPR, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label style="margin-bottom:10px;">Parents CPR Copy</label>
-                            @Html.TextBoxFor(u => u.ParentCPRFile, new { @class = "form-control", @type = "file" })
-                            @Html.ValidationMessageFor(model => model.ParentCPRFile, "", new { @class = "text-danger" })
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group" style="color:black; font-size:16px;">
-                                @*<input name="ChkAccept" required="" type="checkbox">*@
-                                @Html.CheckBoxFor(model => model.ChkAccept, new { @required = "required" })
-                                I hereby accept the  <a href="~/docs/RulesRegs/BEGTC_Regulations_V2.1_FINAL.pdf" target="_blank" style="color:Red;">rules / regulations</a> and confirm that the information submitted on this registration page is true & correct.  <font style="color:red; font-weight:bold;">*</font>
-                                <br />
-                                @Html.ValidationMessageFor(model => model.ChkAccept, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label style="font-family:LatoB;">CPR Number <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.CPR, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label style="font-family:LatoB;">First Name <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label style="font-family:LatoB;">Middle Name <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.MiddleName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label style="font-family:LatoB;">Last Name <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label style="font-family:LatoB;">Nationality <b style="color: red;">*</b></label>
+                                @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.Countries, "ID", "Name"), "Select Nationality", new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label style="font-family:LatoB;">House Number <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.HouseNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="font-family:LatoB;">Road Number <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.RoadNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.RoadNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="font-family:LatoB;">Block Number <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.BlockNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.BlockNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="font-family:LatoB;">City <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.City, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Place of Birth <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.PlaceOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Date of Birth <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.DateOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Required Field", @type = "date" })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Mobile Number <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.MobileNumber, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Email Address <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.EmailAddress, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">PSN ID <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.PSN, new { @class = "form-control", @required = "required", @placeholder = "Required Field" })
+                                @Html.ValidationMessageFor(model => model.PSN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Instagram Username</label>
+                                @Html.TextBoxFor(u => u.Instagram, new { @class = "form-control", @placeholder = "" })
+                                Instagram account will be used to tag you on Instagram posts
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Facebook Username</label>
+                                @Html.TextBoxFor(u => u.Facebook, new { @class = "form-control", @placeholder = "" })
+                                Instagram account will be used to tag you on Facebook posts
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Racing Mode</label>
+                                @Html.DropDownListFor(model => model.RacingMode, new SelectList(ViewBag.RacingMode, "Value", "Text"), "Select Mode", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RacingMode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Most Racing Game Played</label>
+                                @Html.TextBoxFor(u => u.MotorsportGame, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.MotorsportGame, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Other Motorsport Participation</label>
+                                @Html.TextBoxFor(u => u.OtherMotorsport, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.OtherMotorsport, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">CPR Copy <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.CPRFile, new { @class = "form-control", @type = "file", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CPRFile, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Photo <b style="color: red;">*</b></label>
+                                @Html.TextBoxFor(u => u.Photo, new { @class = "form-control", @type = "file", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                                <br />
+                                an example applicable to the requirements
+                                <br />
+                                <img src="~/Content/images/PhotoSample.png" style="height:150px;" />
+                            </div>
+                        </div>
+
+                        <h3>Consent Statement for Applicants Under 18 Years</h3>
+
+                        <br />
+
+                        <div class="form-group" style="color:black; font-size:16px; color:red;">
+                            @Html.CheckBoxFor(model => model.IsUnder18)
+                            Please check the box if you are under 18
+                            <br />
+                            @Html.ValidationMessageFor(model => model.IsUnder18, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Parent Full Name</label>
+                                @Html.TextBoxFor(u => u.ParentFullName, new { @class = "form-control", @type = "text", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.ParentFullName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label style="font-family:LatoB;">Parent CPR Number</label>
+                                @Html.TextBoxFor(u => u.ParentCPR, new { @class = "form-control", @type = "text", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.ParentCPR, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label style="margin-bottom: 10px; font-family: LatoB;">Parents CPR Copy</label>
+                                @Html.TextBoxFor(u => u.ParentCPRFile, new { @class = "form-control", @type = "file" })
+                                @Html.ValidationMessageFor(model => model.ParentCPRFile, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" style="color:black; font-size:16px;">
+                                    @*<input name="ChkAccept" required="" type="checkbox">*@
+                                    @Html.CheckBoxFor(model => model.ChkAccept, new { @required = "required" })
+                                    I hereby accept the  <a href="https://bmfstorage.blob.core.windows.net/br-subcategoryrulesregs-pdf/begtc3regulations2021final.pdf-ced02ebc22c54ae6b976e7ddda33c6fa.pdf" target="_blank" style="color:Red;">rules / regulations</a> and confirm that the information submitted on this registration page is true & correct.  <font style="color:red; font-weight:bold;">*</font>
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.ChkAccept, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <input class="btn btn-primary payment-btn" type="submit" value="SUBMIT FORM">
+                        <br />
 
 
-                    <button type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
-                }
+                    }
+
+                </div>
             </div>
-        </div>
+        </section>
+        
 
     </div>
 </section>
-
-

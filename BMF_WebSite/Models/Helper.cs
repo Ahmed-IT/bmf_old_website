@@ -131,6 +131,25 @@ namespace BMF_WebSite.Models
             return age;
         }
 
+        public static List<ClsRacingMode> GetRacingMode()
+        {
+            List<ClsRacingMode> list = new List<ClsRacingMode>();
+
+            list.Add(new ClsRacingMode
+            {
+                Text = "Steering Wheel",
+                Value = "Steering Wheel"
+            });
+
+            list.Add(new ClsRacingMode
+            {
+                Text = "Controller",
+                Value = "Controller"
+            });
+
+            return list;
+        }
+
         public static class AzureStorageContainers
         {
             public static string NewsImage => $"websitecms-news";

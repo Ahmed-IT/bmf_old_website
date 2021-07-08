@@ -7,14 +7,16 @@
 <!-- BANNER AREA START -->
 <section id="banner">
     <div class="backtotop">
-        <a href="#banner"><i class="fa fa-rocket" aria-hidden="true"></i></a>
+        
     </div>
     <div class="container zindex">
         <div class="row">
-            <div class="col-lg-7 banner-txt">
+            <div class="col-lg-12 banner-txt" style="text-align:center;">
                 <br /><br /><br /><br /><br /><br />
-                @*<h1>Bahrain Motor Federation</h1>
-                    <p style="text-align:justify; color:white; font-size:16px;">Founded on 23rd November, 1952, the Bahrain Motor Federation is proud of its long heritage and the close relationship. It has enjoyed with the government and leading families in the Kingdom of Bahrain. The Clubs first chairman was Mr. Ahmed Kanoo, Its Honorary Secretary, Mr. R A Allen, its Honorary Treasurer, Mr. G Thompson and Committee Members, Mr. M Rule, Mr. R Smyth, Mr. Khalil Kanoo and Mr. Al-Zayani</p>*@
+                @*<h1>Bahrain Motor Federation</h1>*@
+                <a style="text-align: center;" href="eSport#divRegForm">
+                    <img src="~/Content/images/RegisterNowBtn.png" style="width:250px;" />
+                </a>
             </div>
         </div>
 
@@ -252,7 +254,9 @@
                     <div class="col-lg-2 blog-item" style="margin:10px;">
                         <div class="blog-shadow">
                             <div class="card border-0 rounded-0 bg-dark text-white">
-                                <img src="@item.Image_URL" class="card-img">
+                                <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">
+                                    <img src="@item.Image_URL" class="card-img">
+                                </a>
                                 <div style="background-color:#1c1c1c; height:70px;">
                                     <div style="margin:10px;">
                                         <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>

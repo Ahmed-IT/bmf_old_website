@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <pages:PopupPage  xmlns:pages="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-                  x:Class="BMF_NewApp.Views.ViewLicenseModalPage"
+                  x:Class="BMF_NewApp.Views.ViewLicenseModalPage" BackgroundColor="White"
                   CloseWhenBackgroundIsClicked="True" BackgroundClicked="CloseClick">
     <pages:PopupPage.Animation>
         <pages:ScaleAnimation 
@@ -16,8 +16,8 @@
       HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <ContentView>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="10,0,10,0" HeightRequest="280">
+        <Grid BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
                 <border:SfBorder HeightRequest="280" Margin="0" Padding="0" CornerRadius="10" BorderColor="LightGray" BorderWidth="1" BackgroundColor="LightGray"
                                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
@@ -29,7 +29,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <StackLayout Margin="10,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout Margin="15,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Image Aspect="Fill" HeightRequest="100" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
                             </StackLayout>
 
@@ -49,11 +49,12 @@
 
                 </border:SfBorder>
 
-                
+                <StackLayout HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
+                    <Label Text="{Binding Status}" Margin="0,20,0,0" TextColor="{Binding StatusColor}" FontSize="Title" HorizontalOptions="CenterAndExpand" FontFamily="MontserratBold"></Label>
+                </StackLayout>
             </StackLayout>
-
             <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="0,0,0,40" HeightRequest="60">
-                <Button HorizontalOptions="FillAndExpand" Text="Close" TextColor="White" Command="{Binding CloseCommand}" BackgroundColor="#3B3B3B" HeightRequest="40" Margin="20,20,20,0"></Button>
+                <Button HorizontalOptions="FillAndExpand" Text="Close" TextColor="White" Command="{Binding CloseCommand}" BackgroundColor="#D90000" HeightRequest="40" Margin="20,20,20,0"></Button>
             </StackLayout>
         </Grid>
         

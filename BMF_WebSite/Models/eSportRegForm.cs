@@ -137,6 +137,9 @@ namespace BMF_WebSite.Models
         public string ParentFullName { get; set; }
 
         [Display(Name = "Parent CPR number")]
+//        [Required(ErrorMessage = "Please enter your CPR number")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Please enter valid CPR number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please use only numbers")]
         [DataType(DataType.Text)]
         public string ParentCPR { get; set; }
 

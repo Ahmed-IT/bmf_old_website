@@ -113,6 +113,11 @@ namespace BMF_NewApp
             containerRegistry.RegisterForNavigation<NewsDetailsPage, NewsDetailsPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ViewLicenseModalPage, ViewLicenseModalPageViewModel>();
+            containerRegistry.RegisterForNavigation<BulletinsPage, BulletinsPageViewModel>();
+            containerRegistry.RegisterForNavigation<RulesRegsPage, RulesRegsPageViewModel>();
+            containerRegistry.RegisterForNavigation<BulletinsListPage, BulletinsListPageViewModel>();
+            containerRegistry.RegisterForNavigation<RulesRegsListPage, RulesRegsListPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewPdfPage, ViewPdfPageViewModel>();
         }
 
         protected override void OnStart()

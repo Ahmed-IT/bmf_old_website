@@ -30,7 +30,7 @@
                                 </Grid>
                             </StackLayout>
 
-                            <Grid Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                            <Grid BackgroundColor="#f5f5f5" Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
                                 <sflistview:SfListView  ItemsSource="{Binding Calendar}"
                                                         ItemSpacing="0"
                                                         SelectionMode="Single"

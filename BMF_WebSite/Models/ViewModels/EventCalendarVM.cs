@@ -29,7 +29,7 @@ namespace BMF_WebSite.Models.ViewModels
                                     where c.IsActive == true
                                     && c.DeletedBy == null
                                     && c.M_EventSeason.IsActive == true
-                                    && c.M_EventRound.Count > 0
+                                    && c.M_EventRound.Where(b => b.IsActive == true && b.DeletedOnUtc == null).ToList().Count > 0
                                     select new ClsEventCategory
                                     {
                                         ID = c.ID,
@@ -37,7 +37,7 @@ namespace BMF_WebSite.Models.ViewModels
                                         Title = c.Title,
                                         IsActive = c.IsActive,
                                         ID_EventSeason = c.ID_EventSeason,
-                                        NextRound = c.M_EventRound.Where(a => a.DateTime_Start >= dateTime).OrderBy(a => a.DateTime_Start).Select(a => new ClsEventRound
+                                        NextRound = c.M_EventRound.Where(a => a.DateTime_Start >= dateTime && a.IsActive == true && a.DeletedOnUtc == null).OrderBy(a => a.DateTime_Start).Select(a => new ClsEventRound
                                         {
                                             DateTime_End = a.DateTime_End,
                                             DateTime_Start = a.DateTime_Start,

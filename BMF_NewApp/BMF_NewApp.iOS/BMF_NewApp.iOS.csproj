@@ -196,6 +196,18 @@
     <ImageAsset Include="Assets.xcassets\ArrowLargeIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\pdfIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\pdfIcon.imageset\PdfIcon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\pdfIcon.imageset\PdfIcon@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\pdfIcon.imageset\PdfIcon@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h@2x.png" />
@@ -258,6 +270,9 @@
       <Version>19.1.0.69</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer">
+      <Version>19.1.0.69</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer">
       <Version>19.1.0.69</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">

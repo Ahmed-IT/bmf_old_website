@@ -123,6 +123,27 @@ namespace BMF_NewApp.Models
             throw new NotImplementedException();
         }
 
+        public async Task<List<ClsBulletinCategory>> GetBulletins()
+        {
+            try
+            {
+                string ApiCall = $"GetBulletins";
+
+                var response = await client.GetAsync(ApiCall).ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<List<ClsBulletinCategory>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return default(List<ClsBulletinCategory>);
+        }
+
         public async Task<List<ClsCalendar>> GetCalendar()
         {
             try
@@ -247,6 +268,27 @@ namespace BMF_NewApp.Models
             }
 
             return default(ClsProfile);
+        }
+
+        public async Task<List<ClsRulesRegsCategory>> GetRulesRegs()
+        {
+            try
+            {
+                string ApiCall = $"GetRulesRegs";
+
+                var response = await client.GetAsync(ApiCall).ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<List<ClsRulesRegsCategory>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return default(List<ClsRulesRegsCategory>);
         }
 
         public async Task<string> SendAccountPassword(ClsAccount user)

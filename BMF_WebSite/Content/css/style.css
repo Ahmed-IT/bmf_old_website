@@ -437,8 +437,9 @@ p {
 2.0 *** BANNER AREA START ***
 =============================*/
 #banner {
-    padding: 180px 0 190px;
-    background: url(../images/banner2.jpg);
+    padding: 300px 0 190px;
+    /*background: url(../images/banner2.jpg);*/
+    background: url(../images/begtc_banner.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -482,7 +483,7 @@ p {
         padding-bottom: 44px;
     }
 
-    .banner-txt a {
+/*    .banner-txt a {
         padding: 21px 25px;
         background: #cb1a2b;
         border-radius: 50px;
@@ -511,7 +512,7 @@ p {
     background: white;
     text-align: center;
     border-radius: 50%;
-}
+}*/
 
 .banner-img img {
 /*    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);

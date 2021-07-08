@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              x:Class="BMF_NewApp.App">
-  <Application.Resources>
-
-    <!-- Application resource dictionary -->
-
-  </Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType ="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#D90000"></Setter>
+                <Setter Property="BarTextColor" Value="#ffffff"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>

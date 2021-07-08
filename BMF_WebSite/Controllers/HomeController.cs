@@ -723,8 +723,9 @@ namespace BMF_WebSite.Controllers
 
             ViewBag.Countries = Helper.GetCountries();
             ViewBag.BloodGroup = Helper.GetBloodGroup();
+            ViewBag.RacingMode = Helper.GetRacingMode();
 
-            return View(lic);
+            return View("eSport", lic);
         }
 
         [HttpPost]
@@ -999,11 +1000,12 @@ namespace BMF_WebSite.Controllers
                             }
                             else
                             {
+                                TempData["Status"] = "Exist";
+
                                 //License Exist send Renew Message
-                                ViewBag.LicenseCategory = Helper.GetLicenseCategory();
                                 ViewBag.Countries = Helper.GetCountries();
                                 ViewBag.BloodGroup = Helper.GetBloodGroup();
-                                ViewBag.LicenseType = Helper.GetLicenseType();
+                                ViewBag.RacingMode = Helper.GetRacingMode();
 
                                 return View(data);
                             }
@@ -1019,6 +1021,9 @@ namespace BMF_WebSite.Controllers
 
                 ViewBag.Countries = Helper.GetCountries();
                 ViewBag.BloodGroup = Helper.GetBloodGroup();
+                ViewBag.RacingMode = Helper.GetRacingMode();
+
+                TempData["Status"] = "Error";
 
                 return View(data);
             }
@@ -1027,10 +1032,11 @@ namespace BMF_WebSite.Controllers
 
             }
 
-            ViewBag.LicenseCategory = Helper.GetLicenseCategory();
+            TempData["Status"] = "Error";
+
             ViewBag.Countries = Helper.GetCountries();
             ViewBag.BloodGroup = Helper.GetBloodGroup();
-            ViewBag.LicenseType = Helper.GetLicenseType();
+            ViewBag.RacingMode = Helper.GetRacingMode();
 
             return View(data);
         }
@@ -1039,6 +1045,17 @@ namespace BMF_WebSite.Controllers
         public ActionResult RegThankYou()
         {
             return View();
+        }
+
+        public ActionResult testValidation()
+        {
+            eSportRegForm form = new eSportRegForm();
+
+            ViewBag.Countries = Helper.GetCountries();
+            ViewBag.BloodGroup = Helper.GetBloodGroup();
+            ViewBag.RacingMode = Helper.GetRacingMode();
+
+            return View(form);
         }
 
         public async Task<JsonResult> GetFullCalendar()
