@@ -14,7 +14,7 @@
             <div class="col-lg-12 banner-txt" style="text-align:center;">
                 <br /><br /><br /><br /><br /><br />
                 @*<h1>Bahrain Motor Federation</h1>*@
-                <a style="text-align: center;" href="eSport#divRegForm">
+                <a style="text-align: center;" href="/eSport/Registration">
                     <img src="~/Content/images/RegisterNowBtn.png" style="width:250px;" />
                 </a>
             </div>
@@ -28,9 +28,9 @@
             <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
                 <div class="luanch">
                     <div class="coundown_res">
-                        <font style="color:white; font-family:PermanentMarkerR; font-size:20px;">Next Round</font>
+                        <font style="color:white; font-family:PermanentMarkerR; font-size:20px;">Coming Event:</font>
                         <p style="color:white; line-height:40px; margin-top:10px; font-size:36px; font-family:FjallaOneR;">
-                            @Model.Countdown.EventCategory.Title Round @Model.Countdown.Round_Number
+                            @Model.Countdown.EventCategory.Title @Model.Countdown.Round_Number
                             <br />
                             <font style="font-size:20px;">@Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")</font>
                             @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
@@ -148,7 +148,7 @@
                                             <div style="background-color: rgba(0, 0, 0, 0.7); height:40px;">
                                                 <div style="margin:7px;">
                                                     @*<h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>*@
-                                                    <p style="font-family:LatoR" class="card-subtitle">Next: Round @item.Round_Number</p>
+                                                    <p style="font-family:LatoR" class="card-subtitle">Coming Event: @item.Round_Number</p>
                                                 </div>
                                             </div>
                                         </div>

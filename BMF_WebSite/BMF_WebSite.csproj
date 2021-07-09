@@ -521,6 +521,7 @@
     <Compile Include="Controllers\BulletinsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\eSportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicenseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -723,6 +724,9 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\Home\testValidation.cshtml" />
+    <Content Include="Views\eSport\Index.cshtml" />
+    <Content Include="Views\eSport\Registration.cshtml" />
+    <Content Include="Views\eSport\RegThankYou.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

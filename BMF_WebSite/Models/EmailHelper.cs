@@ -32,7 +32,7 @@ namespace BMF_WebSite.Models
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = true;
-                smtpClient.Credentials = new System.Net.NetworkCredential("Bahrainmotorfederation@outlook.com", "Bahrain@369");
+                smtpClient.Credentials = new System.Net.NetworkCredential("Bahrainmotorfederation@outlook.com", "ixundpjdqjjcltnb");
 
                 smtpClient.Send(message);
 

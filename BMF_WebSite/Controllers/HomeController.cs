@@ -752,6 +752,11 @@ namespace BMF_WebSite.Controllers
                         ModelState.AddModelError("ParentCPR", "Please ensure to enter a parent CPR number");
                     }
 
+                    if (data.ParentCPRFile.ContentLength > 1000000)
+                    {
+                        ModelState.AddModelError("ParentCPRFile", "File must be less than 1MB");
+                    }
+
                     if (data.ParentCPRFile == null)
                     {
                         ModelState.AddModelError("ParentCPRFile", "Please upload parent CPR");
@@ -775,6 +780,16 @@ namespace BMF_WebSite.Controllers
                 if (Helper.CalculateAge(data.DateOfBirth) > 18 && data.IsUnder18 == true)
                 {
                     ModelState.AddModelError("IsUnder18", "You are over 18 please uncheck the box and clear parent detail if entered");
+                }
+
+                if (data.CPRFile.ContentLength > 1000000)
+                {
+                    ModelState.AddModelError("CPRFile", "File must be less than 1MB");
+                }
+
+                if (data.Photo.ContentLength > 1000000)
+                {
+                    ModelState.AddModelError("Photo", "File must be less than 1MB");
                 }
 
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
@@ -872,7 +887,7 @@ namespace BMF_WebSite.Controllers
                                     CPR_URL = data.CPR_Url,
                                     IsActive = true,
                                     CreatedOnUtc = DateTime.Now,
-                                    ID_UserLicense = 13,
+                                    ID_UserLicense = lic.ID,
                                     //MedicalForm_URL = data.Medical_Url,
                                     NoObjectionLetter_URL = data.Photo_Url
                                 });
