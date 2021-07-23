@@ -18,6 +18,7 @@ namespace BMF.Web.Admin.DBMappings.Events
         {
             // Attributes
             entityBuilder.Property(t => t.Points).IsRequired(true);
+            entityBuilder.Property(t => t.BestTime).IsRequired(false);
             // Ignored Attributes
             // Foreign Keys
             entityBuilder.Property(t => t.ID_EventRoundSession).IsRequired(true);

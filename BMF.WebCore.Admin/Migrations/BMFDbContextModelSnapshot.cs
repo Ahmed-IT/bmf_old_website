@@ -239,6 +239,9 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
+                    b.Property<string>("BestTime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 

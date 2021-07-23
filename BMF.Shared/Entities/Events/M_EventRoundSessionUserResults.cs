@@ -30,6 +30,10 @@ namespace BMF.Shared.Entities.Events
         [JsonProperty(PropertyName = nameof(Points))]
         public int Points { get; set; }
 
+        [Display(Name = "Best Time", Prompt = "Best Time")]
+        [JsonProperty(PropertyName = nameof(BestTime))]
+        public string BestTime { get; set; }
+
         #endregion
 
         #region Relationships

@@ -54,6 +54,7 @@ namespace BMF.Shared.Entities.Events
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.Title)}", "Round Session"),
                 new Column($"{nameof(UserAccount)}.{nameof(M_UserAccount.UserProfile)}.{nameof(M_UserProfile.FullName)}", "Full Name"),
                 new Column(nameof(Points), "Points"),
+                new Column(nameof(BestTime), "Best Time"),
             };
             return IJQDataTableExtendDBViewModel<M_EventRoundSessionUserResults, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
         }
@@ -67,6 +68,7 @@ namespace BMF.Shared.Entities.Events
             ID_EventRoundSession = Database.ID_EventRoundSession;
             ID_UserAccount = Database.ID_UserAccount;
             Points = Database.Points;
+            BestTime = Database.BestTime;
         }
 
         public void SetDatabaseValues(M_EventRoundSessionUserResults Database)
@@ -74,6 +76,7 @@ namespace BMF.Shared.Entities.Events
             Database.ID_EventRoundSession = ID_EventRoundSession;
             Database.ID_UserAccount = ID_UserAccount;
             Database.Points = Points;
+            Database.BestTime = BestTime;
         }
 
         public void AsDatabaseUpdate(M_EventRoundSessionUserResults Database)
