@@ -186,8 +186,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     .Include(i => i.EventRoundSession)
                     .Include(i => i.EventRoundSession.EventRound)
                     .Include(i => i.EventRoundSession.EventRound.EventCategory)
-                    .Include(i => i.UserAccount)
-                    .Include(i => i.UserAccount.UserProfile);
+                    .Include(i => i.UserProfile);
                 #endregion
 
                 #region // Filter Data
@@ -272,8 +271,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     .Include(i => i.EventRoundSession)
                     .Include(i => i.EventRoundSession.EventRound)
                     .Include(i => i.EventRoundSession.EventRound.EventCategory)
-                    .Include(i => i.UserAccount)
-                    .Include(i => i.UserAccount.UserProfile)
+                    .Include(i => i.UserProfile)
                     .SingleOrDefaultAsync();
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
@@ -435,8 +433,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                         .Include(i => i.EventRoundSession)
                         .Include(i => i.EventRoundSession.EventRound)
                         .Include(i => i.EventRoundSession.EventRound.EventCategory)
-                        .Include(i => i.UserAccount)
-                        .Include(i => i.UserAccount.UserProfile)
+                        .Include(i => i.UserProfile)
                         .SingleOrDefaultAsync();
                     if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                     {
@@ -488,8 +485,8 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
             var ID_EventRoundSession = _eventRoundSessionService.Get_SelectList();
             ViewBag.ID_EventRoundSession = new SelectList(ID_EventRoundSession, "Value", "Text", DefineRecord.ID_EventRoundSession);
 
-            var ID_UserAccount = _userProfileService.Get_SelectList();
-            ViewBag.ID_UserAccount = new SelectList(ID_UserAccount, "Value", "Text", DefineRecord.ID_UserAccount);
+            var ID_UserProfile = _userProfileService.Get_SelectList();
+            ViewBag.ID_UserProfile = new SelectList(ID_UserProfile, "Value", "Text", DefineRecord.ID_UserProfile);
 
 
         }

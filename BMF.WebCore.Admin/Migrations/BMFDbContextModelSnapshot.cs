@@ -257,7 +257,7 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<long>("ID_EventRoundSession")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ID_UserAccount")
+                    b.Property<long>("ID_UserProfile")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsActive")
@@ -281,7 +281,7 @@ namespace BMF.WebCore.Admin.Migrations
 
                     b.HasIndex("ID_EventRoundSession");
 
-                    b.HasIndex("ID_UserAccount");
+                    b.HasIndex("ID_UserProfile");
 
                     b.ToTable("M_EventRoundSessionUserResults");
                 });
@@ -1692,15 +1692,15 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserAccount", "UserAccount")
+                    b.HasOne("BMF.Shared.Entities.UserManagement.M_UserProfile", "UserProfile")
                         .WithMany("UserResults")
-                        .HasForeignKey("ID_UserAccount")
+                        .HasForeignKey("ID_UserProfile")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EventRoundSession");
 
-                    b.Navigation("UserAccount");
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Security.AdminRoleOperation", b =>
@@ -1982,8 +1982,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("MyFavRaces");
 
                     b.Navigation("MyRaces");
-
-                    b.Navigation("UserResults");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.UserManagement.M_UserLicense", b =>
@@ -1998,6 +1996,8 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Navigation("UserAccount");
 
                     b.Navigation("UserLicenses");
+
+                    b.Navigation("UserResults");
 
                     b.Navigation("UserRoundSignIns");
                 });

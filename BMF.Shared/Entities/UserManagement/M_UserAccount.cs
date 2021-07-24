@@ -1,5 +1,4 @@
-﻿using BMF.Shared.Entities.Events;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,8 +28,6 @@ namespace BMF.Shared.Entities.UserManagement
         [Display(Name = "User Profile", Prompt = "User Profile")]
         [InverseProperty(nameof(M_UserProfile.UserAccount))]
         public M_UserProfile UserProfile { get; set; }
-
-        public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
         public ICollection<M_MyRaces> MyRaces { get; set; }
 

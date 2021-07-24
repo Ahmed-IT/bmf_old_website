@@ -14,9 +14,9 @@
             @Html.ValidationMessageFor(model => model.ID_EventRoundSession, "")
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ID_UserAccount, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
-            @Html.DropDownListFor(model => model.ID_UserAccount, null, new { @class = "form-control select2-add", @required = "required", @style = "width:100%;", @data_placeholder = "Select ...", @data_allow_clear = "true" })
-            @Html.ValidationMessageFor(model => model.ID_UserAccount, "")
+            @Html.LabelFor(model => model.ID_UserProfile, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.DropDownListFor(model => model.ID_UserProfile, null, new { @class = "form-control select2-add", @required = "required", @style = "width:100%;", @data_placeholder = "Select ...", @data_allow_clear = "true" })
+            @Html.ValidationMessageFor(model => model.ID_UserProfile, "")
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Points, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>

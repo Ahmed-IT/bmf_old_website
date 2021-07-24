@@ -24,7 +24,6 @@ namespace BMF.Shared.Entities.UserManagement
 
         public M_UserAccount()
         {
-            UserResults = new List<M_EventRoundSessionUserResults>();
             MyRaces = new List<M_MyRaces>();
             MyFavRaces = new List<M_MyFavRaces>();
         }

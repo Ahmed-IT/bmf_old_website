@@ -1,4 +1,5 @@
-﻿using BMF.Shared.Entities.Location;
+﻿using BMF.Shared.Entities.Events;
+using BMF.Shared.Entities.Location;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -104,6 +105,10 @@ namespace BMF.Shared.Entities.UserManagement
         [Display(Name = "User Round Sign Ins", Prompt = "User Round Sign Ins")]
         [InverseProperty(nameof(M_UserRoundSignIn.UserProfile))]
         public ICollection<M_UserRoundSignIn> UserRoundSignIns { get; set; }
+
+        [Display(Name = "User Results", Prompt = "User Results")]
+        [InverseProperty(nameof(M_EventRoundSessionUserResults.UserProfile))]
+        public ICollection<M_EventRoundSessionUserResults> UserResults { get; set; }
 
         #endregion
     }

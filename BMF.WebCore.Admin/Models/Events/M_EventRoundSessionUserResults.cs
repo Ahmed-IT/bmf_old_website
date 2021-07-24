@@ -52,7 +52,7 @@ namespace BMF.Shared.Entities.Events
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.EventCategory)}.{nameof(M_EventCategory.Title)}", "Event Category"),
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.Round_Number)}", "Event Round Number"),
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.Title)}", "Round Session"),
-                new Column($"{nameof(UserAccount)}.{nameof(M_UserAccount.UserProfile)}.{nameof(M_UserProfile.FullName)}", "Full Name"),
+                new Column($"{nameof(UserProfile)}.{nameof(M_UserProfile.FullName)}", "Full Name"),
                 new Column(nameof(Points), "Points"),
                 new Column(nameof(BestTime), "Best Time"),
             };
@@ -66,7 +66,7 @@ namespace BMF.Shared.Entities.Events
         public void GetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             ID_EventRoundSession = Database.ID_EventRoundSession;
-            ID_UserAccount = Database.ID_UserAccount;
+            ID_UserProfile = Database.ID_UserProfile;
             Points = Database.Points;
             BestTime = Database.BestTime;
         }
@@ -74,7 +74,7 @@ namespace BMF.Shared.Entities.Events
         public void SetDatabaseValues(M_EventRoundSessionUserResults Database)
         {
             Database.ID_EventRoundSession = ID_EventRoundSession;
-            Database.ID_UserAccount = ID_UserAccount;
+            Database.ID_UserProfile = ID_UserProfile;
             Database.Points = Points;
             Database.BestTime = BestTime;
         }
@@ -91,9 +91,9 @@ namespace BMF.Shared.Entities.Events
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventRoundSession)}", "Event round session must be selected.");
             }
-            if (ID_UserAccount == 0)
+            if (ID_UserProfile == 0)
             {
-                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_UserAccount)}", "User must be selected.");
+                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_UserProfile)}", "User must be selected.");
             }
         }
 

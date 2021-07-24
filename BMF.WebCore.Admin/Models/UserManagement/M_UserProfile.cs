@@ -1,4 +1,5 @@
 ﻿using AMK.Plugin.JQueryDataTable;
+using BMF.Shared.Entities.Events;
 using BMF.Shared.Extensions;
 using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
@@ -30,6 +31,7 @@ namespace BMF.Shared.Entities.UserManagement
 
         public M_UserProfile()
         {
+            UserResults = new List<M_EventRoundSessionUserResults>();
             //UserLicense = new List<M_UserLicense>();
         }
 
