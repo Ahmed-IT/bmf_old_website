@@ -120,7 +120,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
             {
                 var Modal = new ModalInformational($"Edit {_entityName} Image",
                     Url.Action("_FormEditImage", _controllerName, new { area = _areaName }),
-                    Size: Size.Medium,
+                    Size: Size.Large,
                     HighlightRecordOnShow: true,
                     HighlightRecordDatatableName: $"DT_{JQDT_Index}"
                     );
@@ -331,7 +331,8 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                     return UnauthorizedModalView();
 
                 ModelState.Clear();
-                AddRecord.Image_URL = M_Club._defaultImage;
+                AddRecord.Image_URL_Logo = M_Club._defaultImage;
+                AddRecord.Image_URL_Banner = M_Club._defaultImage;
                 #region Validation
                 AddRecord.Validate(ModelState, databaseContext: _repository.QTable);
                 if (!ModelState.IsValid)
@@ -388,7 +389,8 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                 else
                 {
                     ModelState.Clear();
-                    EditRecord.Image_URL = ActualRecord.Image_URL;
+                    EditRecord.Image_URL_Logo = ActualRecord.Image_URL_Logo;
+                    EditRecord.Image_URL_Banner = ActualRecord.Image_URL_Banner;
                     #region Validation
                     EditRecord.Validate(ModelState, databaseContext: _repository.QTable);
                     if (!ModelState.IsValid)
@@ -505,7 +507,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
         #region API - File Upload
 
         [HttpPost]
-        public async Task<ActionResult> UploadImage(long ID, IFormFile ImageUpload)
+        public async Task<ActionResult> UploadImageLogo(long ID, IFormFile ImageUpload)
         {
             try
             {
@@ -545,7 +547,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                             }
                             else
                             {
-                                ActualRecord.Image_URL = imageURL;
+                                ActualRecord.Image_URL_Logo = imageURL;
                                 ActualRecord.CreatedOnUtc = CurrentTimestamp;
                                 ActualRecord.CreatedBy = User.Identity.Name.ToString();
                                 ActualRecord.UpdatedOnUtc = CurrentTimestamp;
@@ -565,7 +567,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                                             caption = "", //caption = $"{ActualRecord.Name} - {specSection.ToString()} - {AddRecord.ID}",
                                             filename = "", //filename = $"{ActualRecord.Name} - {specSection.ToString()} {AddRecord.ID}",
                                             downloadUrl = $"{imageURL}",
-                                            url  = $"{Url.Action("DeleteImage", new { ActualRecord.ID })}",
+                                            url  = $"{Url.Action("DeleteImageLogo", new { ActualRecord.ID })}",
                                             key = ActualRecord.ID,
                                         }
                                     },
@@ -583,7 +585,7 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> DeleteImage(long ID, long key)
+        public async Task<ActionResult> DeleteImageLogo(long ID, long key)
         {
             try
             {
@@ -611,9 +613,146 @@ namespace BMF.WebCore.Admin.Areas.WebsiteCMS.Controllers
                         else
                         {
                             DateTime CurrentTimestamp = DateTime.Now;
-                            var actualFileName = ActualRecord.Image_URL.Split('/').LastOrDefault();
+                            var actualFileName = ActualRecord.Image_URL_Logo.Split('/').LastOrDefault();
 
-                            ActualRecord.Image_URL = M_Club._defaultImage;
+                            ActualRecord.Image_URL_Logo = M_Club._defaultImage;
+                            ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                            ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                            ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                            ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                            _repository.Entry(ActualRecord).State = EntityState.Modified;
+
+                            var _DeleteStatus = await _azureStorageManager.DeleteFileAsync(AzureStorageContainers.ClubImage, actualFileName);
+                            if (_DeleteStatus)
+                            {
+                                await _repository.SaveChangesAsync();
+                                return Json("");
+                            }
+                            else
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to delete. Please try again later." });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to delete. Please contact system administrator." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UploadImageBanner(long ID, IFormFile ImageUpload)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to upload. Invalid selection." });
+                }
+                else
+                {
+                    if (ImageUpload == null || ImageUpload.Length == 0)
+                    {
+                        return Json(new KatrikFileResponse() { error = "Failed to upload. No uploaded image provided." });
+                    }
+                    else
+                    {
+                        M_Club ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                        if (ActualRecord == null)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                        }
+                        else if (ActualRecord.DeletedOnUtc.HasValue)
+                        {
+                            return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+
+                            using var memoryStream = new MemoryStream();
+                            await ImageUpload.CopyToAsync(memoryStream);
+                            memoryStream.Position = 0; // Reset memory stream to upload correctly
+
+                            var uploadResult = _azureStorageManager.UploadFile(AzureStorageContainers.ClubImage, ImageUpload.FileName, memoryStream, out string imageURL, out string errorMessage);
+                            if (!uploadResult)
+                            {
+                                return Json(new KatrikFileResponse() { error = "Failed to upload. Please try again later." });
+                            }
+                            else
+                            {
+                                ActualRecord.Image_URL_Banner = imageURL;
+                                ActualRecord.CreatedOnUtc = CurrentTimestamp;
+                                ActualRecord.CreatedBy = User.Identity.Name.ToString();
+                                ActualRecord.UpdatedOnUtc = CurrentTimestamp;
+                                ActualRecord.UpdatedBy = User.Identity.Name.ToString();
+
+                                _repository.Entry(ActualRecord).State = EntityState.Modified;
+                                await _repository.SaveChangesAsync();
+
+                                return Json(new KatrikFileResponse()
+                                {
+                                    error = null,
+                                    initialPreview = new List<string>() { $"{imageURL}" },
+                                    initialPreviewConfig = new List<KatrikFilePreviewConfig>()
+                                    {
+                                        new KatrikFilePreviewConfig()
+                                        {
+                                            caption = "", //caption = $"{ActualRecord.Name} - {specSection.ToString()} - {AddRecord.ID}",
+                                            filename = "", //filename = $"{ActualRecord.Name} - {specSection.ToString()} {AddRecord.ID}",
+                                            downloadUrl = $"{imageURL}",
+                                            url  = $"{Url.Action("DeleteImageBanner", new { ActualRecord.ID })}",
+                                            key = ActualRecord.ID,
+                                        }
+                                    },
+                                    append = true
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception LogError)
+            {
+                return Json(new KatrikFileResponse() { error = "Failed to upload. Please contact system administrator." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteImageBanner(long ID, long key)
+        {
+            try
+            {
+                if (ID == 0)
+                {
+                    return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid selection." });
+                }
+                else
+                {
+                    M_Club ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
+                    if (ActualRecord == null)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_Navigation });
+                    }
+                    else if (ActualRecord.DeletedOnUtc.HasValue)
+                    {
+                        return Json(new KatrikFileResponse() { error = FixedTerms.Message_Error_ConcurencyDeleted });
+                    }
+                    else
+                    {
+                        if (key == 0)
+                        {
+                            return Json(new KatrikFileResponse() { error = "Failed to delete. Invalid image selected." });
+                        }
+                        else
+                        {
+                            DateTime CurrentTimestamp = DateTime.Now;
+                            var actualFileName = ActualRecord.Image_URL_Banner.Split('/').LastOrDefault();
+
+                            ActualRecord.Image_URL_Banner = M_Club._defaultImage;
                             ActualRecord.CreatedOnUtc = CurrentTimestamp;
                             ActualRecord.CreatedBy = User.Identity.Name.ToString();
                             ActualRecord.UpdatedOnUtc = CurrentTimestamp;

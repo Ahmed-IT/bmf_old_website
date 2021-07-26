@@ -26,30 +26,62 @@
                 </tr>
             </table>
             <hr />
-            <input id="ImageUpload" name="ImageUpload" type="file">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3>Logo</h3>
+                        <input id="ImageUploadLogo" name="ImageUpload" type="file">
+
+                    </div>
+                    <div class="col">
+                        <h3>Banner</h3>
+                        <input id="ImageUploadBanner" name="ImageUpload" type="file">
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="mr-1 fas fa-times"></i>Close</button>
         </div>
         <script id="image-upload">
-            var URL_Image_Overview = ["@Model.Image_URL"],
-                Data_Image_Overview = [{ downloadUrl: "@Model.Image_URL", key: @Model.ID, caption: "@Model.Title" }];
-            $("#ImageUpload").fileinput({
+            var URL_ImageLogo_Overview = ["@Model.Image_URL_Logo"],
+                Data_ImageLogo_Overview = [{ downloadUrl: "@Model.Image_URL_Logo", key: @Model.ID, caption: "@Model.Title" }];
+            var URL_ImageBanner_Overview = ["@Model.Image_URL_Banner"],
+                Data_ImageBanner_Overview = [{ downloadUrl: "@Model.Image_URL_Banner", key: @Model.ID, caption: "@Model.Title" }];
+            $("#ImageUploadLogo").fileinput({
                 theme: 'fas',
                 required: true,
                 showDrag: false,
                 showRemove: false,
                 overwriteInitial: true,
-                initialPreview: URL_Image_Overview,
+                initialPreview: URL_ImageLogo_Overview,
                 initialPreviewAsData: true,
                 minFileCount: 1,
                 maxFileCount: 1,
                 validateInitialCount: true,
                 maxFileSize: 5000,
                 allowedFileExtensions: ["jpeg", "jpg", "png"],
-                initialPreviewConfig: Data_Image_Overview,
-                uploadUrl: '@Url.Action("UploadImage", new { Model.ID })',
-                //deleteUrl: '@Url.Action("DeleteImage", new { Model.ID })',
+                initialPreviewConfig: Data_ImageLogo_Overview,
+                uploadUrl: '@Url.Action("UploadImageLogo", new { Model.ID })',
+                //deleteUrl: '@Url.Action("DeleteImageLogo", new { Model.ID })',
+            });
+            $("#ImageUploadBanner").fileinput({
+                theme: 'fas',
+                required: true,
+                showDrag: false,
+                showRemove: false,
+                overwriteInitial: true,
+                initialPreview: URL_ImageBanner_Overview,
+                initialPreviewAsData: true,
+                minFileCount: 1,
+                maxFileCount: 1,
+                validateInitialCount: true,
+                maxFileSize: 5000,
+                allowedFileExtensions: ["jpeg", "jpg", "png"],
+                initialPreviewConfig: Data_ImageBanner_Overview,
+                uploadUrl: '@Url.Action("UploadImageBanner", new { Model.ID })',
+                //deleteUrl: '@Url.Action("DeleteImageBanner", new { Model.ID })',
             });
 
             var getFileSize = function (url) {

@@ -21,10 +21,15 @@ namespace BMF.Shared.Entities.Website
         [JsonProperty(PropertyName = nameof(Website_Link))]
         public string Website_Link { get; set; }
 
-        [Display(Name = "Image URL")]
+        [Display(Name = "Image (Logo) URL")]
         [StringLength(1024), MaxLength(1024), MinLength(1), Required]
-        [JsonProperty(PropertyName = nameof(Image_URL))]
-        public string Image_URL { get; set; }
+        [JsonProperty(PropertyName = nameof(Image_URL_Logo))]
+        public string Image_URL_Logo { get; set; }
+
+        [Display(Name = "Image (Banner) URL")]
+        [StringLength(1024), MaxLength(1024), MinLength(1), Required]
+        [JsonProperty(PropertyName = nameof(Image_URL_Banner))]
+        public string Image_URL_Banner { get; set; }
 
         #endregion
     }

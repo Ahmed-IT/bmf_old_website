@@ -65,7 +65,8 @@ namespace BMF.Shared.Entities.Website
             Title = Database.Title;
             Description = Database.Description;
             Website_Link = Database.Website_Link;
-            Image_URL = Database.Image_URL;
+            Image_URL_Logo = Database.Image_URL_Logo;
+            Image_URL_Banner = Database.Image_URL_Banner;
         }
 
         public void SetDatabaseValues(M_Club Database)
@@ -73,7 +74,8 @@ namespace BMF.Shared.Entities.Website
             Database.Title = Title;
             Database.Description = Description;
             Database.Website_Link = Website_Link;
-            Database.Image_URL = Image_URL;
+            Database.Image_URL_Logo = Image_URL_Logo;
+            Database.Image_URL_Banner = Image_URL_Banner;
         }
 
         public void AsDatabaseUpdate(M_Club Database)

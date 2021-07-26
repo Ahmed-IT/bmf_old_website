@@ -1406,7 +1406,12 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
-                    b.Property<string>("Image_URL")
+                    b.Property<string>("Image_URL_Banner")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("Image_URL_Logo")
                         .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
