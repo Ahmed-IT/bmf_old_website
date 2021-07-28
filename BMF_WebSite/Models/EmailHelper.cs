@@ -96,13 +96,28 @@ namespace BMF_WebSite.Models
             msg += "Tow extra steps we need you to do: <br/><br/>";
             msg += "Download Discord mobile app and join BEGTC 2021 Season 3 - Qualifying Round link below: <br/>";
             msg += "https://discord.gg/Xkncctv5BA <br/><br/>";
-            msg += "Read carefully the <a href='https://bmfstorage.blob.core.windows.net/events-categoryrules-pdf/BEGTC_Regulations_V2.1_FINAL.pdf'>Rules and Regulations</a> <br/><br/>";
+            msg += "Read carefully the <a href='https://bmfstorage.blob.core.windows.net/br-subcategoryrulesregs-pdf/begtc3regulations2021final.pdf-ced02ebc22c54ae6b976e7ddda33c6fa.pdf'>Rules and Regulations</a> <br/><br/>";
             msg += "May the odds be in your favor. <br/>";
             msg += "For any further information please contact us on info@bmf.com.bh <br/><br/>";
             msg += "Regards, <br/>";
             msg += "Bahrain eSport Committee <br/>";
             msg += "bmf.com.bh";
 
+
+            return msg;
+        }
+
+        public static string LicenseEmailMessage(string FullName)
+        {
+            string msg = "";
+
+            msg += "Dear " + FullName + ", <br/>";
+            msg += "Your registration has been received.<br/><br/>";
+            msg += "Kindly accept this email as a confirmation that you have successfully applied for the your license. <br/><br/>";
+            msg += "We will contact you shortly to complete the process of your license, for any further information please contact us at info@bmf.com.bh <br/><br/>";
+            msg += "Regards, <br/>";
+            msg += "Bahrain Motor Federation <br/>";
+            msg += "bmf.com.bh";
 
             return msg;
         }

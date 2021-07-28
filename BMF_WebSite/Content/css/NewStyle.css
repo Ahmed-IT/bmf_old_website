@@ -1,0 +1,95 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+
+@font-face {
+    src: url(../fonts/BarlowCondensed-Bold.ttf);
+    font-family: bb;
+}
+
+@font-face {
+    src: url(../fonts/BarlowCondensed-Light.ttf);
+    font-family: bl;
+}
+
+@font-face {
+    src: url(../fonts/BarlowCondensed-Regular.ttf);
+    font-family: br;
+}
+
+@font-face {
+    src: url(../fonts/Parisienne-Regular.ttf);
+    font-family: pr;
+}
+
+@font-face {
+    src: url(../fonts/FjallaOne-Regular.ttf);
+    font-family: FjallaOneR;
+}
+
+@font-face {
+    src: url(../fonts/PermanentMarker-Regular.ttf);
+    font-family: PermanentMarkerR;
+}
+
+@font-face {
+    src: url(../fonts/Lato-Regular.ttf);
+    font-family: LatoR;
+}
+
+@font-face {
+    src: url(../fonts/Lato-Bold.ttf);
+    font-family: LatoB;
+}
+
+@font-face {
+    src: url(../fonts/D-DIN-PRO-400-Regular.otf);
+    font-family: DinoR;
+}
+
+@font-face {
+    src: url(../fonts/D-DIN-PRO-500-Medium.otf);
+    font-family: DinoM;
+}
+
+@font-face {
+    src: url(../fonts/D-DIN-PRO-700-Bold.otf);
+    font-family: DinoB;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Regular.ttf);
+    font-family: MontserratR;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Medium.ttf);
+    font-family: MontserratM;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Bold.ttf);
+    font-family: MontserratB;
+}
+
+
+.CountdownBox {
+    background-color: #CB1C2B;
+    height: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.CountdownEventTitle {
+    color: white;
+    font-family: LatoB;
+}
+
+.ComingEventsBackground{
+    background-image:url('../images/BG.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}

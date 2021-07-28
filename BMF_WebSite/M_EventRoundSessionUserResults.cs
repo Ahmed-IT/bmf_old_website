@@ -25,9 +25,10 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
-        public long ID_UserAccount { get; set; }
+        public long ID_UserProfile { get; set; }
+        public string BestTime { get; set; }
     
         public virtual M_EventRoundSession M_EventRoundSession { get; set; }
-        public virtual M_UserAccount M_UserAccount { get; set; }
+        public virtual M_UserProfile M_UserProfile { get; set; }
     }
 }

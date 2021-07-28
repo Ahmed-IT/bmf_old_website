@@ -1,0 +1,121 @@
+﻿@model BMF_WebSite.Models.ClsNews
+@{
+    ViewBag.Title = "NewsDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style="font-size: 36px; font-family: DinoB;">BMF NEWS HUB</h3>
+
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="card border-0">
+                    <h5 style="font-family: DinoB; margin-bottom: 30px;">@Model.Title</h5>
+                    <img src="@Model.Image_URL" style="max-width:400px;" />
+
+                    <p style="font-family: DinoR; color: gray; font-size: 14px;">Published: @Model.NewsTimestampUtc.ToString("dd MMM yyyy")</p>
+
+                    <div class="card-body">
+
+                        <p style="font-family: DinoR; margin-top: 10px;">
+                            @Model.Content
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-5">
+                <h5 style="font-family:FjallaOneR; margin-bottom:20px;">Latest News</h5>
+
+                <div class="card border-0 mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="~/Content/images/2000cc.jpeg" style="max-width:150px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p style="font-family:LatoR; margin-left:10px; font-size:14px; margin-top:-10px;" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. <b style="color:red;">more..</b>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="~/Content/images/2000cc.jpeg" style="max-width:150px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p style="font-family:LatoR; margin-left:10px; font-size:14px; margin-top:-10px;" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. <b style="color:red;">more..</b>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="~/Content/images/2000cc.jpeg" style="max-width:150px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p style="font-family:LatoR; margin-left:10px; font-size:14px; margin-top:-10px;" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. <b style="color:red;">more..</b>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="~/Content/images/2000cc.jpeg" style="max-width:150px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p style="font-family:LatoR; margin-left:10px; font-size:14px; margin-top:-10px;" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. <b style="color:red;">more..</b>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+
+
+
+    </div>
+</section>
+
+

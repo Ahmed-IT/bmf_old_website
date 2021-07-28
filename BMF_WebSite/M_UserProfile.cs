@@ -17,6 +17,7 @@ namespace BMF_WebSite
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public M_UserProfile()
         {
+            this.M_EventRoundSessionUserResults = new HashSet<M_EventRoundSessionUserResults>();
             this.M_UserLicense = new HashSet<M_UserLicense>();
             this.M_UserRoundSignIn = new HashSet<M_UserRoundSignIn>();
         }
@@ -46,6 +47,8 @@ namespace BMF_WebSite
         public string SystemRemarks { get; set; }
     
         public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
         public virtual M_UserAccount M_UserAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_UserLicense> M_UserLicense { get; set; }

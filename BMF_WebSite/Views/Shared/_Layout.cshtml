@@ -80,31 +80,31 @@
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("About Us", "AboutUs", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("About Us", "Index", "AboutUs", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Services", "CdpApplication", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Services", "CdpApplication", "Services", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Calendar", "EventCalendar", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Calendar", "Index", "EventCalendar", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Bulletins", "Bulletins", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Bulletins", "Index", "Bulletin", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Rules & Regs", "RulesRegulations", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Rules & Regs", "Index", "RulesRegulations", null, new { @class = "nav-link" })
+                    </li>
+                    @*<li class="nav-item">
+                        @Html.ActionLink("Results", "Index", "Results", null, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("News", "Index", "NewsHub", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Results", "Results", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Gallery", "Index", "Gallery", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("News", "News", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Gallery", "Gallery", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "ContactUs", "Home", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Contact", "Index", "ContactUs", null, new { @class = "nav-link" })
                     </li>
                 </ul>
             </div>
@@ -140,16 +140,16 @@
 
                 <div class="col-lg-12 m-auto">
                     <div class="menu-a text-center">
-                        <a href='@Url.Action("Index","Home",null)'>Home</a>
-                        <a href='@Url.Action("AboutUs","Home",null)'>About</a>
-                        <a href='@Url.Action("CdpApplication","Home",null)'>Services</a>
-                        <a href='@Url.Action("EventCalendar","Home",null)'>Calendar</a>
-                        <a href='@Url.Action("Bulletins","Home",null)'>Bulletins</a>
-                        <a href='@Url.Action("RulesRegulations","Home",null)'>Rules & Regs</a>
-                        <a href='@Url.Action("Results","Home",null)'>Results</a>
-                        <a href='@Url.Action("News","Home",null)'>News</a>
-                        <a href='@Url.Action("Gallery","Home",null)'>Gallery</a>
-                        <a href='@Url.Action("ContactUs","Home",null)'>Contact</a>
+                        <a style="font-family: DinoR; font-size:14px;" href='@Url.Action("Index","Home",null)'>Home</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","AboutUs",null)'>About</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("CdpApplication","Services",null)'>Services</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","EventCalendar",null)'>Calendar</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Bulletin",null)'>Bulletins</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","RulesRegulations",null)'>Rules & Regs</a>
+                        @*<a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Results",null)'>Results</a>*@
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","NewsHub",null)'>News</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Gallery",null)'>Gallery</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","ContactUs",null)'>Contact</a>
                     </div>
                 </div>
             </div>
@@ -161,7 +161,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center copy-right-txt">
-                    <p>Copyright © 2020. All rights reserved by <a href="'@Url.Action("Index","Home")'">BAHRAIN MOTOR FEDERADTION</a></p>
+                    <p>Copyright © @DateTime.Now.Year.ToString(). All rights reserved by <a href="'@Url.Action("Index","Home")'">BAHRAIN MOTOR FEDERADTION</a></p>
                 </div>
             </div>
         </div>

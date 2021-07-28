@@ -17,7 +17,6 @@ namespace BMF_WebSite
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public M_UserAccount()
         {
-            this.M_EventRoundSessionUserResults = new HashSet<M_EventRoundSessionUserResults>();
             this.M_MyFavRaces = new HashSet<M_MyFavRaces>();
             this.M_MyRaces = new HashSet<M_MyRaces>();
         }
@@ -34,8 +33,6 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_MyFavRaces> M_MyFavRaces { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

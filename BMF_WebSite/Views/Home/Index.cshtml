@@ -1,72 +1,62 @@
-﻿@model BMF_WebSite.Models.ViewModels.MainPageVM.Dashboard
+﻿@model BMF_WebSite.ViewModels.MainPageVM
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutNew.cshtml";
 }
 
-<!-- BANNER AREA START -->
-<section id="banner">
-    <div class="backtotop">
-        
-    </div>
-    <div class="container zindex">
-        <div class="row">
-            <div class="col-lg-12 banner-txt" style="text-align:center;">
-                <br /><br /><br /><br /><br /><br />
-                @*<h1>Bahrain Motor Federation</h1>*@
-                <a style="text-align: center;" href="/eSport/Registration">
-                    <img src="~/Content/images/RegisterNowBtn.png" style="width:250px;" />
-                </a>
-            </div>
-        </div>
+<!-- COMING EVENTS AREA START -->
 
-    </div>
-</section>
-<section id="banner-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
-                <div class="luanch">
-                    <div class="coundown_res">
-                        <font style="color:white; font-family:PermanentMarkerR; font-size:20px;">Coming Event:</font>
-                        <p style="color:white; line-height:40px; margin-top:10px; font-size:36px; font-family:FjallaOneR;">
-                            @Model.Countdown.EventCategory.Title @Model.Countdown.Round_Number
-                            <br />
-                            <font style="font-size:20px;">@Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")</font>
-                            @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
-                        </p>
-                        <br />
-                        <div style="display:none;" id="countdown"></div>
-                        <div class="row">
+<!-- COMING EVENTS AREA END -->
+
+<section class="bg-dark mobile-auto ComingEventsBackground" id="blog">
+    <div class="container" style="height:100%;">
+        <div class="bg-transparent mobile-auto" style="height:100%;">
+            <div class="CountdownBox">
+                <div style="display:none;" id="countdown"></div>
+                <div class="row">
+                    <div class="col-lg-4 CountdownEventTitle">
+                        @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
+                        <div style="margin:20px;">
+                            <h4 style="font-family: DinoB;">
+                                @Model.Countdown.M_EventCategory.Title @Model.Countdown.Round_Number
+                            </h4>
+                            <h5 style="font-family: DinoR;">
+                                @Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 CountdownEventTitle">
+                        <div class="row" style="margin-top:20px; margin-left:20px;">
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
                                     <div class="coun_time">
-                                        <h2 style="font-family:FjallaOneR;" id="day" class="coming-data"></h2>
-                                        <p style="font-family:PermanentMarkerR;" class="coming-data2 special-pos">Days</p>
+                                        <h3 style="font-family: DinoB;" id="day" class="coming-data">0</h3>
+                                        <p style="font-family: DinoR; font-size: 14px; " class="coming-data2 special-pos">Days</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
                                     <div class="coun_time">
-                                        <h2 style="font-family:FjallaOneR;" id="hour" class="coming-data"></h2>
-                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Hrs</p>
+                                        <h3 style="font-family: DinoB;" id="hour" class="coming-data">0</h3>
+                                        <p style="font-family: DinoR; font-size: 14px; " class="coming-data2">Hrs</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
                                     <div class="coun_time">
-                                        <h2 style="font-family:FjallaOneR;" id="minute" class="coming-data"></h2>
-                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Min</p>
+                                        <h3 style="font-family: DinoB;" id="minute" class="coming-data">0</h3>
+                                        <p style="font-family: DinoR; font-size: 14px; " class="coming-data2">Min</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
                                 <div class="coun">
                                     <div class="coun_time">
-                                        <h2 style="font-family:FjallaOneR;" id="second" class="coming-data"></h2>
-                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Sec</p>
+                                        <h3 style="font-family: DinoB;" id="second" class="coming-data">0</h3>
+                                        <p style="font-family: DinoR; font-size:14px;" class="coming-data2">Sec</p>
                                     </div>
                                 </div>
                             </div>
@@ -74,57 +64,10 @@
                     </div>
                 </div>
             </div>
-            @*<div class="col-lg-3 col-md-4">
-                    <p style="color:white; font-size:20px;">
-                        National Race Day Round 1
-                        <br />
-                        15 Jan 2021
-                    </p>
-                </div>*@
+            <br />
         </div>
-    </div>
-</section>
 
-@*<section id="event">
-        <div class="container zindex">
-            <div class="row">
-                <div class="col-lg-3">
-                    <figure class="figure">
-                        <img class="rounded" src="~/Content/images/shabdullabinIsa.jpg" style="width:95%;" />
-                        <figcaption class="figure-caption">Sh. Abdulla Bin Isa</figcaption>
-                    </figure>
-
-
-                </div>
-                <div class="col-lg-9 about-txt">
-                    <div class="speaker-heading">
-                        <h3>PRESEDENT SPEECH</h3>
-                        <div class="header-style"></div>
-                    </div>
-                    <br />
-                    <p style="font-size:16px; text-align:justify;">
-                        The Bahrain Motor Federation is the oldest racing club in the region with the first event organised in 1952. We are a dedicated team with a proactive approach and continue to introduce new initiatives,
-                        that leads to our sport genuinely welcoming people from all walks of life.
-                    </p>
-                </div>
-            </div>
-
-
-
-        </div>
-    </section>*@
-
-<section id="blog">
-    <div class="container">
-        <div class="row">
-            <div style="text-align:left; font-family:FjallaOneR;" class="col-lg-12 speaker-heading">
-                <h3>COMING EVENTS</h3>
-            </div>
-        </div>
         <div class="row blog-pa">
-            <div>
-                <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="@Url.Action("EventCalendar","Home",null)">Show All <i class="fa fa-angle-double-right"></i></a>
-            </div>
             <div class="col-lg-12">
                 <div class="blog-main">
                     @if (Model.ComingEvents != null)
@@ -134,22 +77,14 @@
                             <div class="col-lg-4 blog-item" style="margin:10px;">
                                 <div class="blog-shadow">
                                     <div class="card border-0 rounded-0 bg-dark text-white">
-                                        <img src="@item.EventCategory.Image_URL" class="card-img">
+                                        <img src="@item.M_EventCategory.Image_URL" class="card-img">
                                         <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
-                                            <div style="margin:10px; float:right; margin-left:auto;">
-                                                <div class="events-date">
-                                                    <h4>@item.DateTime_Start.ToString("dd")</h4>
-                                                    <h5>@item.DateTime_Start.ToString("MMM")</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                                            <div style="background-color: rgba(0, 0, 0, 0.7); height:40px;">
-                                                <div style="margin:7px;">
-                                                    @*<h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>*@
-                                                    <p style="font-family:LatoR" class="card-subtitle">Coming Event: @item.Round_Number</p>
-                                                </div>
+                                            <div style="margin:10px; float:left; margin-right:auto; color:white;">
+                                                <h2 style="font-family: DinoB;">@item.M_EventCategory.Title</h2>
+                                                <br />
+                                                <p style="font-size: 14px; font-family: DinoR;">NEXT ROUND</p>
+                                                <h4 style="text-transform: uppercase; font-family: DinoB;">@item.Round_Number</h4>
+                                                <p style="font-size: 14px; text-transform: uppercase; font-family: DinoR;">@item.DateTime_Start.ToString("dd MMM yyyy")</p>
                                             </div>
                                         </div>
                                     </div>
@@ -162,122 +97,271 @@
         </div>
     </div>
 </section>
-<!-- SCHEDULE AREA END -->
-<!-- BLOG AREA START -->
-@if (Model.News.Count > 0)
-{
-    <section id="blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 speaker-heading">
-                    <div class="row">
-                        <h3 style="font-family:FjallaOneR;">LATEST FROM BMF</h3>
+
+<section id="gallery_2" style="background-color: #C31A29; height:100%;">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <br />
+                <h3 style=" font-family: DinoR; color: white;">Services</h3>
+            </div>
+        </div>
+
+        <div class="row price-pa">
+            <div class="col-lg-3 col-md-6 m-md-auto col-sm-6 m-sm-auto">
+                <div class="price-item" style=" background-color: #242424; background-image:url('../../Content/images/CPD.png'); background-size:cover; background-repeat:no-repeat; color: white; text-align: left;">
+                    <div style="height:120px;">
+                        <h2>
+                            <i class="fa fa-certificate" aria-hidden="true"></i>
+                        </h2>
+                        <h5 style="font-family: DinoB; ">
+                            CPD
+                        </h5>
                     </div>
-                    <div class="header-style"></div>
+
+
+                    <div style="text-align:left; bottom:0;">
+                        <a class="link-light" href="@Url.Action("CdpApplication","Services",null)" style="text-align: left; font-family: DinoR;">Learn More</a>
+                    </div>
+                    <br />
                 </div>
             </div>
-            <div class="row blog-pa">
-                <div>
-                    <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="#">Show All <i class="fa fa-angle-double-right"></i></a>
+
+            <div class="col-lg-3 col-md-6 m-md-auto col-sm-6 m-sm-auto">
+                <div class="price-item" style=" background-color: #242424; background-image: url('../../Content/images/License.png'); background-size: cover; background-repeat: no-repeat; color: white; text-align: left;">
+                    <div style="height:120px;">
+                        <h2>
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                        </h2>
+                        <h5 style=" font-family: DinoB;">
+                            COMPETITION
+                            <br />
+                            LICENSE
+                        </h5>
+                    </div>
+
+
+                    <div style="text-align:left; bottom:0;">
+                        <a class="link-light" href="@Url.Action("CompetitionLicense","Services",null)" style="text-align: left; font-family: DinoR;">Learn More</a>
+                    </div>
+                    <br />
                 </div>
-                <div class="col-lg-12">
-                    <div class="blog-main">
-                        @foreach (var item in Model.News)
+            </div>
+
+            <div class="col-lg-3 col-md-6 m-md-auto col-sm-6 m-sm-auto">
+                <div class="price-item" style=" background-color: #242424; background-image: url('../../Content/images/R&R.png'); background-size: cover; background-repeat: no-repeat; color: white; text-align: left;">
+                    <div style="height:120px;">
+                        <h2>
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                        </h2>
+                        <h5 style=" font-family: DinoB;">
+                            RULES &
+                            <br />
+                            REGUALTIONS
+                        </h5>
+                    </div>
+
+
+                    <div style="text-align:left; bottom:0;">
+                        <a class="link-light" href="@Url.Action("Index","RulesRegulations",null)" style="text-align: left; font-family: DinoR;">Learn More</a>
+                    </div>
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 m-md-auto col-sm-6 m-sm-auto">
+                <div class="price-item" style=" background-color: #242424; background-image: url('../../Content/images/Bull.png'); background-size: cover; background-repeat: no-repeat; color: white; text-align: left;">
+                    <div style="height:120px;">
+                        <h2>
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                        </h2>
+                        <h5 style=" font-family: DinoB;">
+                            BULLETINS
+                        </h5>
+                    </div>
+
+
+                    <div style="text-align:left; bottom:0;">
+                        <a class="link-light" href="@Url.Action("Index","Bulletin",null)" style="text-align: left; font-family: DinoR;">Learn More</a>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        
+
+        <br />
+    </div>
+</section>
+
+<section style="background-color: #141414; height:100%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <br />
+                <h3 style=" font-family: DinoR; color: white;">Clubs</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+        <br />
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                @if (Model.Clubs != null)
+                {
+                    int i = 1;
+
+                    foreach (var item in Model.Clubs)
+                    {
+                        if (i == 1)
                         {
-                            <div class="col-lg-4 blog-item" style="margin:10px;">
-                                <div class="blog-shadow">
-                                    <img src="~/Content/images/Karting.jpg" alt="blog-img" class="img-fluid">
-                                    <div class="blog-data">
-                                        <div class="blog-date">
-                                            <h4>@item.NewsTimestampUtc.ToString("dd")</h4>
-                                            <h5>@item.NewsTimestampUtc.ToString("MMM")</h5>
+                            <div class="carousel-item active">
+                                <div class="row">                                    
+                                    <div class="col-md-4" style="background-color:white;">
+                                        <br />
+                                        <div style="text-align:center;">
+                                            <img src="@item.Image_URL_Logo" style="width:40%;">
                                         </div>
-                                        <span>
-                                            <a href="#">
-                                                <h3 style="font-family:FjallaOneR;">@item.Title</h3>
-                                            </a>
-                                            <p style="font-family:LatoR;">@item.Content.Take(50)</p>
-                                        </span>
+                                        <div style="margin: 10px; font-family: DinoR; font-size:14px;">
+                                            <h5 style="font-family: DinoB;">@item.Title</h5>
+                                            <br />
+                                            The Motorsports Marshals Club is the marshalling organization under the patronage of the Bahrain Motor Federation.
+                                           <br />
+                                            <a style="font-family: DinoR; color:red;" href="@item.Website_Link" class="link-dark">Visit Website</a>
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-8" style="background-color:lightgray; padding:0;">
+                                        <img class="img-fluid" src="@item.Image_URL_Banner" style="background-color:lightgray; width:100%;" />
                                     </div>
                                 </div>
                             </div>
                         }
+                        else
+                        {
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-4" style="background-color:white;">
+                        <br />
+                        <div style="text-align:center;">
+                            <img src="@item.Image_URL_Logo" style="width:40%;">
+                        </div>
+                        <div style="margin: 10px; font-size: 14px; font-family: DinoR;">
+                            <h5 style="font-family: DinoB;">@item.Title</h5>
+                            <br />
+                            The Motorsports Marshals Club is the marshalling organization under the patronage of the Bahrain Motor Federation.
+                            <br />
+                            <a style="font-family: DinoR; color:red;" href="@item.Website_Link" class="link-dark">Visit Website</a>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-8" style="background-color:lightgray; padding:0;">
+                        <img class="img-fluid" src="@item.Image_URL_Banner" style="background-color:lightgray; width:100%;" />
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- BLOG AREA END -->
-}
-<section id="organize_2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 org-item">
-                <i class="fa fa-certificate" aria-hidden="true"></i>
-                <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
-                <i class="fa fa-id-card" aria-hidden="true"></i>
-                <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item">
-                <i class="fa fa-file" aria-hidden="true"></i>
-                <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
-            </div>
-            <div class="col-lg-3 col-sm-6 org-item or-i-none">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
-            </div>
-        </div>
-    </div>
-</section>
+                        }
 
-<br />
-<br />
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 speaker-heading">
-                <h3 style="font-family:FjallaOneR;">Clubs</h3>
-                <div class="header-style"></div>
-            </div>
-        </div>
-
-        <br /><br />
-
-        <div class="row">
-            @if (Model.Clubs != null)
-            {
-                foreach (var item in Model.Clubs)
-                {
-                    <div class="col-lg-2 blog-item" style="margin:10px;">
-                        <div class="blog-shadow">
-                            <div class="card border-0 rounded-0 bg-dark text-white">
-                                <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">
-                                    <img src="@item.Image_URL" class="card-img">
-                                </a>
-                                <div style="background-color:#1c1c1c; height:70px;">
-                                    <div style="margin:10px;">
-                                        <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
-                                        @if (item.Website_Link != "#")
-                                        {
-                                            <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        i++;
+                    }
                 }
-            }
-            <br /><br />
+
+            </div>
+            <div class="carousel-indicators">
+                @if (Model.Clubs != null)
+                {
+                    int i = 0;
+
+                    if (Request.Browser.IsMobileDevice)
+                    {
+                        foreach (var item in Model.Clubs)
+                        {
+                            if (i == 0)
+                            {
+                                <input type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i.ToString()" class="active" aria-current="true" />
+                            }
+                            else
+                            {
+                                <input type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i.ToString()" aria-current="true" />
+                            }
+
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Clubs)
+                        {
+                            if (i == 0)
+                            {
+                                <input type="button" style="width:70px; height:70px; background-image:url('@item.Image_URL_Logo'); background-size:70px; background-position:center; background-repeat:no-repeat; background-color:white;" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i.ToString()" class="active" aria-current="true" aria-label="Slide 1" />
+                            }
+                            else
+                            {
+                                <input type="button" style="width:70px; height:70px; background-image:url('@item.Image_URL_Logo'); background-size:70px; background-position:center; background-repeat:no-repeat; background-color:white;" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i.ToString()" aria-current="true" aria-label="Slide 1" />
+                            }
+
+                            i++;
+                        }
+                    }
+                }
+            </div>
+
+            
+        </div>
+
+
+        <br />
+    </div>
+</section>
+
+<section id="gallery_2">
+    <div style="background-color: white; height:100%;">
+        <div class="row">
+            <div class="col-md-6" style="text-align:center;">
+                <img src="~/Content/images/TrainingProvider1.jpg" style="width:60%;" />
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <img src="~/Content/images/TrainingProvider2.jpg" style="width:60%;" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery_2">
+    <div style="background-color: #012C61; height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/3500lives" target="_blank">
+                    <img src="~/Content/images/SFRS_logo.png" style="height:70px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h4 style=" font-family: DinoR; color: white;">#3500LIVES - SUPPORT MAINFESTO FOR GLOBAL ROAD SAFETY</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery_2">
+    <div style="background-image: url('../../Content/images/Banner-1.jpg'); height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/news/marshals-officials-and-medical-staff-honoured-over-fia-volunteers-weekend" target="_blank">
+                    <img src="~/Content/images/FIAV.png" style="height:120px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h4 style=" font-family: DinoR; color: white;">FIA Volunteers Weekend brings the global motor sport community together and gives thanks and support to those who make events possible.</h4>
+            </div>
         </div>
     </div>
 </section>
 
 
-<!-- GALLERY AREA START -->
 
 <section id="gallery_2">
     <div class="gallery-main">
@@ -295,44 +379,6 @@
         }
     </div>
 </section>
-<!-- GALLERY AREA END -->
-
-<section id="gallery_2">
-    <div style="background-color: #1c1c1c; height:100%;">
-        <div class="row" style="padding:50px;">
-            <div class="col-md-3" style="text-align:center;">
-                <a href="https://www.fia.com/3500lives" target="_blank">
-                    <img src="~/Content/images/SFRS_logo.png" style="height:70px;" />
-                </a>
-            </div>
-            <div class="col-md-6" style="text-align:center;">
-                <h3 style="font-family: LatoB; color:white;">#3500LIVES - SUPPORT MAINFESTO FOR GLOBAL ROAD SAFETY</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="gallery_2">
-    <div style="background-image: url('../../Content/images/Banner-1.jpg'); height:100%;">
-        <div class="row" style="padding:50px;">
-            <div class="col-md-3" style="text-align:center;">
-                <a href="https://www.fia.com/news/marshals-officials-and-medical-staff-honoured-over-fia-volunteers-weekend" target="_blank">
-                    <img src="~/Content/images/FIAV.png" style="height:120px;" />
-                </a>
-            </div>
-            <div class="col-md-6" style="text-align:center;">
-                <h3 style="font-family: LatoB; color:white;">FIA Volunteers Weekend brings the global motor sport community together and gives thanks and support to those who make events possible.</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<script>
-    $(document).ready(function () {
-        $(".lb-data").css("display", "none");
-    });
-</script>
 
 <script>
     var date = document.getElementById("DateTime_Start").value;

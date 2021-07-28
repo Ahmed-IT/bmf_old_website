@@ -74,7 +74,7 @@ namespace BMF_WebSite.Controllers
                                                 }
                                             }).OrderBy(a => a.DateTime_Start).Take(3).ToListAsync(),
                     News = await (from r in db.M_News
-                                  where r.IsActive == true
+                                  where r.IsActive == true && r.DeletedOnUtc == null
                                   select new
                                   {
                                       r.ID,
@@ -148,7 +148,7 @@ namespace BMF_WebSite.Controllers
                                           }
                                       }).OrderBy(a => a.DateTime_Start).Take(3).ToListAsync(),
                     News = await (from r in db.M_News
-                                  where r.IsActive == true
+                                  where r.IsActive == true && r.DeletedOnUtc == null
                                   select new
                                   {
                                       r.ID,

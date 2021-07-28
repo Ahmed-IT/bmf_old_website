@@ -1,0 +1,342 @@
+﻿@model BMF_WebSite.Models.ViewModels.MainPageVM.Dashboard
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BANNER AREA START -->
+<section id="banner">
+    <div class="backtotop">
+        
+    </div>
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 banner-txt" style="text-align:center;">
+                <br /><br /><br /><br /><br /><br />
+                @*<h1>Bahrain Motor Federation</h1>*@
+                @*<a style="text-align: center;" href="@Url.Action("Registration","eSport",null)">
+                    <img src="~/Content/images/RegisterNowBtn.png" style="width:250px;" class="RegisterBtn" />
+                </a>*@
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <font style="color:white; font-family:PermanentMarkerR; font-size:20px;">Coming Event:</font>
+                        <p style="color:white; line-height:40px; margin-top:10px; font-size:36px; font-family:FjallaOneR;">
+                            @Model.Countdown.EventCategory.Title @Model.Countdown.Round_Number
+                            <br />
+                            <font style="font-size:20px;">@Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")</font>
+                            @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
+                        </p>
+                        <br />
+                        <div style="display:none;" id="countdown"></div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
+                                <div class="coun">
+                                    <div class="coun_time">
+                                        <h2 style="font-family:FjallaOneR;" id="day" class="coming-data"></h2>
+                                        <p style="font-family:PermanentMarkerR;" class="coming-data2 special-pos">Days</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
+                                <div class="coun">
+                                    <div class="coun_time">
+                                        <h2 style="font-family:FjallaOneR;" id="hour" class="coming-data"></h2>
+                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Hrs</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
+                                <div class="coun">
+                                    <div class="coun_time">
+                                        <h2 style="font-family:FjallaOneR;" id="minute" class="coming-data"></h2>
+                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Min</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-3 m-responsive count-item">
+                                <div class="coun">
+                                    <div class="coun_time">
+                                        <h2 style="font-family:FjallaOneR;" id="second" class="coming-data"></h2>
+                                        <p style="font-family:PermanentMarkerR;" class="coming-data2">Sec</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div style="text-align:left; font-family:FjallaOneR;" class="col-lg-12 speaker-heading">
+                <h3>COMING EVENTS</h3>
+            </div>
+        </div>
+        <div class="row blog-pa">
+            <div>
+                <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="@Url.Action("EventCalendar","Home",null)">Show All <i class="fa fa-angle-double-right"></i></a>
+            </div>
+            <div class="col-lg-12">
+                <div class="blog-main">
+                    @if (Model.ComingEvents != null)
+                    {
+                        foreach (var item in Model.ComingEvents)
+                        {
+                            <div class="col-lg-4 blog-item" style="margin:10px;">
+                                <div class="blog-shadow">
+                                    <div class="card border-0 rounded-0 bg-dark text-white">
+                                        <img src="@item.EventCategory.Image_URL" class="card-img">
+                                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
+                                            <div style="margin:10px; float:right; margin-left:auto;">
+                                                <div class="events-date">
+                                                    <h4>@item.DateTime_Start.ToString("dd")</h4>
+                                                    <h5>@item.DateTime_Start.ToString("MMM")</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                                            <div style="background-color: rgba(0, 0, 0, 0.7); height:40px;">
+                                                <div style="margin:7px;">
+                                                    @*<h5 class="card-title" style="font-family:FjallaOneR">@item.EventCategory.Title</h5>*@
+                                                    <p style="font-family:LatoR" class="card-subtitle">Coming Event: @item.Round_Number</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SCHEDULE AREA END -->
+<!-- BLOG AREA START -->
+@if (Model.News.Count > 0)
+{
+    <section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 speaker-heading">
+                    <div class="row">
+                        <h3 style="font-family:FjallaOneR;">LATEST FROM BMF</h3>
+                    </div>
+                    <div class="header-style"></div>
+                </div>
+            </div>
+            <div class="row blog-pa">
+                <div>
+                    <a style="font-size:16px; font-weight:bold; float:right; font-family:LatoB" class="link-danger" href="#">Show All <i class="fa fa-angle-double-right"></i></a>
+                </div>
+                <div class="col-lg-12">
+                    <div class="blog-main">
+                        @foreach (var item in Model.News)
+                        {
+                            <div class="col-lg-4 blog-item" style="margin:10px;">
+                                <div class="blog-shadow">
+                                    <a href="@Url.Action("NewsDetail","Home",new {ID = item.ID })"><img src="@item.Image_URL" alt="blog-img" class="img-fluid"></a>
+                                    <div class="blog-data">
+                                        <div class="blog-date">
+                                            <h4>@item.NewsTimestampUtc.ToString("dd")</h4>
+                                            <h5>@item.NewsTimestampUtc.ToString("MMM")</h5>
+                                        </div>
+                                        <span>
+                                            <a href="#">
+                                                <h3 style="font-family:FjallaOneR;">@item.Title</h3>
+                                            </a>
+                                            <p style="font-family:LatoR;">@item.Content.Substring(0,150) 
+                                                <a style="color:red; font-weight:bold;" href="@Url.Action("NewsDetail","Home",new {ID = item.ID })">more..</a>
+                                            </p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BLOG AREA END -->
+}
+<section id="organize_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 org-item">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+                <a href='@Url.Action("CdpApplication","Home",null)'><h3 style="font-family:FjallaOneR;">CPD</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                <a href='@Url.Action("CompetitionLicense","Home",null)'><h3 style="font-family:FjallaOneR;">COMPETITION LICENSE</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <a href='@Url.Action("RulesRegulations","Home",null)'><h3 style="font-family:FjallaOneR;">RULES AND REGULATIONS</h3></a>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item or-i-none">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <a href='@Url.Action("Bulletins","Home",null)'><h3 style="font-family:FjallaOneR;">BULLETINS</h3></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br />
+<br />
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style="font-family:FjallaOneR;">Clubs</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            @if (Model.Clubs != null)
+            {
+                foreach (var item in Model.Clubs)
+                {
+                    <div class="col-lg-2 blog-item" style="margin:10px;">
+                        <div class="blog-shadow">
+                            <div class="card border-0 rounded-0 bg-dark text-white">
+                                <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">
+                                    <img src="@item.Image_URL" class="card-img">
+                                </a>
+                                <div style="background-color:#1c1c1c; height:70px;">
+                                    <div style="margin:10px;">
+                                        <h5 class="card-title" style="font-family:FjallaOneR; font-size:14px;">@item.Title</h5>
+                                        @if (item.Website_Link != "#")
+                                        {
+                                            <a href="@item.Website_Link" style="font-family:LatoB; font-weight:bold; font-size:12px;" class="link-light">Visit Website</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            <br /><br />
+        </div>
+    </div>
+</section>
+
+
+<!-- GALLERY AREA START -->
+
+<section id="gallery_2">
+    <div class="gallery-main">
+        @if (Model.Images.Count > 0)
+        {
+            foreach (var item in Model.Images)
+            {
+                <div class="col-lg-2 gallery-item p-0">
+                    <img src="@item.Image_URL" alt="gallery-img" style="height:180px;" class="img-fluid w-100">
+                    <div class="hover-overlay">
+                        <a href="@item.Image_URL" data-lightbox="roadtrip" data-title="Gallery"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+<!-- GALLERY AREA END -->
+
+<section id="gallery_2">
+    <div style="background-color: #1c1c1c; height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/3500lives" target="_blank">
+                    <img src="~/Content/images/SFRS_logo.png" style="height:70px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h3 style="font-family: LatoB; color:white;">#3500LIVES - SUPPORT MAINFESTO FOR GLOBAL ROAD SAFETY</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery_2">
+    <div style="background-image: url('../../Content/images/Banner-1.jpg'); height:100%;">
+        <div class="row" style="padding:50px;">
+            <div class="col-md-3" style="text-align:center;">
+                <a href="https://www.fia.com/news/marshals-officials-and-medical-staff-honoured-over-fia-volunteers-weekend" target="_blank">
+                    <img src="~/Content/images/FIAV.png" style="height:120px;" />
+                </a>
+            </div>
+            <div class="col-md-6" style="text-align:center;">
+                <h3 style="font-family: LatoB; color:white;">FIA Volunteers Weekend brings the global motor sport community together and gives thanks and support to those who make events possible.</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $(".lb-data").css("display", "none");
+    });
+</script>
+
+<script>
+    var date = document.getElementById("DateTime_Start").value;
+    //alert(date);
+
+    var end = new Date(date);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            //document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+
+        document.getElementById('day').innerText = days;
+        document.getElementById('hour').innerText = hours;
+        document.getElementById('minute').innerText = minutes;
+        document.getElementById('second').innerText = seconds;
+    }
+
+    timer = setInterval(showRemaining, 1000);
+</script>

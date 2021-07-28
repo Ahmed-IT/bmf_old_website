@@ -91,7 +91,7 @@
                     }
 
 
-                    @using (Html.BeginForm("eSport", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Registration", "eSport", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -274,7 +274,7 @@
                             </div>
                         </div>
 
-                        <input class="btn btn-primary payment-btn" type="submit" value="SUBMIT FORM">
+                        @*<input class="btn btn-primary payment-btn" type="submit" value="SUBMIT FORM">*@
                         <br />
 
 

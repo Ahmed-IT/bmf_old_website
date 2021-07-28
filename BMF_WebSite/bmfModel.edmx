@@ -249,7 +249,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="Website_Link" Type="nvarchar" MaxLength="1024" Nullable="false" />
-          <Property Name="Image_URL" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Image_URL_Logo" Type="nvarchar" MaxLength="1024" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -258,6 +258,7 @@
           <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
           <Property Name="DeletedBy" Type="nvarchar(max)" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Image_URL_Banner" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
         <EntityType Name="M_EventCategory">
           <Key>
@@ -344,7 +345,8 @@
           <Property Name="DeletedOnUtc" Type="datetime2" Precision="7" />
           <Property Name="DeletedBy" Type="nvarchar(max)" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
-          <Property Name="ID_UserAccount" Type="bigint" Nullable="false" />
+          <Property Name="ID_UserProfile" Type="bigint" Nullable="false" />
+          <Property Name="BestTime" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="M_EventSeason">
           <Key>
@@ -775,17 +777,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount">
-          <End Role="M_UserAccount" Type="Self.M_UserAccount" Multiplicity="1">
+        <Association Name="FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile">
+          <End Role="M_UserProfile" Type="Self.M_UserProfile" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="M_EventRoundSessionUserResults" Type="Self.M_EventRoundSessionUserResults" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="M_UserAccount">
+            <Principal Role="M_UserProfile">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventRoundSessionUserResults">
-              <PropertyRef Name="ID_UserAccount" />
+              <PropertyRef Name="ID_UserProfile" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1074,8 +1076,8 @@
             <End Role="M_EventRoundSession" EntitySet="M_EventRoundSession" />
             <End Role="M_EventRoundSessionUserResults" EntitySet="M_EventRoundSessionUserResults" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount" Association="Self.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount">
-            <End Role="M_UserAccount" EntitySet="M_UserAccount" />
+          <AssociationSet Name="FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile" Association="Self.FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile">
+            <End Role="M_UserProfile" EntitySet="M_UserProfile" />
             <End Role="M_EventRoundSessionUserResults" EntitySet="M_EventRoundSessionUserResults" />
           </AssociationSet>
           <AssociationSet Name="FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory" Association="Self.FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory">
@@ -1258,8 +1260,8 @@
             <End Role="M_EventRoundSession" EntitySet="M_EventRoundSession" />
             <End Role="M_MyRaces" EntitySet="M_MyRaces" />
           </AssociationSet>
-          <AssociationSet Name="FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount" Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount">
-            <End Role="M_UserAccount" EntitySet="M_UserAccount" />
+          <AssociationSet Name="FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile" Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile">
+            <End Role="M_UserProfile" EntitySet="M_UserProfile" />
             <End Role="M_EventRoundSessionUserResults" EntitySet="M_EventRoundSessionUserResults" />
           </AssociationSet>
           <AssociationSet Name="FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory" Association="BMFEntities.FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory">
@@ -1561,7 +1563,7 @@
           <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="Website_Link" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Image_URL" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Image_URL_Logo" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1570,6 +1572,7 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Image_URL_Banner" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_EventCategory">
           <Key>
@@ -1667,9 +1670,10 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="ID_UserAccount" Type="Int64" Nullable="false" />
+          <Property Name="ID_UserProfile" Type="Int64" Nullable="false" />
+          <Property Name="BestTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_EventRoundSession" Relationship="BMFEntities.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" FromRole="M_EventRoundSessionUserResults" ToRole="M_EventRoundSession" />
-          <NavigationProperty Name="M_UserAccount" Relationship="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount" FromRole="M_EventRoundSessionUserResults" ToRole="M_UserAccount" />
+          <NavigationProperty Name="M_UserProfile" Relationship="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile" FromRole="M_EventRoundSessionUserResults" ToRole="M_UserProfile" />
         </EntityType>
         <EntityType Name="M_EventSeason">
           <Key>
@@ -1806,7 +1810,6 @@
           <Property Name="DeletedOnUtc" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="M_EventRoundSessionUserResults" Relationship="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount" FromRole="M_UserAccount" ToRole="M_EventRoundSessionUserResults" />
           <NavigationProperty Name="M_MyFavRaces" Relationship="BMFEntities.FK_M_MyFavRaces_M_UserAccount_ID_UserAccount" FromRole="M_UserAccount" ToRole="M_MyFavRaces" />
           <NavigationProperty Name="M_MyRaces" Relationship="BMFEntities.FK_M_MyRaces_M_UserAccount_ID_UserAccount" FromRole="M_UserAccount" ToRole="M_MyRaces" />
           <NavigationProperty Name="M_UserProfile" Relationship="BMFEntities.FK_M_UserAccount_M_UserProfile_ID" FromRole="M_UserAccount" ToRole="M_UserProfile" />
@@ -1884,11 +1887,12 @@
           <Property Name="EmergencyContact_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Parent_CPR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="Parent_FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SystemRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Country" Relationship="BMFEntities.FK_M_UserProfile_Country_ID_Nationality" FromRole="M_UserProfile" ToRole="Country" />
+          <NavigationProperty Name="M_EventRoundSessionUserResults" Relationship="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_EventRoundSessionUserResults" />
           <NavigationProperty Name="M_UserAccount" Relationship="BMFEntities.FK_M_UserAccount_M_UserProfile_ID" FromRole="M_UserProfile" ToRole="M_UserAccount" />
           <NavigationProperty Name="M_UserLicense" Relationship="BMFEntities.FK_M_UserLicense_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserLicense" />
           <NavigationProperty Name="M_UserRoundSignIn" Relationship="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" FromRole="M_UserProfile" ToRole="M_UserRoundSignIn" />
-          <Property Name="SystemRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_UserRoundSignIn">
           <Key>
@@ -2205,17 +2209,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount">
-          <End Type="BMFEntities.M_UserAccount" Role="M_UserAccount" Multiplicity="1">
+        <Association Name="FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile">
+          <End Type="BMFEntities.M_UserProfile" Role="M_UserProfile" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="BMFEntities.M_EventRoundSessionUserResults" Role="M_EventRoundSessionUserResults" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="M_UserAccount">
+            <Principal Role="M_UserProfile">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="M_EventRoundSessionUserResults">
-              <PropertyRef Name="ID_UserAccount" />
+              <PropertyRef Name="ID_UserProfile" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2589,6 +2593,7 @@
           <EntitySetMapping Name="M_Club">
             <EntityTypeMapping TypeName="BMFEntities.M_Club">
               <MappingFragment StoreEntitySet="M_Club">
+                <ScalarProperty Name="Image_URL_Banner" ColumnName="Image_URL_Banner" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />
@@ -2597,7 +2602,7 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Image_URL" ColumnName="Image_URL" />
+                <ScalarProperty Name="Image_URL_Logo" ColumnName="Image_URL_Logo" />
                 <ScalarProperty Name="Website_Link" ColumnName="Website_Link" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -2682,7 +2687,8 @@
           <EntitySetMapping Name="M_EventRoundSessionUserResults">
             <EntityTypeMapping TypeName="BMFEntities.M_EventRoundSessionUserResults">
               <MappingFragment StoreEntitySet="M_EventRoundSessionUserResults">
-                <ScalarProperty Name="ID_UserAccount" ColumnName="ID_UserAccount" />
+                <ScalarProperty Name="BestTime" ColumnName="BestTime" />
+                <ScalarProperty Name="ID_UserProfile" ColumnName="ID_UserProfile" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="DeletedOnUtc" ColumnName="DeletedOnUtc" />

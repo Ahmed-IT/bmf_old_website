@@ -1,0 +1,305 @@
+﻿@model BMF_WebSite.Models.ClsLicForm
+@{
+    ViewBag.Title = "CompetitionLicense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.8.0.js"></script>
+<link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="organize_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("CdpApplication","Services",null)'>CPD APPLICATION</a>
+                </h3>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("CompetitionLicense","Services",null)'>COMPETITION LICENSE</a>
+                </h3>
+
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("MarshalsLicense","Services",null)'>MARSHALS LICENSE</a>
+                </h3>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style=" font-family: DinoB;">COMPETITION LICENSE</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-lg-5">
+                <img class="rounded float-start" src="~/Content/images/2000cc.jpeg" style="width:95%;" />
+            </div>
+            <div class="col-lg-7 about-txt">
+
+                <p style="font-size: 16px; font-family: DinoR;">
+                    The Bahrain Motor Federation (BMF) has been empowered by the Federation International De L Automobile (FIA) to register and license Bahrain citizens wishing to compete nationally under the BMFs Motor Sports Regulations and/or internationally under the FlAs International Sporting Code.
+                    <br /><br />
+                    Under certain circumstances citizens of other countries may also apply for registration.
+                    <br /><br />
+                    Registration will be effected by the issue of a Competition License of a type applicable to the motor sports discipline and the status, National or International, in which the applicant wishes to compete.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 about-txt">
+                <p style="font-size: 16px; font-family: DinoR;">
+                    <br />
+                    Subject to certain conditions a status of license may be upgraded at any time during the year.
+                    <br /><br />
+                    <font style="color:red;">Important! Registration shall expire at the end of the year shown on the Competition License.</font>
+                    <br /><br />
+                    Any person wishing to register must complete a Competition License application form. All applicants will be required to pass a medical examination.
+                    <br /><br /><br />
+                    <a class="link link-danger" target="_blank" href="https://bmfstorage.blob.core.windows.net/general-files/APPLICATION_FORM.pdf">Competition License application form</a>
+                    <br /><br /><br />
+                    <a target="_blank" href="https://bmfstorage.blob.core.windows.net/general-files/MEDICAL_FORM.pdf">Medical Test Form</a>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12">
+            <div class="purchase-box" style=" font-family: DinoR;">
+                <h4>Application Form for Competition Licence</h4>
+                @using (Html.BeginForm("CompetitionLicense", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.DropDownListFor(model => model.LicenseCategoryId, new SelectList(ViewBag.LicenseCategory, "ID", "Title"), "Select Competion License", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.LicenseCategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.DropDownListFor(model => model.LicenseRequestType, new SelectList(ViewBag.LicenseType, "Value", "Text"), "Select Application Type", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.LicenseRequestType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.CPR, new { @class = "form-control", @required = "required", @placeholder = "CPR Number" })
+                            @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @required = "required", @placeholder = "First Name" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.MiddleName, new { @class = "form-control", @required = "required", @placeholder = "Middle Name" })
+                            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @required = "required", @placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.Countries, "ID", "Name"), "Select Nationality", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.HouseNumber, new { @class = "form-control", @required = "required", @placeholder = "House/Building" })
+                            @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.RoadNumber, new { @class = "form-control", @required = "required", @placeholder = "Road Number" })
+                            @Html.ValidationMessageFor(model => model.RoadNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.BlockNumber, new { @class = "form-control", @required = "required", @placeholder = "Block Number" })
+                            @Html.ValidationMessageFor(model => model.BlockNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.City, new { @class = "form-control", @required = "required", @placeholder = "City" })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.PlaceOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Place of Birth" })
+                            @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.DateOfBirth, new { @class = "form-control", @required = "required", @placeholder = "Date of Birth", @type = "date" })
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.MobileNumber, new { @class = "form-control", @required = "required", @placeholder = "Mobile Number" })
+                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.EmailAddress, new { @class = "form-control", @required = "required", @placeholder = "Email Address" })
+                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.EmergencyName, new { @class = "form-control", @required = "required", @placeholder = "Emergency Contact Name" })
+                            @Html.ValidationMessageFor(model => model.EmergencyName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.TextBoxFor(u => u.EmergencyNumber, new { @class = "form-control", @required = "required", @placeholder = "Emergency Contact Number" })
+                            @Html.ValidationMessageFor(model => model.EmergencyNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="color:red;font-family:LatoB;">* Required Filed</label>
+                            @Html.DropDownListFor(model => model.BloodGroup, new SelectList(ViewBag.BloodGroup, "Value", "Text"), "Select Blood Group", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;"><font style="color:red; font-family:LatoB;">*</font> Photo</label>
+                            @Html.TextBoxFor(u => u.Photo, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;"><label style="margin-bottom:10px;"><font style="color:red; font-family:LatoB;">*</font> Photo</label> CPR Copy</label>
+                            @Html.TextBoxFor(u => u.CPRFile, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.CPRFile, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;"><label style="margin-bottom:10px;"><font style="color:red; font-family:LatoB;">*</font> Photo</label> Medical Form</label>
+                            @Html.TextBoxFor(u => u.MedicalFile, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.MedicalFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <h3>Consent Statement for Applicants Under 18 Years</h3>
+
+                    <br />
+
+                    <div class="form-group" style="color:black; font-size:16px; color:red;">
+                        @Html.CheckBoxFor(model => model.IsUnder18)
+                        Please check the box if you are under 18
+                        <br />
+                        @Html.ValidationMessageFor(model => model.IsUnder18, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.TextBoxFor(u => u.ParentFullName, new { @class = "form-control", @type = "text", @placeholder = "Parent Full Name" })
+                            @Html.ValidationMessageFor(model => model.ParentFullName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.TextBoxFor(u => u.ParentCPR, new { @class = "form-control", @type = "text", @placeholder = "Parent CPR Number" })
+                            @Html.ValidationMessageFor(model => model.ParentCPR, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="margin-bottom:10px;">Parents CPR Copy</label>
+                            @Html.TextBoxFor(u => u.ParentCPRFile, new { @class = "form-control", @type = "file" })
+                            @Html.ValidationMessageFor(model => model.ParentCPRFile, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <p>
+                        I am the parent / guardian of the above-named minor who is under
+                        18 years old. I have read this document and understand its
+                        contents. I consent to the minor attending / participating in the event
+                        at his / her own risk.
+                    </p>
+
+
+
+                    <button type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="~/Content/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="~/Content/plugins/moment/moment.min.js"></script>
+<script>
+    if ($('[type="date"]').prop('type') != 'date') {
+        $('[type="date"]').datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '-60:+0',
+                dateFormat: 'dd-M-yy'
+            });
+    }
+
+</script>
+
+

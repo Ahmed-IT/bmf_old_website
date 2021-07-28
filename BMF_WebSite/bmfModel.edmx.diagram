@@ -5,39 +5,39 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="53e9ab303fe842b18f0e86bd7cc8ec82" Name="Diagram1">
-        <EntityTypeShape EntityType="BMFEntities.AdminRole" Width="1.5" PointX="17.75" PointY="5.875" />
-        <EntityTypeShape EntityType="BMFEntities.AdminRoleOperation" Width="1.5" PointX="20" PointY="10.25" />
-        <EntityTypeShape EntityType="BMFEntities.AdminUser" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BMFEntities.AdminUserRole" Width="1.5" PointX="20" PointY="6" />
+        <EntityTypeShape EntityType="BMFEntities.AdminRole" Width="1.5" PointX="15.75" PointY="5.875" />
+        <EntityTypeShape EntityType="BMFEntities.AdminRoleOperation" Width="1.5" PointX="18" PointY="9.25" />
+        <EntityTypeShape EntityType="BMFEntities.AdminUser" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BMFEntities.AdminUserRole" Width="1.5" PointX="18" PointY="5" />
         <EntityTypeShape EntityType="BMFEntities.Country" Width="1.5" PointX="0.75" PointY="13.625" />
-        <EntityTypeShape EntityType="BMFEntities.D_LicenseType" Width="1.5" PointX="3" PointY="19.875" />
-        <EntityTypeShape EntityType="BMFEntities.D_MarshalRole" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="BMFEntities.D_LicenseType" Width="1.5" PointX="3" PointY="20.125" />
+        <EntityTypeShape EntityType="BMFEntities.D_MarshalRole" Width="1.5" PointX="3" PointY="24.625" />
         <EntityTypeShape EntityType="BMFEntities.DriverLicens" Width="1.5" PointX="15" PointY="18.125" />
         <EntityTypeShape EntityType="BMFEntities.DriverSignIn" Width="1.5" PointX="17.25" PointY="14" />
         <EntityTypeShape EntityType="BMFEntities.EventRound" Width="1.5" PointX="15" PointY="13.625" />
         <EntityTypeShape EntityType="BMFEntities.EventsCategory" Width="1.5" PointX="12.75" PointY="14" />
-        <EntityTypeShape EntityType="BMFEntities.M_BRCategory" Width="1.5" PointX="10.75" PointY="6.25" />
-        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategory" Width="1.5" PointX="13" PointY="6" />
-        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryBulletin" Width="1.5" PointX="15.25" PointY="8.125" />
-        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryRulesRegs" Width="1.5" PointX="15.25" PointY="3.875" />
-        <EntityTypeShape EntityType="BMFEntities.M_Club" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventCategory" Width="1.5" PointX="6" PointY="2.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventCategoryHeat" Width="1.5" PointX="8.25" PointY="9.625" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventRound" Width="1.5" PointX="8.25" PointY="2.625" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventRoundSession" Width="1.5" PointX="5.25" PointY="8.125" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventRoundSessionUserResults" Width="1.5" PointX="7.5" PointY="19.375" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventSeason" Width="1.5" PointX="3.75" PointY="3.25" />
+        <EntityTypeShape EntityType="BMFEntities.M_BRCategory" Width="1.5" PointX="8.75" PointY="6.25" />
+        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategory" Width="1.5" PointX="11" PointY="6" />
+        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryBulletin" Width="1.5" PointX="13.25" PointY="3.875" />
+        <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryRulesRegs" Width="1.5" PointX="13.25" PointY="8.125" />
+        <EntityTypeShape EntityType="BMFEntities.M_Club" Width="1.5" PointX="17.75" PointY="22.5" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventCategory" Width="1.5" PointX="1.5" PointY="7" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventCategoryHeat" Width="1.5" PointX="3.75" PointY="2.25" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventRound" Width="1.5" PointX="3.75" PointY="6.625" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventRoundSession" Width="1.5" PointX="6" PointY="6.875" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventRoundSessionUserResults" Width="1.5" PointX="8.25" PointY="14" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventSeason" Width="1.5" PointX="1.5" PointY="2.375" />
         <EntityTypeShape EntityType="BMFEntities.M_GalleryCategory" Width="1.5" PointX="17.75" PointY="17.75" />
         <EntityTypeShape EntityType="BMFEntities.M_GalleryImages" Width="1.5" PointX="20" PointY="17.75" />
-        <EntityTypeShape EntityType="BMFEntities.M_MyFavRaces" Width="1.5" PointX="10.5" PointY="19.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_MyRaces" Width="1.5" PointX="7.5" PointY="14.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_News" Width="1.5" PointX="17.75" PointY="22.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_QuickLinks" Width="1.5" PointX="19.75" PointY="22.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_UserAccount" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="BMFEntities.M_UserLicense" Width="1.5" PointX="5.25" PointY="13.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_UserLicenseRenewal" Width="1.5" PointX="7.5" PointY="24.375" />
+        <EntityTypeShape EntityType="BMFEntities.M_MyFavRaces" Width="1.5" PointX="7.5" PointY="19.625" />
+        <EntityTypeShape EntityType="BMFEntities.M_MyRaces" Width="1.5" PointX="10.5" PointY="19.625" />
+        <EntityTypeShape EntityType="BMFEntities.M_News" Width="1.5" PointX="19.75" PointY="22.5" />
+        <EntityTypeShape EntityType="BMFEntities.M_QuickLinks" Width="1.5" PointX="19.75" PointY="13.5" />
+        <EntityTypeShape EntityType="BMFEntities.M_UserAccount" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="BMFEntities.M_UserLicense" Width="1.5" PointX="5.25" PointY="13.625" />
+        <EntityTypeShape EntityType="BMFEntities.M_UserLicenseRenewal" Width="1.5" PointX="7.5" PointY="24.5" />
         <EntityTypeShape EntityType="BMFEntities.M_UserProfile" Width="1.5" PointX="3" PointY="12.75" />
-        <EntityTypeShape EntityType="BMFEntities.M_UserRoundSignIn" Width="1.5" PointX="10.5" PointY="13.75" />
+        <EntityTypeShape EntityType="BMFEntities.M_UserRoundSignIn" Width="1.5" PointX="10.5" PointY="13.875" />
         <EntityTypeShape EntityType="BMFEntities.UserAccount" Width="1.5" PointX="12.75" PointY="18.875" />
         <AssociationConnector Association="BMFEntities.FK_AdminRoleOperation_AdminRole_ID_Role" />
         <AssociationConnector Association="BMFEntities.FK_AdminUserRole_AdminRole_ID_Role" />
@@ -60,7 +60,7 @@
         <AssociationConnector Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" />
         <AssociationConnector Association="BMFEntities.FK_M_MyFavRaces_M_EventRoundSession_ID_EventRoundSession" />
         <AssociationConnector Association="BMFEntities.FK_M_MyRaces_M_EventRoundSession_ID_EventRoundSession" />
-        <AssociationConnector Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserAccount_ID_UserAccount" />
+        <AssociationConnector Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_UserProfile_ID_UserProfile" />
         <AssociationConnector Association="BMFEntities.FK_M_GalleryImages_M_GalleryCategory_ID_GalleryCategory" />
         <AssociationConnector Association="BMFEntities.FK_M_MyFavRaces_M_UserAccount_ID_UserAccount" />
         <AssociationConnector Association="BMFEntities.FK_M_MyRaces_M_UserAccount_ID_UserAccount" />

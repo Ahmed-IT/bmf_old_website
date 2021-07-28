@@ -18,7 +18,7 @@ namespace BMF_WebSite
         public string Title { get; set; }
         public string Description { get; set; }
         public string Website_Link { get; set; }
-        public string Image_URL { get; set; }
+        public string Image_URL_Logo { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOnUtc { get; set; }
         public string CreatedBy { get; set; }
@@ -27,5 +27,6 @@ namespace BMF_WebSite
         public Nullable<System.DateTime> DeletedOnUtc { get; set; }
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
+        public string Image_URL_Banner { get; set; }
     }
 }

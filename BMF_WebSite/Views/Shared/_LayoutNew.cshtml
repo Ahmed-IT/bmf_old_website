@@ -1,0 +1,192 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="BMF,Bahrain,Bahrain Motor Federation,Racing" />
+    <meta name="description" content="Bahrain Motor Federation" />
+    <title>Bahrain Motor Federation</title>
+
+    <link href="~/Content/bootstrap5/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/NewStyle.css" rel="stylesheet" />
+
+    <!--font-awesome icons link-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="stylesheet" href="~/Content/css/venobox.css">
+    <link rel="stylesheet" href="~/Content/css/lightbox.min.css">
+    <!--main style file-->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/images/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/images/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/images/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/images/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/images/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/images/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/images/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/images/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/images/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/images/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navber">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index","Home",null)">
+                <img src="~/Content/images/BMF_Logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse navbar-collapse menu-main" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto menu-item">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About Us", "Index", "AboutUs", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Services", "CdpApplication", "Services", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Calendar", "Index", "EventCalendar", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Bulletins", "Index", "Bulletin", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Rules & Regs", "Index", "RulesRegulations", null, new { @class = "nav-link" })
+                    </li>
+                    @*<li class="nav-item">
+                        @Html.ActionLink("Results", "Index", "Results", null, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("News", "Index", "NewsHub", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Gallery", "Index", "Gallery", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Index", "ContactUs", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="~/Content/images/begtc_banner.jpg" />
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    @RenderBody()
+
+    <!-- FOOTER AREA START -->
+    <section id="footer">
+        <div class="container zindex">
+            <div class="row">
+                <div class="col-lg-12 text-center footer-txt">
+                    <h3>
+                        <a href="#">
+
+                            <img src="~/Content/images/BMF_Logo1.png" />
+                        </a>
+                    </h3>
+                    <div class="social-icons_2">
+                        <a href="https://www.instagram.com/bahrainmotorfederation/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        @*<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer_2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 m-auto">
+                    <div class="menu-a text-center">
+
+                        <a style="font-family: DinoR; font-size:14px;" href='@Url.Action("Index","Home",null)'>Home</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","AboutUs",null)'>About</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("CdpApplication","Services",null)'>Services</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","EventCalendar",null)'>Calendar</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Bulletin",null)'>Bulletins</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","RulesRegulations",null)'>Rules & Regs</a>
+                        @*<a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Results",null)'>Results</a>*@
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","NewsHub",null)'>News</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","Gallery",null)'>Gallery</a>
+                        <a style="font-family: DinoR; font-size: 14px;" href='@Url.Action("Index","ContactUs",null)'>Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER AREA END -->
+    <!-- COPY_RIGHT AREA START -->
+    <section id="copy_right">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center copy-right-txt">
+                    <p>Copyright © @DateTime.Now.Year.ToString(). All rights reserved by <a href="'@Url.Action("Index","Home")'">BAHRAIN MOTOR FEDERADTION</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- COPY_RIGHT AREA END -->
+
+</body>
+</html>
+
+<script src="~/Content/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap5/js/bootstrap.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.js"></script>
+<script src="~/Content/js/slick.min.js"></script>
+<script src="~/Content/js/jquery.nicescroll.min.js"></script>
+<script src="~/Content/js/venobox.min.js"></script>
+<script src="~/Content/js/lightbox.min.js"></script>
+<script src="~/Content/js/jquery.isotope.min.js"></script>
+<script src="~/Content/js/countdown.min.js"></script>
+<script src="~/Content/js/jquery.counterup.min.js"></script>
+<script src="~/Content/js/jquery.waypoints.min.js"></script>
+<script src="~/Content/js/custom.js"></script>
+
+<script>
+    $(function () {
+        $(document).scroll(function () {
+            var $nav = $(".fixed-top");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+        });
+    });
+</script>

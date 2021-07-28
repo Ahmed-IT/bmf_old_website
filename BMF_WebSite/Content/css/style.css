@@ -139,6 +139,38 @@ p {
     font-family: LatoB;
 }
 
+@font-face {
+    src: url(../fonts/D-DIN-PRO-400-Regular.otf);
+    font-family: DinoR;
+}
+
+@font-face {
+    src: url(../fonts/D-DIN-PRO-500-Medium.otf);
+    font-family: DinoM;
+}
+
+@font-face {
+    src: url(../fonts/D-DIN-PRO-700-Bold.otf);
+    font-family: DinoB;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Regular.ttf);
+    font-family: MontserratR;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Medium.ttf);
+    font-family: MontserratM;
+}
+
+@font-face {
+    src: url(../fonts/Montserrat-Bold.ttf);
+    font-family: MontserratB;
+}
+
+
+
 /* Version 2 */
 .particles-js-canvas-el {
     position: absolute;
@@ -349,7 +381,7 @@ p {
 
 .navbar-light .navbar-nav .nav-link {
     color: #fff;
-    font-family: FjallaOneR;
+    font-family: DinoB;
     font-size: 16px;
     -webkit-transition: all linear .3s;
     -o-transition: all linear .3s;
@@ -368,12 +400,11 @@ p {
 
 .navbar-light .navbar-brand {
     color: #fff;
-    font-family: FjallaOneR;
+    font-family: DinoB;
     font-size: 34px;
     -webkit-transition: all linear .3s;
     -o-transition: all linear .3s;
     transition: all linear .3s;
-
 }
 
 .navbar-light .navbar-brand:hover {
@@ -1486,7 +1517,7 @@ background: white;
 }
 
 .price-pa {
-    padding-top: 80px;
+    padding-top: 20px;
 }
 
 .price-item {
@@ -2037,7 +2068,7 @@ background: white;
 }
 
 .copy-right-txt p {
-    font-family: FjallaOneR;
+    font-family: DinoR;
     color: #ffffff;
     font-size: 14px;
 }

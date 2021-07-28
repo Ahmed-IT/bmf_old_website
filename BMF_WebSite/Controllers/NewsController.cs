@@ -20,7 +20,7 @@ namespace BMF_WebSite.Controllers
             try
             {
                 var query = await (from c in db.M_News
-                                   where c.IsActive == true
+                                   where c.IsActive == true && c.DeletedOnUtc == null
                                    select new
                                    {
                                        c.ID,

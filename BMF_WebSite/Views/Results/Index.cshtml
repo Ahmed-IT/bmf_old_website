@@ -1,0 +1,65 @@
+﻿@model BMF_WebSite.ViewModels.ResultsVM
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style="font-family: DinoB;">Results</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+        
+              <div class="row">
+                  @foreach (var item in Model.Results.GroupBy(a => a.M_EventRoundSession.M_EventRound.M_EventCategory))
+                  {
+                      <div class="col-lg-4 blog-item" style="margin:10px;">
+                          <div class="blog-shadow">
+                              <a href="@Url.Action("ResultsDetail","Results",new { Id = item.Key.ID})">
+                                  <div class="card border-0 rounded-0 bg-dark text-white">
+                                      <img src="@item.Key.Image_URL" class="card-img">
+                                      <div class="card-img-overlay h-100 d-flex flex-column justify-content-start">
+                                          <div style="margin:10px; float:left; margin-right:auto; color:white;">
+                                              <br />
+                                              <h3 style="font-family: DinoB;">@item.Key.Title</h3>
+                                              <br />
+                                          </div>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                  }
+
+
+              </div>        
+
+    </div>
+</section>
+

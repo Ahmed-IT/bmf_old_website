@@ -137,6 +137,28 @@
       <DependentUpon>bmfModel.edmx</DependentUpon>
       <LastGenOutput>bmfModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap5\css\bootstrap.rtl.min.css" />
+    <Content Include="Content\bootstrap5\js\bootstrap.bundle.js" />
+    <Content Include="Content\bootstrap5\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\bootstrap5\js\bootstrap.esm.js" />
+    <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js" />
+    <Content Include="Content\bootstrap5\js\bootstrap.js" />
+    <Content Include="Content\bootstrap5\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -167,6 +189,7 @@
     <Content Include="Content\css\jquery.mb.YTPlayer.min.css" />
     <Content Include="Content\css\lightbox.min.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\NewStyle.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slick.css" />
     <Content Include="Content\css\style.css" />
@@ -182,6 +205,7 @@
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\banner3.jpg" />
     <Content Include="Content\images\begtc_banner.jpg" />
+    <Content Include="Content\images\BG.png" />
     <Content Include="Content\images\blog1.jpg" />
     <Content Include="Content\images\blog2.jpg" />
     <Content Include="Content\images\blog3.jpg" />
@@ -207,8 +231,10 @@
     <Content Include="Content\images\brand4.png" />
     <Content Include="Content\images\brand5.png" />
     <Content Include="Content\images\brand6.png" />
+    <Content Include="Content\images\Bull.png" />
     <Content Include="Content\images\close.png" />
     <Content Include="Content\images\cpd.jpg" />
+    <Content Include="Content\images\CPD.png" />
     <Content Include="Content\images\drag.jpg" />
     <Content Include="Content\images\e1.jpg" />
     <Content Include="Content\images\e2.jpg" />
@@ -256,6 +282,7 @@
     <Content Include="Content\images\GTE.png" />
     <Content Include="Content\images\IMG_2018.jpg" />
     <Content Include="Content\images\Karting.jpg" />
+    <Content Include="Content\images\License.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logos\BDRC_Logo.png" />
     <Content Include="Content\images\logos\BDRC_Logo2.png" />
@@ -281,6 +308,7 @@
     <Content Include="Content\images\price1.png" />
     <Content Include="Content\images\price2.png" />
     <Content Include="Content\images\price3.png" />
+    <Content Include="Content\images\R&amp;R.png" />
     <Content Include="Content\images\register-bg.jpg" />
     <Content Include="Content\images\RegisterNowBtn.png" />
     <Content Include="Content\images\Rotax.png" />
@@ -296,6 +324,8 @@
     <Content Include="Content\images\testimonial.png" />
     <Content Include="Content\images\testimonial1.png" />
     <Content Include="Content\images\testimonial3.png" />
+    <Content Include="Content\images\TrainingProvider1.jpg" />
+    <Content Include="Content\images\TrainingProvider2.jpg" />
     <Content Include="Content\plugins\jquery-ui\AUTHORS.txt" />
     <Content Include="Content\plugins\jquery-ui\external\jquery\jquery.js" />
     <Content Include="Content\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
@@ -476,6 +506,40 @@
     <Content Include="Content\images\favicons\manifest.json" />
     <Content Include="Content\plugins\jquery\jquery.min.map" />
     <Content Include="Content\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap5\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.esm.js.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.esm.min.js.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.js.map" />
+    <Content Include="Content\bootstrap5\js\bootstrap.min.js.map" />
+    <Content Include="Content\fonts\D-DIN-PRO-400-Regular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\D-DIN-PRO-500-Medium.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\D-DIN-PRO-700-Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\Montserrat-Bold.ttf" />
+    <Content Include="Content\fonts\Montserrat-Medium.ttf" />
+    <Content Include="Content\fonts\Montserrat-Regular.ttf" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -518,15 +582,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bmfModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\BulletinController.cs" />
     <Compile Include="Controllers\BulletinsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\eSportController.cs" />
+    <Compile Include="Controllers\EventCalendarController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicenseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NewsHubController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\RulesRegsController.cs" />
+    <Compile Include="Controllers\RulesRegulationsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
@@ -646,6 +719,8 @@
     <Compile Include="UserAccount.cs">
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainPageVM.cs" />
+    <Compile Include="ViewModels\ResultsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -696,37 +771,39 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_SubLayout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Index_old.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
     <None Include="Properties\PublishProfiles\bmftest - Web Deploy.pubxml" />
-    <Content Include="Views\Home\BoardMembers.cshtml" />
-    <Content Include="Views\Home\MissionStatement.cshtml" />
-    <Content Include="Views\Home\RulesRegulations.cshtml" />
+    <Content Include="Views\AboutUs\BoardMembers.cshtml" />
+    <Content Include="Views\AboutUs\MissionStatement.cshtml" />
+    <Content Include="Views\RulesRegulations\Index.cshtml" />
     <Content Include="Views\Home\EventPermit.cshtml" />
-    <Content Include="Views\Home\CompetitionLicense.cshtml" />
-    <Content Include="Views\Home\CdpApplication.cshtml" />
-    <Content Include="Views\Home\EventCalendar.cshtml" />
-    <Content Include="Views\Home\Results.cshtml" />
-    <Content Include="Views\Home\Gallery.cshtml" />
-    <Content Include="Views\Home\ContactUs.cshtml" />
-    <Content Include="Views\Home\CpdForm.cshtml" />
-    <Content Include="Views\Home\News.cshtml" />
-    <Content Include="Views\Home\Bulletins.cshtml" />
-    <Content Include="Views\Home\NewsDetail.cshtml" />
-    <Content Include="Views\Home\ResultsDetail.cshtml" />
-    <Content Include="Views\Home\EventFullCalendar.cshtml" />
+    <Content Include="Views\Services\CompetitionLicense.cshtml" />
+    <Content Include="Views\Services\CdpApplication.cshtml" />
+    <Content Include="Views\EventCalendar\Index.cshtml" />
+    <Content Include="Views\Results\Index.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Services\CpdForm.cshtml" />
+    <Content Include="Views\NewsHub\Index.cshtml" />
+    <Content Include="Views\Bulletin\Index.cshtml" />
+    <Content Include="Views\NewsHub\NewsDetail.cshtml" />
+    <Content Include="Views\Results\ResultsDetail.cshtml" />
+    <Content Include="Views\EventCalendar\EventFullCalendar.cshtml" />
     <Content Include="Views\Home\EventRulesRegs.cshtml" />
-    <Content Include="Views\Home\Calendar.cshtml" />
-    <Content Include="Views\Home\GalleryImages.cshtml" />
-    <Content Include="Views\Home\LicenseSubmitted.cshtml" />
+    <Content Include="Views\EventCalendar\Calendar.cshtml" />
+    <Content Include="Views\Gallery\GalleryImages.cshtml" />
+    <Content Include="Views\Services\LicenseSubmitted.cshtml" />
     <Content Include="Views\Home\eSport.cshtml" />
     <Content Include="Views\Home\RegThankYou.cshtml" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <Content Include="Views\Home\testValidation.cshtml" />
     <Content Include="Views\eSport\Index.cshtml" />
     <Content Include="Views\eSport\Registration.cshtml" />
     <Content Include="Views\eSport\RegThankYou.cshtml" />
+    <Content Include="Views\Shared\_LayoutNew.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Services\MarshalsLicense.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -736,7 +813,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RulesRegs\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

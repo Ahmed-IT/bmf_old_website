@@ -36,7 +36,7 @@ namespace BMF_WebSite.Models.ViewModels
                              {
                                  Description = c.Description,
                                  ID = c.ID,
-                                 Image_URL = c.Image_URL,
+                                 Image_URL = c.Image_URL_Banner,
                                  Title = c.Title,
                                  Website_Link = c.Website_Link
                              }).ToListAsync();
@@ -86,6 +86,7 @@ namespace BMF_WebSite.Models.ViewModels
                 dash.News = await (from c in db.M_News
                                            where DbFunctions.TruncateTime(c.NewsTimestampUtc)
                                            >= DbFunctions.TruncateTime(dateTime)
+                                           && c.IsActive == true && c.DeletedOnUtc == null
                                            select new ClsNews
                                            {
                                                ID = c.ID,

@@ -34,9 +34,13 @@
 
 
 @media(max-width:991px) {
+    .RegisterBtn {
+        margin-top:400px;
+    }
+
     .navbar-light .navbar-nav .nav-link {
         margin: 18px;
-        color: #fff;
+        color: lightgray;
         line-height: 0;
     }
 
@@ -77,6 +81,10 @@
 }
 
 @media(max-width:575px) {
+    .RegisterBtn {
+        margin-top: 400px;
+    }
+
     #banner {
         padding: 78px 0 190px;
     }
@@ -325,6 +333,10 @@
 }
 
 @media(min-width:576px) and (max-width:767px) {
+    .RegisterBtn {
+        margin-top: 400px;
+    }
+
     #banner {
         padding: 100px 0 240px;
     }
@@ -497,6 +509,10 @@
 }
 
 @media(min-width:768px) and (max-width:991px) {
+    .RegisterBtn {
+        margin-top: 400px;
+    }
+
     #banner {
         padding: 100px 0 240px;
     }
@@ -634,6 +650,7 @@
 }
 
 @media(min-width:992px) and (max-width:1199px) {
+
     .banner-txt h1 {
         font-size: 42px;
     }
