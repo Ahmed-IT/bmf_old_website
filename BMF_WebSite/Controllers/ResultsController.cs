@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,13 +14,32 @@ namespace BMF_WebSite.Controllers
         {
             ViewModels.ResultsVM vm = new ViewModels.ResultsVM();
             vm.GetData();
-
             return View(vm);
         }
 
-        public ActionResult ResultsDetail()
+        public ActionResult ResultsDetail(long ID)
         {
-            return View();
+            ViewModels.ResultDetailsVM vm = new ViewModels.ResultDetailsVM();
+            vm.Get_SeasonsByCategory(ID);
+            return View(vm);
         }
+
+        #region AJAX
+
+        public string getRounds(long ID)
+        {
+            ViewModels.ResultDetailsVM vm = new ViewModels.ResultDetailsVM();
+            vm.Get_RoundsBySeason(ID);
+            return JsonConvert.SerializeObject(vm.Rounds.Select(s => new { s.ID, s.Round_Number }), settings: new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }); ;
+        }
+
+        public string getSessions(long ID)
+        {
+            ViewModels.ResultDetailsVM vm = new ViewModels.ResultDetailsVM();
+            vm.Get_SessionsByRound(ID);
+            return JsonConvert.SerializeObject(vm.Sessions.Select(s => new { s.ID, s.Title }), settings: new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        }
+
+        #endregion
     }
 }

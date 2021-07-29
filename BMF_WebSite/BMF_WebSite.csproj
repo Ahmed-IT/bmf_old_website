@@ -720,6 +720,7 @@
       <DependentUpon>bmfModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainPageVM.cs" />
+    <Compile Include="ViewModels\ResultDetailsVM.cs" />
     <Compile Include="ViewModels\ResultsVM.cs" />
   </ItemGroup>
   <ItemGroup>
