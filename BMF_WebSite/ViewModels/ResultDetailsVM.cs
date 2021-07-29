@@ -9,6 +9,7 @@ namespace BMF_WebSite.ViewModels
     {
         BMFEntities1 db = new BMFEntities1();
 
+        public long ID { get; set; }
         public List<M_EventRoundSessionUserResults> Results { get; set; }
         public List<M_EventSeason> Seasons { get; set; }
         public List<M_EventRound> Rounds { get; set; }
@@ -45,7 +46,7 @@ namespace BMF_WebSite.ViewModels
             }
         }
 
-        public void Get_RoundsBySeason(long ID_Season)
+        public void Get_RoundsBySeason(long ID_EventCategory, long ID_Season)
         {
             try
             {
@@ -66,6 +67,7 @@ namespace BMF_WebSite.ViewModels
                           && results.M_EventRoundSession.M_EventRound.M_EventSeason.IsActive
                           && !results.M_EventRoundSession.M_EventRound.M_EventSeason.DeletedOnUtc.HasValue
 
+                           && results.M_EventRoundSession.M_EventRound.M_EventCategory.ID == ID_EventCategory
                           && results.M_EventRoundSession.M_EventRound.M_EventSeason.ID == ID_Season
 
                           select results.M_EventRoundSession.M_EventRound
@@ -77,7 +79,7 @@ namespace BMF_WebSite.ViewModels
             }
         }
 
-        public void Get_SessionsByRound(long ID_Round)
+        public void Get_SessionsByRound(long ID_EventCategory, long ID_Season, long ID_Round)
         {
             try
             {
@@ -98,6 +100,8 @@ namespace BMF_WebSite.ViewModels
                             && results.M_EventRoundSession.M_EventRound.M_EventSeason.IsActive
                             && !results.M_EventRoundSession.M_EventRound.M_EventSeason.DeletedOnUtc.HasValue
 
+                            && results.M_EventRoundSession.M_EventRound.M_EventCategory.ID == ID_EventCategory
+                            && results.M_EventRoundSession.M_EventRound.M_EventSeason.ID == ID_Season
                             && results.M_EventRoundSession.M_EventRound.ID == ID_Round
 
                             select results.M_EventRoundSession
@@ -109,7 +113,7 @@ namespace BMF_WebSite.ViewModels
             }
         }
 
-        public void Get_Results(long ID_Season, long ID_Round, long ID_Session)
+        public void Get_ChampResults(long ID_EventCategory, long ID_Season)
         {
             try
             {
@@ -130,6 +134,39 @@ namespace BMF_WebSite.ViewModels
                            && results.M_EventRoundSession.M_EventRound.M_EventSeason.IsActive
                            && !results.M_EventRoundSession.M_EventRound.M_EventSeason.DeletedOnUtc.HasValue
 
+                           && results.M_EventRoundSession.M_EventRound.M_EventCategory.ID == ID_EventCategory
+                           && results.M_EventRoundSession.M_EventRound.M_EventSeason.ID == ID_Season
+                           select results
+                          ).ToList();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void Get_Results(long ID_EventCategory, long ID_Season, long ID_Round, long ID_Session)
+        {
+            try
+            {
+                Results = (from results in db.M_EventRoundSessionUserResults
+                           where
+                           results.IsActive
+                           && !results.DeletedOnUtc.HasValue
+
+                           && results.M_EventRoundSession.IsActive
+                           && !results.M_EventRoundSession.DeletedOnUtc.HasValue
+
+                           && results.M_EventRoundSession.M_EventRound.IsActive
+                           && !results.M_EventRoundSession.M_EventRound.DeletedOnUtc.HasValue
+
+                           && results.M_EventRoundSession.M_EventRound.M_EventCategory.IsActive
+                           && !results.M_EventRoundSession.M_EventRound.M_EventCategory.DeletedOnUtc.HasValue
+
+                           && results.M_EventRoundSession.M_EventRound.M_EventSeason.IsActive
+                           && !results.M_EventRoundSession.M_EventRound.M_EventSeason.DeletedOnUtc.HasValue
+
+                           && results.M_EventRoundSession.M_EventRound.M_EventCategory.ID == ID_EventCategory
                            && results.M_EventRoundSession.M_EventRound.M_EventSeason.ID == ID_Season
                            && results.M_EventRoundSession.M_EventRound.ID == ID_Round
                            && results.M_EventRoundSession.ID == ID_Session
