@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using static BMF_NewApp.Models.BMFAppTables;
 
 namespace BMF_NewApp.ViewModels
@@ -159,6 +160,8 @@ namespace BMF_NewApp.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetEnableAccessibilityScalingForNamedFontSizes(false);
+            
             try
             {
                 var AddUserInfo = (from user in App.Database.GetItemsAsync<TblUsersAccount>().Result
@@ -328,7 +331,7 @@ namespace BMF_NewApp.ViewModels
 
                     if (UserInfo != null)
                     {
-                        Application.Current.Properties["CPR"] = null;
+                        Xamarin.Forms.Application.Current.Properties["CPR"] = null;
                         App.CPR = null;
                         UserInfo.LoggedIn = false;
 

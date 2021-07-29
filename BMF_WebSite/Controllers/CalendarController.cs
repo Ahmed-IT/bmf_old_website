@@ -23,12 +23,10 @@ namespace BMF_WebSite.Controllers
                 DateTime dateTime = TimeZoneInfo.ConvertTime(DateTime.Now, tz);
                 
                 var query = await (from c in db.M_EventCategory
-                                   where c.IsActive == true &&
-                                   c.M_EventSeason.IsActive == true
+                                   where c.IsActive == true && c.DeletedOnUtc == null
                                    select new
                                    {
                                       c.ID,
-                                      Season = c.M_EventSeason.Title,
                                       c.Image_URL,
                                       c.Title,
                                       NextRound = c.M_EventRound.Where(m => m.IsActive == true &&

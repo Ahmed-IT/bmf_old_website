@@ -13,7 +13,7 @@ using Syncfusion.XForms.iOS.Border;
 using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
-
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace BMF_NewApp.iOS
 {
