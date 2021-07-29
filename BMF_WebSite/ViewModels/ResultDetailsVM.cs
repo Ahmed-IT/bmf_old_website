@@ -31,12 +31,12 @@ namespace BMF_WebSite.ViewModels
                            && results.M_EventRoundSession.M_EventRound.M_EventCategory.IsActive
                            && !results.M_EventRoundSession.M_EventRound.M_EventCategory.DeletedOnUtc.HasValue
 
-                           && results.M_EventRoundSession.M_EventRound.M_EventCategory.M_EventSeason.IsActive
-                           && !results.M_EventRoundSession.M_EventRound.M_EventCategory.M_EventSeason.DeletedOnUtc.HasValue
+                           && results.M_EventRoundSession.M_EventRound.M_EventSeason.IsActive
+                           && !results.M_EventRoundSession.M_EventRound.M_EventSeason.DeletedOnUtc.HasValue
 
                            && results.M_EventRoundSession.M_EventRound.M_EventCategory.ID == ID_EventCategory
 
-                           select results.M_EventRoundSession.M_EventRound.M_EventCategory.M_EventSeason
+                           select results.M_EventRoundSession.M_EventRound.M_EventSeason
                           ).Distinct().ToList();
             }
             catch (Exception ex)
