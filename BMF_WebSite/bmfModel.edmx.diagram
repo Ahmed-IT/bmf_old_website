@@ -21,12 +21,9 @@
         <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryBulletin" Width="1.5" PointX="13.25" PointY="3.875" />
         <EntityTypeShape EntityType="BMFEntities.M_BRSubCategoryRulesRegs" Width="1.5" PointX="13.25" PointY="8.125" />
         <EntityTypeShape EntityType="BMFEntities.M_Club" Width="1.5" PointX="17.75" PointY="22.5" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventCategory" Width="1.5" PointX="1.5" PointY="7" />
         <EntityTypeShape EntityType="BMFEntities.M_EventCategoryHeat" Width="1.5" PointX="3.75" PointY="2.25" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventRound" Width="1.5" PointX="3.75" PointY="6.625" />
         <EntityTypeShape EntityType="BMFEntities.M_EventRoundSession" Width="1.5" PointX="6" PointY="6.875" />
         <EntityTypeShape EntityType="BMFEntities.M_EventRoundSessionUserResults" Width="1.5" PointX="8.25" PointY="14" />
-        <EntityTypeShape EntityType="BMFEntities.M_EventSeason" Width="1.5" PointX="1.5" PointY="2.375" />
         <EntityTypeShape EntityType="BMFEntities.M_GalleryCategory" Width="1.5" PointX="17.75" PointY="17.75" />
         <EntityTypeShape EntityType="BMFEntities.M_GalleryImages" Width="1.5" PointX="20" PointY="17.75" />
         <EntityTypeShape EntityType="BMFEntities.M_MyFavRaces" Width="1.5" PointX="7.5" PointY="19.625" />
@@ -52,11 +49,6 @@
         <AssociationConnector Association="BMFEntities.FK_M_BRSubCategory_M_BRCategory_ID_Category" />
         <AssociationConnector Association="BMFEntities.FK_M_BRSubCategoryBulletin_M_BRSubCategory_ID_SubCategory" />
         <AssociationConnector Association="BMFEntities.FK_M_BRSubCategoryRulesRegs_M_BRSubCategory_ID_SubCategory" />
-        <AssociationConnector Association="BMFEntities.FK_M_EventCategory_M_EventSeason_ID_EventSeason" />
-        <AssociationConnector Association="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" />
-        <AssociationConnector Association="BMFEntities.FK_M_EventRound_M_EventCategory_ID_EventCategory" />
-        <AssociationConnector Association="BMFEntities.FK_M_EventRoundSession_M_EventRound_ID_EventRound" />
-        <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" />
         <AssociationConnector Association="BMFEntities.FK_M_EventRoundSessionUserResults_M_EventRoundSession_ID_EventRoundSession" />
         <AssociationConnector Association="BMFEntities.FK_M_MyFavRaces_M_EventRoundSession_ID_EventRoundSession" />
         <AssociationConnector Association="BMFEntities.FK_M_MyRaces_M_EventRoundSession_ID_EventRoundSession" />
@@ -69,6 +61,14 @@
         <AssociationConnector Association="BMFEntities.FK_M_UserLicenseRenewal_M_UserLicense_ID_UserLicense" />
         <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_UserLicense_ID_UserLicense" />
         <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_UserProfile_ID_UserProfile" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventCategory" Width="1.5" PointX="1.5" PointY="2.375" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventRound" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BMFEntities.M_EventSeason" Width="1.5" PointX="4.5" PointY="29.625" />
+        <AssociationConnector Association="BMFEntities.FK_M_EventCategoryHeat_M_EventCategory_ID_EventCategory" />
+        <AssociationConnector Association="BMFEntities.FK_M_EventRound_M_EventCategory_ID_EventCategory" />
+        <AssociationConnector Association="BMFEntities.FK_M_EventRound_M_EventSeason_ID_EventSeason" />
+        <AssociationConnector Association="BMFEntities.FK_M_EventRoundSession_M_EventRound_ID_EventRound" />
+        <AssociationConnector Association="BMFEntities.FK_M_UserRoundSignIn_M_EventRound_ID_EventRound" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -41,12 +41,9 @@ namespace BMF_WebSite
         public virtual DbSet<M_BRSubCategoryBulletin> M_BRSubCategoryBulletin { get; set; }
         public virtual DbSet<M_BRSubCategoryRulesRegs> M_BRSubCategoryRulesRegs { get; set; }
         public virtual DbSet<M_Club> M_Club { get; set; }
-        public virtual DbSet<M_EventCategory> M_EventCategory { get; set; }
         public virtual DbSet<M_EventCategoryHeat> M_EventCategoryHeat { get; set; }
-        public virtual DbSet<M_EventRound> M_EventRound { get; set; }
         public virtual DbSet<M_EventRoundSession> M_EventRoundSession { get; set; }
         public virtual DbSet<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
-        public virtual DbSet<M_EventSeason> M_EventSeason { get; set; }
         public virtual DbSet<M_GalleryCategory> M_GalleryCategory { get; set; }
         public virtual DbSet<M_GalleryImages> M_GalleryImages { get; set; }
         public virtual DbSet<M_MyFavRaces> M_MyFavRaces { get; set; }
@@ -59,5 +56,8 @@ namespace BMF_WebSite
         public virtual DbSet<M_UserProfile> M_UserProfile { get; set; }
         public virtual DbSet<M_UserRoundSignIn> M_UserRoundSignIn { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
+        public virtual DbSet<M_EventCategory> M_EventCategory { get; set; }
+        public virtual DbSet<M_EventRound> M_EventRound { get; set; }
+        public virtual DbSet<M_EventSeason> M_EventSeason { get; set; }
     }
 }

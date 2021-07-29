@@ -35,12 +35,12 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_EventRound M_EventRound { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventRoundSessionUserResults> M_EventRoundSessionUserResults { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_MyFavRaces> M_MyFavRaces { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_MyRaces> M_MyRaces { get; set; }
+        public virtual M_EventRound M_EventRound { get; set; }
     }
 }

@@ -28,8 +28,8 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_EventRound M_EventRound { get; set; }
         public virtual M_UserLicense M_UserLicense { get; set; }
         public virtual M_UserProfile M_UserProfile { get; set; }
+        public virtual M_EventRound M_EventRound { get; set; }
     }
 }

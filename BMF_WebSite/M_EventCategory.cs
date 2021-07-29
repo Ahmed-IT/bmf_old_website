@@ -22,7 +22,6 @@ namespace BMF_WebSite
         }
     
         public long ID { get; set; }
-        public long ID_EventSeason { get; set; }
         public string Title { get; set; }
         public string Image_URL { get; set; }
         public bool IsActive { get; set; }
@@ -34,7 +33,6 @@ namespace BMF_WebSite
         public string DeletedBy { get; set; }
         public byte[] RowVersion { get; set; }
     
-        public virtual M_EventSeason M_EventSeason { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<M_EventCategoryHeat> M_EventCategoryHeat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
