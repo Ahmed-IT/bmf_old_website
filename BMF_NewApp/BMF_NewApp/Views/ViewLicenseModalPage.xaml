@@ -25,12 +25,12 @@
 
                         <Grid Grid.Row="0" VerticalOptions="Center" Margin="0" HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="130"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <StackLayout Margin="20,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Aspect="Fill" HeightRequest="110" WidthRequest="90" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
+                            <StackLayout Margin="25,10,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Image Aspect="Fill" HeightRequest="120" WidthRequest="100" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" VerticalOptions="Center">
