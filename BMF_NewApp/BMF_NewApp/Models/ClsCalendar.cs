@@ -12,6 +12,22 @@ namespace BMF_NewApp.Models
         public List<ClsRound> Rounds { get; set; }
         public ClsRound NextRound { get; set; }
 
+        public string NextRoundTitle
+        {
+            get
+            {
+                if(NextRound == null)
+                {
+                    return "NO COMING\nROUND";
+                }
+                else
+                {
+                    return NextRound.Round_Number;
+                }
+                
+            }
+        }
+
         public ClsCalendar()
         {
             Rounds = new List<ClsRound>();

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True" NavigationPage.HasNavigationBar="false"
              Title="{Binding Title}" BackgroundColor="#D90000"
              x:Class="BMF_NewApp.Views.CalendarPage">
@@ -36,7 +36,7 @@
                                                         SelectionMode="Single"
                                                         SelectionBackgroundColor="Transparent"
                                                         HeaderSize="80"
-                                                        ItemSize="390"
+                                                        ItemSize="360"
                                                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                                         Padding="0"
                                                         Margin="0">
@@ -60,18 +60,29 @@
                                                     <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
                                     BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                            <ffimageloading:CachedImage LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" HeightRequest="300" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}">
-                                                            </ffimageloading:CachedImage>
-                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition/>
-                                                                </Grid.ColumnDefinitions>
-                                                                <StackLayout Grid.Column="0" Margin="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                                    <Label Margin="20,-5,0,0" TextColor="Black" Text="{Binding Title}" FontFamily="MontserratBold" FontSize="Large"></Label>
-                                                                    <Label Margin="20,-5,20,0" TextColor="Black" Text="{Binding NextRound.DateTime_Start, StringFormat='Next Event: {0:dd MMM yyyy}'}" FontFamily="MontserratLight" FontSize="Small"></Label>
-                                                                </StackLayout>
+                                                            <Grid RowSpacing="0">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*"></RowDefinition>
+                                                                </Grid.RowDefinitions>
+
+                                                                <ffimageloading:CachedImage HeightRequest="360" Grid.Row="0" LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}">
+                                                                </ffimageloading:CachedImage>
+
+                                                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <StackLayout Grid.Column="0" Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                                                        <Label Margin="20,-5,0,0" TextColor="White" Text="{Binding Title}" FontFamily="MontserratBold" FontSize="Title"></Label>
+                                                                        <Label Margin="20,30,0,0" TextColor="White" Text="NEXT ROUND" FontFamily="MontserratLight" FontSize="Medium"></Label>
+                                                                        <Label Margin="20,10,0,0" TextColor="White" TextTransform="Uppercase" Text="{Binding NextRoundTitle}" FontFamily="MontserratBold" FontSize="Large"></Label>
+                                                                        <Label Margin="20,-5,20,0" TextColor="White" Text="{Binding NextRound.DateTime_Start, StringFormat=' {0:dd MMM yyyy}'}" FontFamily="MontserratLight" FontSize="Medium"></Label>
+                                                                    </StackLayout>
+                                                                </Grid>
                                                             </Grid>
                                                         </StackLayout>
+
+                                                        
                                                     </border:SfBorder>
                                                 </StackLayout>
                                             </ViewCell>
@@ -93,15 +104,8 @@
                 <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
-                        <Frame IsVisible="{Binding ShowLogout}" Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
-           HeightRequest="100"
-           WidthRequest="100"
-           HorizontalOptions="Center"
-           Padding="0"
-           HasShadow="False"
-           IsClippedToBounds="True">
-                            <ffimageloading:CachedImage LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
-                        </Frame>
+                        <sfavatar:SfAvatarView BorderColor="White" IsVisible="{Binding ShowLogout}" Grid.Column="1" IsClippedToBounds="True" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
+                                                    Margin="0,50,0,0" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
 
                         <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 

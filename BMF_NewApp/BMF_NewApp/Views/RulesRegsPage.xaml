@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
+             xmlns:prism="http://prismlibrary.com" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding Title}" BackgroundColor="#D90000"
              NavigationPage.HasNavigationBar="false"
@@ -85,15 +85,8 @@
                 <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
-                        <Frame IsVisible="{Binding ShowLogout}" Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
-           HeightRequest="100"
-           WidthRequest="100"
-           HorizontalOptions="Center"
-           Padding="0"
-           HasShadow="False"
-           IsClippedToBounds="True">
-                            <ffimageloading:CachedImage LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
-                        </Frame>
+                        <sfavatar:SfAvatarView BorderColor="White" IsVisible="{Binding ShowLogout}" Grid.Column="1" IsClippedToBounds="True" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
+                                                    Margin="0,50,0,0" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
 
                         <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 

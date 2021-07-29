@@ -30,7 +30,7 @@
                             </Grid.ColumnDefinitions>
 
                             <StackLayout Margin="15,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Aspect="Fill" HeightRequest="100" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
+                                <Image Aspect="Fill" HeightRequest="110" WidthRequest="90" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" VerticalOptions="Center">

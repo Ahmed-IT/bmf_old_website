@@ -41,7 +41,7 @@
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="250" Margin="20,10,20,0">
 
                                             <sfavatar:SfAvatarView IsClippedToBounds="True" Margin="0,10,0,0" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
-                                                    HorizontalOptions="Center" HeightRequest="150" CornerRadius="75" WidthRequest="150" />
+                                                    HorizontalOptions="Center" HeightRequest="150" WidthRequest="150" />
 
                                             <Label HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Large" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 
@@ -96,15 +96,8 @@
                 <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
-                        <Frame IsVisible="{Binding ShowLogout}" Margin="0,50,0,0" CornerRadius="50" BorderColor="#faf8f8"
-           HeightRequest="100"
-           WidthRequest="100"
-           HorizontalOptions="Center"
-           Padding="0"
-           HasShadow="False"
-           IsClippedToBounds="True">
-                            <ffimageloading:CachedImage LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" BackgroundColor="Gray" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Profile.Photo_URL}"></ffimageloading:CachedImage>
-                        </Frame>
+                        <sfavatar:SfAvatarView BorderColor="White" IsVisible="{Binding ShowLogout}" Grid.Column="1" IsClippedToBounds="True" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
+                                                    Margin="0,50,0,0" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
 
                         <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 
