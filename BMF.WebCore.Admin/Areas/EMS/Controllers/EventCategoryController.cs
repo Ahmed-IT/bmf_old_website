@@ -48,17 +48,14 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
         private readonly IPermissionService _permissionService;
         private readonly IRepository<M_EventCategory> _repository;
         private readonly IAzureStorageManager _azureStorageManager;
-        private readonly IEventSeasonService _eventSeasonService;
 
         public EventCategoryController(IPermissionService permissionService,
             IRepository<M_EventCategory> repository,
-            IAzureStorageManager azureStorageManager,
-            IEventSeasonService eventSeasonService)
+            IAzureStorageManager azureStorageManager)
         {
             _permissionService = permissionService;
             _repository = repository;
             _azureStorageManager = azureStorageManager;
-            _eventSeasonService = eventSeasonService;
         }
 
         #region Views
@@ -200,7 +197,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     return UnauthorizedDataTablesJson();
 
                 #region // Load Raw Data
-                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.EventSeason).ToList();
+                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).ToList();
                 #endregion
 
                 #region // Filter Data
@@ -281,7 +278,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategory_Edit.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventSeason).SingleOrDefaultAsync();
+                M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
                     this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -306,7 +303,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                 if (!_permissionService.Authorize(SystemOperationsProvider.EventMS.EMS_EventCategory_Delete.SystemName))
                     return UnauthorizedModalView();
 
-                M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == ID).Include(i => i.EventSeason).SingleOrDefaultAsync();
+                M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == ID).SingleOrDefaultAsync();
                 if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                 {
                     this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -467,7 +464,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
                 try
                 {
-                    M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == DeleteRecord.ID).Include(i => i.EventSeason).SingleOrDefaultAsync();
+                    M_EventCategory ActualRecord = await _repository.QTable.Where(w => w.ID == DeleteRecord.ID).SingleOrDefaultAsync();
                     if (ActualRecord == null || ActualRecord.DeletedOnUtc.HasValue)
                     {
                         this.SetError(FixedTerms.Message_Error_Navigation, IsPartialView: true);
@@ -656,8 +653,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
 
         public void Set_SelectList(M_EventCategory DefineRecord)
         {
-            var ID_EventSeason = _eventSeasonService.Get_SelectList();
-            ViewBag.ID_EventSeason = new SelectList(ID_EventSeason, "Value", "Text", DefineRecord.ID_EventSeason);
+            
         }
 
         #endregion

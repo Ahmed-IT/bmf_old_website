@@ -21,9 +21,7 @@ namespace BMF.Web.Admin.DBMappings.Events
             entityBuilder.Property(t => t.Image_URL).HasMaxLength(1024).IsRequired(false);
             // Ignored Attributes
             // Foreign Keys
-            entityBuilder.Property(t => t.ID_EventSeason).IsRequired(true);
             // Relationships
-            entityBuilder.HasOne(g => g.EventSeason).WithMany(s => s.EventCategories).HasForeignKey(s => s.ID_EventSeason);
             entityBuilder.HasMany(g => g.EventRounds).WithOne(s => s.EventCategory).HasForeignKey(s => s.ID_EventCategory);
             // Indexes
         }

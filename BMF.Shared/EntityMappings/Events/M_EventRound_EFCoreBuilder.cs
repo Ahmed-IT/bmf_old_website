@@ -25,8 +25,10 @@ namespace BMF.Web.Admin.DBMappings.Events
             entityBuilder.Property(t => t.AddTo_Countdown).IsRequired(true);
             // Ignored Attributes
             // Foreign Keys
+            entityBuilder.Property(t => t.ID_EventSeason).IsRequired(true);
             entityBuilder.Property(t => t.ID_EventCategory).IsRequired(true);
             // Relationships
+            entityBuilder.HasOne(g => g.EventSeason).WithMany(s => s.EventRounds).HasForeignKey(s => s.ID_EventSeason);
             entityBuilder.HasOne(g => g.EventCategory).WithMany(s => s.EventRounds).HasForeignKey(s => s.ID_EventCategory);
             entityBuilder.HasMany(g => g.EventRoundSessions).WithOne(s => s.EventRound).HasForeignKey(s => s.ID_EventRound);
             entityBuilder.HasMany(g => g.UserRoundSignIns).WithOne(s => s.EventRound).HasForeignKey(s => s.ID_EventRound);

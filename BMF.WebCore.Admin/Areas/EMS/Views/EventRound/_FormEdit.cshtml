@@ -11,6 +11,11 @@
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.RowVersion)
         <div class="form-group">
+            @Html.LabelFor(model => model.ID_EventSeason, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.DropDownListFor(model => model.ID_EventSeason, null, new { @class = "form-control select2-edit", @required = "required", @style = "width:100%;", @data_placeholder = "Select season ...", @data_allow_clear = "true" })
+            @Html.ValidationMessageFor(model => model.ID_EventSeason, "")
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.ID_EventCategory, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
             @Html.DropDownListFor(model => model.ID_EventCategory, null, new { @class = "form-control select2-edit", @required = "required", @style = "width:100%;", @data_placeholder = "Select category ...", @data_allow_clear = "true" })
             @Html.ValidationMessageFor(model => model.ID_EventCategory, "")

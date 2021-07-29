@@ -21,7 +21,7 @@ namespace BMF.Web.Admin.DBMappings.Events
             // Ignored Attributes
             // Foreign Keys
             // Relationships
-            entityBuilder.HasMany(g => g.EventCategories).WithOne(s => s.EventSeason).HasForeignKey(s => s.ID_EventSeason);
+            entityBuilder.HasMany(g => g.EventRounds).WithOne(s => s.EventSeason).HasForeignKey(s => s.ID_EventSeason);
             // Indexes
         }
     }

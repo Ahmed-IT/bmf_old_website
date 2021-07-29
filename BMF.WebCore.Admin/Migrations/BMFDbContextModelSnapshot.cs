@@ -38,9 +38,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<DateTime?>("DeletedOnUtc")
                         .HasColumnType("DATETIME2(7)");
 
-                    b.Property<long>("ID_EventSeason")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Image_URL")
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
@@ -65,8 +62,6 @@ namespace BMF.WebCore.Admin.Migrations
                         .HasColumnType("DATETIME2(7)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ID_EventSeason");
 
                     b.ToTable("M_EventCategory");
                 });
@@ -153,6 +148,9 @@ namespace BMF.WebCore.Admin.Migrations
                     b.Property<long>("ID_EventCategory")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("ID_EventSeason")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -175,6 +173,8 @@ namespace BMF.WebCore.Admin.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("ID_EventCategory");
+
+                    b.HasIndex("ID_EventSeason");
 
                     b.ToTable("M_EventRound");
                 });
@@ -1645,17 +1645,6 @@ namespace BMF.WebCore.Admin.Migrations
                     b.ToTable("M_QuickLinks");
                 });
 
-            modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategory", b =>
-                {
-                    b.HasOne("BMF.Shared.Entities.Events.M_EventSeason", "EventSeason")
-                        .WithMany("EventCategories")
-                        .HasForeignKey("ID_EventSeason")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventSeason");
-                });
-
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventCategoryHeat", b =>
                 {
                     b.HasOne("BMF.Shared.Entities.Events.M_EventCategory", "EventCategory")
@@ -1675,7 +1664,15 @@ namespace BMF.WebCore.Admin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BMF.Shared.Entities.Events.M_EventSeason", "EventSeason")
+                        .WithMany("EventRounds")
+                        .HasForeignKey("ID_EventSeason")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("EventCategory");
+
+                    b.Navigation("EventSeason");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventRoundSession", b =>
@@ -1945,7 +1942,7 @@ namespace BMF.WebCore.Admin.Migrations
 
             modelBuilder.Entity("BMF.Shared.Entities.Events.M_EventSeason", b =>
                 {
-                    b.Navigation("EventCategories");
+                    b.Navigation("EventRounds");
                 });
 
             modelBuilder.Entity("BMF.Shared.Entities.Location.Country", b =>

@@ -11,6 +11,12 @@ namespace BMF.Shared.Entities.Events
     {
         #region Foreign Keys
 
+        [ForeignKey(nameof(EventSeason))]
+        [Display(Name = "Event Season", Prompt = "Event Season")]
+        [Required]
+        [JsonProperty(PropertyName = nameof(ID_EventSeason))]
+        public long ID_EventSeason { get; set; }
+
         [ForeignKey(nameof(EventCategory))]
         [Display(Name = "Event Category", Prompt = "Event Category")]
         [Required]
@@ -50,7 +56,12 @@ namespace BMF.Shared.Entities.Events
 
         #region Relationships
 
+        [Display(Name = "Event Season", Prompt = "Event Season")]
+        [InverseProperty(nameof(M_EventSeason.EventRounds))]
+        public M_EventSeason EventSeason { get; set; }
+
         [InverseProperty(nameof(M_EventCategory.EventRounds))]
+        [Display(Name = "Event Category", Prompt = "Event Category")]
         public M_EventCategory EventCategory { get; set; }
 
         [InverseProperty(nameof(M_EventRoundSession.EventRound))]

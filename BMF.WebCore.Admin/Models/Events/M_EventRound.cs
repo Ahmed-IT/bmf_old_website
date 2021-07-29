@@ -65,6 +65,7 @@ namespace BMF.Shared.Entities.Events
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
+                new Column($"{nameof(EventSeason)}.{nameof(M_EventSeason.Title)}", "Season"),
                 new Column($"{nameof(EventCategory)}.{nameof(M_EventCategory.Title)}", "Event Category"),
                 new Column(nameof(Round_Number), "Round Number"),
             };
@@ -77,6 +78,7 @@ namespace BMF.Shared.Entities.Events
 
         public void GetDatabaseValues(M_EventRound Database)
         {
+            ID_EventSeason = Database.ID_EventSeason;
             ID_EventCategory = Database.ID_EventCategory;
             Round_Number = Database.Round_Number;
             DateTime_Start = Database.DateTime_Start;
@@ -87,6 +89,7 @@ namespace BMF.Shared.Entities.Events
 
         public void SetDatabaseValues(M_EventRound Database)
         {
+            Database.ID_EventSeason = ID_EventSeason;
             Database.ID_EventCategory = ID_EventCategory;
             Database.Round_Number = Round_Number;
             Database.DateTime_Start = DateTime_Start;
@@ -103,6 +106,10 @@ namespace BMF.Shared.Entities.Events
 
         public void Validate(ModelStateDictionary ModelState, string propertyQualifier = "", DbSet<M_EventRound> databaseContext = null)
         {
+            if (ID_EventSeason == 0)
+            {
+                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Season must be selected.");
+            }
             if (ID_EventCategory == 0)
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event category must be selected.");
@@ -115,16 +122,18 @@ namespace BMF.Shared.Entities.Events
             {
                 if (ID == 0)
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventCategory == ID_EventCategory && c.Round_Number.ToLower().Trim() == Round_Number.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventSeason == ID_EventSeason && c.ID_EventCategory == ID_EventCategory && c.Round_Number.ToLower().Trim() == Round_Number.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
                     {
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Event round already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event round already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(Round_Number)}", "Event round already exists.");
                     }
                 }
                 else
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventCategory == ID_EventCategory && c.Round_Number.ToLower().Trim() == Round_Number.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventSeason == ID_EventSeason && c.ID_EventCategory == ID_EventCategory && c.Round_Number.ToLower().Trim() == Round_Number.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
                     {
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Event round already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventCategory)}", "Event round already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(Round_Number)}", "Event round already exists.");
                     }

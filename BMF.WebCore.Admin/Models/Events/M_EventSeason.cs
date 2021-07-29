@@ -21,7 +21,7 @@ namespace BMF.Shared.Entities.Events
         #region Ctor
         public M_EventSeason()
         {
-            EventCategories = new List<M_EventCategory>();
+            EventRounds = new List<M_EventRound>();
         }
 
         #endregion

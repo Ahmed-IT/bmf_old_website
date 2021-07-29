@@ -57,7 +57,6 @@ namespace BMF.Shared.Entities.Events
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
-                new Column($"{nameof(EventSeason)}.{nameof(M_EventSeason.Title)}", "Season"),
                 new Column(nameof(Title), "Title"),
             };
             return IJQDataTableExtendDBViewModel<M_EventCategory, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
@@ -69,14 +68,12 @@ namespace BMF.Shared.Entities.Events
 
         public void GetDatabaseValues(M_EventCategory Database)
         {
-            ID_EventSeason = Database.ID_EventSeason;
             Title = Database.Title;
             Image_URL = Database.Image_URL;
         }
 
         public void SetDatabaseValues(M_EventCategory Database)
         {
-            Database.ID_EventSeason = ID_EventSeason;
             Database.Title = Title;
             Database.Image_URL = Image_URL;
         }
@@ -89,10 +86,6 @@ namespace BMF.Shared.Entities.Events
 
         public void Validate(ModelStateDictionary ModelState, string propertyQualifier = "", DbSet<M_EventCategory> databaseContext = null)
         {
-            if (ID_EventSeason == 0)
-            {
-                ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Season must be selected.");
-            }
             if (string.IsNullOrWhiteSpace(Title))
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Title cannot be empty.");
@@ -105,17 +98,15 @@ namespace BMF.Shared.Entities.Events
             {
                 if (ID == 0)
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventSeason == ID_EventSeason && c.Title.ToLower().Trim() == Title.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c =>  c.Title.ToLower().Trim() == Title.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
                     {
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Event category already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Event category already exists.");
                     }
                 }
                 else
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.ID_EventSeason == ID_EventSeason && c.Title.ToLower().Trim() == Title.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c =>  c.Title.ToLower().Trim() == Title.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
                     {
-                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_EventSeason)}", "Event category already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(Title)}", "Event category already exists.");
                     }
                 }

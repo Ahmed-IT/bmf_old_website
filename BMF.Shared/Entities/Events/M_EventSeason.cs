@@ -18,8 +18,8 @@ namespace BMF.Shared.Entities.Events
 
         #region Relationships
 
-        [InverseProperty(nameof(M_EventCategory.EventSeason))]
-        public ICollection<M_EventCategory> EventCategories { get; set; }
+        [InverseProperty(nameof(M_EventRound.EventSeason))]
+        public ICollection<M_EventRound> EventRounds { get; set; }
 
         #endregion
     }
