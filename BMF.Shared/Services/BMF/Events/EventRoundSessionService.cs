@@ -32,12 +32,13 @@ namespace BMF.Shared.Services.Events
                     .Where(w => w.IsActive && !w.DeletedOnUtc.HasValue)
                     .Include(i => i.EventRound)
                     .Include(i => i.EventRound.EventCategory)
+                    .Include(i => i.EventRound.EventSeason)
                     .ToList()
                     .Select(s => new SelectListItem()
                     {
                         Value = s.ID.ToString(),
                         Disabled = s.IsActive,
-                        Text = $"Category: {s.EventRound.EventCategory.Title} - Round Number: {s.EventRound.Round_Number} - Session: {s.Title}"
+                        Text = $"Season: {s.EventRound.EventSeason.Title} - Category: {s.EventRound.EventCategory.Title} - Round Number: {s.EventRound.Round_Number} - Session: {s.Title}"
                     }).OrderBy(o => o.Text).ToList();
             }
             catch (Exception LogError)

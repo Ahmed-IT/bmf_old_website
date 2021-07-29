@@ -20,7 +20,6 @@ namespace BMF.Shared.Services.Events
 
         #endregion
 
-
         #region Methods
 
         public List<SelectListItem> Get_SelectList()
