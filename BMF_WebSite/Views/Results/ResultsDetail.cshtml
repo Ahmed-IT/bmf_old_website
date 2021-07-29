@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <button style="margin-top:30px;" class="btn buttonStyle">Show Results</button>
+                <button style="margin-top:30px;" class="btn buttonStyle showResults">Show Results</button>
             </div>
         </div>
 
@@ -173,26 +173,45 @@
     <script>
         $(document).ready(function () {
             $(document).on('change', '.select_season', function () {
+                $('.select_round').children().remove().append("<option>Select a season ...</option>");
                 $.ajax({
                     url: "@Url.Action("getRounds")",
                     data: { ID: $('.select_season').val() },
                     dataType: "JSON",
                     success: function (result) {
-                        console.log(result);
-                    },
-                    done: function (response) {
-                        console.log(response);
+                        $('.select_round').children().remove();
+                        $.each(result, function (k, v) {
+                            $('.select_round').append("<option value='" + v.ID + "'>" + v.Round_Number+"</option>");
+                        });
+                        $('.select_round').change();
                     }
                 });
             });
 
             $(document).on('change', '.select_round', function () {
-
+                $('.select_session').children().remove().append("<option>Select a round ...</option>");
+                $.ajax({
+                    url: "@Url.Action("getSessions")",
+                    data: { ID: $('.select_round').val() },
+                    dataType: "JSON",
+                    success: function (result) {
+                        $('.select_session').children().remove();
+                        $.each(result, function (k, v) {
+                            $('.select_session').append("<option value='" + v.ID + "'>" + v.Title+"</option>");
+                        });
+                        $('.select_session').change();
+                    }
+                });
             });
 
             $(document).on('change', '.select_session', function () {
 
             });
+
+            $(document).on('click', '.showResults', function () {
+
+            });
+
             $('.select_season').change();
         });
     </script>
