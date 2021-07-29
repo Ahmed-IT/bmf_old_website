@@ -76,7 +76,6 @@ namespace BMF_WebSite.Models.ViewModels
                                                {
                                                    IsActive = c.M_EventCategory.IsActive,
                                                    ID = c.M_EventCategory.ID,
-                                                   ID_EventSeason = c.M_EventCategory.ID_EventSeason,
                                                    Image_URL = c.M_EventCategory.Image_URL,
                                                    Title = c.M_EventCategory.Title
                                                }

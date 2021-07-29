@@ -51,7 +51,6 @@ namespace BMF_WebSite.Controllers
                                        {
                                            IsActive = r.M_EventCategory.IsActive,
                                            ID = r.M_EventCategory.ID,
-                                           ID_EventSeason = r.M_EventCategory.ID_EventSeason,
                                            Image_URL = r.M_EventCategory.Image_URL,
                                            Title = r.M_EventCategory.Title
                                        }
