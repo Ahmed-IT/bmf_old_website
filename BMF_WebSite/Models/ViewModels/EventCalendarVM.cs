@@ -28,7 +28,6 @@ namespace BMF_WebSite.Models.ViewModels
                 cal.EventsCategory = await (from c in db.M_EventCategory
                                     where c.IsActive == true
                                     && c.DeletedBy == null
-                                    && c.M_EventSeason.IsActive == true
                                     && c.M_EventRound.Where(b => b.IsActive == true && b.DeletedOnUtc == null).ToList().Count > 0
                                     select new ClsEventCategory
                                     {
@@ -36,7 +35,6 @@ namespace BMF_WebSite.Models.ViewModels
                                         Image_URL = c.Image_URL,
                                         Title = c.Title,
                                         IsActive = c.IsActive,
-                                        ID_EventSeason = c.ID_EventSeason,
                                         NextRound = c.M_EventRound.Where(a => a.DateTime_Start >= dateTime && a.IsActive == true && a.DeletedOnUtc == null).OrderBy(a => a.DateTime_Start).Select(a => new ClsEventRound
                                         {
                                             DateTime_End = a.DateTime_End,
