@@ -29,7 +29,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <StackLayout Margin="15,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout Margin="20,0,0,0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Image Aspect="Fill" HeightRequest="110" WidthRequest="90" Source="{Binding MyLicense.Profile.Photo_URL}"></Image>
                             </StackLayout>
 
