@@ -181,7 +181,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     return UnauthorizedDataTablesJson();
 
                 #region // Load Raw Data
-                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.EventRound).Include(i => i.EventRound.EventCategory);
+                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.EventRound).Include(i => i.EventRound.EventCategory).Include(i => i.EventRound.EventSeason);
                 #endregion
 
                 #region // Filter Data

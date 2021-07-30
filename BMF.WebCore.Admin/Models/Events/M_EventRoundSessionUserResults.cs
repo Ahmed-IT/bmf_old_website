@@ -49,6 +49,7 @@ namespace BMF.Shared.Entities.Events
             var jqColumns = new List<Column>
             {
                 new Column(nameof(ID), "ID", searchable: false, orderable: false),
+                new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.EventSeason)}.{nameof(M_EventSeason.Title)}", "Season"),
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.EventCategory)}.{nameof(M_EventCategory.Title)}", "Event Category"),
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.EventRound)}.{nameof(M_EventRound.Round_Number)}", "Event Round Number"),
                 new Column($"{nameof(EventRoundSession)}.{nameof(M_EventRoundSession.Title)}", "Round Session"),

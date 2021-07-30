@@ -186,6 +186,7 @@ namespace BMF.WebCore.Admin.Areas.EMS.Controllers
                     .Include(i => i.EventRoundSession)
                     .Include(i => i.EventRoundSession.EventRound)
                     .Include(i => i.EventRoundSession.EventRound.EventCategory)
+                    .Include(i => i.EventRoundSession.EventRound.EventSeason)
                     .Include(i => i.UserProfile);
                 #endregion
 
