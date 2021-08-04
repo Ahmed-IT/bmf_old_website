@@ -475,7 +475,7 @@ namespace BMF_WebSite.Controllers
 
         public ActionResult MarshalsLicense()
         {
-            ClsLicForm lic = new ClsLicForm();
+            ClsOfficialForm lic = new ClsOfficialForm();
 
             ViewBag.Countries = Helper.GetCountries();
             ViewBag.BloodGroup = Helper.GetBloodGroup();
@@ -485,16 +485,11 @@ namespace BMF_WebSite.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> MarshalsLicense(ClsLicForm data)
+        public async Task<ActionResult> MarshalsLicense(ClsOfficialForm data)
         {
             try
             {
                 var supportedTypes = new[] { "png", "PNG", "jpeg", "JPEG", "jpg", "JPG", "pdf", "PDF" };
-
-                if (data.CPRFile.ContentLength > 1000000)
-                {
-                    ModelState.AddModelError("CPRFile", "File must be less than 1MB");
-                }
 
                 if (data.Photo.ContentLength > 1000000)
                 {
@@ -502,12 +497,6 @@ namespace BMF_WebSite.Controllers
                 }
 
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
-
-                var fileExt = System.IO.Path.GetExtension(data.CPRFile.FileName).Substring(1);
-                if (!supportedTypes.Contains(fileExt))
-                {
-                    ModelState.AddModelError("CPRFile", "Please use only jpg,jpeg,png,pdf");
-                }
 
                 var PhotofileExt = System.IO.Path.GetExtension(data.Photo.FileName).Substring(1);
                 if (!supportedTypes.Contains(PhotofileExt))
@@ -543,14 +532,6 @@ namespace BMF_WebSite.Controllers
                                     data.Photo_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.UserProfile, fileName, data.Photo);
                                 }
 
-                                if (data.CPRFile != null)
-                                {
-                                    var fileName = Path.GetFileName(data.CPRFile.FileName);
-                                    StorageManager storageManager = new StorageManager();
-
-                                    data.CPR_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, data.CPRFile);
-                                }
-
                                 var profile = db.M_UserProfile.Add(new M_UserProfile
                                 {
                                     Full_Address = "House#: " + data.HouseNumber + " Road#: " + data.RoadNumber
@@ -567,8 +548,6 @@ namespace BMF_WebSite.Controllers
                                     EmergencyContact_Name = data.EmergencyName,
                                     EmergencyContact_MobileNumber = data.EmergencyNumber,
                                     Photo_URL = data.Photo_Url,
-                                    Parent_CPR = data.ParentCPR,
-                                    Parent_FullName = data.ParentFullName
                                 });
 
                                 await db.SaveChangesAsync();
@@ -591,7 +570,6 @@ namespace BMF_WebSite.Controllers
                                 var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
                                 {
                                     ApprovalStatus = 0,
-                                    CPR_URL = data.CPR_Url,
                                     IsActive = true,
                                     CreatedOnUtc = DateTime.Now,
                                     ID_UserLicense = lic.ID,
@@ -608,7 +586,7 @@ namespace BMF_WebSite.Controllers
                             {
                                 var checkLicenseExist = db.M_UserProfile.Where(a => a.CPR == data.CPR
                                         && a.IsActive == true && a.DeletedOnUtc == null &&
-                                        a.M_UserLicense.Where(b => b.ID_LicenseType == data.LicenseCategoryId).FirstOrDefault() != null).FirstOrDefault();
+                                        a.M_UserLicense.Where(b => b.ID_LicenseType == 5).FirstOrDefault() != null).FirstOrDefault();
 
                                 if (checkLicenseExist == null)
                                 {
@@ -620,14 +598,6 @@ namespace BMF_WebSite.Controllers
                                         StorageManager storageManager = new StorageManager();
 
                                         data.Photo_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.UserProfile, fileName, data.Photo);
-                                    }
-
-                                    if (data.CPRFile != null)
-                                    {
-                                        var fileName = Path.GetFileName(data.CPRFile.FileName);
-                                        StorageManager storageManager = new StorageManager();
-
-                                        data.CPR_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, data.CPRFile);
                                     }
 
                                     CheckProfileExist.Photo_URL = data.Photo_Url;
@@ -650,7 +620,6 @@ namespace BMF_WebSite.Controllers
                                     var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
                                     {
                                         ApprovalStatus = 0,
-                                        CPR_URL = data.CPR_Url,
                                         IsActive = true,
                                         CreatedOnUtc = DateTime.Now,
                                         ID_UserLicense = lic.ID,
@@ -691,14 +660,6 @@ namespace BMF_WebSite.Controllers
                                     data.Photo_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.UserProfile, fileName, data.Photo);
                                 }
 
-                                if (data.CPRFile != null)
-                                {
-                                    var fileName = Path.GetFileName(data.CPRFile.FileName);
-                                    StorageManager storageManager = new StorageManager();
-
-                                    data.CPR_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, data.CPRFile);
-                                }
-
                                 GetLicense.M_UserProfile.Photo_URL = data.Photo_Url;
                                 GetLicense.M_UserProfile.Mobile_Number = data.MobileNumber;
                                 GetLicense.M_UserProfile.ID_Nationality = data.CountryId;
@@ -719,7 +680,6 @@ namespace BMF_WebSite.Controllers
                                 var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
                                 {
                                     ApprovalStatus = 0,
-                                    CPR_URL = data.CPR_Url,
                                     IsActive = true,
                                     CreatedOnUtc = DateTime.Now,
                                     ID_UserLicense = GetLicense.ID,

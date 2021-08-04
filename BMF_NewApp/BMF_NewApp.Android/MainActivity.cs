@@ -19,6 +19,8 @@ namespace BMF_NewApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
+            Rg.Plugins.Popup.Popup.Init(this);
+
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 

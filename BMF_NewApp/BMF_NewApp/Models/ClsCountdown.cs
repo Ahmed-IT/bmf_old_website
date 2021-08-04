@@ -30,7 +30,7 @@ namespace BMF_NewApp.Models
         {
             get
             {
-                return EventCategory.Title + " Round " + Round_Number;
+                return EventCategory.Title + " " + Round_Number;
             }
         }
 

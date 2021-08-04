@@ -13,7 +13,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="60"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -37,7 +37,7 @@
                                                         ItemSpacing="0"
                                                         SelectionMode="Single"
                                                         SelectionBackgroundColor="Transparent"
-                                                        HeaderSize="80"
+                                                        HeaderSize="50"
                                                         ItemSize="550"
                                                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                                         Padding="0"
@@ -45,7 +45,7 @@
                                     <sflistview:SfListView.HeaderTemplate>
                                         <DataTemplate>
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#D90000">
-                                                <Label Text="My ID" FontSize="Title" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
+                                                <Label Text="My ID" FontSize="Large" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
                                             </StackLayout>
                                         </DataTemplate>
                                     </sflistview:SfListView.HeaderTemplate>

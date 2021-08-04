@@ -14,12 +14,12 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="60"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
                             <StackLayout Grid.Row="0" BackgroundColor="#D90000" Orientation="Horizontal">
-                                <Grid HorizontalOptions="FillAndExpand" Padding="0,10,0,0">
+                                <Grid HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="90"/>
                                         <ColumnDefinition Width="*"/>
@@ -27,7 +27,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Button Margin="0,30,0,0" Grid.Column="0" x:Name="hamburgerButton" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" FontSize="20" BackgroundColor="#D90000" Image="burgerIcon" Clicked="hamburgerButton_Clicked"/>
-                                    <Button Command="{prism:GoBack}"  Margin="0,30,10,0" Grid.Column="2" FontFamily="MontserratMedium" HorizontalOptions="End" FontSize="Small" BackgroundColor="Transparent" Text="Back" TextColor="White"/>
+                                    <Button Command="{prism:GoBack}"  Margin="0,20,10,0" Grid.Column="2" FontFamily="MontserratMedium" HorizontalOptions="End" FontSize="Small" BackgroundColor="Transparent" Text="Back" TextColor="White"/>
                                 </Grid>
                             </StackLayout>
 
@@ -36,7 +36,7 @@
                                                         ItemSpacing="0"
                                                         SelectionMode="None"
                                                         SelectionBackgroundColor="Transparent"
-                                                        HeaderSize="80"
+                                                        HeaderSize="50"
                                                         AutoFitMode="Height"
                                                         HorizontalOptions="FillAndExpand"
                                                         VerticalOptions="FillAndExpand"
@@ -45,7 +45,7 @@
                                     <sflistview:SfListView.HeaderTemplate>
                                         <DataTemplate>
                                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#D90000">
-                                                <Label Margin="0,0,0,20" Text="{Binding Title}" FontSize="Title" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
+                                                <Label Margin="0,0,0,20" Text="{Binding Title}" FontSize="Large" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
                                             </StackLayout>
                                         </DataTemplate>
                                     </sflistview:SfListView.HeaderTemplate>
@@ -72,8 +72,8 @@
                                                                             <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
                                     BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                                                                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                                                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Margin="20" Text="{Binding Title}" FontSize="Medium" FontFamily="MontserratBold" TextColor="Black"></Label>
-                                                                                    <Button VerticalOptions="CenterAndExpand" Command="{Binding Path=BindingContext.CategoryTappedCommand, Source={x:Reference Name=RulesRegsListPage1}}" CommandParameter="{Binding .}" HorizontalOptions="End" TextColor="#D90000" Text="View PDF" FontFamily="MontserratBold" FontSize="Medium" Margin="20"></Button>
+                                                                                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Margin="20" Text="{Binding Title}" FontSize="Medium" FontFamily="MontserratMedium" TextColor="Black"></Label>
+                                                                                    <Button VerticalOptions="CenterAndExpand" Command="{Binding Path=BindingContext.CategoryTappedCommand, Source={x:Reference Name=RulesRegsListPage1}}" CommandParameter="{Binding .}" HorizontalOptions="End" BackgroundColor="Transparent" TextColor="#D90000" Text="View PDF" FontFamily="MontserratBold" FontSize="Small" Margin="20"></Button>
                                                                                 </StackLayout>
                                                                             </border:SfBorder>
                                                                         </StackLayout>
@@ -105,7 +105,7 @@
                     <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
                         <sfavatar:SfAvatarView BorderColor="White" IsVisible="{Binding ShowLogout}" Grid.Column="1" IsClippedToBounds="True" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
-                                                    Margin="0,50,0,0" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
+                                                    Margin="0,50,0,0" CornerRadius="5" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
 
                         <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
 

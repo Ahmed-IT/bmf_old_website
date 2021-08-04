@@ -83,6 +83,13 @@ namespace BMF_NewApp.ViewModels
             set { SetProperty(ref _isComingEvent, value); }
         }
 
+        private int _headerSize;
+        public int HeaderSize
+        {
+            get { return _headerSize; }
+            set { SetProperty(ref _headerSize, value); }
+        }
+
         private DelegateCommand _commandLogout;
         public DelegateCommand CommandLogout =>
             _commandLogout ?? (_commandLogout = new DelegateCommand(ExecuteLogout));
@@ -177,6 +184,8 @@ namespace BMF_NewApp.ViewModels
                     App.ID = 0;
                     App.CPR = null;
                     App.IsLoggedIn = false;
+
+                    HeaderSize = 180;
                 }
                 else
                 {
@@ -186,6 +195,8 @@ namespace BMF_NewApp.ViewModels
                     App.CPR = AddUserInfo.CPR;
                     App.ID = AddUserInfo.Id;
                     App.IsLoggedIn = true;
+
+                    HeaderSize = 290;
                 }
 
                 if (App.CPR != null)

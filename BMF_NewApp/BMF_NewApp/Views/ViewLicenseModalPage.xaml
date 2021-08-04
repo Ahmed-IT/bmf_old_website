@@ -50,7 +50,7 @@
                 </border:SfBorder>
 
                 <StackLayout HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
-                    <Label Text="{Binding Status}" Margin="0,20,0,0" TextColor="{Binding StatusColor}" FontSize="Title" HorizontalOptions="CenterAndExpand" FontFamily="MontserratBold"></Label>
+                    <Label Text="{Binding Status}" Margin="0,20,0,0" TextColor="{Binding StatusColor}" FontSize="Large" HorizontalOptions="CenterAndExpand" FontFamily="MontserratBold"></Label>
                 </StackLayout>
             </StackLayout>
             <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="0,0,0,40" HeightRequest="60">

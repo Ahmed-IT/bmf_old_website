@@ -127,7 +127,7 @@ namespace BMF_NewApp.ViewModels
                             ID = a.ID,
                             ID_Category = a.ID_Category,
                             Title = a.Title,
-                            SectionHeight = (a.Bulletins.Where(c => c.ID_SubCategory == a.ID).Count() * 110)
+                            SectionHeight = (a.Bulletins.Where(c => c.ID_SubCategory == a.ID).Count() * 150)
                         });
 
                         BulletinsList = new ObservableRangeCollection<ClsBulletinSubCategory>(query.Where(a => a.Bulletins.Count > 0));

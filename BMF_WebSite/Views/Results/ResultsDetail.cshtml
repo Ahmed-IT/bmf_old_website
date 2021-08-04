@@ -27,7 +27,7 @@
     <div class="container zindex">
         <div class="row">
             <div class="col-lg-12 speaker-heading">
-                <h3>Results & Standing</h3>
+                <h3 style="font-family:DinoB;">Results & Standing</h3>
                 <div class="header-style"></div>
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label style="color:red; font-family:LatoB;">Select Season</label>
+                    <label style="color:red; font-family:DinoB;">Select Season</label>
                     <select class="form-control select_season">
                         @foreach (var item in Model.Seasons)
                         {
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label style="color:red; font-family:LatoB;">Select Round</label>
+                    <label style="color: red; font-family: DinoB;">Select Round</label>
                     <select class="form-control select_round">
                         <option>Select a season ...</option>
                     </select>
@@ -54,49 +54,48 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label style="color:red; font-family:LatoB;">Select Session</label>
+                    <label style="color: red; font-family: DinoB;">Select Session</label>
                     <select class="form-control select_session">
                         <option>Select a round ...</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-3">
-                <button style="margin-top:30px;" class="btn buttonStyle showResults">Show Results</button>
+                <button style="margin-top: 30px; font-family: DinoB;" class="btn buttonStyle showResults">Show Results</button>
             </div>
         </div>
-
+        <br />
         <div class="row">
             <div class="col-md-6">
-                <h4 style="margin-bottom:20px; font-family:FjallaOneR;">Championship Standing</h4>
+                <h4 style="margin-bottom: 20px; font-family: DinoR;">Championship Standing</h4>
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Pos</th>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Full Name</th>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Total Points</th>
+                            <th class="text-center" style="background-color: #E52F2F; color: white; font-family: DinoR;">Pos</th>
+                            <th class="text-center" style="background-color: #E52F2F; color: white; font-family: DinoR;">Full Name</th>
+                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:DinoR;">Total Points</th>
                         </tr>
                     </thead>
                     <tbody class="champResults">
-                        <tr><td style="font-family:LatoB;" class="text-center" colspan="3">Click Show Results</td></tr>
+                        <tr><td style="font-family: DinoB;" class="text-center" colspan="3">Click Show Results</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-6">
-                <h4 style="margin-bottom:20px; font-family:FjallaOneR;">
-                    <span class="roundsessionResultsTitle"></span>
-                    <a href="#" style="color:red; font-family:FjallaOneR; font-size:14px;">Download pdf version</a>
+                <h4 style="margin-bottom: 20px; font-family: DinoR; ">
+                    <span class="roundsessionResultsTitle">Round Title</span>
                 </h4>
 
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Pos</th>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Full Name</th>
-                            <th class="text-center" style="background-color:#E52F2F; color:white; font-family:FjallaOneR;">Total Points</th>
+                            <th class="text-center" style="background-color: #E52F2F; color: white; font-family: DinoR;">Pos</th>
+                            <th class="text-center" style="background-color: #E52F2F; color: white; font-family: DinoR;">Full Name</th>
+                            <th class="text-center" style="background-color: #E52F2F; color: white; font-family: DinoR;">Total Points</th>
                         </tr>
                     </thead>
                     <tbody class="roundsessionResults">
-                        <tr><td style="font-family:LatoB;" class="text-center" colspan="3">Click Show Results</td></tr>
+                        <tr><td style="font-family: DinoB;" class="text-center" colspan="3">Click Show Results</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -144,8 +143,8 @@
 
             $(document).on('click', '.showResults', function () {
                 $('.roundsessionResultsTitle').text($('.select_round option:selected').text() + " (" + $('.select_session option:selected').text() + ")");
-                $('.champResults').children().remove().append('<tr><td style="font-family:LatoB;" class="text-center" colspan="3">Click Show Results</td></tr>');
-                $('.roundsessionResults').children().remove().append('<tr><td style="font-family:LatoB;" class="text-center" colspan="3">Click Show Results</td></tr>');
+                $('.champResults').children().remove().append('<tr><td style="font-family:DinoB;" class="text-center" colspan="3">Click Show Results</td></tr>');
+                $('.roundsessionResults').children().remove().append('<tr><td style="font-family:DinoB;" class="text-center" colspan="3">Click Show Results</td></tr>');
 
                 $.ajax({
                     url: "@Url.Action("getChampResults")",
@@ -154,7 +153,7 @@
                     success: function (result) {
                         $.each(result, function (k, v) {
 
-                            $('.champResults').append("<tr><td style='font-family:LatoB;' class='text-center'>"+(k+1)+"</td><td style='font-family:LatoR;' class='text-center'>"+v.FullName+"</td><td style='font-family:LatoR;' class='text-center'>"+v.TotalPoints+"</td></tr>");
+                            $('.champResults').append("<tr><td style='font-family:DinoB;' class='text-center'>"+(k+1)+"</td><td style='font-family:DinoR;' class='text-center'>"+v.FullName+"</td><td style='font-family:DinoR;' class='text-center'>"+v.TotalPoints+"</td></tr>");
                         });
                     }
                 });
@@ -165,7 +164,7 @@
                     dataType: "JSON",
                     success: function (result) {
                         $.each(result, function (k, v) {
-                            $('.roundsessionResults').append("<tr><td style='font-family:LatoB;' class='text-center'>"+(k+1)+"</td><td style='font-family:LatoR;' class='text-center'>"+v.FullName+"</td><td style='font-family:LatoR;' class='text-center'>"+v.TotalPoints+"</td></tr>");
+                            $('.roundsessionResults').append("<tr><td style='font-family:DinoB;' class='text-center'>"+(k+1)+"</td><td style='font-family:DinoR;' class='text-center'>"+v.FullName+"</td><td style='font-family:DinoR;' class='text-center'>"+v.TotalPoints+"</td></tr>");
                         });
                     }
                 });

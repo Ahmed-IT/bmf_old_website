@@ -267,6 +267,7 @@
     <Content Include="Content\images\favicons\ms-icon-150x150.png" />
     <Content Include="Content\images\favicons\ms-icon-310x310.png" />
     <Content Include="Content\images\favicons\ms-icon-70x70.png" />
+    <Content Include="Content\images\FIA.png" />
     <Content Include="Content\images\FIAV.png" />
     <Content Include="Content\images\g1.jpg" />
     <Content Include="Content\images\g2.jpg" />
@@ -326,6 +327,7 @@
     <Content Include="Content\images\testimonial3.png" />
     <Content Include="Content\images\TrainingProvider1.jpg" />
     <Content Include="Content\images\TrainingProvider2.jpg" />
+    <Content Include="Content\images\WEC.png" />
     <Content Include="Content\plugins\jquery-ui\AUTHORS.txt" />
     <Content Include="Content\plugins\jquery-ui\external\jquery\jquery.js" />
     <Content Include="Content\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
@@ -639,6 +641,7 @@
     <Compile Include="Models\ClsLicForm.cs" />
     <Compile Include="Models\ClsLicType.cs" />
     <Compile Include="Models\ClsNews.cs" />
+    <Compile Include="Models\ClsOfficialForm.cs" />
     <Compile Include="Models\ClsProfile.cs" />
     <Compile Include="Models\ClsRacingMode.cs" />
     <Compile Include="Models\ClsRulesRegs.cs" />
