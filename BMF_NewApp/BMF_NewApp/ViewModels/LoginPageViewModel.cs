@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
+using static BMF_NewApp.App;
 using static BMF_NewApp.Models.BMFAppTables;
 
 namespace BMF_NewApp.ViewModels
@@ -37,11 +38,11 @@ namespace BMF_NewApp.ViewModels
         private DelegateCommand _commandLogin;
         public DelegateCommand CommandLogin => _commandLogin ?? (_commandLogin = new DelegateCommand(ExecuteLogin));
 
-
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             IRestService restService, ILocalService localService)
             : base(navigationService, dialogService)
         {
+
             Title = "Login Page";
 
             User = new ClsAccount();
