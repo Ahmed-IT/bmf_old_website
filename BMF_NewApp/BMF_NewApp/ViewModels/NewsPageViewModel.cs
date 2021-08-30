@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static BMF_NewApp.Models.BMFAppTables;
 
 namespace BMF_NewApp.ViewModels
 {
@@ -57,6 +58,10 @@ namespace BMF_NewApp.ViewModels
         private DelegateCommand<ClsNews> _newsTappedCommand;
         public DelegateCommand<ClsNews> NewsTappedCommand =>
             _newsTappedCommand ?? (_newsTappedCommand = new DelegateCommand<ClsNews>(ExecuteNewsTappedCommand));
+
+        private DelegateCommand _commandLogout;
+        public DelegateCommand CommandLogout =>
+            _commandLogout ?? (_commandLogout = new DelegateCommand(ExecuteLogout));
 
 
         public NewsPageViewModel(INavigationService navigationService, IPageDialogService dialogService
@@ -139,6 +144,46 @@ namespace BMF_NewApp.ViewModels
                 var properties = new Dictionary<string, string>
                 {
                     { "NewsDetailPageViewModel", "ExecuteNewsTappedCommand" }
+                };
+
+                Crashes.TrackError(ex, properties);
+            }
+        }
+
+        private async void ExecuteLogout()
+        {
+            try
+            {
+                var logout = await App.Current.MainPage.DisplayAlert("Logout", "Are you sure you want to logout?", "OK", "Cancel");
+
+                if (logout == true)
+                {
+                    var UserInfo = (from user in await App.Database.GetItemsAsync<TblUsersAccount>()
+                                    where user.LoggedIn == true
+                                    select user).SingleOrDefault();
+
+                    if (UserInfo != null)
+                    {
+                        Xamarin.Forms.Application.Current.Properties["CPR"] = null;
+                        App.CPR = null;
+                        UserInfo.LoggedIn = false;
+
+                        var UpdateUserInfo = await App.Database.SaveItemAsync(UserInfo);
+
+                        if (UpdateUserInfo == 1)
+                        {
+                            await NavigationService.NavigateAsync("LoginPage");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DialogService.DisplayAlertAsync("Error", "Error In Logout.", "OK");
+
+                var properties = new Dictionary<string, string>
+                {
+                    { "NewsPageViewModel", "ExecuteLogout" }
                 };
 
                 Crashes.TrackError(ex, properties);

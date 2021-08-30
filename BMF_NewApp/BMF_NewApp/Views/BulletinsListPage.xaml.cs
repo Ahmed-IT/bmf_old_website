@@ -12,7 +12,7 @@ namespace BMF_NewApp.Views
 
         private void hamburgerButton_Clicked(object sender, EventArgs e)
         {
-            navigationDrawer.ToggleDrawer();
+            //navigationDrawer.ToggleDrawer();
         }
     }
 }

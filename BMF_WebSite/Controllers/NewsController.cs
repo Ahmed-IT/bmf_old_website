@@ -28,7 +28,7 @@ namespace BMF_WebSite.Controllers
                                        c.Title,
                                        c.Content,
                                        c.NewsTimestampUtc
-                                       }).OrderBy(a => a.NewsTimestampUtc).Take(10).ToListAsync();
+                                       }).OrderByDescending(a => a.NewsTimestampUtc).Take(10).ToListAsync();
 
                 if (query.Count > 0)
                 {

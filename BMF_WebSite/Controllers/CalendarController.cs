@@ -39,7 +39,8 @@ namespace BMF_WebSite.Controllers
                                            a.Round_Number,
                                            a.IsActive
                                        }).FirstOrDefault(),
-                                      Rounds = c.M_EventRound.Where(m => m.IsActive == true).ToList().Select(a => new
+                                      Rounds = c.M_EventRound.Where(m => m.IsActive == true && m.DeletedOnUtc == null
+                                      && m.M_EventSeason.IsActive == true).ToList().Select(a => new
                                       {
                                           a.ID,
                                           a.DateTime_Start,

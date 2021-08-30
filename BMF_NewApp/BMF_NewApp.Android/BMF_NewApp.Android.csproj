@@ -154,6 +154,11 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\.DS_Store" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\.DS_Store" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\.DS_Store" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\.DS_Store" />
+    <AndroidResource Include="Resources\drawable-hdpi\.DS_Store" />
+    <AndroidResource Include="Resources\drawable-mdpi\.DS_Store" />
+    <AndroidResource Include="Resources\drawable-xhdpi\.DS_Store" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />

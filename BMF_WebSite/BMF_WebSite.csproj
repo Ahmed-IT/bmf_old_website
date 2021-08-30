@@ -808,6 +808,7 @@
     <Content Include="Views\Shared\_LayoutNew.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Services\MarshalsLicense.cshtml" />
+    <Content Include="Views\eSport\testEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

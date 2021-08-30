@@ -38,7 +38,10 @@
 
         <div class="row">
             <div class="col-md-6">
-                <h4 style="margin-bottom: 20px; font-family: DinoR;">@Model.FirstOrDefault().EventCategory.Title Calendar</h4>
+                @if (@Model.FirstOrDefault() != null)
+                {
+                    <h4 style="margin-bottom: 20px; font-family: DinoR;">@Model.FirstOrDefault().EventCategory.Title Calendar</h4>
+                }
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>

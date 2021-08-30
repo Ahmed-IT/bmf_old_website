@@ -82,7 +82,7 @@ namespace BMF_WebSite.Controllers
                                       r.Image_URL,
                                       r.NewsTimestampUtc,
                                       r.Title,
-                                  }).OrderBy(a => a.NewsTimestampUtc).Take(3).ToListAsync()
+                                  }).OrderByDescending(a => a.NewsTimestampUtc).Take(3).ToListAsync()
 
                 };
 

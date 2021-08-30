@@ -24,6 +24,13 @@ namespace BMF_WebSite.Controllers
             return View();
         }
 
+        public ActionResult testEmail()
+        {
+            return View();
+        }
+
+        
+
         public ActionResult Registration()
         {
             eSportRegForm lic = new eSportRegForm();

@@ -151,12 +151,12 @@
                                                 <Label TextColor="Black" Margin="20,20,20,0" Text="Latest News" FontFamily="MontserratBold" FontSize="Large"></Label>
                                                 <BoxView Margin="20,0,0,0" HeightRequest="5" BackgroundColor="#D90000" HorizontalOptions="FillAndExpand"></BoxView>
 
-                                                <carousel:SfCarousel Margin="20,10,0,20" HorizontalOptions="FillAndExpand" ItemHeight="390" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390"
+                                                <carousel:SfCarousel Margin="20,10,0,20" HorizontalOptions="FillAndExpand" ItemHeight="380" ViewMode="Linear" ItemsSource="{Binding NewsList}" BackgroundColor="Transparent" HeightRequest="390"
                                                                      RotationAngle="0" SelectedItemOffset="10" Offset="0.5" ScaleOffset="0">
 
                                                     <carousel:SfCarousel.ItemTemplate>
                                                         <DataTemplate>
-                                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="390" Margin="20,10,20,0">
+                                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,10,20,0">
                                                                 <border:SfBorder CornerRadius="10" BorderColor="White" BorderWidth="0"
                                     BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                                                                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -170,7 +170,7 @@
                                                                                 <Label Margin="20,-5,0,0" TextColor="Black" Text="{Binding Title}" FontFamily="MontserratBold" FontSize="Large"></Label>
                                                                                 <Label Margin="20,-5,20,0" TextColor="Black" Text="{Binding ContentCard}" FontFamily="MontserratLight" FontSize="Small"></Label>
 
-                                                                                <Button HorizontalOptions="End" Text="Press here for more" Margin="0,10,20,0" TextColor="#D90000" FontSize="Small" FontFamily="MontserratBold" BackgroundColor="Transparent"
+                                                                                <Button HorizontalOptions="End" Text="Press here for more" Margin="0,-5,20,0" TextColor="#D90000" FontSize="Small" FontFamily="MontserratBold" BackgroundColor="Transparent"
                                                                                         Command="{Binding Path=BindingContext.NewsCommand, Source={x:Reference Name=mainPage1}}" CommandParameter="{Binding .}"></Button>
                                                                             </StackLayout>
                                                                         </Grid>

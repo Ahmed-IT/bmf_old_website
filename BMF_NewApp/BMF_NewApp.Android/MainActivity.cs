@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
@@ -34,6 +35,7 @@ namespace BMF_NewApp.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
     }
 
     public class AndroidInitializer : IPlatformInitializer

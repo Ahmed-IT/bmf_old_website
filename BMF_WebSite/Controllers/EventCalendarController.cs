@@ -40,6 +40,7 @@ namespace BMF_WebSite.Controllers
                 var query = await (from r in db.M_EventRound
                                    where r.ID_EventCategory == ID
                                    && r.IsActive == true && r.DeletedBy == null
+                                   && r.M_EventSeason.IsActive == true
                                    select new ClsEventRound
                                    {
                                        DateTime_End = r.DateTime_End,

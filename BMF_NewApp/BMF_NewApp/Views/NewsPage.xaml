@@ -36,7 +36,7 @@
                                                         SelectionMode="Single"
                                                         SelectionBackgroundColor="Transparent"
                                                         HeaderSize="50"
-                                                        ItemSize="390"
+                                                        ItemSize="450"
                                                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                                         Padding="0"
                                                         Margin="0">
@@ -59,7 +59,7 @@
                                                 <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
                                     BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                                                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                        <ffimageloading:CachedImage LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" HeightRequest="150" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}"></ffimageloading:CachedImage>
+                                                        <ffimageloading:CachedImage LoadingPlaceholder="NoEventImage.png" FadeAnimationForCachedImages="True" BackgroundColor="LightGray" HeightRequest="250" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding Image_URL}"></ffimageloading:CachedImage>
                                                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition/>

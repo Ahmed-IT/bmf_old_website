@@ -13,7 +13,7 @@
     <AssemblyName>BMF_NewApp.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
     <BundleAssemblies>true</BundleAssemblies>
     <AotAssemblies>true</AotAssemblies>
   </PropertyGroup>
@@ -78,7 +78,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>Apple Development: Ahmed Ebrahim (856VCQ5D84)</CodesignKey>
+    <CodesignKey>iPhone Distribution: Ahmed Ebrahim (CU2L77E5C9)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
