@@ -18,10 +18,10 @@
     <ContentView>
         <Grid BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
-                <border:SfBorder HeightRequest="280" Margin="0" Padding="0" CornerRadius="10" BorderColor="LightGray" BorderWidth="1" BackgroundColor="LightGray"
+                <border:SfBorder HeightRequest="270" Margin="0" Padding="0" CornerRadius="10" BorderColor="LightGray" BorderWidth="1" BackgroundColor="LightGray"
                                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                        <Image Aspect="Fill" HeightRequest="280" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding MyLicense.LicenseType.Image_Front_URL}"/>
+                        <Image Aspect="Fill" HeightRequest="270" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding MyLicense.LicenseType.Image_Front_URL}"/>
 
                         <Grid Grid.Row="0" VerticalOptions="Center" Margin="0" HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>

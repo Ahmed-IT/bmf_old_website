@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
+using Android.Util;
 using Prism;
 using Prism.Ioc;
 
@@ -11,8 +12,23 @@ namespace BMF_NewApp.Droid
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        private void initFontScale()
+        {
+            Configuration configuration = Resources.Configuration;
+            configuration.FontScale = (float)1;
+            //0.85 small, 1 standard, 1.15 big，1.3 more bigger ，1.45 supper big 
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager.DefaultDisplay.GetMetrics(metrics);
+            metrics.ScaledDensity = configuration.FontScale * metrics.Density;
+            BaseContext.ApplicationContext.CreateConfigurationContext(configuration);
+            BaseContext.Resources.DisplayMetrics.SetTo(metrics);
+        }
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            initFontScale();
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
