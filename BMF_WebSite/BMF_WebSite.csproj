@@ -197,6 +197,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\2000cc.jpeg" />
     <Content Include="Content\images\about.png" />
+    <Content Include="Content\images\appleIcon.png" />
     <Content Include="Content\images\BahrainF1Track.jpg" />
     <Content Include="Content\images\bahrainRally2.jpg" />
     <Content Include="Content\images\Banner-1.jpg" />
@@ -276,11 +277,13 @@
     <Content Include="Content\images\g5.jpg" />
     <Content Include="Content\images\g6.jpg" />
     <Content Include="Content\images\gallery-main.jpg" />
+    <Content Include="Content\images\googleIcon.png" />
     <Content Include="Content\images\GT1.png" />
     <Content Include="Content\images\GT2.png" />
     <Content Include="Content\images\GT3.png" />
     <Content Include="Content\images\GT4.png" />
     <Content Include="Content\images\GTE.png" />
+    <Content Include="Content\images\huwaweiIcon.png" />
     <Content Include="Content\images\IMG_2018.jpg" />
     <Content Include="Content\images\Karting.jpg" />
     <Content Include="Content\images\License.png" />
