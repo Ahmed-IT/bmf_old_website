@@ -177,7 +177,7 @@ namespace BMF_WebSite.Controllers
                                             "BMF" +
                                             "</br>";
 
-                    var sendMail = EmailHelper.SendMail(query.Email_Address, "BMF APP - FORGOT PASSWORD", emailSubject);
+                    var sendMail = EmailHelper.SendMail(query.Email_Address,"", "BMF APP - FORGOT PASSWORD", emailSubject);
 
                     return Content(HttpStatusCode.OK, "Sent");
                 }

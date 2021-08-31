@@ -9,7 +9,7 @@ namespace BMF_WebSite.Models
 {
     public class EmailHelper
     {
-        public static string SendMail(string To, string subject, string body)
+        public static string SendMail(string To,string CC, string subject, string body)
         {
             string status = "";
 
@@ -23,6 +23,12 @@ namespace BMF_WebSite.Models
                 MailAddress fromAddress = new MailAddress(From, "Bahrain Motor Federation");
                 message.From = fromAddress;
                 message.To.Add(To);
+
+                if (CC != "")
+                {
+                    message.CC.Add(CC);
+                }
+                
                 if (ccList != null && ccList != string.Empty)
                     message.CC.Add(ccList);
                 message.Subject = subject;

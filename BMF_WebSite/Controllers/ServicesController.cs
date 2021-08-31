@@ -257,8 +257,8 @@ namespace BMF_WebSite.Controllers
                                     CPR = data.CPR
                                 });
 
-                                EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                 return RedirectToAction("LicenseSubmitted", "Services");
                             }
@@ -333,8 +333,8 @@ namespace BMF_WebSite.Controllers
                                         CPR = data.CPR
                                     });
 
-                                    EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                    EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                    EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                    EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                     return RedirectToAction("LicenseSubmitted", "Services");
                                 }
@@ -446,8 +446,8 @@ namespace BMF_WebSite.Controllers
                                     CPR = data.CPR
                                 });
 
-                                EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                 return RedirectToAction("LicenseSubmitted", "Services");
                             }
@@ -609,8 +609,8 @@ namespace BMF_WebSite.Controllers
                                     CPR = data.CPR
                                 });
 
-                                EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                 return RedirectToAction("LicenseSubmitted", "Services");
                             }
@@ -667,8 +667,8 @@ namespace BMF_WebSite.Controllers
                                         CPR = data.CPR
                                     });
 
-                                    EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                    EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                    EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                    EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                     return RedirectToAction("LicenseSubmitted", "Services");
                                 }
@@ -735,8 +735,8 @@ namespace BMF_WebSite.Controllers
                                     CPR = data.CPR
                                 });
 
-                                EmailHelper.SendMail(data.EmailAddress, "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh;alaa@bmf.com.bh;", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
+                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                EmailHelper.SendMail("info@bmf.com.bh;", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                 return RedirectToAction("LicenseSubmitted", "Services");
                             }
