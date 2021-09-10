@@ -108,6 +108,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\Events\EventRoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\Events\IEventRoundSessionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\Events\IEventRoundService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\UserManagement\IUserLicenseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\UserManagement\UserLicenseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\BRSubCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\BRCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BMF\WebsiteCMS\IBRSubCategoryService.cs" />

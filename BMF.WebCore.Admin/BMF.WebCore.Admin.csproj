@@ -61,6 +61,11 @@
     <None Include="Areas\BMFMS\Views\UserAccounts\_FormAdd.cshtml" />
     <None Include="Areas\BMFMS\Views\UserAccounts\_FormDelete.cshtml" />
     <None Include="Areas\BMFMS\Views\UserAccounts\_FormEdit.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenseRenewals\All.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenseRenewals\Pending.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenseRenewals\_FormAdd.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenseRenewals\_FormDelete.cshtml" />
+    <None Include="Areas\BMFMS\Views\UserLicenseRenewals\_FormEdit.cshtml" />
     <None Include="Areas\BMFMS\Views\UserLicenses\Index.cshtml" />
     <None Include="Areas\BMFMS\Views\UserLicenses\_FormAdd.cshtml" />
     <None Include="Areas\BMFMS\Views\UserLicenses\_FormDelete.cshtml" />

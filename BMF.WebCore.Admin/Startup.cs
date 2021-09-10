@@ -87,6 +87,7 @@ namespace BMF.WebCore.Admin
             services.AddScoped<ILicenseTypeService, LicenseTypeService>();
             services.AddScoped<IMarshalRoleService, MarshalRoleService>();
             services.AddScoped<IUserProfileService, UserProfileService>();
+            services.AddScoped<IUserLicenseService, UserLicenseService>();
             // ------ Website CMS
             services.AddScoped<IBRCategoryService, BRCategoryService>();
             services.AddScoped<IBRSubCategoryService, BRSubCategoryService>();

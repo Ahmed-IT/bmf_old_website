@@ -318,6 +318,36 @@ namespace BMF.WebCore.Admin.Services.Menu
                                 IconClass = "fas fa-id-card",
                                 IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicense)),
                             },
+                            new SiteMapNode()
+                            {
+                                SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal),
+                                Title = "User License Renewals",
+                                IconClass = "fas fa-id-card",
+                                IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal)),
+                                ChildNodes = new List<SiteMapNode>()
+                                {
+                                    new SiteMapNode()
+                                    {
+                                        SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal_ViewAll),
+                                        Title = "All",
+                                        RouteValues = new RouteValueDictionary{ {"area", AreaNames.BmfMS } },
+                                        ControllerName = M_UserLicenseRenewal._controllerName,
+                                        ActionName = "All",
+                                        IconClass = "fas fa-bars",
+                                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal_ViewAll)),
+                                    },
+                                    new SiteMapNode()
+                                    {
+                                        SystemName = nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal_Pending),
+                                        Title = "Pending",
+                                        RouteValues = new RouteValueDictionary{ {"area", AreaNames.BmfMS } },
+                                        ControllerName = M_UserLicenseRenewal._controllerName,
+                                        ActionName = "Pending",
+                                        IconClass = "fas fa-bars",
+                                        IsVisible = _authOperations.Contains(nameof(SystemOperationsProvider.BMFMS.BmfMS_UserLicenseRenewal_Pending)),
+                                    },
+                                }
+                            },
                         }
                     },
 

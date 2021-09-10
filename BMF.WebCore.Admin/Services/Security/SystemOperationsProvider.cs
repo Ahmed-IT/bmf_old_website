@@ -222,6 +222,14 @@ namespace BMF.WebCore.Admin.Services.Security
             public static SystemOperation BmfMS_UserAccount_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_Edit), Parent = GetParent(nameof(BmfMS_UserAccount)) };
             public static SystemOperation BmfMS_UserAccount_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserAccount_Delete), Parent = GetParent(nameof(BmfMS_UserAccount)) };
 
+            // BMF - User License Renewal
+            public static SystemOperation BmfMS_UserLicenseRenewal => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal), Children = new List<SystemOperation>() { BmfMS_UserLicenseRenewal_ViewAll, BmfMS_UserLicenseRenewal_Pending, BmfMS_UserLicenseRenewal_Add, BmfMS_UserLicenseRenewal_Edit, BmfMS_UserLicenseRenewal_Delete }, Parent = GetParent(nameof(BmfMS)) };
+            public static SystemOperation BmfMS_UserLicenseRenewal_ViewAll => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal_ViewAll), Parent = GetParent(nameof(BmfMS_UserLicenseRenewal)) };
+            public static SystemOperation BmfMS_UserLicenseRenewal_Pending => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal_Pending), Parent = GetParent(nameof(BmfMS_UserLicenseRenewal)) };
+            public static SystemOperation BmfMS_UserLicenseRenewal_Add => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal_Add), Parent = GetParent(nameof(BmfMS_UserLicenseRenewal)) };
+            public static SystemOperation BmfMS_UserLicenseRenewal_Edit => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal_Edit), Parent = GetParent(nameof(BmfMS_UserLicenseRenewal)) };
+            public static SystemOperation BmfMS_UserLicenseRenewal_Delete => new SystemOperation { IsActive = true, SystemName = nameof(BmfMS_UserLicenseRenewal_Delete), Parent = GetParent(nameof(BmfMS_UserLicenseRenewal)) };
+
             #endregion
         }
 

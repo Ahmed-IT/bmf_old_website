@@ -173,7 +173,7 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
                     return UnauthorizedDataTablesJson();
 
                 #region // Load Raw Data
-                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.UserProfile).ToList();
+                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.UserProfile);
                 #endregion
 
                 #region // Filter Data

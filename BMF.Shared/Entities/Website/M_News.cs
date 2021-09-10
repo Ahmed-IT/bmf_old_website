@@ -14,7 +14,7 @@ namespace BMF.Shared.Entities.Website
         public string Title { get; set; }
 
         [Display(Name = "Content")]
-        [StringLength(3000), MaxLength(3000), MinLength(1), Required]
+        [StringLength(int.MaxValue), MaxLength(int.MaxValue), MinLength(1), Required]
         [JsonProperty(PropertyName = nameof(Content))]
         public string Content { get; set; }
 

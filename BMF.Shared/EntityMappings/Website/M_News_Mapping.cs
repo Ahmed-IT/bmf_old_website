@@ -19,7 +19,7 @@ namespace BMF.Web.Admin.DBMappings.Website
         {
             // Attributes
             entityBuilder.Property(t => t.Title).HasMaxLength(255).IsRequired(true);
-            entityBuilder.Property(t => t.Content).HasMaxLength(3000).IsRequired(true);
+            entityBuilder.Property(t => t.Content).HasMaxLength(int.MaxValue).IsRequired(true);
             entityBuilder.Property(t => t.Image_URL).HasMaxLength(1024).IsRequired(true);
             entityBuilder.Property(t => t.NewsTimestampUtc).HasColumnType("DATETIME2(7)").IsRequired(true);
             // Ignored Attributes

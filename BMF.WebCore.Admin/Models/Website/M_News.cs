@@ -105,10 +105,10 @@ namespace BMF.Shared.Entities.Website
             {
                 ModelState.AddModelError($"{propertyQualifier}{nameof(Content)}", "Content cannot be empty.");
             }
-            else if (Content.Length > 3000)
-            {
-                ModelState.AddModelError($"{propertyQualifier}{nameof(Content)}", "Content cannot contain more than 3,000 characters.");
-            }
+            //else if (Content.Length > 3000)
+            //{
+            //    ModelState.AddModelError($"{propertyQualifier}{nameof(Content)}", "Content cannot contain more than 3,000 characters.");
+            //}
             if (databaseContext != null)
             {
                 if (ID == 0)
