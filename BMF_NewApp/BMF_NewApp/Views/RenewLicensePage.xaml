@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             NavigationPage.HasNavigationBar="True"
+             Title="{Binding Title}" BackgroundColor="#D90000"
+             x:Class="BMF_NewApp.Views.RenewLicensePage">
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid BackgroundColor="#f5f5f5" Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                
+            </Grid>
+
+        </StackLayout>
+
+        <BoxView Color="Black" IsVisible="{Binding IsBusy}" Opacity="0.5" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+        <StackLayout IsVisible="{Binding IsBusy}" Padding="6" Orientation="Vertical" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Syncfusion:SfBusyIndicator
+				IsBusy="{Binding IsBusy}" Title="Please Wait ..."
+				TextColor="White" TextSize="12"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				WidthRequest="100" HeightRequest="100"
+				AnimationType="SingleCircle  ">
+            </Syncfusion:SfBusyIndicator>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

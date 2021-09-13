@@ -367,7 +367,7 @@ namespace BMF_WebSite.Models
 "<p>Your license request has been received." +
 "<br /><br />" +
 "Kindly accept this email as a confirmation that you have successfully applied for the your license, " +
-"We will contact you shortly to complete the process of your license, for any further information please contact us at" + "info@bmf.com.bh.</p><tbody>" +
+"We will contact you shortly to complete the process of your license, for any further information please contact us at " + "info@bmf.com.bh.</p><tbody>" +
 "<tr>" +
 "<td align='left'>" +
 "<br /><br />" +

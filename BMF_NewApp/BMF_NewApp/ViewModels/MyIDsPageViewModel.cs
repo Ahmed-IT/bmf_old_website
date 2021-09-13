@@ -24,6 +24,7 @@ namespace BMF_NewApp.ViewModels
         }
 
         public DelegateCommand<ClsLicense> ViewLicenseCommand { get; set; }
+        public DelegateCommand<ClsLicense> RenewLicenseCommand { get; set; }
 
         private ClsProfile _profile;
         public ClsProfile Profile
@@ -71,6 +72,7 @@ namespace BMF_NewApp.ViewModels
             Profile = new ClsProfile();
 
             ViewLicenseCommand = new DelegateCommand<ClsLicense>(ViewLicense);
+            RenewLicenseCommand = new DelegateCommand<ClsLicense>(RenewLicense);
 
             _localService = localService;
             _restService = restService;
@@ -88,6 +90,31 @@ namespace BMF_NewApp.ViewModels
                         };
 
                     await NavigationService.NavigateAsync("ViewLicenseModalPage", parameter);
+                }
+            }
+            catch (Exception ex)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "IncidentReportsViewModel", "View" }
+                };
+
+                Crashes.TrackError(ex, properties);
+            }
+        }
+
+        private async void RenewLicense(ClsLicense license)
+        {
+            try
+            {
+                if (license != null)
+                {
+                    var parameter = new NavigationParameters
+                        {
+                            { "license", license }
+                        };
+
+                    await NavigationService.NavigateAsync("RenewLicensePage", parameter);
                 }
             }
             catch (Exception ex)
