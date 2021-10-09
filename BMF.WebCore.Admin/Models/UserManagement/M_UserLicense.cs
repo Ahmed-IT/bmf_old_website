@@ -124,15 +124,17 @@ namespace BMF.Shared.Entities.UserManagement
             {
                 if (ID == 0)
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.License_Number.ToLower().Trim() == License_Number.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_LicenseType == ID_LicenseType && c.License_Number.ToLower().Trim() == License_Number.ToLower().Trim() && !c.DeletedOnUtc.HasValue) > 0)
                     {
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_LicenseType)}", "License number already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(License_Number)}", "License number already exists.");
                     }
                 }
                 else
                 {
-                    if (databaseContext.AsNoTracking().Count(c => c.License_Number.ToLower().Trim() == License_Number.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
+                    if (databaseContext.AsNoTracking().Count(c => c.ID_LicenseType == ID_LicenseType && c.License_Number.ToLower().Trim() == License_Number.ToLower().Trim() && c.ID != ID && !c.DeletedOnUtc.HasValue) > 0)
                     {
+                        ModelState.AddModelError($"{propertyQualifier}{nameof(ID_LicenseType)}", "License number already exists.");
                         ModelState.AddModelError($"{propertyQualifier}{nameof(License_Number)}", "License number already exists.");
                     }
                 }
