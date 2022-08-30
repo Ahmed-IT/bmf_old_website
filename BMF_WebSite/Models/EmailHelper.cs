@@ -28,17 +28,20 @@ namespace BMF_WebSite.Models
                 {
                     message.CC.Add(CC);
                 }
-                
+
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+
                 if (ccList != null && ccList != string.Empty)
                     message.CC.Add(ccList);
                 message.Subject = subject;
                 message.IsBodyHtml = true;
                 message.Body = body;
-                smtpClient.Host = "smtp.live.com";
+                smtpClient.Host = "smtp.office365.com";
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = true;
-                smtpClient.Credentials = new System.Net.NetworkCredential("Bahrainmotorfederation@outlook.com", "ixundpjdqjjcltnb");
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.Credentials = new System.Net.NetworkCredential("Bahrainmotorfederation@outlook.com", "ffzaocrpifvnssfd");
 
                 smtpClient.Send(message);
 
@@ -99,10 +102,10 @@ namespace BMF_WebSite.Models
             msg += "On behalf of Bahrain eSport Gran Turismo Championship Committee (BEGTC), we would like to thank you for showing interest in our championship. <br/><br/>";
             msg += "Your registration has been received.<br/><br/>";
             msg += "Kindly accept this email as a confirmation that you have successfully registered for the championship, Please refer to our website for details concerning per-qualifying, to be published shortly. <br/><br/>";
-            msg += "Tow extra steps we need you to do: <br/><br/>";
-            msg += "Download Discord mobile app and join BEGTC 2021 Season 3 - Qualifying Round link below: <br/>";
-            msg += "https://discord.gg/Xkncctv5BA <br/><br/>";
-            msg += "Read carefully the <a href='https://bmfstorage.blob.core.windows.net/br-subcategoryrulesregs-pdf/begtc3regulations2021final.pdf-ced02ebc22c54ae6b976e7ddda33c6fa.pdf'>Rules and Regulations</a> <br/><br/>";
+            msg += "one extra steps we need you to do: <br/><br/>";
+            msg += "Download Discord mobile app and join BEGTC 2022 Season 4 - Qualifying Round link below: <br/>";
+            msg += "https://discord.gg/yES6P8mP3f <br/><br/>";
+            //msg += "Read carefully the <a href='https://bmfstorage.blob.core.windows.net/br-subcategoryrulesregs-pdf/begtc3regulations2021final.pdf-ced02ebc22c54ae6b976e7ddda33c6fa.pdf'>Rules and Regulations</a> <br/><br/>";
             msg += "May the odds be in your favor. <br/>";
             msg += "For any further information please contact us on info@bmf.com.bh <br/><br/>";
             msg += "Regards, <br/>";

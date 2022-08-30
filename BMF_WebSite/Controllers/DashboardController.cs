@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BMF_WebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace BMF_WebSite.Controllers
                                        p.M_UserAccount.ID,
                                    }
                                }).FirstOrDefaultAsync(),
-                    Countdown = await (from r in db.M_EventRound
+                    Countdown = (from r in db.M_EventRound
                                        where DbFunctions.TruncateTime(dateTime)
                                        < DbFunctions.TruncateTime(r.DateTime_Start) &&
                                        r.AddTo_Calendar == true && r.AddTo_Countdown == true
@@ -55,7 +56,7 @@ namespace BMF_WebSite.Controllers
                                                r.M_EventCategory.Image_URL,
                                                r.M_EventCategory.Title
                                            }
-                                       }).OrderBy(a => a.DateTime_Start).FirstOrDefaultAsync(),
+                                       }).OrderBy(a => a.DateTime_Start).FirstOrDefault(),
                     UpComingEvents = await (from r in db.M_EventRound
                                             where DbFunctions.TruncateTime(r.DateTime_Start) > DbFunctions.TruncateTime(dateTime) &&
                                        r.AddTo_Calendar == true && r.AddTo_Countdown == true
@@ -88,7 +89,54 @@ namespace BMF_WebSite.Controllers
 
                 if (Dashboard != null)
                 {
-                    return Ok(Dashboard);
+                    if (Dashboard.Countdown != null)
+                    {
+                        return Ok(new
+                        {
+                            Dashboard.Profile,
+                            Countdown = Dashboard.Countdown,
+                            Dashboard.UpComingEvents,
+                            Dashboard.News
+                        });
+                    }
+                    else
+                    {
+                        List<object> round = new List<object>();
+
+                        round.Add(new
+                        {
+                            ID = 1,
+                            Round_Number = "",
+                            DateTime_Start = dateTime,
+                            DateTime_End = dateTime,
+                            EventCategory = new M_EventCategory
+                            {
+                                ID = 1,
+                                Image_URL = "",
+                                Title = "No Coming Event"
+                            }
+                        });
+
+                        return Ok(new
+                        {
+                            Dashboard.Profile,
+                            Countdown = new
+                            {
+                                ID = 1,
+                                Round_Number = "",
+                                DateTime_Start = dateTime,
+                                DateTime_End = dateTime,
+                                EventCategory = new
+                                {
+                                    ID = 1,
+                                    Image_URL = "",
+                                    Title = "No Coming Event"
+                                }
+                            },
+                            Dashboard.UpComingEvents,
+                            Dashboard.News
+                        });
+                    }
                 }
                 else
                 {

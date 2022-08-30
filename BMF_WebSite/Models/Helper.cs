@@ -112,11 +112,11 @@ namespace BMF_WebSite.Models
                 Value = "New"
             });
 
-            type.Add(new ClsLicenseType
-            {
-                Text = "Renew",
-                Value = "Renew"
-            });
+            //type.Add(new ClsLicenseType
+            //{
+            //    Text = "Renew",
+            //    Value = "Renew"
+            //});
 
             return type;
         }

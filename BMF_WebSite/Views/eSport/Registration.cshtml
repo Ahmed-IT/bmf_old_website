@@ -46,7 +46,8 @@
             <div class="col-lg-12">
                 <div class="purchase-box">
                     <h4>Registration Form</h4>
-
+                    <div style="text-align:center;"><h3 style="color:red;">Registration Closed</h3></div>
+                    <br /><br />
                     @try
                     {
                         if (TempData["Status"] != null)
@@ -262,17 +263,17 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-md-12">
-                                <div class="form-group" style="color:black; font-size:16px;">
+                                <div class="form-group" style="color:black; font-size:16px;">-->
                                     @*<input name="ChkAccept" required="" type="checkbox">*@
-                                    @Html.CheckBoxFor(model => model.ChkAccept, new { @required = "required" })
+                                    <!--@Html.CheckBoxFor(model => model.ChkAccept, new { @required = "required" })
                                     I hereby accept the  <a href="https://bmfstorage.blob.core.windows.net/br-subcategoryrulesregs-pdf/begtc3regulations2021final.pdf-ced02ebc22c54ae6b976e7ddda33c6fa.pdf" target="_blank" style="color:Red;">rules / regulations</a> and confirm that the information submitted on this registration page is true & correct.  <font style="color:red; font-weight:bold;">*</font>
                                     <br />
                                     @Html.ValidationMessageFor(model => model.ChkAccept, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         @*<input class="btn btn-primary payment-btn" type="submit" value="SUBMIT FORM">*@
                         <br />
