@@ -95,8 +95,9 @@ namespace BMF_WebSite.Models
                                       {
                                           ID = c.ID,
                                           Title = c.Title,
-                                          Type = c.Type
-                                      }).ToList();
+                                          Type = c.Type,
+                                          FullTitle = c.Title + " (" + c.Type + ")"
+                                      }).OrderBy(a => a.Title).ToList();
 
             lic.AddRange(LicenseCategory);
 
@@ -112,11 +113,11 @@ namespace BMF_WebSite.Models
                 Value = "New"
             });
 
-            type.Add(new ClsLicenseType
-            {
-                Text = "Renew",
-                Value = "Renew"
-            });
+            //type.Add(new ClsLicenseType
+            //{
+            //    Text = "Renew",
+            //    Value = "Renew"
+            //});
 
             return type;
         }

@@ -322,6 +322,7 @@
     <Content Include="Content\images\s4.jpg" />
     <Content Include="Content\images\s5.jpg" />
     <Content Include="Content\images\s6.jpg" />
+    <Content Include="Content\images\BegtcSeason4Banner.png" />
     <Content Include="Content\images\SFRS_logo.png" />
     <Content Include="Content\images\shabdullabinIsa.jpg" />
     <Content Include="Content\images\shortcutsBackground.jpg" />
@@ -545,6 +546,7 @@
     <Content Include="Content\fonts\Montserrat-Bold.ttf" />
     <Content Include="Content\fonts\Montserrat-Medium.ttf" />
     <Content Include="Content\fonts\Montserrat-Regular.ttf" />
+    <None Include="Properties\PublishProfiles\bmftest - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -642,6 +644,7 @@
     <Compile Include="Models\ClsGalleryImage.cs" />
     <Compile Include="Models\ClsLicenseType.cs" />
     <Compile Include="Models\ClsLicForm.cs" />
+    <Compile Include="Models\ClsLicRenewForm.cs" />
     <Compile Include="Models\ClsLicType.cs" />
     <Compile Include="Models\ClsNews.cs" />
     <Compile Include="Models\ClsOfficialForm.cs" />
@@ -812,6 +815,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Services\MarshalsLicense.cshtml" />
     <Content Include="Views\eSport\testEmail.cshtml" />
+    <Content Include="Views\Services\CompetitionLicenseRenewal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

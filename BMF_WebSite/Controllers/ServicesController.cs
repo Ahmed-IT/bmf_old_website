@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.IO;
+using System.Web.Services.Description;
 
 namespace BMF_WebSite.Controllers
 {
@@ -504,6 +505,103 @@ namespace BMF_WebSite.Controllers
             ViewBag.Countries = Helper.GetCountries();
             ViewBag.BloodGroup = Helper.GetBloodGroup();
             ViewBag.LicenseType = Helper.GetLicenseType();
+
+            return View(lic);
+        }
+
+        public ActionResult CompetitionLicenseRenewal()
+        {
+            ClsLicRenewForm lic = new ClsLicRenewForm();
+
+            ViewBag.LicenseCategory = Helper.GetLicenseCategory();
+
+            return View(lic);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CompetitionLicenseRenewal(ClsLicRenewForm form)
+        {
+            ClsLicRenewForm lic = new ClsLicRenewForm();
+
+            ViewBag.LicenseCategory = Helper.GetLicenseCategory();
+
+            if(form.CPR != null && form.LicenseCategoryId != 0)
+            {
+                if (form.ValidateSubmitButton != null)
+                {
+                    var chkExist = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == form.CPR && a.ID_LicenseType == form.LicenseCategoryId).FirstOrDefault();
+
+                    if(chkExist != null)
+                    {
+                        lic.CPR = chkExist.M_UserProfile.CPR;
+                        lic.FullName = chkExist.M_UserProfile.FullName;
+                        lic.MobileNumber = chkExist.M_UserProfile.Mobile_Number;
+                        lic.EmailAddress = chkExist.M_UserProfile.M_UserAccount.Email_Address;
+                        lic.DateOfBirth = chkExist.M_UserProfile.DateOfBirth;
+                        lic.ImageUrl = chkExist.M_UserProfile.Photo_URL;
+                        lic.Nationality = chkExist.M_UserProfile.Country.Name;
+                        lic.LicenseType = chkExist.D_LicenseType.Title + " (" + chkExist.D_LicenseType.Type + ")";
+                        lic.LicenseExpireDate = chkExist.Expire_Date;
+                    }
+                    else
+                    {
+                        TempData["Status"] = "CPR or License not found.";
+                    }
+
+                return View(lic);
+                }
+
+                if (form.SubmitButton != null)
+                {
+                    if (form.MedicalFile != null)
+                    {
+                        var fileName = Path.GetFileName(form.MedicalFile.FileName);
+                        StorageManager storageManager = new StorageManager();
+
+                        form.Medical_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, form.MedicalFile);
+                    }
+
+                    var chkExist = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == form.CPR && a.ID_LicenseType == form.LicenseCategoryId).FirstOrDefault();
+
+                    if(chkExist != null)
+                    {
+                        var licInfo = chkExist.M_UserLicenseRenewal.Where(a => a.ID_UserLicense == chkExist.ID).FirstOrDefault();
+
+                        var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
+                        {
+                            ApprovalStatus = 0,
+                            CPR_URL = licInfo.CPR_URL,
+                            IsActive = true,
+                            CreatedOnUtc = DateTime.Now,
+                            ID_UserLicense = chkExist.ID,
+                            MedicalForm_URL = form.Medical_Url,
+                            Parent_CPR_URL = licInfo.Parent_CPR_URL
+                        });
+                        await db.SaveChangesAsync();
+
+                        string message = EmailHelper.LicenseRenewEmailMessage(chkExist.M_UserProfile.FullName);
+                        string messageBMF = EmailHelper.LicenseRenewEmailMessageToBMF(new ClsLicRenewForm
+                        {
+                            FullName = chkExist.M_UserProfile.FullName,
+                            CPR = chkExist.M_UserProfile.CPR
+                        });
+
+                        EmailHelper.SendMail(chkExist.M_UserProfile.M_UserAccount.Email_Address, "", "License Renewal Form", message);
+                        EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Renwal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
+                        //EmailHelper.SendMail("a.it@live.com","", "License Renewal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
+
+                        TempData["Status"] = "Services";
+                    }
+                    else
+                    {
+                        TempData["Status"] = "CPR or License not found.";
+                    }
+                }
+            }
+            else
+            {
+                TempData["Status"] = "Missing Information, please enter your CPR and select license type";
+            }
 
             return View(lic);
         }

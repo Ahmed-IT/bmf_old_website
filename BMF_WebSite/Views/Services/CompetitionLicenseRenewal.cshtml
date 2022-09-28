@@ -1,0 +1,207 @@
+﻿@model BMF_WebSite.Models.ClsLicRenewForm
+@{
+    ViewBag.Title = "Competition License Renewal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Content/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+
+<section id="banner-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-10 mobile-auto">
+                <div class="luanch">
+                    <div class="coundown_res">
+                        <div class="row">
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-3 col-md-4">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="organize_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 org-item sm-style-h">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("CdpApplication","Services",null)'>CPD APPLICATION</a>
+                </h3>
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("CompetitionLicense","Services",null)'>COMPETITION LICENSE</a>
+                </h3>
+
+            </div>
+            <div class="col-lg-3 col-sm-6 org-item">
+                <h3 style=" font-family: DinoB;">
+                    <a href='@Url.Action("MarshalsLicense","Services",null)'>OFFICIALS LICENSE</a>
+                </h3>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="event">
+    <div class="container zindex">
+        <div class="row">
+            <div class="col-lg-12 speaker-heading">
+                <h3 style=" font-family: DinoB;">COMPETITION LICENSE RENEWAL</h3>
+                <div class="header-style"></div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="col-lg-12">
+            <div class="purchase-box" style=" font-family: DinoR;">
+                <h4>Application Form for Competition Licence Renewal</h4>
+
+                @try
+                {
+                    if (TempData["Status"] != null)
+                    {
+                        <script>
+                            $(document).ready(function () {
+                                // Handler for .ready() called.
+                                $('html, body').animate({
+                                    scrollTop: $('#divRegForm').offset().top
+                                }, 'slow');
+                            });
+                        </script>
+
+                        <br /><br />
+                        <div class="alert alert-danger" role="alert" style="text-align:center; color:red; font-size:18px;">
+                            @TempData["Status"].ToString()
+                        </div>
+                    }
+                }
+                catch (global::System.Exception)
+                {
+
+                }
+
+                @using (Html.BeginForm("CompetitionLicenseRenewal", "Services", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">License Category <b style="color: red;">*</b></label>
+                            @Html.DropDownListFor(model => model.LicenseCategoryId, new SelectList(ViewBag.LicenseCategory, "ID", "FullTitle"), "Select Competion License", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.LicenseCategoryId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label style="font-family:LatoB;">CPR Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.CPR, new { @class = "form-control", @required = "required", @placeholder = "CPR Number" })
+                            @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <button formnovalidate="formnovalidate" name="ValidateSubmitButton" value="ValidateSubmitButton" type="submit" class="btn btn-primary payment-btn">VALIDATE INFORMATION</button>
+                        </div>
+                    </div>
+
+                    if (Model != null)
+                    {
+                        if (Model.FullName != null)
+                        {
+                            <h4>License Information</h4>
+
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td style="width:150px;">
+                                        <img style="width:100px" src="@Model.ImageUrl" />
+                                    </td>
+                                    <td>
+                                        <label style="font-family:LatoB;">CPR Number</label>
+                                        <br />
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.CPR</p>
+                                        <br />
+                                        <label style="font-family:LatoB;">Full Name</label>
+                                        <br />
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.FullName</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label style="font-family:LatoB;">License Type</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.LicenseType</p>
+                                    </td>
+                                    <td>
+                                        <label style="font-family:LatoB;">Expire Date</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.LicenseExpireDate.ToString("dd-MMM-yyyy")</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label style="font-family:LatoB;">Mobile Number</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.MobileNumber</p>
+                                    </td>
+                                    <td>
+                                        <label style="font-family:LatoB;">Email Address</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.EmailAddress</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label style="font-family:LatoB;">DAte of Birth</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.DateOfBirth.ToString("dd-MMM-yyyy")</p>
+                                    </td>
+                                    <td>
+                                        <label style="font-family:LatoB;">Nationlaity</label>
+                                        <p style="font-size: 18px; font-family: DinoR;">@Model.Nationality</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    }
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Medical Form <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.MedicalFile, new { @class = "form-control", @type = "file", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.MedicalFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <button name="SubmitButton" value="SubmitButton" type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="~/Content/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="~/Content/plugins/moment/moment.min.js"></script>
+<script>
+    if ($('[type="date"]').prop('type') != 'date') {
+        $('[type="date"]').datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '-60:+0',
+                dateFormat: 'dd-M-yy'
+            });
+    }
+
+</script>
+
+

@@ -119,6 +119,7 @@ namespace BMF_NewApp
             containerRegistry.RegisterForNavigation<RulesRegsListPage, RulesRegsListPageViewModel>();
             containerRegistry.RegisterForNavigation<ViewPdfPage, ViewPdfPageViewModel>();
             containerRegistry.RegisterForNavigation<RenewLicensePage, RenewLicensePageViewModel>();
+            containerRegistry.RegisterForNavigation<SignInPage, SignInPageViewModel>();
         }
 
         protected override void OnStart()

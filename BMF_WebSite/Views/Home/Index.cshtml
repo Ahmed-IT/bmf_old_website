@@ -16,15 +16,27 @@
                 <div style="display:none;" id="countdown"></div>
                 <div class="row">
                     <div class="col-lg-4 CountdownEventTitle">
-                        @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
-                        <div style="margin:20px;">
-                            <h4 style="font-family: DinoB;">
-                                @Model.Countdown.M_EventCategory.Title @Model.Countdown.Round_Number
-                            </h4>
-                            <h5 style="font-family: DinoR;">
-                                @Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")
-                            </h5>
-                        </div>
+                        @if (Model.Countdown != null)
+                        {
+                            @Html.HiddenFor(u => u.Countdown.DateTime_Start, new { @id = "DateTime_Start" })
+                            <div style="margin:20px;">
+                                <h4 style="font-family: DinoB;">
+                                    @Model.Countdown.M_EventCategory.Title @Model.Countdown.Round_Number
+                                </h4>
+                                <h5 style="font-family: DinoR;">
+                                    @Model.Countdown.DateTime_Start.ToString("dd MMM yyyy")
+                                </h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="margin:20px;">
+                                <h4 style="font-family: DinoB;">
+                                    No Coming Event
+                                </h4>
+                            </div>
+                        }
+
                     </div>
                     <div class="col-lg-8 CountdownEventTitle">
                         <div class="row" style="margin-top:20px; margin-left:20px;">
