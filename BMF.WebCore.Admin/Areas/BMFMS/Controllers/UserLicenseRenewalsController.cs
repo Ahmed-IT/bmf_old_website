@@ -209,7 +209,16 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
                     return UnauthorizedDataTablesJson();
 
                 #region // Load Raw Data
-                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue).Include(i => i.UserLicense).Include(i => i.UserLicense.UserProfile).Include(i => i.UserLicense.LicenseType);
+                var RawData = // await
+                    _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue)
+                    .Include(i => i.UserLicense)
+                    .Include(i => i.UserLicense.UserProfile)
+                    .Include(i => i.UserLicense.LicenseType);
+
+                    //.Include(i => i.UserLicense)
+                    //.ThenInclude(i => i.UserProfile)
+                    //.Include(i => i.UserLicense)
+                    //.ThenInclude(i => i.LicenseType).ToListAsync();
                 #endregion
 
                 #region // Filter Data
@@ -241,7 +250,11 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
                     return UnauthorizedDataTablesJson();
 
                 #region // Load Raw Data
-                var RawData = _repository.QTable.Where(w => !w.DeletedOnUtc.HasValue && w.ApprovalStatus == Enum_ApprovalStatus.PendingApproval).Include(i => i.UserLicense).Include(i => i.UserLicense.UserProfile).Include(i => i.UserLicense.LicenseType);
+                var RawData = _repository.QTable
+                    .Where(w => !w.DeletedOnUtc.HasValue && w.ApprovalStatus == Enum_ApprovalStatus.PendingApproval)
+                    .Include(i => i.UserLicense)
+                    .Include(i => i.UserLicense.UserProfile)
+                    .Include(i => i.UserLicense.LicenseType);
                 #endregion
 
                 #region // Filter Data

@@ -4,6 +4,7 @@ using BMF.Shared.Services.Azure;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace BMF.Shared.Entities.UserManagement
         public static string _defaultImage => $"https://bmfstorage.blob.core.windows.net/{AzureStorageContainers.LicenseType}/default.jpg";
 
         [NotMapped]
+        [JsonProperty(nameof(Display_LicenseType))]
         public string Display_LicenseType => $"{Title} (Type: {Type})";
 
         #region Fields
