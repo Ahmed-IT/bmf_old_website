@@ -9,8 +9,44 @@
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid BackgroundColor="#f5f5f5" Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <StackLayout Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                    <Label Grid.Column="0" Margin="0,10,0,10" Text="License Detail" FontSize="Large" FontFamily="MontserratBold"></Label>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="CPR Number"></Label>
+                        <Label Grid.Column="1" Grid.Row="0" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding MyLicense.Profile.CPR}"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="1" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Type"></Label>
+                        <Label Grid.Column="1" Grid.Row="1" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding MyLicense.LicenseType.LicenseTitleFull}"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="2" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="License Number"></Label>
+                        <Label Grid.Column="1" Grid.Row="2" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding MyLicense.License_Number_Full}"></Label>
+
+                        <Label Grid.Column="0" Grid.Row="3" HorizontalOptions="Start" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="Expire Date"></Label>
+                        <Label Grid.Column="1" Grid.Row="3" HorizontalOptions="End" TextColor="Black" FontFamily="MontserratMedium" FontSize="Medium" Text="{Binding MyLicense.Expire_Date, StringFormat=' {0:dd MMM yyyy}'}"></Label>
+
+
+                    </Grid>
+
+                    <Button Margin="0,20,0,0" Text="Submit Form" FontSize="Small" FontFamily="MontserratMedium" BackgroundColor="#D90000" TextColor="White" HeightRequest="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>        
+              
                 
+
             </Grid>
+
+
 
         </StackLayout>
 

@@ -789,7 +789,7 @@
     <Content Include="Views\RulesRegulations\Index.cshtml" />
     <Content Include="Views\Home\EventPermit.cshtml" />
     <Content Include="Views\Services\CompetitionLicense.cshtml" />
-    <Content Include="Views\Services\CdpApplication.cshtml" />
+    <Content Include="Views\Services\CdpApplication1.cshtml" />
     <Content Include="Views\EventCalendar\Index.cshtml" />
     <Content Include="Views\Results\Index.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
@@ -816,6 +816,7 @@
     <Content Include="Views\Services\MarshalsLicense.cshtml" />
     <Content Include="Views\eSport\testEmail.cshtml" />
     <Content Include="Views\Services\CompetitionLicenseRenewal.cshtml" />
+    <Content Include="Views\Services\MarshalLicenseSubmitted.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

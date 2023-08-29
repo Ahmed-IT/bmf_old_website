@@ -10,11 +10,11 @@ namespace BMF_WebSite.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter your CPR number")]
+        [Required(ErrorMessage = "Please enter your CPR/Passport number")]
         [Display(Name = "CPR")]
         [DataType(DataType.Text)]
-        [StringLength(9, MinimumLength = 9, ErrorMessage = "Please enter valid CPR number")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please use only numbers")]
+        //[StringLength(9, MinimumLength = 9, ErrorMessage = "Please enter valid CPR number")]
+        //[RegularExpression("([0-9]+)", ErrorMessage = "Please use only numbers")]
         public string CPR { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]

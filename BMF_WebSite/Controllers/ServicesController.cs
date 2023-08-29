@@ -638,7 +638,7 @@ namespace BMF_WebSite.Controllers
                     {
                         if (data.LicenseRequestType == "New")
                         {
-                            //Check if Profile Exist and has a license
+                            //Check if Profile Exist
                             var CheckProfileExist = db.M_UserProfile.Where(a => a.CPR == data.CPR
                             && a.IsActive == true && a.DeletedOnUtc == null).FirstOrDefault();
 
@@ -707,16 +707,16 @@ namespace BMF_WebSite.Controllers
                                     CPR = data.CPR
                                 });
 
-                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                EmailHelper.SendMail(data.EmailAddress, "", "License Registration Form", message);
                                 EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
-                                return RedirectToAction("LicenseSubmitted", "Services");
+                                return RedirectToAction("MarshalLicenseSubmitted", "Services");
+
                             }
                             else
                             {
-                                var checkLicenseExist = db.M_UserProfile.Where(a => a.CPR == data.CPR
-                                        && a.IsActive == true && a.DeletedOnUtc == null &&
-                                        a.M_UserLicense.Where(b => b.ID_LicenseType == 5).FirstOrDefault() != null).FirstOrDefault();
+                                var checkLicenseExist = CheckProfileExist.M_UserLicense.Where(a => a.ID_LicenseType == 5 &&
+                                a.DeletedOnUtc == null).FirstOrDefault();
 
                                 if (checkLicenseExist == null)
                                 {
@@ -768,7 +768,7 @@ namespace BMF_WebSite.Controllers
                                     EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
                                     EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
-                                    return RedirectToAction("LicenseSubmitted", "Services");
+                                    return RedirectToAction("MarshalLicenseSubmitted", "Services");
                                 }
                                 else
                                 {
@@ -777,7 +777,7 @@ namespace BMF_WebSite.Controllers
                                     ViewBag.BloodGroup = Helper.GetBloodGroup();
                                     ViewBag.LicenseType = Helper.GetLicenseType();
 
-                                    ModelState.AddModelError("LicenseRequestType", "You already have a license, please select renew.");
+                                    ModelState.AddModelError("valMsg", "Error in Submit, You already have a license.");
                                     return View(data);
                                 }
                             }
@@ -836,7 +836,7 @@ namespace BMF_WebSite.Controllers
                                 EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
                                 EmailHelper.SendMail("info@bmf.com.bh;", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
-                                return RedirectToAction("LicenseSubmitted", "Services");
+                                return RedirectToAction("MarshalLicenseSubmitted", "Services");
                             }
                             else
                             {
@@ -852,15 +852,19 @@ namespace BMF_WebSite.Controllers
                         }
                         else
                         {
-
+                            ModelState.AddModelError("valMsg", "Error in Submit, Please fill all required fileds.");
                         }
 
 
                     }
                     catch (Exception ex)
                     {
-
+                        ModelState.AddModelError("valMsg", "Error, Please try later.");
                     }
+                }
+                else
+                {
+
                 }
 
                 ViewBag.Countries = Helper.GetCountries();
@@ -871,7 +875,7 @@ namespace BMF_WebSite.Controllers
             }
             catch (Exception ex)
             {
-
+                ModelState.AddModelError("valMsg", "Error, Please try later.");
             }
 
             ViewBag.Countries = Helper.GetCountries();
@@ -885,5 +889,12 @@ namespace BMF_WebSite.Controllers
         {
             return View();
         }
+
+        public ActionResult MarshalLicenseSubmitted()
+        {
+            return View();
+        }
+
+        
     }
 }
