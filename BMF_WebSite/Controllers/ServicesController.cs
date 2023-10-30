@@ -699,64 +699,8 @@ namespace BMF_WebSite.Controllers
 
                                 await db.SaveChangesAsync();
 
-                                string message = EmailHelper.LicenseEmailMessage(data.FirstName + " " + data.LastName);
-                                string messageBMF = EmailHelper.LicenseEmailMessageToBMF(new ClsLicForm
+                                try
                                 {
-                                    FirstName = data.FirstName,
-                                    LastName = data.LastName,
-                                    CPR = data.CPR
-                                });
-
-                                EmailHelper.SendMail(data.EmailAddress, "", "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
-
-                                return RedirectToAction("MarshalLicenseSubmitted", "Services");
-
-                            }
-                            else
-                            {
-                                var checkLicenseExist = CheckProfileExist.M_UserLicense.Where(a => a.ID_LicenseType == 5 &&
-                                a.DeletedOnUtc == null).FirstOrDefault();
-
-                                if (checkLicenseExist == null)
-                                {
-                                    //Add New License
-
-                                    if (data.Photo != null)
-                                    {
-                                        var fileName = Path.GetFileName(data.Photo.FileName);
-                                        StorageManager storageManager = new StorageManager();
-
-                                        data.Photo_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.UserProfile, fileName, data.Photo);
-                                    }
-
-                                    CheckProfileExist.Photo_URL = data.Photo_Url;
-
-                                    await db.SaveChangesAsync();
-
-                                    var lic = db.M_UserLicense.Add(new M_UserLicense
-                                    {
-                                        License_Number = "",
-                                        IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
-                                        ID_LicenseType = 5,
-                                        ID_UserProfile = checkLicenseExist.ID,
-                                    });
-
-                                    await db.SaveChangesAsync();
-
-                                    //Create License History
-
-                                    var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
-                                    {
-                                        ApprovalStatus = 0,
-                                        IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
-                                        ID_UserLicense = lic.ID,
-                                    });
-
-                                    await db.SaveChangesAsync();
-
                                     string message = EmailHelper.LicenseEmailMessage(data.FirstName + " " + data.LastName);
                                     string messageBMF = EmailHelper.LicenseEmailMessageToBMF(new ClsLicForm
                                     {
@@ -765,88 +709,21 @@ namespace BMF_WebSite.Controllers
                                         CPR = data.CPR
                                     });
 
-                                    EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
+                                    EmailHelper.SendMail(data.EmailAddress, "", "License Registration Form", message);
                                     EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
-                                    return RedirectToAction("MarshalLicenseSubmitted", "Services");
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    //License Exist send Renew Message
-                                    ViewBag.Countries = Helper.GetCountries();
-                                    ViewBag.BloodGroup = Helper.GetBloodGroup();
-                                    ViewBag.LicenseType = Helper.GetLicenseType();
 
-                                    ModelState.AddModelError("valMsg", "Error in Submit, You already have a license.");
-                                    return View(data);
                                 }
-                            }
-                        }
-                        else if (data.LicenseRequestType == "Renew")
-                        {
-                            var GetLicense = db.M_UserLicense.Where(a => a.IsActive == true &&
-                            a.DeletedOnUtc == null && a.M_UserProfile.CPR == data.CPR
-                            && a.ID_LicenseType == 5).FirstOrDefault();
-
-                            if (GetLicense != null)
-                            {
-                                if (data.Photo != null)
-                                {
-                                    var fileName = Path.GetFileName(data.Photo.FileName);
-                                    StorageManager storageManager = new StorageManager();
-
-                                    data.Photo_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.UserProfile, fileName, data.Photo);
-                                }
-
-                                GetLicense.M_UserProfile.Photo_URL = data.Photo_Url;
-                                GetLicense.M_UserProfile.Mobile_Number = data.MobileNumber;
-                                GetLicense.M_UserProfile.ID_Nationality = data.CountryId;
-                                GetLicense.M_UserProfile.Blood_Group = data.BloodGroup;
-                                GetLicense.M_UserProfile.CPR = data.CPR;
-                                GetLicense.M_UserProfile.DateOfBirth = data.DateOfBirth;
-                                GetLicense.M_UserProfile.EmergencyContact_MobileNumber = data.EmergencyNumber;
-                                GetLicense.M_UserProfile.EmergencyContact_Name = data.EmergencyName;
-                                GetLicense.M_UserProfile.Place_Of_Birth = data.PlaceOfBirth;
-                                GetLicense.M_UserProfile.Full_Address = "House#: " + data.HouseNumber + " Road#: " + data.RoadNumber
-                                    + " Block#: " + data.BlockNumber + " City: " + data.City;
-                                GetLicense.M_UserProfile.FullName = data.FirstName + " " + data.MiddleName + " " + data.LastName;
-
-                                await db.SaveChangesAsync();
-
-                                //Create License History
-
-                                var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
-                                {
-                                    ApprovalStatus = 0,
-                                    IsActive = true,
-                                    CreatedOnUtc = DateTime.Now,
-                                    ID_UserLicense = GetLicense.ID,
-                                });
-
-                                await db.SaveChangesAsync();
-
-                                string message = EmailHelper.LicenseEmailMessage(data.FirstName + " " + data.LastName);
-                                string messageBMF = EmailHelper.LicenseEmailMessageToBMF(new ClsLicForm
-                                {
-                                    FirstName = data.FirstName,
-                                    LastName = data.LastName,
-                                    CPR = data.CPR
-                                });
-
-                                EmailHelper.SendMail(data.EmailAddress,"", "License Registration Form", message);
-                                EmailHelper.SendMail("info@bmf.com.bh;", "alaa@bmf.com.bh", "License Registration Form - for " + data.FirstName + " " + data.LastName, message);
 
                                 return RedirectToAction("MarshalLicenseSubmitted", "Services");
+
                             }
                             else
                             {
-                                //License Not Found
-
-                                ViewBag.Countries = Helper.GetCountries();
-                                ViewBag.BloodGroup = Helper.GetBloodGroup();
-                                ViewBag.LicenseType = Helper.GetLicenseType();
-
-                                ModelState.AddModelError("LicenseRequestType", "License not found please select new");
+                                ModelState.AddModelError("valMsg", "License Existt, You already have a license.");
                                 return View(data);
                             }
                         }
