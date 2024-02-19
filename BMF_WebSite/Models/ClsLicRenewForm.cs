@@ -30,7 +30,9 @@ namespace BMF_WebSite.Models
         public string EmergencyName { get; set; }
         public string EmergencyNumber { get; set; }
         public string BloodGroup { get; set; }
+        public string CPR_Url { get; set; }
         public string Medical_Url { get; set; }
+        public string ParentCPR_Url { get; set; }
         public long LicenseCategoryId { get; set; }
         public string ValidateSubmitButton { get; set; }
         public string LicenseType { get; set; }
@@ -38,9 +40,28 @@ namespace BMF_WebSite.Models
         public string ImageUrl { get; set; }
         public string SubmitButton { get; set; }
 
+        [Required(ErrorMessage = "Please select a CPR Photo")]
+        //[FileExtensions(Extensions = "jpg|png|jpeg", ErrorMessage = "Please use only jpg,jpeg,png")]
+        [Display(Name = "CPR")]
+        public HttpPostedFileBase CPRFile { get; set; }
+
         [Required(ErrorMessage = "Please select medical form")]
         //[FileExtensions(Extensions = "jpg|png|jpeg", ErrorMessage = "Please use only jpg,jpeg,png")]
         [Display(Name = "Medical Form")]
         public HttpPostedFileBase MedicalFile { get; set; }
+
+        [Display(Name = "Parent FullName")]
+        [DataType(DataType.Text)]
+        public string ParentFullName { get; set; }
+
+        [Display(Name = "Parent CPR number")]
+        [DataType(DataType.Text)]
+        public string ParentCPR { get; set; }
+
+        [Display(Name = "Parent CPR")]
+        public HttpPostedFileBase ParentCPRFile { get; set; }
+
+        [Display(Name = "IsUnder18")]
+        public bool IsUnder18 { get; set; }
     }
 }

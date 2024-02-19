@@ -645,6 +645,7 @@
     <Compile Include="Models\ClsLicenseType.cs" />
     <Compile Include="Models\ClsLicForm.cs" />
     <Compile Include="Models\ClsLicRenewForm.cs" />
+    <Compile Include="Models\clsLicStatus.cs" />
     <Compile Include="Models\ClsLicType.cs" />
     <Compile Include="Models\ClsNews.cs" />
     <Compile Include="Models\ClsOfficialForm.cs" />

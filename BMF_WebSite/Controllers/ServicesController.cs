@@ -525,34 +525,68 @@ namespace BMF_WebSite.Controllers
 
             ViewBag.LicenseCategory = Helper.GetLicenseCategory();
 
-            if(form.CPR != null && form.LicenseCategoryId != 0)
+            if (form.CPR != null && form.LicenseCategoryId != 0)
             {
-                if (form.ValidateSubmitButton != null)
+                var chkExist = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == form.CPR && a.ID_LicenseType == form.LicenseCategoryId).FirstOrDefault();
+
+                if (chkExist != null)
                 {
-                    var chkExist = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == form.CPR && a.ID_LicenseType == form.LicenseCategoryId).FirstOrDefault();
+                    var supportedTypes = new[] { "png", "PNG", "jpeg", "JPEG", "jpg", "JPG", "pdf", "PDF" };
 
-                    if(chkExist != null)
+                    if (form.IsUnder18 == true)
                     {
-                        lic.CPR = chkExist.M_UserProfile.CPR;
-                        lic.FullName = chkExist.M_UserProfile.FullName;
-                        lic.MobileNumber = chkExist.M_UserProfile.Mobile_Number;
-                        lic.EmailAddress = chkExist.M_UserProfile.M_UserAccount.Email_Address;
-                        lic.DateOfBirth = chkExist.M_UserProfile.DateOfBirth;
-                        lic.ImageUrl = chkExist.M_UserProfile.Photo_URL;
-                        lic.Nationality = chkExist.M_UserProfile.Country.Name;
-                        lic.LicenseType = chkExist.D_LicenseType.Title + " (" + chkExist.D_LicenseType.Type + ")";
-                        lic.LicenseExpireDate = chkExist.Expire_Date;
+                        if (string.IsNullOrEmpty(form.ParentFullName))
+                        {
+                            ModelState.AddModelError("ParentFullName", "Please ensure to enter a parent name");
+                        }
+
+                        if (string.IsNullOrEmpty(form.MobileNumber))
+                        {
+                            ModelState.AddModelError("ParentCPR", "Please ensure to enter a parent CPR number");
+                        }
+
+                        if (form.ParentCPRFile == null)
+                        {
+                            ModelState.AddModelError("ParentCPRFile", "Please upload parent CPR");
+                        }
+                        else
+                        {
+
+                            var fileExt2 = System.IO.Path.GetExtension(form.ParentCPRFile.FileName).Substring(1);
+                            if (!supportedTypes.Contains(fileExt2))
+                            {
+                                ModelState.AddModelError("ParentCPRFile", "Please use only jpg,jpeg,png,pdf");
+                            }
+                        }
                     }
-                    else
+
+                    if (Helper.CalculateAge(chkExist.M_UserProfile.DateOfBirth) < 18 && form.IsUnder18 == false)
                     {
-                        TempData["Status"] = "CPR or License not found.";
+                        ModelState.AddModelError("IsUnder18", "You are under 18 please check the box and fill parent detail");
                     }
 
-                return View(lic);
-                }
+                    if (Helper.CalculateAge(chkExist.M_UserProfile.DateOfBirth) > 18 && form.IsUnder18 == true)
+                    {
+                        ModelState.AddModelError("IsUnder18", "You are over 18 please uncheck the box and clear parent detail if entered");
+                    }
 
-                if (form.SubmitButton != null)
-                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+                    var fileExt = System.IO.Path.GetExtension(form.CPRFile.FileName).Substring(1);
+                    if (!supportedTypes.Contains(fileExt))
+                    {
+                        ModelState.AddModelError("CPRFile", "Please use only jpg,jpeg,png,pdf");
+                    }
+
+
+                    if (form.CPRFile != null)
+                    {
+                        var fileName = Path.GetFileName(form.CPRFile.FileName);
+                        StorageManager storageManager = new StorageManager();
+
+                        form.CPR_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, form.CPRFile);
+                    }
+
                     if (form.MedicalFile != null)
                     {
                         var fileName = Path.GetFileName(form.MedicalFile.FileName);
@@ -561,41 +595,68 @@ namespace BMF_WebSite.Controllers
                         form.Medical_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, form.MedicalFile);
                     }
 
-                    var chkExist = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == form.CPR && a.ID_LicenseType == form.LicenseCategoryId).FirstOrDefault();
-
-                    if(chkExist != null)
+                    if (form.IsUnder18 == true)
                     {
-                        var licInfo = chkExist.M_UserLicenseRenewal.Where(a => a.ID_UserLicense == chkExist.ID).FirstOrDefault();
+                        if (form.ParentCPRFile != null)
+                        {
+                            var fileName = Path.GetFileName(form.ParentCPRFile.FileName);
+                            StorageManager storageManager = new StorageManager();
 
+                            form.ParentCPR_Url = await storageManager.UploadPhotoAsync(Helper.AzureStorageContainers.LicenseRenewal, fileName, form.ParentCPRFile);
+                        }
+                    }
+
+                    if (form.IsUnder18 == true)
+                    {
                         var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
                         {
                             ApprovalStatus = 0,
-                            CPR_URL = licInfo.CPR_URL,
+                            CPR_URL = form.CPR_Url,
                             IsActive = true,
                             CreatedOnUtc = DateTime.Now,
                             ID_UserLicense = chkExist.ID,
                             MedicalForm_URL = form.Medical_Url,
-                            Parent_CPR_URL = licInfo.Parent_CPR_URL
+                            Parent_CPR_URL = form.ParentCPR_Url,
+                            UpdatedBy = "",
+                            UpdatedOnUtc = DateTime.Now,
+                            CreatedBy = "",
                         });
                         await db.SaveChangesAsync();
-
-                        string message = EmailHelper.LicenseRenewEmailMessage(chkExist.M_UserProfile.FullName);
-                        string messageBMF = EmailHelper.LicenseRenewEmailMessageToBMF(new ClsLicRenewForm
-                        {
-                            FullName = chkExist.M_UserProfile.FullName,
-                            CPR = chkExist.M_UserProfile.CPR
-                        });
-
-                        EmailHelper.SendMail(chkExist.M_UserProfile.M_UserAccount.Email_Address, "", "License Renewal Form", message);
-                        EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Renwal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
-                        //EmailHelper.SendMail("a.it@live.com","", "License Renewal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
-
-                        TempData["Status"] = "Services";
                     }
                     else
                     {
-                        TempData["Status"] = "CPR or License not found.";
+                        var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
+                        {
+                            ApprovalStatus = 0,
+                            CPR_URL = form.CPR_Url,
+                            IsActive = true,
+                            CreatedOnUtc = DateTime.Now,
+                            ID_UserLicense = chkExist.ID,
+                            MedicalForm_URL = form.Medical_Url,
+                            UpdatedBy = "",
+                            UpdatedOnUtc = DateTime.Now,
+                            CreatedBy = "",
+                        });
+                        await db.SaveChangesAsync();
                     }
+
+                    string message = EmailHelper.LicenseRenewEmailMessage(chkExist.M_UserProfile.FullName);
+                    string messageBMF = EmailHelper.LicenseRenewEmailMessageToBMF(new ClsLicRenewForm
+                    {
+                        FullName = chkExist.M_UserProfile.FullName,
+                        CPR = chkExist.M_UserProfile.CPR
+                    });
+
+                    EmailHelper.SendMail(chkExist.M_UserProfile.M_UserAccount.Email_Address, "", "License Renewal Form", message);
+                    EmailHelper.SendMail("info@bmf.com.bh", "alaa@bmf.com.bh", "License Renwal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
+                    //EmailHelper.SendMail("a.it@live.com","", "License Renewal Form - for " + chkExist.M_UserProfile.FullName, messageBMF);
+
+                    return RedirectToAction("LicenseSubmitted", "Services");
+
+                }
+                else
+                {
+                    TempData["Status"] = "CPR or License not found.";
                 }
             }
             else

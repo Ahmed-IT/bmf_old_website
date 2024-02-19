@@ -107,9 +107,9 @@
                             @Html.ValidationMessageFor(model => model.CPR, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="form-group col-md-4">
+                        @*<div class="form-group col-md-4">
                             <button formnovalidate="formnovalidate" name="ValidateSubmitButton" value="ValidateSubmitButton" type="submit" class="btn btn-primary payment-btn">VALIDATE INFORMATION</button>
-                        </div>
+                        </div>*@
                     </div>
 
                     if (Model != null)
@@ -167,13 +167,59 @@
                         }
                     }
 
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label style="font-family:LatoB;">CPR Copy <b style="color: red;">*</b></label>
+                    @Html.TextBoxFor(u => u.CPRFile, new { @class = "form-control", @type = "file", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.CPRFile, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label style="font-family:LatoB;">Medical Form <b style="color: red;">*</b></label>
+                    @Html.TextBoxFor(u => u.MedicalFile, new { @class = "form-control", @type = "file", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.MedicalFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                    <h3>Consent Statement for Applicants Under 18 Years</h3>
+
+                    <br />
+
+                    <div class="form-group" style="color:black; font-size:16px; color:red;">
+                        @Html.CheckBoxFor(model => model.IsUnder18)
+                        Please check the box if you are under 18
+                        <br />
+                        @Html.ValidationMessageFor(model => model.IsUnder18, "", new { @class = "text-danger" })
+                    </div>
+
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label style="font-family:LatoB;">Medical Form <b style="color: red;">*</b></label>
-                            @Html.TextBoxFor(u => u.MedicalFile, new { @class = "form-control", @type = "file", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.MedicalFile, "", new { @class = "text-danger" })
+                            <label style="font-family:LatoB;">Parent Full Name <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.ParentFullName, new { @class = "form-control", @type = "text", @placeholder = "Parent Full Name" })
+                            @Html.ValidationMessageFor(model => model.ParentFullName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Parent CPR Number <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.ParentCPR, new { @class = "form-control", @type = "text", @placeholder = "Parent CPR Number" })
+                            @Html.ValidationMessageFor(model => model.ParentCPR, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label style="font-family:LatoB;">Parent CPR Copy <b style="color: red;">*</b></label>
+                            @Html.TextBoxFor(u => u.ParentCPRFile, new { @class = "form-control", @type = "file" })
+                            @Html.ValidationMessageFor(model => model.ParentCPRFile, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <p>
+                        I am the parent / guardian of the above-named minor who is under
+                        18 years old. I have read this document and understand its
+                        contents. I consent to the minor attending / participating in the event
+                        at his / her own risk.
+                    </p>
 
 
                     <button name="SubmitButton" value="SubmitButton" type="submit" class="btn btn-primary payment-btn">SUBMIT FORM</button>
