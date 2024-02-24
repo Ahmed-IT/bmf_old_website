@@ -107,7 +107,7 @@
                                                             
                                                             <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
                                                                 <Button Command="{Binding Path=BindingContext.ViewLicenseCommand, Source={x:Reference Name=MyIDsPage1}}" CommandParameter="{Binding .}" Margin="20,0,20,5" Text="View License" FontSize="Small" FontFamily="MontserratMedium" BackgroundColor="#D90000" TextColor="White" HeightRequest="40" HorizontalOptions="FillAndExpand"></Button>
-                                                                <Button Command="{Binding Path=BindingContext.RenewLicenseCommand, Source={x:Reference Name=MyIDsPage1}}" CommandParameter="{Binding .}" Margin="20,0,20,0" Text="Renew License" FontSize="Small" FontFamily="MontserratMedium" BackgroundColor="#3B3B3B" TextColor="White" HeightRequest="40" HorizontalOptions="FillAndExpand"></Button>
+                                                                <!--<Button Command="{Binding Path=BindingContext.RenewLicenseCommand, Source={x:Reference Name=MyIDsPage1}}" CommandParameter="{Binding .}" Margin="20,0,20,0" Text="Renew License" FontSize="Small" FontFamily="MontserratMedium" BackgroundColor="#3B3B3B" TextColor="White" HeightRequest="40" HorizontalOptions="FillAndExpand"></Button>-->
                                                             </StackLayout>
                                                         </StackLayout>
 

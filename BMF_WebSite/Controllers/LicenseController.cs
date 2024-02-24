@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -391,6 +392,71 @@ namespace BMF_WebSite.Controllers
         }
 
         [HttpPost]
+        [Route("api/ValidateMarshalsList")]
+        public async Task<IHttpActionResult> ValidateMarshalsList(List<string> CPR_List)
+        {
+            try
+            {
+                List<M_UserLicense> list = new List<M_UserLicense>();
+                List<clsLicStatus> result = new List<clsLicStatus>();
+
+                var marshalsList = CPR_List;
+                var query = db.M_UserLicense.Where(a => a.ID_LicenseType == 5).ToList();
+
+                list.AddRange(query);
+
+                var InActiveList = list.Where(a => marshalsList.Contains(a.M_UserProfile.CPR)).ToList();
+
+
+                if (InActiveList.Count > 0)
+                {
+                    foreach (var item in InActiveList)
+                    {
+                        try
+                        {
+                            var chkMarshal = query.Where(a => a.ID_UserProfile == item.ID_UserProfile).FirstOrDefault();
+
+                            if (chkMarshal != null)
+                            {
+                                result.Add(new clsLicStatus
+                                {
+                                    CPR = item.M_UserProfile.CPR,
+                                    Status = "Exist"
+                                });
+                            }
+                            else
+                            {
+                                result.Add(new clsLicStatus
+                                {
+                                    CPR = item.M_UserProfile.CPR,
+                                    Status = "Not Found"
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Add(new clsLicStatus
+                            {
+                                CPR = item.M_UserProfile.CPR,
+                                Status = "Error"
+                            });
+                        }
+                    }
+
+                    return Ok(result);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NoContent, "No Content");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex.InnerException.Message);
+            }
+        }
+
+        [HttpPost]
         [Route("api/DeActiveMarshalsList")]
         public async Task<IHttpActionResult> DeActiveMarshalsList(List<string> CPR_List)
         {
@@ -444,6 +510,44 @@ namespace BMF_WebSite.Controllers
             catch (Exception ex)
             {
                 return Content(HttpStatusCode.InternalServerError, ex.InnerException.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/ActivateLicensesByCPR/{CPR}")]
+        public async Task<IHttpActionResult> ActivateLicensesByCPR(string CPR)
+        {
+            try
+            {
+                var query = await db.M_UserLicense.Where(a => a.M_UserProfile.CPR == CPR).FirstOrDefaultAsync();
+
+                if (query != null)
+                {
+                    var getmarshal = db.M_UserProfile.Where(a => a.CPR == CPR && a.IsActive == false).FirstOrDefault();
+
+                    if(getmarshal != null)
+                    {
+                        getmarshal.IsActive = true;
+
+                        await db.SaveChangesAsync();
+                    }
+
+                    query.IsActive = true;
+                    query.DeletedBy = null;
+                    query.DeletedOnUtc = null;
+
+                    await db.SaveChangesAsync();
+
+                    return Content(HttpStatusCode.OK, "Marshal License Activated");
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, "Marshal Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
     }
