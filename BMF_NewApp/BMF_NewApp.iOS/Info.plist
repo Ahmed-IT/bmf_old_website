@@ -30,7 +30,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.Ahmed-IT.BMF</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app requires contacts access to function properly.</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -54,6 +54,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 </dict>
 </plist>

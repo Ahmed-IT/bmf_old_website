@@ -267,14 +267,14 @@ namespace BMF_WebSite.Controllers
                 {
                     foreach (var item in CPR_List)
                     {
-                        var query = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == item).FirstOrDefault();
+                        var query = db.M_UserLicense.Where(a => a.M_UserProfile.CPR == item && a.ID_LicenseType == 5).FirstOrDefault();
 
                         try
                         {
 
                             if (query != null)
                             {
-                                query.Expire_Date = query.Expire_Date.AddYears(1);
+                                query.Expire_Date = Convert.ToDateTime("31-Mar-2026");
                                 await db.SaveChangesAsync();
 
                                 result.Add(new clsLicStatus
@@ -376,6 +376,71 @@ namespace BMF_WebSite.Controllers
                             });
                         }
                     }                    
+
+                    return Ok(result);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NoContent, "No Content");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex.InnerException.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/ValidateMarshalsList")]
+        public async Task<IHttpActionResult> ValidateMarshalsList(List<string> CPR_List)
+        {
+            try
+            {
+                List<M_UserLicense> list = new List<M_UserLicense>();
+                List<clsLicStatus> result = new List<clsLicStatus>();
+
+                var marshalsList = CPR_List;
+                var query = db.M_UserLicense.Where(a => a.ID_LicenseType == 5).ToList();
+
+                list.AddRange(query);
+
+                var InActiveList = list.Where(a => marshalsList.Contains(a.M_UserProfile.CPR)).ToList();
+
+
+                if (InActiveList.Count > 0)
+                {
+                    foreach (var item in InActiveList)
+                    {
+                        try
+                        {
+                            var chkMarshal = query.Where(a => a.ID_UserProfile == item.ID_UserProfile).FirstOrDefault();
+
+                            if (chkMarshal != null)
+                            {
+                                result.Add(new clsLicStatus
+                                {
+                                    CPR = item.M_UserProfile.CPR,
+                                    Status = "Exist"
+                                });
+                            }
+                            else
+                            {
+                                result.Add(new clsLicStatus
+                                {
+                                    CPR = item.M_UserProfile.CPR,
+                                    Status = "Not Found"
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Add(new clsLicStatus
+                            {
+                                CPR = item.M_UserProfile.CPR,
+                                Status = "Error"
+                            });
+                        }
+                    }
 
                     return Ok(result);
                 }

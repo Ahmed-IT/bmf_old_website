@@ -57,7 +57,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Ahmed Ebrahim (856VCQ5D84)</CodesignKey>
+    <CodesignKey>Apple Development: Created via API (RCGX4U5ZY2)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
@@ -78,10 +78,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution: Ahmed Ebrahim (CU2L77E5C9)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignProvision>BMF.Prod</CodesignProvision>
     <MtouchSdkVersion>14.4</MtouchSdkVersion>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchFloat32>false</MtouchFloat32>

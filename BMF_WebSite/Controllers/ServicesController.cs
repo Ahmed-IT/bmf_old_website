@@ -785,6 +785,9 @@ namespace BMF_WebSite.Controllers
                             else
                             {
                                 ModelState.AddModelError("valMsg", "License Existt, You already have a license.");
+                                ViewBag.Countries = Helper.GetCountries();
+                                ViewBag.BloodGroup = Helper.GetBloodGroup();
+                                ViewBag.LicenseType = Helper.GetLicenseType();
                                 return View(data);
                             }
                         }
@@ -799,10 +802,6 @@ namespace BMF_WebSite.Controllers
                     {
                         ModelState.AddModelError("valMsg", "Error, Please try later.");
                     }
-                }
-                else
-                {
-
                 }
 
                 ViewBag.Countries = Helper.GetCountries();

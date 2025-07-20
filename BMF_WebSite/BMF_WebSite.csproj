@@ -226,6 +226,17 @@
     <Content Include="Content\images\Board\SHAbdullaBinIsa.jpg" />
     <Content Include="Content\images\Board\ShSalmanBinIsa.jpg" />
     <Content Include="Content\images\Board\YasserAbdulla.jpg" />
+    <Content Include="Content\images\BoradNew\Abdulmajeed_Abdulla_Nader.jpg" />
+    <Content Include="Content\images\BoradNew\ABDULRAHMAN_GHULOOM.jpg" />
+    <Content Include="Content\images\BoradNew\Bader_Ali.jpg" />
+    <Content Include="Content\images\BoradNew\DR_NAWAF_ALHAMMAR.jpg" />
+    <Content Include="Content\images\BoradNew\Elie_Semaan.jpg" />
+    <Content Include="Content\images\BoradNew\Isa_AlAwadhi.jpg" />
+    <Content Include="Content\images\BoradNew\JEHAD_DERWISH.jpg" />
+    <Content Include="Content\images\BoradNew\Mazen_Alhilli.jpg" />
+    <Content Include="Content\images\BoradNew\RASHED_ALZAYANI.jpg" />
+    <Content Include="Content\images\BoradNew\SH_ABDULLA_BIN_ISA_ALKHLAIFA.jpg" />
+    <Content Include="Content\images\BoradNew\SH_SALMAN_BIN_ISA_AL_KHALIFA.jpg" />
     <Content Include="Content\images\brand1.png" />
     <Content Include="Content\images\brand2.png" />
     <Content Include="Content\images\brand3.png" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <pages:PopupPage  xmlns:pages="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                   x:Class="BMF_NewApp.Views.ViewLicenseModalPage" BackgroundColor="White"
                   CloseWhenBackgroundIsClicked="True" BackgroundClicked="CloseClick">
     <pages:PopupPage.Animation>
@@ -18,11 +18,12 @@
     <ContentView>
         <Grid BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
-                <border:SfBorder HeightRequest="270" Margin="0" Padding="0" CornerRadius="10" BorderColor="LightGray" BorderWidth="1" BackgroundColor="LightGray"
+                <border:SfBorder HeightRequest="250" Margin="0" Padding="0" CornerRadius="10" BorderColor="LightGray" BorderWidth="1" BackgroundColor="LightGray"
                                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                        <Image Aspect="Fill" HeightRequest="270" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding MyLicense.LicenseType.Image_Front_URL}"/>
-
+                        <ffimageloading:CachedImage CacheType="Disk" HeightRequest="250" FadeAnimationForCachedImages="True" BackgroundColor="Transparent" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Source="{Binding MyLicense.LicenseType.Image_Front_URL}">
+                        </ffimageloading:CachedImage>
+                        
                         <Grid Grid.Row="0" VerticalOptions="Center" Margin="0" HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="130"/>
