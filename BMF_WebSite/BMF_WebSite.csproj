@@ -558,6 +558,7 @@
     <Content Include="Content\fonts\Montserrat-Medium.ttf" />
     <Content Include="Content\fonts\Montserrat-Regular.ttf" />
     <None Include="Properties\PublishProfiles\bmftest - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\bmftest - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -829,6 +830,10 @@
     <Content Include="Views\eSport\testEmail.cshtml" />
     <Content Include="Views\Services\CompetitionLicenseRenewal.cshtml" />
     <Content Include="Views\Services\MarshalLicenseSubmitted.cshtml" />
+<<<<<<< HEAD
+=======
+    <Content Include="Views\_ViewStart.cshtml" />
+>>>>>>> f1d3e92f44bac7d159ee08b39820988807089da6
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

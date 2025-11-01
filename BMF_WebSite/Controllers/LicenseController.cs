@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -509,6 +510,44 @@ namespace BMF_WebSite.Controllers
             catch (Exception ex)
             {
                 return Content(HttpStatusCode.InternalServerError, ex.InnerException.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/ActivateLicensesByCPR/{CPR}")]
+        public async Task<IHttpActionResult> ActivateLicensesByCPR(string CPR)
+        {
+            try
+            {
+                var query = await db.M_UserLicense.Where(a => a.M_UserProfile.CPR == CPR).FirstOrDefaultAsync();
+
+                if (query != null)
+                {
+                    var getmarshal = db.M_UserProfile.Where(a => a.CPR == CPR && a.IsActive == false).FirstOrDefault();
+
+                    if(getmarshal != null)
+                    {
+                        getmarshal.IsActive = true;
+
+                        await db.SaveChangesAsync();
+                    }
+
+                    query.IsActive = true;
+                    query.DeletedBy = null;
+                    query.DeletedOnUtc = null;
+
+                    await db.SaveChangesAsync();
+
+                    return Content(HttpStatusCode.OK, "Marshal License Activated");
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, "Marshal Not Found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
     }
