@@ -32,6 +32,10 @@ namespace BMF_WebSite.Controllers
             return View();
         }             
 
-
+        // New Privacy Policy page for website and mobile apps (iOS & Android)
+        public ActionResult PrivacyPolicy()
+        {
+            return View();
+        }
     }
 }
