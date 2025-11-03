@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
-    <SingleProject>true</SingleProject>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="fonts\Montserrat-Black.ttf" />
@@ -101,6 +101,9 @@
     <EmbeddedResource Include="fonts\Montserrat-Thin.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BMF_NewApp\BMF_NewApp.Maui.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="fonts\Montserrat-ThinItalic.ttf" />
