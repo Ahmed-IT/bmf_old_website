@@ -23,9 +23,6 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.10" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Update="Migrations\202101101845303_WebsiteTables.designer.cs">
       <DependentUpon>202101101845303_WebsiteTables.cs</DependentUpon>
     </Compile>
@@ -40,5 +37,8 @@
     <EmbeddedResource Update="Migrations\202101102157510_AllTables.resx">
       <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Start\" />
   </ItemGroup>
 </Project>
