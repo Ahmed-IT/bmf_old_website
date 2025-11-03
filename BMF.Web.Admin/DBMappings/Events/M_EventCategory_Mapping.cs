@@ -1,5 +1,4 @@
-﻿using BMF.Shared.Models.Events;
-
+﻿
 namespace BMF.Web.Admin.DBMappings.Events
 {
     public partial class M_EventCategory_Mapping : EFMapping<M_EventCategory>
