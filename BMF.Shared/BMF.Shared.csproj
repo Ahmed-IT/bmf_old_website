@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Include all shared model source files -->
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\UserManagement\D_LicenseType.cs" />
+    <Compile Include="Models\Website\M_Club.cs" />
+    <Compile Include="Models\Events\M_EventCategory.cs" />
+    <Compile Include="Models\Events\M_EventCategoryRules.cs" />
+    <Compile Include="Models\Events\M_EventRound.cs" />
+    <Compile Include="Models\Events\M_EventRoundSession.cs" />
+    <Compile Include="Models\Events\M_EventRoundSessionUserResults.cs" />
+    <Compile Include="Models\Events\M_EventSeason.cs" />
+    <Compile Include="Models\Website\M_GalleryCategory.cs" />
+    <Compile Include="Models\Website\M_GalleryImages.cs" />
+    <Compile Include="Models\UserManagement\M_MyFavRaces.cs" />
+    <Compile Include="Models\UserManagement\M_MyRaces.cs" />
+    <Compile Include="Models\Website\M_News.cs" />
+    <Compile Include="Models\Website\M_QuickLinks.cs" />
+    <Compile Include="Models\UserManagement\M_User.cs" />
+    <Compile Include="Models\UserManagement\M_UserLicense.cs" />
+    <Compile Include="Models\UserManagement\M_UserLicenseRenewal.cs" />
+    <Compile Include="Models\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
+    <Compile Include="Models\UserManagement\M_UserProfile.cs" />
+  </ItemGroup>
+</Project>
