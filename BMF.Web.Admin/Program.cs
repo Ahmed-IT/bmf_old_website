@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BMF.Web.Admin.Database;
+
 // Removed SystemWebAdapters usage and legacy MVC registration; adding Core equivalents
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<BMFDbContext>(_ => new BMFDbContext("name=BMFDbContext"));
 builder.Services.AddControllersWithViews();
-
-// TODO: Register EF classic context via DI (to be refactored to EF Core later)
-// builder.Services.AddScoped<BMFDbContext>(sp => new BMFDbContext("name=BMFDbContext"));
 
 var app = builder.Build();
 

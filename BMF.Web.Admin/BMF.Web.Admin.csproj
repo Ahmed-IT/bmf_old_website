@@ -9,18 +9,12 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Antlr" Version="3.5.0.2" />
     <PackageReference Include="EntityFramework" Version="6.5.1" />
-    <PackageReference Include="jQuery" Version="3.7.1" />
-    <PackageReference Include="jQuery.Validation" Version="1.21.0" />
-    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.11" />
-    <PackageReference Include="Modernizr" Version="2.8.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="WebGrease" Version="1.6.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="2.1.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BMF.Shared\BMF.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Migrations\202101101845303_WebsiteTables.designer.cs">
@@ -37,8 +31,5 @@
     <EmbeddedResource Update="Migrations\202101102157510_AllTables.resx">
       <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Start\" />
   </ItemGroup>
 </Project>
