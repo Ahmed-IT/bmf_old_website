@@ -1,25 +1,24 @@
-﻿using BMF.Shared.Models;
-using BMF.Web.Admin.DBMappings.Website;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Web;
+﻿using Microsoft.EntityFrameworkCore;
+using BMF.Shared.Models;
+using System.Reflection;
 
 namespace BMF.Web.Admin.Database
 {
     public class BMFDbContext : DbContext
     {
-        public BMFDbContext() : base("BMFDbContext")
+        public BMFDbContext(DbContextOptions<BMFDbContext> options) : base(options)
         {
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Dynamic Configuration
-            modelBuilder.Configurations.AddFromAssembly(typeof(BaseEntity).Assembly);
+            // Apply configurations from shared models assembly (placeholder - requires explicit IEntityTypeConfiguration classes)
+            // modelBuilder.ApplyConfigurationsFromAssembly(typeof(BaseEntity).Assembly);
         }
+
+        // DbSets inferred from shared models will need explicit declarations if using conventions
+        // Example:
+        // public DbSet<M_User> Users { get; set; }
     }
-}
+}}

@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using BMF.Web.Admin.Database;
-
-// Removed SystemWebAdapters usage and legacy MVC registration; adding Core equivalents
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddScoped<BMFDbContext>(_ => new BMFDbContext("name=BMFDbContext"));
+builder.Services.AddDbContext<BMFDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BMFDbContext")));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -24,9 +24,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-// Conventional route mapping replacing RouteConfig + Global.asax logic
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Apply migrations automatically (optional)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<BMFDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
