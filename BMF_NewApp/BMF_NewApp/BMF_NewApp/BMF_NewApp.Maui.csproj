@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <RootNamespace>BMF_NewApp</RootNamespace>
+    <AssemblyName>BMF_NewApp</AssemblyName>
+    <ApplicationTitle>BMF New App</ApplicationTitle>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+    <PackageReference Include="Microsoft.AppCenter" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+  <!-- TODO: Migrate fonts to <MauiFont>, images to <MauiImage>, raw assets, and XAML pages to MAUI ContentPages. Remove obsolete Xamarin.* packages after code port. -->
+</Project>
