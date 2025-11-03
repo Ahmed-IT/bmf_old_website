@@ -2,6 +2,11 @@
   <PropertyGroup>
     <Configurations>Ad-Hoc;AppStore;Debug;Release</Configurations>
     <TargetFramework>net9.0</TargetFramework>
+    <AssemblyTitle>BMF.Web.Admin</AssemblyTitle>
+    <Product>BMF.Web.Admin</Product>
+    <Copyright>Copyright ©  2021</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Antlr" Version="3.5.0.2" />
