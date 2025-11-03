@@ -8,9 +8,12 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xamarin.Forms;
 using static BMF_NewApp.App;
 using static BMF_NewApp.Models.BMFAppTables;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace BMF_NewApp.ViewModels
 {

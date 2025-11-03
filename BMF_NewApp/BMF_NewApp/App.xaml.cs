@@ -13,10 +13,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
-using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using static BMF_NewApp.Models.BMFAppTables;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 [assembly: ExportFont("Montserrat-Black.ttf", Alias = "MontserratBlack")]
 [assembly: ExportFont("Montserrat-Bold.ttf", Alias = "MontserratBold")]
