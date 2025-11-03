@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SingleProject>true</SingleProject>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="fonts\Montserrat-Black.ttf" />
     <None Remove="fonts\Montserrat-BlackItalic.ttf" />
@@ -23,8 +24,32 @@
     <None Remove="fonts\Montserrat-SemiBoldItalic.ttf" />
     <None Remove="fonts\Montserrat-Thin.ttf" />
     <None Remove="fonts\Montserrat-ThinItalic.ttf" />
+    <PackageReference Include="Microsoft.AppCenter" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="19.1.0.69" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.1" />
+    <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="fonts\Montserrat-Black.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -78,40 +103,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AppCenter" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
-    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="19.1.0.69" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="19.1.0.69" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.1" />
-    <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
-    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
-    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <Resource Include="fonts\Montserrat-ThinItalic.ttf" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Views\BaseNavigationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -180,5 +174,4 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>
