@@ -1,13 +1,7 @@
-﻿using BMF_NewApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls.Xaml;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
+﻿using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using BMF_NewApp.ViewModels;
 
 namespace BMF_NewApp.Views
 {
@@ -17,22 +11,20 @@ namespace BMF_NewApp.Views
         public MainMenuModalPageViewModel Menu { get; set; }
 
         public static readonly BindableProperty MenuProperty = BindableProperty.Create(
-                                                  propertyName: "Menu",
-                                                  returnType: typeof(MainMenuModalPageViewModel),
-                                                  declaringType: typeof(MainMenu),
-                                                  defaultValue: null,
-                                                  defaultBindingMode: BindingMode.TwoWay,
-                                                  propertyChanged: MenuPropertyChanged);
+            propertyName: nameof(Menu),
+            returnType: typeof(MainMenuModalPageViewModel),
+            declaringType: typeof(MainMenu),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: MenuPropertyChanged);
 
         private static void MenuPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (newValue != null)
+            if (newValue is MainMenuModalPageViewModel vm)
             {
-                var control = bindable as MainMenu;
-
-                if (control != null)
+                if (bindable is MainMenu control)
                 {
-                    control.BindingContext = newValue as MainMenuModalPageViewModel;
+                    control.BindingContext = vm;
                 }
             }
         }
@@ -41,6 +33,5 @@ namespace BMF_NewApp.Views
         {
             InitializeComponent();
         }
-
     }
 }

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static BMF_NewApp.App;
 using static BMF_NewApp.Models.BMFAppTables;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
-using Microsoft.Maui.ApplicationModel.Communication;
+using Xamarin.Forms; // replaced MAUI usings
 
 namespace BMF_NewApp.ViewModels
 {

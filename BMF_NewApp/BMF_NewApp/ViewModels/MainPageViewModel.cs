@@ -4,19 +4,14 @@ using BMF_NewApp.Services;
 using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Timers;
-using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms; // replace MAUI usings
 using static BMF_NewApp.Models.BMFAppTables;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
+using Timer = System.Timers.Timer; // disambiguate Timer
 
 namespace BMF_NewApp.ViewModels
 {
@@ -130,7 +125,7 @@ namespace BMF_NewApp.ViewModels
             _restService = restService;
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             try
             {
@@ -158,9 +153,8 @@ namespace BMF_NewApp.ViewModels
                     });
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
             }
         }
 
@@ -169,8 +163,6 @@ namespace BMF_NewApp.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetEnableAccessibilityScalingForNamedFontSizes(false);
-            
             try
             {
                 var AddUserInfo = (from user in App.Database.GetItemsAsync<TblUsersAccount>().Result
@@ -211,7 +203,7 @@ namespace BMF_NewApp.ViewModels
                     {
                         IsComingEvent = true;
 
-                        if(Dashboard.Profile != null)
+                        if (Dashboard.Profile != null)
                         {
                             //App.ID = AddUserInfo.Id;
                             //App.CPR = Dashboard.Profile.CPR;
@@ -241,8 +233,7 @@ namespace BMF_NewApp.ViewModels
                     ComingEventsList = new ObservableRangeCollection<ClsRound>(Dashboard.UpComingEvents);
                     NewsList = new ObservableRangeCollection<ClsNews>(Dashboard.News);
 
-                    Timer timer = new Timer();
-                    timer.Interval = 1000;
+                    var timer = new Timer { Interval = 1000, AutoReset = true }; // System.Timers.Timer
                     timer.Elapsed += Timer_Elapsed;
                     timer.Start();
 
@@ -280,8 +271,7 @@ namespace BMF_NewApp.ViewModels
                     ComingEventsList = new ObservableRangeCollection<ClsRound>(Dashboard.UpComingEvents);
                     NewsList = new ObservableRangeCollection<ClsNews>(Dashboard.News);
 
-                    Timer timer = new Timer();
-                    timer.Interval = 1000;
+                    var timer = new Timer { Interval = 1000, AutoReset = true };
                     timer.Elapsed += Timer_Elapsed;
                     timer.Start();
 

@@ -9,6 +9,7 @@ using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
+using Prism.Unity;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Essentials.Implementation;
@@ -22,7 +23,7 @@ using static BMF_NewApp.Models.BMFAppTables;
 
 namespace BMF_NewApp
 {
-    public partial class App
+    public partial class App : PrismApplication
     {
         public static int ID { get; set; }
         public static ClsProfile profile { get; set; }

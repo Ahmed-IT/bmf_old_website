@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="fonts\Montserrat-Black.ttf" />
@@ -48,6 +49,7 @@
     <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="fonts\Montserrat-Black.ttf">
