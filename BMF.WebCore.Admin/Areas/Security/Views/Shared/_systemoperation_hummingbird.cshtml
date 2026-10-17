@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SystemOperation>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    <div class="hummingbird-treeview">
+        <ul id="operations-list" class="hummingbird-base pl-3">
+            @foreach (var SingleItem in Model)
+            {
+                string inputClass = "hummingbird-end-node";
+                <li>
+                    @if (SingleItem.Children.Count > 0)
+                    {
+                        inputClass = "";
+                        <i class="fa fa-plus"></i>
+                    }
+                    <label>
+                        <input name="Operations_List" class="@inputClass" id="Operation_@SingleItem.ID" data-id="@SingleItem.ID" value="@SingleItem.ID" type="checkbox" @(SingleItem.Selected ? "checked" : "")> @SingleItem.SystemName
+                    </label>
+                    @if (SingleItem.Children.Count > 0)
+                    {
+                        await Html.RenderPartialAsync("~/Areas/Security/Views/Shared/_systemoperation_hummingbird_sublist.cshtml", SingleItem.Children);
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+}

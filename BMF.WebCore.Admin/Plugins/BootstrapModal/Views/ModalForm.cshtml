@@ -1,0 +1,155 @@
+﻿@model AMK.Plugin.BootstrapModal.ModalForm
+@using AMK.Plugin.BootstrapModal
+@{ Layout = null; }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    @if (Model != null)
+    {
+        string Class_Size = "",
+            Class_SubmitIcon = "",
+            Class_Header = "bg-primary ",
+            Text_SubmitBtn = "",
+            Class_SubmitBtn = "btn-primary",
+            ID_Form = (Model.Submit == Submit.Custom ? Model.ID : string.Format("{0}{1}", Model.Submit.ToString(), Model.ID));
+        switch (Model.Size)
+        {
+            case Size.XLarge: Class_Size = "modal-xl"; break;
+            case Size.Large: Class_Size = "modal-lg"; break;
+            case Size.Small: Class_Size = "modal-sm"; break;
+            default: break;
+        }
+        switch (Model.Submit)
+        {
+            case Submit.Add: Class_SubmitIcon = "fas fa-plus"; Text_SubmitBtn = "Confirm and Add"; break;
+            case Submit.Edit: Class_SubmitIcon = "fas fa-save"; Text_SubmitBtn = "Confirm and Save"; break;
+            case Submit.Delete: Class_SubmitBtn = "btn-danger"; Class_SubmitIcon = "fas fa-trash-alt"; Text_SubmitBtn = "Confirm and Delete"; Class_Header = "bg-red"; break;
+            case Submit.Custom: Class_SubmitIcon = ""; Text_SubmitBtn = Model.Name; break;
+            default: break;
+        }
+        <div class="modal fade" id="M_@ID_Form">
+            <div class="modal-dialog @Class_Size">
+                <form id="F_@ID_Form" class="F_@ID_Form" action="@Model.Action" method="@Model.Method">
+                    <div class="modal-content">
+                        <div class="modal-header @Class_Header">
+                            <h4 class="modal-title">@(Model.Submit == Submit.Custom ? "" : Model.Submit.ToString()) @Model.Name</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body C_@ID_Form" data-u="@Model.SourceURL">
+                            <div class="box-body">
+                                <h6 class="text-muted text-center">Loading, please wait...</h6>
+                                <div class="progress -mb-3">
+                                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                        <span class="sr-only">Loading, please wait ....</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default btn-close-@ID_Form" data-dismiss="modal"><i class="mr-1 fas fa-times"></i>Close</button>
+                            <button type="submit" class="btn @Class_SubmitBtn btn-submit-@ID_Form"><i class="mr-1 @Class_SubmitIcon"></i>@Text_SubmitBtn</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            $("#F_@ID_Form").validate({
+                errorPlacement: function (error, element) {
+                    error.insertAfter(".control-label[for='" + element.attr('name') +"']");
+                },
+                submitHandler: function (form) {
+                    var $form = $(form);
+                    var $inputs = $form.find("input, select, button, textarea, checkbox, radio");
+                    $inputs.prop("disabled", true);
+                    if ($form.find("input[type='file']").length > 0) {
+                        $(form).find('button[type=submit]').prop('disabled', true);
+                        request = $.ajax({
+                            async: false,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            url: "@Model.Action",
+                            type: "@Model.Method",
+                            data: window['formData_@ID_Form'],
+                        });
+                    } else {
+                        $inputs.prop("disabled", false);
+                        var serializedData = $form.serialize();
+                        $inputs.prop("disabled", true);
+                        request = $.ajax({
+                            cache: false,
+                            url: "@Model.Action",
+                            type: "@Model.Method",
+                            data: serializedData,
+                        });
+                    }
+                    request.done(function (response, textStatus, jqXHR) {
+                        $('.C_@ID_Form').html(response);
+                    });
+                    request.fail(function (jqXHR, textStatus, errorThrown) {
+                        console.error("The following error occured: " + textStatus, errorThrown);
+                    });
+                    request.always(function () {
+                        $inputs.prop("disabled", false);
+                    });
+                }
+            });
+        </script>
+        <script>
+            $(document).on('click', "[data-target='#M_@ID_Form']", function () {
+                var buttonElement = $(this);
+                var Data = $(this).data();
+                delete Data.target; delete Data.toggle;
+                var _method = '@Model.DisplayMethod.ToString()';
+                var _contentType = '@(Model.DisplayMethod == Method.Post ? "application/x-www-form-urlencoded" : "")';
+                $('.C_@ID_Form').children().remove();
+                SetLoadingDisplay($('.C_@ID_Form'));
+                $('.btn-submit-@ID_Form').hide();
+                LoadPartial($('.C_@ID_Form'), jQuery.param(Data), _method, false, null, _contentType, null, function () { /*console.log('modal-success');*/ $('.btn-submit-@ID_Form').show(); }, function () { /*console.log('modal-fail');*/ $('.btn-submit-@ID_Form').hide(); });
+            });
+            $('.btn-close-@ID_Form').on('click', function () {
+                SetLoadingDisplay($('.C_@ID_Form'));
+                $('.btn-submit-@ID_Form').hide();
+            });
+        </script>
+        <script>
+            $('#M_@ID_Form').on('show.bs.modal', function (e) {
+                @if (Model.HighlightRecordOnShow)
+                {
+                    <text>
+                var Data_ID = $(e.relatedTarget).data('id');
+                $('#M_@ID_Form').data('id', Data_ID);
+                if (window["@Model.HighlightRecordDatatableName"] !== undefined) {
+                    window["@Model.HighlightRecordDatatableName"].row('#' + Data_ID).select();
+                }
+                    </text>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.CallbackFunction_onModalShow))
+                {
+                    <text>
+                window["@Model.CallbackFunction_onModalShow"]();
+                    </text>
+                }
+            });
+            $('#M_@ID_Form').on('shown.bs.modal', function (e) { @if (!string.IsNullOrWhiteSpace(Model.CallbackFunction_onModalShown)) { <text> window["@Model.CallbackFunction_onModalShown"](); </text> } });
+            $('#M_@ID_Form').on('hide.bs.modal', function (e) {
+                @if (Model.HighlightRecordOnShow)
+                {
+                    <text>
+                var Data_ID = $('#M_@ID_Form').data('id');
+                $('#M_@ID_Form').data('id', '');
+                $('#M_@ID_Form').removeData('id');
+                if (window["@Model.HighlightRecordDatatableName"] !== undefined) {
+                    window["@Model.HighlightRecordDatatableName"].rows().deselect();
+                }
+                    </text>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.CallbackFunction_onModalHide)) { <text> window["@Model.CallbackFunction_onModalHide"](); </text> }
+            });
+            $('#M_@ID_Form').on('hidden.bs.modal', function (e) { @if (!string.IsNullOrWhiteSpace(Model.CallbackFunction_onModalHidden)) { <text> window["@Model.CallbackFunction_onModalHidden"](); </text> } });
+        </script>
+    }
+}

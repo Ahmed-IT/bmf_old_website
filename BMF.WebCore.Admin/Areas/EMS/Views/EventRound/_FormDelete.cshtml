@@ -1,0 +1,49 @@
+﻿@model M_EventRound
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <h4>Are you sure you want to delete this Event Round?</h4>
+        <table class="table table-striped table-hover table-bordered table-sm">
+            <tr>
+                <th>@Html.LabelFor(model => model.EventSeason)</th>
+                <td>@Model.EventSeason.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.EventCategory)</th>
+                <td>@Model.EventCategory.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Round_Number)</th>
+                <td>@Model.Round_Number</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.DateTime_Start)</th>
+                <td>@Model.Display_DateTime_Start</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.DateTime_End)</th>
+                <td>@Model.Display_DateTime_End</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.AddTo_Calendar)</th>
+                <td>@Model.Display_AddTo_Calendar</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.AddTo_Countdown)</th>
+                <td>@Model.Display_AddTo_Countdown</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_IsActive)</th>
+                <td>@Model.Display_IsActive</td>
+            </tr>
+        </table>
+    }
+}

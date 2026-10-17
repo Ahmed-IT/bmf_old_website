@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>23c8f29b-7f8a-46ce-9a2f-553d582c6f77</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>BMF.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventCategoryRules.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRoundSession.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventRoundSessionUserResults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Events\M_EventSeason.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\D_LicenseType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_MyFavRaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_MyRaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicense.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicenseRenewal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserLicenseRenewalMedicForms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserManagement\M_UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_Club.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_GalleryCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_GalleryImages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_News.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_QuickLinks.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)BMF.Shared.csproj" />
+  </ItemGroup>
+</Project>

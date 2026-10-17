@@ -1,0 +1,23 @@
+﻿@model _SystemFeature
+@{ Layout = null; }
+@if (Model == null)
+{
+    <li><a href="/"><i class="margin-r-5 fa fa-home"></i>Home</a></li>
+}
+else
+{
+    <li><a href="@(Model.URL == "#" ? "" : "/")@Model.URL"><i class="margin-r-5 @Model.LeftIcons_Fixed"></i>@Model.Title</a></li>
+    var CurrentBreadcrumb = Model.Features.FirstOrDefault();
+    while (CurrentBreadcrumb != null)
+    {
+        if (CurrentBreadcrumb.Features.Count == 0)
+        {
+            <li class="active">@CurrentBreadcrumb.Title</li>
+        }
+        else
+        {
+            <li><a href="@(CurrentBreadcrumb.URL == "#" ? "" : "/")@CurrentBreadcrumb.URL">@CurrentBreadcrumb.Title</a></li>
+        }
+        CurrentBreadcrumb = CurrentBreadcrumb.Features.FirstOrDefault();
+    }
+}

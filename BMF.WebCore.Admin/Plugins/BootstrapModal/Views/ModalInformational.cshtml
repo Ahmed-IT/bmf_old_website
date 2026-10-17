@@ -1,0 +1,71 @@
+﻿@model AMK.Plugin.BootstrapModal.ModalInformational
+@using AMK.Plugin.BootstrapModal
+@{ Layout = null; }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    @if (Model != null)
+    {
+        string Class_Size = "",
+            Class_Header = "bg-primary";
+        switch (Model.Size)
+        {
+            case Size.XLarge: Class_Size = "modal-xl"; break;
+            case Size.Large: Class_Size = "modal-lg"; break;
+            case Size.Small: Class_Size = "modal-sm"; break;
+            default: break;
+        }
+        <div class="modal fade" id="M_@Model.ID">
+            <div class="modal-dialog @Class_Size">
+                <div class="modal-content">
+                    <div class="modal-header @Class_Header">
+                        <h4 class="modal-title">@Model.Name</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="C_@Model.ID" data-ou="@Model.SourceURL">
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <h6 class="text-muted text-center">Loading, please wait...</h6>
+                                <div class="progress -mb-3">
+                                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                        <span class="sr-only">Loading, please wait ....</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default float-left btn-close-@Model.ID" data-dismiss="modal"><i class="mr-1 fas fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        $(document).on('click', "[data-target='#M_@Model.ID']", function () {
+            $('.C_@Model.ID').children().remove();
+            SetLoadingDisplay($('.C_@Model.ID'));
+            var Data = $(this).data();
+            delete Data.target; delete Data.toggle;
+            $('.C_@Model.ID').data('u',$('.C_@Model.ID').data('ou') + "?"+jQuery.param(Data));
+            LoadPartial($('.C_@Model.ID'));
+        });
+        </script>
+        @if (Model.HighlightRecordOnShow)
+        {
+            <script>
+                $('#M_@Model.ID').on('show.bs.modal', function (e) {
+                    var Data_ID = $(e.relatedTarget).data('id');
+                    $('#M_@Model.ID').data('id', Data_ID);
+                    window["@Model.HighlightRecordDatatableName"].row('#' + Data_ID).select();
+                });
+                $('#M_@Model.ID').on('hide.bs.modal', function (e) {
+                    var Data_ID = $('#M_@Model.ID').data('id');
+                    $('#M_@Model.ID').data('id', '');
+                    $('#M_@Model.ID').removeData('id');
+                    window["@Model.HighlightRecordDatatableName"].rows().deselect();
+                });
+            </script>
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding Title}" BackgroundColor="#D90000"
+             NavigationPage.HasNavigationBar="True" x:Name="RulesRegsListPage1"
+             x:Class="BMF_NewApp.Views.RulesRegsListPage">
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid BackgroundColor="#f5f5f5" Margin="0,10,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <sflistview:SfListView  ItemsSource="{Binding RulesRegsList}"
+                                                        ItemSpacing="0"
+                                                        SelectionMode="None"
+                                                        SelectionBackgroundColor="Transparent"
+                                                        AutoFitMode="Height"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="FillAndExpand"
+                                                        Padding="0"
+                                                        Margin="0">
+                    <sflistview:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label HorizontalOptions="StartAndExpand" Margin="20" Text="{Binding Title}" FontSize="Large" FontFamily="MontserratBold" TextColor="Black"></Label>
+
+                                    <Grid HeightRequest="{Binding SectionHeight}">
+                                        <sflistview:SfListView  ItemsSource="{Binding RulesRegs}"
+                                                        ItemSpacing="0"
+                                                        SelectionMode="None"
+                                                        SelectionBackgroundColor="Transparent"
+                                                        AutoFitMode="Height"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="FillAndExpand"
+                                                        Padding="0"
+                                                        Margin="0">
+                                            <sflistview:SfListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
+                                    BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
+                                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Margin="20" Text="{Binding Title}" FontSize="Medium" FontFamily="MontserratMedium" TextColor="Black"></Label>
+                                                                    <Button VerticalOptions="CenterAndExpand" Command="{Binding Path=BindingContext.CategoryTappedCommand, Source={x:Reference Name=RulesRegsListPage1}}" CommandParameter="{Binding .}" HorizontalOptions="End" BackgroundColor="Transparent" TextColor="#D90000" Text="View PDF" FontFamily="MontserratBold" FontSize="Small" Margin="20"></Button>
+                                                                </StackLayout>
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </sflistview:SfListView.ItemTemplate>
+                                        </sflistview:SfListView>
+
+                                    </Grid>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </sflistview:SfListView.ItemTemplate>
+                </sflistview:SfListView>
+
+            </Grid>
+
+        </StackLayout>
+
+        <BoxView Color="Black" IsVisible="{Binding IsBusy}" Opacity="0.5" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+        <StackLayout IsVisible="{Binding IsBusy}" Padding="6" Orientation="Vertical" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Syncfusion:SfBusyIndicator
+				IsBusy="{Binding IsBusy}" Title="Please Wait ..."
+				TextColor="White" TextSize="12"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				WidthRequest="100" HeightRequest="100"
+				AnimationType="SingleCircle  ">
+            </Syncfusion:SfBusyIndicator>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

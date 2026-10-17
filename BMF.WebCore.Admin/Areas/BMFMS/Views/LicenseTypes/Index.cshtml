@@ -1,0 +1,54 @@
+﻿@{
+    var _classAcronym = nameof(D_LicenseType).Replace("D_", "").GetUppercaseLettersAsString();
+    var _controllerName = D_LicenseType._controllerName;
+    ViewData["Title"] = "License Types";
+    ViewData["Page_Header"] = "View All";
+    Html.SetActiveMenuItemSystemName(nameof(SystemOperationsProvider.BMFMS.BmfMS_LicenseType), pageHeadBuilder);
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedback); }
+
+@section Page_ImportedStyles{
+    @{await Html.RenderPartialAsync("_DatatableStylesPartial");}
+    <link href="~/lib/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/dist/css/alt/adminlte.plugins.css" rel="stylesheet" />
+    <link href="~/lib/kartik-bootstrap-fileinput/css/fileinput.css" rel="stylesheet" />
+    <style>
+        .krajee-default.file-preview-frame .file-thumbnail-footer {
+            height: auto;
+        }
+
+        .krajee-default .file-footer-caption {
+            display: none;
+        }
+    </style>
+}
+@if (ViewData["ErrorDie"] == null || (ViewData["ErrorDie"] != null && !(bool)ViewData["ErrorDie"]))
+{
+    <div class="card">
+        @*<div class="card-header bg-primary">
+                <h3 class="card-title"><i class="mr-1 icon fas fa-bars"></i> View All</h3>
+            </div>*@
+        <div class="card-body partial index-partial" data-u="@Url.Action("_IndexDT")">
+            <div class="progress mb-3">
+                <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span class="sr-only">Loading, please wait ....</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="pull-left">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#M_Add@_classAcronym"><i class="mr-1 fas fa-plus"></i>Add New</button>
+            </div>
+        </div>
+    </div>
+    <div class="partial" data-u="@Url.Action("_Add", _controllerName)"></div>
+    <div class="partial" data-u="@Url.Action("_Edit", _controllerName)"></div>
+    <div class="partial" data-u="@Url.Action("_EditImage", _controllerName)"></div>
+    <div class="partial" data-u="@Url.Action("_Delete", _controllerName)"></div>
+}
+@section Page_ImportedScripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_DatatableScriptsPartial");}
+    <script src="~/lib/kartik-bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="~/lib/kartik-bootstrap-fileinput/themes/fas/theme.js"></script>
+}

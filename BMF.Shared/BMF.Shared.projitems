@@ -30,7 +30,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_News.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Website\M_QuickLinks.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)BMF.Shared.csproj" />
-  </ItemGroup>
 </Project>

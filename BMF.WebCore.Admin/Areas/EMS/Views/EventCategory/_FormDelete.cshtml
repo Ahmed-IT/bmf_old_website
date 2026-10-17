@@ -1,0 +1,25 @@
+﻿@model M_EventCategory
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <h4>Are you sure you want to delete this Event Category?</h4>
+        <table class="table table-striped table-hover table-bordered table-sm">
+            <tr>
+                <th>@Html.LabelFor(model => model.Title)</th>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_IsActive)</th>
+                <td>@Model.Display_IsActive</td>
+            </tr>
+        </table>
+    }
+}

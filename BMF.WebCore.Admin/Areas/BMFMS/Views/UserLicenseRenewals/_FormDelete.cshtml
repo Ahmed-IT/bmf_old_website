@@ -1,0 +1,49 @@
+﻿@model M_UserLicenseRenewal
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <h4>Are you sure you want to delete this User License Renewal?</h4>
+        <table class="table table-striped table-hover table-bordered table-sm">
+            <tr>
+                <th>@Html.LabelFor(model => model.UserLicense.UserProfile.FullName)</th>
+                <td>@Model.UserLicense.UserProfile.FullName</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserLicense.UserProfile.CPR)</th>
+                <td>@Model.UserLicense.UserProfile.CPR</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserLicense.LicenseType.Title)</th>
+                <td>@Model.UserLicense.LicenseType.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserLicense.MarshalRole)</th>
+                <td>@(Model.UserLicense.MarshalRole != null ? Model.UserLicense.MarshalRole.Name : "")</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserLicense.License_Number)</th>
+                <td>@Model.UserLicense.License_Number</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_ApprovalStatus)</th>
+                <td>@Model.Display_ApprovalStatus</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_DateIssued)</th>
+                <td>@Model.Display_DateIssued</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_DateOfExpiry)</th>
+                <td>@Model.Display_DateOfExpiry</td>
+            </tr>
+        </table>
+    }
+}

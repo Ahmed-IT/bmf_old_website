@@ -9,21 +9,27 @@ using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
-using Prism.Unity;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
-using Xamarin.Forms; // keep Xamarin.Forms
-using Xamarin.Forms.PlatformConfiguration; // for iOS specific
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using static BMF_NewApp.Models.BMFAppTables;
 
-// Removed MAUI ExportFont attributes (MAUI-only) to fix missing type errors.
+[assembly: ExportFont("Montserrat-Black.ttf", Alias = "MontserratBlack")]
+[assembly: ExportFont("Montserrat-Bold.ttf", Alias = "MontserratBold")]
+[assembly: ExportFont("Montserrat-ExtraLight.ttf", Alias = "MontserratExtraLight")]
+[assembly: ExportFont("Montserrat-Light.ttf", Alias = "MontserratLight")]
+[assembly: ExportFont("Montserrat-Medium.ttf", Alias = "MontserratMedium")]
+[assembly: ExportFont("Montserrat-Regular.ttf", Alias = "MontserratRegular")]
+[assembly: ExportFont("Montserrat-SemiBold.ttf", Alias = "MontserratSemiBold")]
+[assembly: ExportFont("Montserrat-Thin.ttf", Alias = "MontserratThin")]
 
 namespace BMF_NewApp
 {
-    public partial class App : PrismApplication
+    public partial class App
     {
         public static int ID { get; set; }
         public static ClsProfile profile { get; set; }
@@ -36,6 +42,7 @@ namespace BMF_NewApp
         public static bool ShowLogout { get; set; }
 
         static BMFAppDatabase database;
+
 
         public App(IPlatformInitializer initializer)
             : base(initializer)
@@ -50,7 +57,19 @@ namespace BMF_NewApp
 
             try
             {
-                await NavigationService.NavigateAsync("BaseNavigationPage/MainPage");
+                //var AddUserInfo = (from user in Database.GetItemsAsync<TblUsersAccount>().Result
+                //                   where user.LoggedIn == true
+                //                   select user).FirstOrDefault();
+
+                //if (AddUserInfo == null)
+                //{
+                //    await NavigationService.NavigateAsync("BaseNavigationPage/LoginPage");
+                //}
+                //else
+                //{
+                //    Current.Properties["CPR"] = AddUserInfo.CPR;
+                    await NavigationService.NavigateAsync("BaseNavigationPage/MainPage");
+                //}
             }
             catch (System.Exception ex)
             {
@@ -61,16 +80,20 @@ namespace BMF_NewApp
 
                 Crashes.TrackError(ex, properties);
             }
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            //  RestService as a Singleton for dependency injection
             IRestService restService = new RestService();
             containerRegistry.RegisterInstance<IRestService>(restService);
 
+            //  LocalService as a Singleton for dependency injection
             ILocalService localService = new LocalService();
             containerRegistry.RegisterInstance<ILocalService>(localService);
 
+            // This updates INavigationService and registers PopupNavigation.Instance
             containerRegistry.RegisterPopupNavigationService();
 
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
@@ -104,6 +127,8 @@ namespace BMF_NewApp
             try
             {
                 Xamarin.Forms.Application.Current.On<iOS>().SetEnableAccessibilityScalingForNamedFontSizes(false);
+
+
                 AppCenter.Start("ios=52474204-5180-4298-9ae3-356ca41d35e6;" + "android=2b308c1a-7a40-4d46-be69-5b710a6b7562;", typeof(Analytics), typeof(Crashes));
             }
             catch (System.Exception ex)
@@ -125,6 +150,7 @@ namespace BMF_NewApp
                 {
                     database = new BMFAppDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BMFAppDB.db3"));
                 }
+
                 return database;
             }
         }

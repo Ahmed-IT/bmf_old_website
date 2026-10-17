@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Configurations>Ad-Hoc;AppStore;Debug;Release</Configurations>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyTitle>BMF.Web.Admin</AssemblyTitle>
+    <Product>BMF.Web.Admin</Product>
+    <Copyright>Copyright ©  2021</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Migrated from EF6 to EF Core -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BMF.Shared\BMF.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Migrations\202101101845303_WebsiteTables.designer.cs">
+      <DependentUpon>202101101845303_WebsiteTables.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\202101102157510_AllTables.designer.cs">
+      <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\202101101845303_WebsiteTables.resx">
+      <DependentUpon>202101101845303_WebsiteTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\202101102157510_AllTables.resx">
+      <DependentUpon>202101102157510_AllTables.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

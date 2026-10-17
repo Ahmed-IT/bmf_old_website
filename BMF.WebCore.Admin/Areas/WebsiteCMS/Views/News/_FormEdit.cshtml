@@ -1,0 +1,49 @@
+﻿@model M_News
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "50" } })
+            @Html.ValidationMessageFor(model => model.Title, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewsTimestampUtc, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="input-group date" id="NewsTimestampUtc_Edit" data-target-input="nearest">
+                @Html.TextBox($"{nameof(Model.NewsTimestampUtc)}", Model.Display_NewsTimestampUtc, new { @class = "form-control datetimepicker-input datetimepicker-add", @maxlength = "25", @autocomplete = "off", @data_toggle = "datetimepicker", @data_target = "#NewsTimestampUtc_Edit" })
+                <div class="input-group-append" data-target="#NewsTimestampUtc_Edit" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.NewsTimestampUtc, "")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Content, "")
+        </div>
+        <div class="form-group clearfix">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })<span class="text-danger">*</span>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, true, new { id = "IsActive_T" })
+                <label for="IsActive_T">Yes</label>
+            </div>
+            <div class="icheck-primary d--inline">
+                @Html.RadioButtonFor(m => m.IsActive, false, new { id = "IsActive_F" })
+                <label for="IsActive_F">No</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.IsActive, "")
+        </div>
+        <script>
+            $('#NewsTimestampUtc_Edit').datetimepicker({ format: 'DD-MMM-YYYY hh:mm A', ignoreReadonly: true, useCurrent: true });
+        </script>
+    }
+}

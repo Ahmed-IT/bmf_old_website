@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNetCore.Mvc;
+using System.Web.Mvc;
 
 namespace BMF.Web.Admin.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

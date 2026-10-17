@@ -16,8 +16,8 @@ namespace BMF.Web.Admin.DBMappings
             HasKey(t => t.ID);
             Property(t => t.CreatedOnUtc).HasColumnType("DATETIME2");
             Property(t => t.UpdatedOnUtc).HasColumnType("DATETIME2");
-            Property(t => t.DeletedBy).IsRequired();
-            Property(t => t.DeletedOnUtc).IsRequired();
+            Property(t => t.DeletedBy).IsOptional();
+            Property(t => t.DeletedOnUtc).IsOptional();
             Property(t => t.DeletedOnUtc).HasColumnType("DATETIME2");
             Property(t => t.RowVersion).IsRowVersion();
         }

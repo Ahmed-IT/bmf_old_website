@@ -1,0 +1,19 @@
+﻿<aside class="main-sidebar">
+    <section class="sidebar">
+        <div class="user-panel partial" data-u="/_Theme/_S/"></div>
+        @*@Html.Partial(FixedTerms.System_PartialView_LeftSideBar_Menu)*@
+        <ul class="sidebar-menu tree lsidebar-partial" data-widget="tree" data-u="/_Theme/_M?ID=@Url.Encode(Request.RawUrl)">
+            <li class='header'>
+                Main Navigation
+            </li>
+            <li id='SMF'>
+                <a href="/">
+                    <i class='fa fa-users'></i>
+                    <span>Admin Users</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

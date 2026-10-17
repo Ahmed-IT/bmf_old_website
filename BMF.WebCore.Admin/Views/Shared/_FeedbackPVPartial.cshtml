@@ -1,0 +1,114 @@
+﻿@if (ViewData["PVErrorID"] != null)
+{
+    <div class="alert alert-danger alert-dismissible-">
+        @if ((bool)ViewData["PVErrorDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-ban'></i>@Html.Raw(ViewData["PVErrorTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["PVErrorMsg"]))
+        {
+            @Html.Raw(ViewData["PVErrorMsg"])
+        }
+        <p>(Reference error code #@ViewData["PVErrorID"])</p>
+    </div>
+}
+@if (TempData["PVErrorID"] != null)
+{
+    <div class="alert alert-danger alert-dismissible-">
+        @if ((bool)TempData["PVErrorDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-ban'></i>@Html.Raw(TempData["PVErrorTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["PVErrorMsg"]))
+        {
+            @Html.Raw(TempData["PVErrorMsg"])
+        }
+        <p>(Reference error code #@TempData["PVErrorID"])</p>
+    </div>
+}
+@if (ViewData["PVWarnTitle"] != null)
+{
+    <div class="alert alert-warning alert-dismissible-">
+        @if ((bool)ViewData["PVWarnDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-exclamation-triangle'></i>@Html.Raw(ViewData["PVWarnTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["PVWarnMsg"]))
+        {
+            @Html.Raw(ViewData["PVWarnMsg"])
+        }
+    </div>
+}
+@if (TempData["PVWarnTitle"] != null)
+{
+    <div class="alert alert-warning alert-dismissible-">
+        @if ((bool)TempData["PVWarnDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class='icon fas fa-exclamation-triangle'></i>@Html.Raw(TempData["PVWarnTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["PVWarnMsg"]))
+        {
+            @Html.Raw(TempData["PVWarnMsg"])
+        }
+    </div>
+}
+@if (ViewData["PVSuccessTitle"] != null)
+{
+    <div class="alert alert-success alert-dismissible-">
+        @if ((bool)ViewData["PVSuccessDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-check"></i>@Html.Raw(ViewData["PVSuccessTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["PVSuccessMsg"]))
+        {
+            @Html.Raw(ViewData["PVSuccessMsg"])
+        }
+    </div>
+}
+@if (TempData["PVSuccessTitle"] != null)
+{
+    <div class="alert alert-success alert-dismissible-">
+        @if ((bool)TempData["PVSuccessDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-check"></i>@Html.Raw(TempData["PVSuccessTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["PVSuccessMsg"]))
+        {
+            @Html.Raw(TempData["PVSuccessMsg"])
+        }
+    </div>
+}
+@if (ViewData["PVInfoTitle"] != null)
+{
+    <div class="alert alert-info alert-dismissible-">
+        @if ((bool)ViewData["PVInfoDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-info-circle"></i>@Html.Raw(ViewData["PVInfoTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)ViewData["PVInfoMsg"]))
+        {
+            @Html.Raw(ViewData["PVInfoMsg"])
+        }
+    </div>
+}
+@if (TempData["PVInfoTitle"] != null)
+{
+    <div class="alert alert-info alert-dismissible-">
+        @if ((bool)TempData["PVInfoDispose"])
+        {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        }
+        <h5><i class="icon fas fa-info-circle"></i>@Html.Raw(TempData["PVInfoTitle"])</h5>
+        @if (!string.IsNullOrWhiteSpace((string)TempData["PVInfoMsg"]))
+        {
+            @Html.Raw(TempData["PVInfoMsg"])
+        }
+    </div>
+}

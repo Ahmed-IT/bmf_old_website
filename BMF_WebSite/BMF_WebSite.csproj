@@ -830,10 +830,7 @@
     <Content Include="Views\eSport\testEmail.cshtml" />
     <Content Include="Views\Services\CompetitionLicenseRenewal.cshtml" />
     <Content Include="Views\Services\MarshalLicenseSubmitted.cshtml" />
-<<<<<<< HEAD
-=======
     <Content Include="Views\_ViewStart.cshtml" />
->>>>>>> f1d3e92f44bac7d159ee08b39820988807089da6
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

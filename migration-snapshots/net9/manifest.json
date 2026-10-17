@@ -1,0 +1,461 @@
+{
+  "baselineCommit": "978ca4a5bb5618988afe13ed68c7ff5c324ed036",
+  "migrationCommit": "d13ee08c3da37b8c13537f2a45200cac808d0d2b",
+  "files": [
+    {
+      "status": "A",
+      "path": ".github/upgrades/dotnet-upgrade-plan.md",
+      "gitBlob": "9e516f55b036eac4260eec432ae1a420950b7f8a"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Shared/BMF.Shared.csproj",
+      "gitBlob": "25af9f8dfbb66e751746f1c94e7108c93f6946d9"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Shared/BMF.Shared.projitems",
+      "gitBlob": "ae47e5177acd329a1fadd496f175568f1addb82a"
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/App_Start/BundleConfig.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/App_Start/FilterConfig.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/App_Start/RouteConfig.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/App_Start/WebApiConfig.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/BMF.Web.Admin.csproj",
+      "gitBlob": "56c5929bcae754d49c3cd866073c8fcd1a182406"
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Content/Site.css",
+      "gitBlob": null
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/Controllers/HomeController.cs",
+      "gitBlob": "72c9c11469e839fa358c00fb3baefe0ecddb6171"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/DBMappings/Events/M_EventCategory_Mapping.cs",
+      "gitBlob": "5ff635dc2f435728b6bc83330b0d0265495c0ea1"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/DBMappings/Events/M_EventRoundSessionUserResults_Mapping.cs",
+      "gitBlob": "cae8017e67ff1869b2f1ec3595c70a0fd67fcaf9"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/DBMappings/Events/M_EventRound_Mapping.cs",
+      "gitBlob": "bbf5b0202a6626481956e622a687e35231da740d"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/Database/BMFDbContext.cs",
+      "gitBlob": "4f421d1c1c9e34b0c2e50eb0d0fd4c5e66c8c4b0"
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Global.asax",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Global.asax.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/Program.cs",
+      "gitBlob": "41bce03d556d262e22c55e4f9655f64549334d82"
+    },
+    {
+      "status": "M",
+      "path": "BMF.Web.Admin/Properties/AssemblyInfo.cs",
+      "gitBlob": "74feb45e6dba58553648273caef28e7372d6287a"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/Properties/launchSettings.json",
+      "gitBlob": "4bfcad8d33c1d01ec7978dc3603f16fa23c8b4d1"
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.min.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.min.map",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.slim.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.slim.min.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery-3.4.1.slim.min.map",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery.validate.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery.validate.min.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery.validate.unobtrusive.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/jquery.validate.unobtrusive.min.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Scripts/modernizr-2.8.3.js",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Web.Debug.config",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Web.Release.config",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/Web.config",
+      "gitBlob": null
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/app.config",
+      "gitBlob": "a00e8101df71be6e1161efe90410f008e8a6f609"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/appsettings.Development.json",
+      "gitBlob": "0c208ae9181e5e5717e47ec1bd59368aebc6066e"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/appsettings.json",
+      "gitBlob": "10f68b8c8b4f796baf8ddeee7551b6a52b9437cc"
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/favicon.ico",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF.Web.Admin/packages.config",
+      "gitBlob": null
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Content/Site.css",
+      "gitBlob": "6ea5d8f6ce41bb2fe2196e468046f22e741c175e"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.js",
+      "gitBlob": "773ad95c56f8321eb4901736930024ec517a948a"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.min.js",
+      "gitBlob": "a1c07fd803b5fc9c54f44e31123ae4fa11e134b0"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.min.map",
+      "gitBlob": "e15edef2c718c3e0f6050a1d4e6d749386296e0d"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.slim.js",
+      "gitBlob": "aaabce8392529ef00f059869f3cc949ee28d3b43"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.slim.min.js",
+      "gitBlob": "af151cfe3feac4541ed4855e7801a52a5728e739"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery-3.4.1.slim.min.map",
+      "gitBlob": "55ccb0fe185ce02561b57df16c568b674b60bd0a"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery.validate.js",
+      "gitBlob": "12674b08b24c28c6e71d95c595e19c0e8a3b4224"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery.validate.min.js",
+      "gitBlob": "20402da5d3fb3bd00e25fef23a77d9fe130b538e"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery.validate.unobtrusive.js",
+      "gitBlob": "73f5298394483947e1ce966c01630a32de962f4b"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/jquery.validate.unobtrusive.min.js",
+      "gitBlob": "57e8b2e475d66846218245e26c6b7d2744d14c72"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/Scripts/modernizr-2.8.3.js",
+      "gitBlob": "33653390e4f58f501264b71581bf587d7ebe0f11"
+    },
+    {
+      "status": "A",
+      "path": "BMF.Web.Admin/wwwroot/favicon.ico",
+      "gitBlob": "a3a799985c43bc7309d701b2cad129023377dc71"
+    },
+    {
+      "status": "M",
+      "path": "BMF_LicenseApp/BMF_LicenseApp.csproj",
+      "gitBlob": "9557a6285f67e67a5f75f8150f62df3f33c15a8c"
+    },
+    {
+      "status": "D",
+      "path": "BMF_LicenseApp/Properties/AssemblyInfo.cs",
+      "gitBlob": null
+    },
+    {
+      "status": "D",
+      "path": "BMF_LicenseApp/packages.config",
+      "gitBlob": null
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp.sln",
+      "gitBlob": "d7c88ec49c3058aeda63fe06fced1d57e6a94cb4"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp.Android/BMF_NewApp.Android.csproj",
+      "gitBlob": "09c6134a5d743b5bf0a97de92ff9f277fd591df1"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp.Android/Properties/AndroidManifest.xml",
+      "gitBlob": "1bdb407407c7a30c0a46b7cfe7026bfc44961a1e"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp.iOS/BMF_NewApp.iOS.csproj",
+      "gitBlob": "d43547a0219b81aff50988b3fe790a03397d67c5"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/App.xaml",
+      "gitBlob": "2ac2a42136143e51933e09186ee823afe71b0d43"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/App.xaml.cs",
+      "gitBlob": "f6c73d5928953d13b5f333c8bf8dde2c95f056f5"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/BMF_NewApp.csproj",
+      "gitBlob": "eec7a1cd082ca709c3739f79067f832f8a01b141"
+    },
+    {
+      "status": "A",
+      "path": "BMF_NewApp/BMF_NewApp/BMF_NewApp/BMF_NewApp.Maui.csproj",
+      "gitBlob": "9ce596ec603026c45017e26147472aa934985dbe"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/ViewModels/LoginPageViewModel.cs",
+      "gitBlob": "dcd253cb573e57831f3792d77bfd4bb081404ba8"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/ViewModels/MainPageViewModel.cs",
+      "gitBlob": "bc4dd5c20b74dbb27010701d26526e6565229b51"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/ViewModels/ProfilePageViewModel.cs",
+      "gitBlob": "d40878747bde347d3bb019ba7f8cadc6bd47f7b6"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/BaseNavigationPage.xaml",
+      "gitBlob": "da166a458e4c399a3996b3691f19df4a0161891d"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/BulletinsListPage.xaml",
+      "gitBlob": "a806491a72b9ba6f46ff1c4e0e3007c5df45413a"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/BulletinsPage.xaml",
+      "gitBlob": "60f245896e7c4f283f5adc02f9500c738f1334c6"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/CalendarPage.xaml",
+      "gitBlob": "b708284165d8883698e228c91f84ead5f263bb7c"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/CalendarRoundsPage.xaml",
+      "gitBlob": "7caa1654ec55347eb3f1d29d772f5da73a31d932"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ChangePasswordPage.xaml",
+      "gitBlob": "f3a8c314eba23cc31680fc483db54844c7120b0b"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ForgotPasswordPage.xaml",
+      "gitBlob": "51c90dcd1a496e668c6c374d0e902299815c6183"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/LoginPage.xaml",
+      "gitBlob": "2685573707d69917e0c5de6af2d477e7c0519027"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/LoginPage.xaml.cs",
+      "gitBlob": "3457da1d582aeacca937986b572d76dfef4be398"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/MainMenu.xaml",
+      "gitBlob": "d89397d26e1adf14ac33469e133b5c47be2d0172"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/MainMenu.xaml.cs",
+      "gitBlob": "83d23bec83e82b1b94eeccf029cda8ddfa14a746"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/MainPage.xaml",
+      "gitBlob": "cdf5554b2ccd0f3ab7b2d94db0d51db150f68656"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/MyIDsPage.xaml",
+      "gitBlob": "55df47a319cd43e59063aa6afb33763a67888658"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/MyLicensePage.xaml",
+      "gitBlob": "b21b3a9dfbbd84c269684e2edfd18e684f39b5e9"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/NewAccountPage.xaml",
+      "gitBlob": "354e0216541fd95a6c489ecc91fb596d27a65458"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/NewsDetailPage.xaml",
+      "gitBlob": "52017484b10f2b3856d69f9eb6e2967b1a33521a"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/NewsDetailsPage.xaml",
+      "gitBlob": "9d9dda423b34a4a55594654f2ce364a6eb87ed48"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/NewsPage.xaml",
+      "gitBlob": "9942ee1e8225c9eb62b397f222caec469384bf87"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ProfilePage.xaml",
+      "gitBlob": "63b157edc7919a7abc2a852ae421d4cb0af8bd25"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/RenewLicensePage.xaml",
+      "gitBlob": "ed7c822d425846a3b72b74675739915c2e3a6f49"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/RulesRegsListPage.xaml",
+      "gitBlob": "76ab51360e963644655dfd74802f074fb28f71a6"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/RulesRegsPage.xaml",
+      "gitBlob": "6ff0f0d986bd45db31d2a34e6ce6121019999b0d"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/SignInPage.xaml",
+      "gitBlob": "cdeea4e348c0276cc9f0947e7928f226b521cc1b"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ViewLicenseModalPage.xaml",
+      "gitBlob": "d5874c70c39b17eb9f97803c8be5b520f08ad5ee"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ViewLicenseModalPage.xaml.cs",
+      "gitBlob": "a2d3e00bf08a0977a2b0beac47d5e5e427a6cd09"
+    },
+    {
+      "status": "M",
+      "path": "BMF_NewApp/BMF_NewApp/Views/ViewPdfPage.xaml",
+      "gitBlob": "cb72c5430a07a738abe27148efaf1ad4511db5bd"
+    }
+  ]
+}

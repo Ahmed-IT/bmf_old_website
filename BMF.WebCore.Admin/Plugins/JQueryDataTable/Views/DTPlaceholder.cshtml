@@ -1,0 +1,123 @@
+﻿@model AMK.Plugin.JQueryDataTable.JQDataTable
+@using AMK.Plugin.JQueryDataTable;
+@using Newtonsoft.Json;
+@{ Layout = null; }
+@if (Model != null)
+{
+    <div id="dtfilter_@Model.Name" class="dtfilter_@Model.Name"></div>
+    <input type="hidden" name="dtselected_@Model.Name" value="" />
+    <div class="table-responsive">
+        <table id="@Model.Name" class="table table-bordered table-sm table-hover table-striped">
+            <thead>
+                <tr>
+                    @foreach (var item in Model.columns)
+                    {
+                        <th>@item.Name</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
+        window['DT_@Model.Name'] = $('#@Model.Name').DataTable({
+            //responsive: true,
+            autoWidth: false,
+            bJQueryUI: true,
+            //scrollX: '100%',
+            //scrollXInner: "100%",
+            select: { style: '@Model.selectStyle.ToString().ToLower()' },
+            //"autoWidth": @Model.autoWidth.ToString().ToLower(),
+            "deferRender": @Model.deferRender.ToString().ToLower(),
+            "info": @Model.info.ToString().ToLower(),
+            "lengthChange": @Model.lengthChange.ToString().ToLower(),
+            "ordering": @Model.ordering.ToString().ToLower(),
+            "paging": @Model.paging.ToString().ToLower(),
+            //"scrollX": @Model.scrollX.ToString().ToLower(),
+            "searching": @Model.searching.ToString().ToLower(),
+            "processing": @Model.processing.ToString().ToLower(),
+            "serverSide": @Model.serverSide.ToString().ToLower(),
+            "stateSave": @Model.stateSave.ToString().ToLower(),
+            "columns": @Html.Raw(JsonConvert.SerializeObject(Model.columns)),
+            rowId: '@Model.columns.FirstOrDefault().Data',
+            "ajax": {
+                url: "@Model.url",
+                type: "@Model.type",
+                start: @Model.start,
+                length: @Model.length,
+                //success: function (error) { console.log(error); },
+                error: function (error) { console.log(error); }
+            },
+            buttons: [
+                @if (Model.selectStyle == AMK.Plugin.JQueryDataTable.RowSelectionStyle.multi || Model.selectStyle == AMK.Plugin.JQueryDataTable.RowSelectionStyle.os)
+                {
+                    @Html.Raw("{ className: \"mr-1 mb-2\", text: \"<i class='fa fa-check-square'></i>\", action: function ( e, dt, node, config ) { dt.rows().select(); } },");
+                    @Html.Raw("{ className: \"mr-1 mb-2\", text: \"<i class='fa fa-square-o'></i>\", action: function ( e, dt, node, config ) { dt.rows().deselect(); } },");
+                }
+                {
+                    text: "<i class='fas fa-sync-alt'></i>",
+                    className: "btn-dtrefresh-@Model.Name btn-sm mr-1 mb-2",
+                    action: function (e, dt, node, config) {
+                        dt.state.clear();
+                        localStorage.removeItem("DataTables_@Model.Name" + "_" + window.location.pathname);
+                        $("#dtfilter_@Model.Name" + "_Clear").click();
+                        dt.ajax.reload();
+                        LoadPartial($(".dtfilter_@Model.Name").parent('div'));
+                    }
+                },
+                {
+                    text: "<i class='fas fa-sync-alt'></i>",
+                    className: "btn-dtrefreshsoft-@Model.Name mr-1 mb-2 d-none",
+                    action: function (e, dt, node, config) {
+                        dt.ajax.reload(null, false);
+                    }
+                },
+                //{
+                //    text: "<i class='fa fa-filter'></i>",
+                //    className: "collapse-box mr-1 mb-2",
+                //    action: function ( e, dt, node, config ) {
+                //        node.data("target",".dtfilter_@Model.Name").attr("data-target",".dtfilter_@Model.Name");
+                //    }
+                //},
+                {
+                    extend: 'colvis',
+                    className: "btn-sm mr-1 mb-2",
+                    text: "<i class='fa fa-columns'></i>",
+                    columns: ':not(:first-child):not(:nth-child(2)):not(:last-child)',
+                },
+                {
+                    extend: 'excel',
+                    className: "btn-sm mr-1 mb-2",
+                    text: "<i class='far fa-file-excel'></i> All Records",
+                    exportOptions: {
+                        columns: [@Html.Raw(string.Join(",", Model.columns.Where(w => w.Name != "Operations" && w.Visible).Select(s => Model.columns.IndexOf(s))))],
+                    },
+                    action: newExportAction
+                },
+                {
+                    extend: 'excelHtml5',
+                    className: "btn-sm mr-1 mb-2",
+                    //title: "@Model.ExportName",
+                    text: "<i class='far fa-file-excel'></i> Visible Range Only",
+                    exportOptions: {
+                        columns: [@Html.Raw(string.Join(",", Model.columns.Where(w => w.Name != "Operations" && w.Visible).Select(s => Model.columns.IndexOf(s))))],
+                    }
+                }
+            ],
+            "displayStart": @Model.displayStart,
+            "dom": "@Html.Raw(Model.dom)",
+            "lengthMenu": @Html.Raw(JsonConvert.SerializeObject(Model.lengthMenu)),
+            "pageLength": @Model.pageLength,
+            "pagingType": "@Model.pagingType"
+        }).on('select', function (e, dt, type, indexes) {
+            var data = dt.rows({ selected: true }).data().pluck('@Model.columns.FirstOrDefault().Data').toArray();
+            $('input[name="dtselected_@Model.Name"]').val(data);
+        }).on( 'deselect', function ( e, dt, type, indexes ) {
+            var data = dt.rows({ selected: true }).data().pluck('@Model.columns.FirstOrDefault().Data').toArray();
+            $('input[name="dtselected_@Model.Name"]').val(data);
+        });
+
+        window['Columns_@Model.Name'] = @Html.Raw(JsonConvert.SerializeObject(Model.columns.Select(s=> (s.Searchable ? s.Name : null)).ToList()));
+        window['FilterTypes_@Model.Name'] = @Html.Raw(JsonConvert.SerializeObject(Model.columns.Select(s=> (s.Searchable ? s.FilterControl.ToString() : null)).ToList()));
+        DTFilter_Initialize(window['DT_@Model.Name'], "dtfilter_@Model.Name", window['Columns_@Model.Name'], window['FilterTypes_@Model.Name'], 'DT_@Model.Name');
+    </script>
+}

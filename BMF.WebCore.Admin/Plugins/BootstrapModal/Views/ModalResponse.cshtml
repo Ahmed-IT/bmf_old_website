@@ -1,0 +1,71 @@
+﻿@model AMK.Plugin.BootstrapModal.ModalResponse
+@using AMK.Plugin.BootstrapModal
+@{ Layout = null; }
+@{ await Html.RenderPartialAsync("_FeedbackPVPartial"); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    @if (Model != null)
+    {
+        var Helper = DateTime.Now.Ticks;
+        <div id="@Helper"></div>
+        if (Model.Refresh_FullPage != null)
+        {
+            <script class="cleanscript">
+                setTimeout(function () {
+                    location.reload();
+                }, @Model.Refresh_FullPage);
+            </script>
+        }
+        else
+        {
+            foreach (var Targetted in Model.Button_Targeted)
+            {
+                <script class="cleanscript">
+                    $('@Html.Raw(Targetted.Idenfitier)').each(function(){
+                        var _this = $(this);
+                        setTimeout(function (_this) {
+                            var Target = _this;
+                            Target.click();
+                        }, @Targetted.Timer, _this);
+                    });
+                </script>
+            }
+            foreach (var Targetted in Model.Refresh_Targeted)
+            {
+                <script class="cleanscript">
+                    $('@Html.Raw(Targetted.Idenfitier)').each(function(){
+                        var _this = $(this);
+                        setTimeout(function (_this) {
+                            var Target = _this;
+                            LoadPartial(Target);
+                        }, @Targetted.Timer, _this);
+                    });
+                </script>
+            }
+            if (Model.Refresh_Self != null)
+            {
+                <script class="cleanscript">
+                    setTimeout(function () {
+                        var Target = $('#@Helper').closest('.modal-body');
+                        LoadPartial(Target);
+                        Target.parent().find('button[type="submit"],input[type="submit"]').show();
+                    }, @Model.Refresh_Self);
+                </script>
+            }
+        }
+        if (!Model.AllowSubmit)
+        {
+            <script class="cleanscript">
+                setTimeout(function () {
+                    var Target = $('#@Helper').closest('.modal-body').parent();
+                    Target.find('button[type="submit"],input[type="submit"]').hide();
+                }, 50);
+            </script>
+        }
+        <script class="cleanscript">
+            setTimeout(function () {
+                $('.cleanscript').remove();
+            }, 1000);
+        </script>
+    }
+}

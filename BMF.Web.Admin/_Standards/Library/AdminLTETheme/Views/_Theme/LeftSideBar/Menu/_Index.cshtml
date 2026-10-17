@@ -1,0 +1,25 @@
+﻿@model IEnumerable<_SystemFeature>
+@{  Layout = null; }
+<li class='header'>
+    Main Navigation
+    <button type="button" class="btn btn-box-tool pull-right no-padding no-margin refresh-partial" data-target=".lsidebar-partial"><i class="fa fa-refresh"></i></button>
+</li>
+@if (Model == null)
+{
+    <li class='active'><a style='border-color:red;'><i class='fa fa-ban'></i> <span>Error Occured (#SBM)<br />Please contact the<br />system administrator.</span></a></li>
+}
+else
+{
+    var _Features = Model.Where(w => w.Cleared && w.Visibility).ToList();
+    foreach (_SystemFeature SingleFeature in _Features)
+    {
+        if (SingleFeature.Features != null && SingleFeature.Features.Count > 0)
+        {
+            Html.RenderPartial(FixedTerms.System_PartialView_LeftSideBar_MenuHeaderItem, SingleFeature);
+        }
+        else
+        {
+            Html.RenderPartial(FixedTerms.System_PartialView_LeftSideBar_MenuSingleItem, SingleFeature);
+        }
+    }
+}

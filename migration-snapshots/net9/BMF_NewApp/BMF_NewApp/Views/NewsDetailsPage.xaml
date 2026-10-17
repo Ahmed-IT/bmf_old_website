@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             NavigationPage.HasNavigationBar="True"
+             Title="{Binding Title}" BackgroundColor="#f5f5f5"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BMF_NewApp.Views.NewsDetailsPage">
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView BackgroundColor="#f5f5f5" Grid.Row="1" Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView.Content>
+
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <ffimageloading:CachedImage Grid.Row="0" Margin="20" HorizontalOptions="FillAndExpand" LoadingPlaceholder="NoImage.png" FadeAnimationForCachedImages="True" Aspect="AspectFit" VerticalOptions="FillAndExpand" Source="{Binding News.Image_URL}"></ffimageloading:CachedImage>
+
+                            <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,20,20">
+                                <Label FontSize="Large" FontFamily="MontserratBold" Text="{Binding News.Title}" TextColor="Black"></Label>
+                                <Label FontSize="Micro" FontFamily="MontserratRegular" Margin="0,0,0,20" Text="{Binding News.NewsTimestampUtc, StringFormat='Published Date: {0:dd MMM yyyy}'}" TextColor="Gray"></Label>
+                                <Label FontSize="Small" FontFamily="MontserratRegular" Text="{Binding News.Content}" TextColor="Black"></Label>
+                            </StackLayout>
+
+                        </Grid>
+                    </StackLayout>
+                </ScrollView.Content>
+            </ScrollView>
+
+        </StackLayout>
+
+        <BoxView Color="Black" IsVisible="{Binding IsBusy}" Opacity="0.5" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+        <StackLayout IsVisible="{Binding IsBusy}" Padding="6" Orientation="Vertical" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Syncfusion:SfBusyIndicator
+				IsBusy="{Binding IsBusy}" Title="Please Wait ..."
+				TextColor="White" TextSize="12"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				WidthRequest="100" HeightRequest="100"
+				AnimationType="SingleCircle  ">
+            </Syncfusion:SfBusyIndicator>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

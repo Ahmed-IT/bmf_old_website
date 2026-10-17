@@ -1,0 +1,101 @@
+﻿@model _Standards.Library.ModalManagement.ViewModels.ModalForm
+@using _Standards.Library.ModalManagement.Enum
+@using _Standards.Library.Helpers
+@{ Layout = null; }
+@if (Model != null)
+{
+    string Class_Size = "",
+        Tag_Enctype = "",
+        Class_SubmitIcon = "",
+        Class_Header = "bg-primary ",
+        Text_SubmitBtn = "",
+        Class_SubmitBtn = "btn-primary",
+        ID_Form = (Model.Submit == Submit.Custom ? Model.ID : string.Format("{0}{1}", Model.Submit.ToString(), Model.ID));
+    switch (Model.Size)
+    {
+        case Size.XLarge: Class_Size = "modal-xl"; break;
+        case Size.Large: Class_Size = "modal-lg"; break;
+        case Size.Small: Class_Size = "modal-sm"; break;
+        default: break;
+    }
+    switch (Model.Enctype)
+    {
+        case Enctype.FileUpload: Tag_Enctype = "enctype=multipart/form-data"; break;
+        default: break;
+    }
+    switch (Model.Submit)
+    {
+        case Submit.Add: Class_SubmitIcon = "fa fa-plus"; Text_SubmitBtn = "Confirm and Add"; break;
+        case Submit.Edit: Class_SubmitIcon = "fa fa-save"; Text_SubmitBtn = "Confirm and Save"; break;
+        case Submit.Delete: Class_SubmitBtn = "btn-danger"; Class_SubmitIcon = "fa fa-trash"; Text_SubmitBtn = "Confirm and Delete"; Class_Header = "bg-red"; break;
+        case Submit.Custom: Class_SubmitIcon = ""; Text_SubmitBtn = Model.Name; break;
+        default: break;
+    }
+    <div class="modal fade" id="M_@ID_Form" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog @Class_Size">
+            <form id="F_@ID_Form" class="F_@ID_Form" action="@Model.Action" method="@Model.Method" @Tag_Enctype>
+                <div class="modal-content">
+                    <div class="modal-header @Class_Header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">@(Model.Submit == Submit.Custom ? "" : Model.Submit.ToString()) @Model.Name</h4>
+                    </div>
+                    <div class="modal-body C_@ID_Form" data-u="@Model.SourceURL">
+                        <div class="box-body">
+                            @Html.Partial(FixedTerms.System_PartialView_LoadingBar)
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left btn-close-@ID_Form" data-dismiss="modal"><i class="margin-r-5 fa fa-remove"></i>Close</button>
+                        <button type="submit" class="btn @Class_SubmitBtn btn-submit-@ID_Form"><i class="margin-r-5 @Class_SubmitIcon"></i>@Text_SubmitBtn</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $("#F_@ID_Form").validate({
+            submitHandler: function (form) {
+                var $form = $(form);
+                var $inputs = $form.find("input, select, button, textarea, checkbox, radio");
+                var serializedData = $form.serialize();
+                if ($form.find("input[type='file']").length > 0) {
+                    $(form).find('button[type=submit]').prop('disabled', true);
+                    form.submit();
+                    $inputs.prop("disabled", false);
+                } else {
+                    $inputs.prop("disabled", true);
+                    request = $.ajax({
+                        cache: false,
+                        url: "@Model.Action",
+                        type: "@Model.Method",
+                        data: serializedData
+                    });
+                    request.done(function (response, textStatus, jqXHR) {
+                        $('.C_@ID_Form').html(response);
+                    });
+                    request.fail(function (jqXHR, textStatus, errorThrown) {
+                        console.error("The following error occured: " + textStatus, errorThrown);
+                    });
+                    request.always(function () {
+                        $inputs.prop("disabled", false);
+                    });
+                }
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', "[data-target='#M_@ID_Form']", function () {
+            var Data = $(this).data();
+            var _method = '@Model.DisplayMethod.ToString()';
+            var _contentType = '@(Model.DisplayMethod == Method.Post ? "application/x-www-form-urlencoded" : "")';
+            $('.C_@ID_Form').children().remove();
+            SetLoadingDisplay($('.C_@ID_Form'));
+            $('.btn-submit-@ID_Form').hide();
+            LoadPartial($('.C_@ID_Form'), jQuery.param(Data), _method, false, null, _contentType, null, function () { console.log('modal-success'); $('.btn-submit-@ID_Form').show(); }, function () { console.log('modal-fail'); $('.btn-submit-@ID_Form').hide(); });
+        });
+        $('.btn-close-@ID_Form').on('click', function () {
+            SetLoadingDisplay($('.C_@ID_Form'));
+            $('.btn-submit-@ID_Form').hide();
+        });
+    </script>
+}

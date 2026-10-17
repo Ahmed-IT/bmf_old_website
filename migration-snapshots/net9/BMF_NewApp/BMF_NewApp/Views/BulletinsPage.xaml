@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" xmlns:sflistview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:local="clr-namespace:BMF_NewApp.Views" xmlns:Syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding Title}" BackgroundColor="#D90000"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="BMF_NewApp.Views.BulletinsPage">
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer" DrawerHeaderHeight="200" DrawerWidth ="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" DrawerFooterHeight="30">
+                <navigationdrawer:SfNavigationDrawer.ContentView>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid x:Name="mainContentView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Grid.Row="0" BackgroundColor="#D90000" Orientation="Horizontal">
+                                <Grid HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="90"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Margin="0,20,0,0" Grid.Column="0" x:Name="hamburgerButton" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" FontSize="20" BackgroundColor="#D90000" Image="burgerIcon" Clicked="hamburgerButton_Clicked"/>
+
+                                </Grid>
+                            </StackLayout>
+
+                            <Grid BackgroundColor="#f5f5f5" Margin="0,-6,0,0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                                <sflistview:SfListView  ItemsSource="{Binding Bulletins}"
+                                                        ItemSpacing="0"
+                                                        SelectionMode="Single"
+                                                        SelectionBackgroundColor="Transparent"
+                                                        HeaderSize="50"
+                                                        ItemSize="70"
+                                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                                        Padding="0"
+                                                        Margin="0">
+                                    <sflistview:SfListView.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#D90000">
+                                                <Label Text="Bulletins" FontSize="Large" FontFamily="MontserratBold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"></Label>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </sflistview:SfListView.HeaderTemplate>
+                                    <sflistview:SfListView.Behaviors>
+                                        <prism:EventToCommandBehavior EventName="ItemTapped"
+                                                                    Command="{Binding CategoryTappedCommand}"
+                                                                    EventArgsParameterPath="ItemData">
+                                        </prism:EventToCommandBehavior>
+                                    </sflistview:SfListView.Behaviors>
+                                    <sflistview:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <border:SfBorder Margin="10" CornerRadius="10" BorderColor="White" BorderWidth="0"
+                                    BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsClippedToBounds="True">
+                                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Label HorizontalOptions="StartAndExpand" Margin="20" Text="{Binding Title}" FontSize="Medium" FontFamily="MontserratBold" TextColor="Black"></Label>
+                                                            <Image HorizontalOptions="End" Source="ArrowLargeIcon" Margin="20"></Image>
+                                                        </StackLayout>
+                                                    </border:SfBorder>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </sflistview:SfListView.ItemTemplate>
+                                </sflistview:SfListView>
+
+                            </Grid>
+
+
+                        </Grid>
+
+
+                    </StackLayout>
+
+
+
+                </navigationdrawer:SfNavigationDrawer.ContentView>
+                <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+                    <StackLayout BackgroundColor="#faf8f8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image Source="BMFlogoTransp.png" IsVisible="{Binding ShowLogin}" WidthRequest="180" Margin="0,60,0,0"></Image>
+                        <sfavatar:SfAvatarView BorderColor="White" IsVisible="{Binding ShowLogout}" Grid.Column="1" IsClippedToBounds="True" ContentType="Custom" AvatarColorMode="LightBackground" ImageSource="{Binding Profile.Photo_URL}"
+                                                    Margin="0,50,0,0" CornerRadius="5" HorizontalOptions="Center" HeightRequest="100" WidthRequest="100" />
+
+                        <Label IsVisible="{Binding ShowLogout}" HorizontalOptions="Center" VerticalOptions="End" TextColor="Black" FontFamily="MontserratBold" FontSize="Medium" Margin="10,10,0,0" Text="{Binding Profile.FullName}"></Label>
+
+
+                    </StackLayout>
+                </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+
+                <navigationdrawer:SfNavigationDrawer.DrawerContentView >
+                    <!-- Custom Control to display Menu Bound to MainMenuPageViewModel -->
+                    <local:MainMenu Menu="{Binding MenuVM}"></local:MainMenu>
+                </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                <navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+                    <Grid BackgroundColor="#faf8f8">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="Bahrain Motor Federation" FontSize="Micro" TextColor="Black" VerticalOptions="End" HorizontalOptions="Center" ></Label>
+                        </StackLayout>
+                    </Grid>
+                </navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+            </navigationdrawer:SfNavigationDrawer>
+
+
+        </StackLayout>
+
+        <BoxView Color="Black" IsVisible="{Binding IsBusy}" Opacity="0.5" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+        <StackLayout IsVisible="{Binding IsBusy}" Padding="6" Orientation="Vertical" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Syncfusion:SfBusyIndicator
+				IsBusy="{Binding IsBusy}" Title="Please Wait ..."
+				TextColor="White" TextSize="12"
+				VerticalOptions="Center"
+				HorizontalOptions="Center"
+				WidthRequest="100" HeightRequest="100"
+				AnimationType="SingleCircle  ">
+            </Syncfusion:SfBusyIndicator>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

@@ -1,0 +1,28 @@
+﻿@model AdminUser
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <div class="row">
+            <div class="col">
+                <label class="control-label">User</label>
+                <h3 class="page-header m-0 text-primary">@Model.FullName</h3>
+            </div>
+        </div>
+        <hr />
+        foreach (var SingleItem in Model.AssignedRoles)
+        {
+            <div class="icheck-primary d--inline">
+                <input name="Roles" id="Role_@SingleItem.ID_Role" data-id="@SingleItem.ID_Role" value="@SingleItem.ID_Role" type="checkbox" @(SingleItem.Role.Selected ? "checked" : "")> 
+                <label for="Role_@SingleItem.ID_Role">@SingleItem.Role.Name</label>
+            </div>
+        }
+    }
+}

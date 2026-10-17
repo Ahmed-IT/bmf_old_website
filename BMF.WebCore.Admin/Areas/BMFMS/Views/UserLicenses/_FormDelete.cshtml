@@ -1,0 +1,41 @@
+﻿@model M_UserLicense
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <h4>Are you sure you want to delete this User License?</h4>
+        <table class="table table-striped table-hover table-bordered table-sm">
+            <tr>
+                <th>@Html.LabelFor(model => model.UserProfile.FullName)</th>
+                <td>@Model.UserProfile.FullName</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserProfile.CPR)</th>
+                <td>@Model.UserProfile.CPR</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.LicenseType.Title)</th>
+                <td>@Model.LicenseType.Title</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.MarshalRole)</th>
+                <td>@(Model.MarshalRole != null ? Model.MarshalRole.Name : "")</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.License_Number)</th>
+                <td>@Model.License_Number</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Display_Expire_Date)</th>
+                <td>@Model.Display_Expire_Date</td>
+            </tr>
+        </table>
+    }
+}

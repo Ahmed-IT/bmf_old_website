@@ -1,0 +1,87 @@
+﻿@model D_LicenseType
+@{
+    Layout = null;
+}
+@{ await Html.RenderPartialAsync(FixedTerms.System_PartialViewPath_AdminFeedbackPV); }
+@if (ViewData["PVErrorDie"] == null || (ViewData["PVErrorDie"] != null && !(bool)ViewData["PVErrorDie"]))
+{
+    if (Model != null)
+    {
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.RowVersion)
+            <table class="table table-striped table-hover table-bordered table-sm">
+                <tr>
+                    <th>@Html.LabelFor(model => model.Type)</th>
+                    <td>@Model.Type</td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Title)</th>
+                    <td>@Model.Title</td>
+                </tr>
+            </table>
+            <hr />
+            <h3>Front Image</h3>
+            <input id="ImageUpload_Front" name="ImageUpload" type="file">
+
+            <hr />
+            <h3>Back Image</h3>
+            <input id="ImageUpload_Back" name="ImageUpload" type="file">
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="mr-1 fas fa-times"></i>Close</button>
+        </div>
+        <script id="image-upload">
+            var URL_Image_Front_Overview = ["@Model.Image_Front_URL"],
+                Data_Image_Front_Overview = [{ downloadUrl: "@Model.Image_Front_URL", key: @Model.ID, caption: "@Model.Title" }];
+            $("#ImageUpload_Front").fileinput({
+                theme: 'fas',
+                required: true,
+                showDrag: false,
+                showRemove: false,
+                overwriteInitial: true,
+                initialPreview: URL_Image_Front_Overview,
+                initialPreviewAsData: true,
+                minFileCount: 1,
+                maxFileCount: 1,
+                validateInitialCount: true,
+                maxFileSize: 8000,
+                allowedFileExtensions: ["jpeg", "jpg", "png"],
+                initialPreviewConfig: Data_Image_Front_Overview,
+                uploadUrl: '@Url.Action("UploadImage_Front", new { Model.ID })',
+                //deleteUrl: '@Url.Action("DeleteImage_Front", new { Model.ID })',
+            });
+
+            var URL_Image_Back_Overview = ["@Model.Image_Back_URL"],
+                Data_Image_Back_Overview = [{ downloadUrl: "@Model.Image_Back_URL", key: @Model.ID, caption: "@Model.Title" }];
+            $("#ImageUpload_Back").fileinput({
+                theme: 'fas',
+                required: true,
+                showDrag: false,
+                showRemove: false,
+                overwriteInitial: true,
+                initialPreview: URL_Image_Back_Overview,
+                initialPreviewAsData: true,
+                minFileCount: 1,
+                maxFileCount: 1,
+                validateInitialCount: true,
+                maxFileSize: 8000,
+                allowedFileExtensions: ["jpeg", "jpg", "png"],
+                initialPreviewConfig: Data_Image_Back_Overview,
+                uploadUrl: '@Url.Action("UploadImage_Back", new { Model.ID })',
+                //deleteUrl: '@Url.Action("DeleteImage_Back", new { Model.ID })',
+            });
+
+            var getFileSize = function (url) {
+                var req = $.ajax({
+                    type: "HEAD",
+                    url: url,
+                    success: function () {
+                        return (req.getResponseHeader("Content-Length") * 1048576);
+                    }
+                });
+            }
+        </script>
+    }
+}
