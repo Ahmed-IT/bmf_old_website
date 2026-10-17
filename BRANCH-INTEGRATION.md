@@ -49,7 +49,8 @@ complete migration also remains in Git history and on its original branch.
 
 ## Validation and publishing
 
-See `INTEGRATION-VALIDATION.md` for the checks and build result. The merge is based
-on locally recorded remote branch tips. Azure DevOps authentication must succeed
-before the server can be refreshed and the consolidated branch published. No
-force push, deletion of original branches, or default-branch change is needed.
+See `INTEGRATION-VALIDATION.md` for the checks and build result. Azure DevOps
+authentication succeeded through the system browser, and all remote branches were
+refreshed. Every source branch tip was verified as an ancestor of the integrated
+`main` before publishing. Local `main` tracks `origin/main`. Original branches and
+the server default-branch setting are retained; publishing used a normal push.

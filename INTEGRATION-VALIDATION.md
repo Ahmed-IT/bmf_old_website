@@ -37,7 +37,9 @@ the successful build covers the admin-only solution.
 The preserved .NET 9 snapshot is incomplete migration work, excluded from active
 solutions. It is retained for reference and future migration development.
 
-Azure DevOps fetch still fails because Git cannot obtain credentials. Consequently
-this integration covers the locally recorded branch tips and cannot yet be
-published or compared against current server state. Original remote branches and
-the server default branch remain unchanged.
+Azure DevOps authentication subsequently succeeded using system-browser sign-in.
+A fresh fetch completed, and the tips of `origin/App_Dev`, `origin/admin-dev`,
+`origin/master`, `origin/upgrade-to-NET9-1`, and `origin/website` were all verified
+as ancestors of the integrated `main`. The new `main` branch was pushed normally
+to Azure DevOps, and local `main` now tracks `origin/main`. Original remote
+branches and the server default-branch setting remain unchanged.
