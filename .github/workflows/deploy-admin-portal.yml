@@ -58,12 +58,34 @@ jobs:
           Get-ChildItem -LiteralPath $publishPath -Filter 'appsettings*.json' -File |
             ForEach-Object { Remove-Item -LiteralPath $_.FullName }
 
+      - name: Release bmfadmin file locks for deployment
+        id: bmfadmin_offline
+        shell: pwsh
+        run: |
+          $token = az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv
+          if ($LASTEXITCODE -ne 0) { throw 'Could not authenticate to the deployment endpoint.' }
+          $headers = @{ Authorization = "Bearer $token"; 'If-None-Match' = '*' }
+          Invoke-WebRequest -Method Put -Uri 'https://bmfadmin.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm' `
+            -Headers $headers -ContentType 'text/html' -Body '<html><body>Updating the admin portal. Please retry shortly.</body></html>' | Out-Null
+          'created=true' >> $env:GITHUB_OUTPUT
+          Start-Sleep -Seconds 10
+
       - name: Deploy to bmfadmin preserving existing configuration
         uses: azure/webapps-deploy@v3
         with:
           app-name: bmfadmin
           package: ${{ runner.temp }}/bmf-admin-publish
           clean: 'false'
+
+      - name: Bring bmfadmin back online
+        if: ${{ always() && steps.bmfadmin_offline.outputs.created == 'true' }}
+        shell: pwsh
+        run: |
+          $token = az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv
+          if ($LASTEXITCODE -ne 0) { throw 'Could not authenticate to restore the admin portal.' }
+          $headers = @{ Authorization = "Bearer $token"; 'If-Match' = '*' }
+          Invoke-WebRequest -Method Delete -Uri 'https://bmfadmin.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm' `
+            -Headers $headers | Out-Null
 
       - name: Verify both admin login pages
         shell: pwsh

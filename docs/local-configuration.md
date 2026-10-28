@@ -36,6 +36,8 @@ Local environment-specific settings and secret files are excluded by `.gitignore
 
 `.github/workflows/deploy-admin-portal.yml` builds `BMF.WebCore.Admin` once and deploys to both `bmftest` and `bmfadmin` on every push, or on manual dispatch. Both use the shared GitHub `bmftest` environment for deployment authentication; this does not change either app's runtime authentication. Deployments are serialized and both login pages are checked afterward. It uses GitHub OIDC; the attached publish-settings file is not used and must not be committed.
 
+The workflow temporarily creates `app_offline.htm` on `bmfadmin` to release loaded DLLs before incremental deployment, then removes it even when deployment fails. Visitors see a brief maintenance message during this step. An existing maintenance file is not overwritten.
+
 Before the first run:
 
 1. Configure an Entra application/service principal with a federated credential:
