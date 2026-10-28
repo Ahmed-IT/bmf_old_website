@@ -8,6 +8,10 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: deploy-admin-portals
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: windows-latest
@@ -41,8 +45,33 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy to Azure App Service
+      - name: Deploy to bmftest
         uses: azure/webapps-deploy@v3
         with:
           app-name: bmftest
           package: ${{ runner.temp }}/bmf-admin-publish
+
+      - name: Exclude configuration from bmfadmin package
+        shell: pwsh
+        run: |
+          $publishPath = Join-Path $env:RUNNER_TEMP 'bmf-admin-publish'
+          Get-ChildItem -LiteralPath $publishPath -Filter 'appsettings*.json' -File |
+            ForEach-Object { Remove-Item -LiteralPath $_.FullName }
+
+      - name: Deploy to bmfadmin preserving existing configuration
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: bmfadmin
+          package: ${{ runner.temp }}/bmf-admin-publish
+          clean: 'false'
+
+      - name: Verify both admin login pages
+        shell: pwsh
+        run: |
+          foreach ($app in @('bmftest', 'bmfadmin')) {
+            $response = Invoke-WebRequest -Uri "https://$app.azurewebsites.net/LogIn" -TimeoutSec 90
+            if ($response.StatusCode -ne 200 -or $response.Content -notmatch 'type=["'']password["'']') {
+              throw "$app did not return the admin login form."
+            }
+            Write-Output "$app admin login page verified."
+          }

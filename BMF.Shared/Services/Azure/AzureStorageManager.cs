@@ -30,7 +30,11 @@ namespace BMF.Shared.Services.Azure
                 "Production",
                 StringComparison.OrdinalIgnoreCase);
 
-            if (isProduction)
+            if (!string.IsNullOrWhiteSpace(_azureStorageConfig.ConnectionString))
+            {
+                _blobServiceClient = new BlobServiceClient(_azureStorageConfig.ConnectionString);
+            }
+            else if (isProduction)
             {
                 if (string.IsNullOrWhiteSpace(_azureStorageConfig.AccountName))
                     throw new InvalidOperationException("Azure storage is not configured. Set AzureStorageConfig__AccountName.");
@@ -42,10 +46,6 @@ namespace BMF.Shared.Services.Azure
             {
                 var serviceUri = new Uri($"https://{_azureStorageConfig.AccountName}.blob.core.windows.net/");
                 _blobServiceClient = new BlobServiceClient(serviceUri, new DefaultAzureCredential());
-            }
-            else if (!string.IsNullOrWhiteSpace(_azureStorageConfig.ConnectionString))
-            {
-                _blobServiceClient = new BlobServiceClient(_azureStorageConfig.ConnectionString);
             }
             else
             {

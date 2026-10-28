@@ -17,6 +17,8 @@ For the `bmftest` App Service, set `ASPNETCORE_ENVIRONMENT=Production`, `Connect
 
 The `bmftest` identity has `Storage Blob Data Contributor` on the `bmfstorage` account and `db_datareader`/`db_datawriter` in the `BMF` database. These permissions are scoped to the app's required data access; no storage key or SQL password is needed.
 
+The `bmfadmin` App Service keeps its existing credential-based configuration in its deployed `appsettings.json`. A configured Blob Storage connection string takes precedence over managed identity. The workflow excludes `appsettings*.json` from the `bmfadmin` package and explicitly disables deployment cleanup, preserving those server-side files. Do not copy their values into GitHub or local committed files. Managed identity is not enabled for `bmfadmin`.
+
 ## ASP.NET Framework applications
 
 Configure these named connection strings in the hosting platform:
@@ -30,7 +32,7 @@ Local environment-specific settings and secret files are excluded by `.gitignore
 
 ## GitHub Actions deployment
 
-`.github/workflows/deploy-admin-portal.yml` deploys `BMF.WebCore.Admin` to the `bmftest` App Service on every push, or on manual dispatch. It uses GitHub OIDC; the attached publish-settings file is not used and must not be committed.
+`.github/workflows/deploy-admin-portal.yml` builds `BMF.WebCore.Admin` once and deploys to both `bmftest` and `bmfadmin` on every push, or on manual dispatch. Both use the shared GitHub `bmftest` environment for deployment authentication; this does not change either app's runtime authentication. Deployments are serialized and both login pages are checked afterward. It uses GitHub OIDC; the attached publish-settings file is not used and must not be committed.
 
 Before the first run:
 
@@ -38,7 +40,7 @@ Before the first run:
    - Issuer: `https://token.actions.githubusercontent.com`
    - Audience: `api://AzureADTokenExchange`
    - Subject: `repo:Ahmed-IT@6608949/bmf_old_website@1436834269:environment:bmftest`
-2. Grant that identity permission to deploy to the `bmftest` web app.
+2. Grant that identity permission to deploy to each of the `bmftest` and `bmfadmin` web apps.
 3. Add these non-secret repository or `bmftest` environment variables in GitHub Actions:
    - `AZURE_CLIENT_ID`
    - `AZURE_TENANT_ID`
@@ -50,7 +52,7 @@ The deployment identity must be registered in the subscription's tenant, not ano
 - Tenant ID: `661bf2ff-6490-4571-90ac-4b4fed7ca17c`
 - Subscription ID: `e17eaf83-548d-464f-a1e5-b1528a940a3d`
 
-Its service principal has `Website Contributor` scoped only to the `bmftest` web app. If Azure login fails with `AADSTS700016`, verify that the client ID exists in the configured tenant before changing the workflow or granting additional permissions.
+Its service principal has separate `Website Contributor` assignments scoped to the `bmftest` and `bmfadmin` web apps, not the resource group or subscription. If Azure login fails with `AADSTS700016`, verify that the client ID exists in the configured tenant before changing the workflow or granting additional permissions.
 
 This repository's OIDC token includes the owner and repository IDs in its subject. The federated credential must match the subject emitted by `azure/login` exactly. A name-only subject causes `AADSTS700213`; keep the issuer, audience, and environment scope unchanged when correcting it.
 
