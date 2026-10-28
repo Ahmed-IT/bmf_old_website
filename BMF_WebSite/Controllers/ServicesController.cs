@@ -114,6 +114,8 @@ namespace BMF_WebSite.Controllers
                 {
                     try
                     {
+                        var currentTimestamp = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(3)).DateTime;
+
                         if (data.LicenseRequestType == "New")
                         {
                             //Check if Profile Exist and has a license
@@ -159,7 +161,8 @@ namespace BMF_WebSite.Controllers
                                         CPR = data.CPR,
                                         DateOfBirth = data.DateOfBirth,
                                         FullName = data.FirstName + " " + data.MiddleName + " " + data.LastName,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_Nationality = data.CountryId,
                                         Place_Of_Birth = data.PlaceOfBirth,
                                         Mobile_Number = data.MobileNumber,
@@ -176,7 +179,8 @@ namespace BMF_WebSite.Controllers
                                     {
                                         License_Number = "",
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_LicenseType = data.LicenseCategoryId,
                                         ID_UserProfile = profile.ID,
                                     });
@@ -190,7 +194,8 @@ namespace BMF_WebSite.Controllers
                                         ApprovalStatus = 0,
                                         CPR_URL = data.CPR_Url,
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_UserLicense = lic.ID,
                                         MedicalForm_URL = data.Medical_Url,
                                     });
@@ -208,7 +213,8 @@ namespace BMF_WebSite.Controllers
                                         CPR = data.CPR,
                                         DateOfBirth = data.DateOfBirth,
                                         FullName = data.FirstName + " " + data.MiddleName + " " + data.LastName,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_Nationality = data.CountryId,
                                         Place_Of_Birth = data.PlaceOfBirth,
                                         Mobile_Number = data.MobileNumber,
@@ -227,7 +233,8 @@ namespace BMF_WebSite.Controllers
                                     {
                                         License_Number = "",
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_LicenseType = data.LicenseCategoryId,
                                         ID_UserProfile = profile.ID,
                                     });
@@ -241,7 +248,8 @@ namespace BMF_WebSite.Controllers
                                         ApprovalStatus = 0,
                                         CPR_URL = data.CPR_Url,
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_UserLicense = lic.ID,
                                         MedicalForm_URL = data.Medical_Url,
                                         Parent_CPR_URL = data.ParentCPR_Url,
@@ -298,6 +306,7 @@ namespace BMF_WebSite.Controllers
                                     }
 
                                     CheckProfileExist.Photo_URL = data.Photo_Url;
+                                    CheckProfileExist.UpdatedOnUtc = currentTimestamp;
 
                                     await db.SaveChangesAsync();
 
@@ -305,7 +314,8 @@ namespace BMF_WebSite.Controllers
                                     {
                                         License_Number = "",
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_LicenseType = data.LicenseCategoryId,
                                         ID_UserProfile = CheckProfileExist.ID,
                                     });
@@ -319,7 +329,8 @@ namespace BMF_WebSite.Controllers
                                         ApprovalStatus = 0,
                                         CPR_URL = data.CPR_Url,
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_UserLicense = lic.ID,
                                         MedicalForm_URL = data.Medical_Url
                                     });
@@ -396,6 +407,8 @@ namespace BMF_WebSite.Controllers
                                 GetLicense.M_UserProfile.Full_Address = "House#: " + data.HouseNumber + " Road#: " + data.RoadNumber
                                     + " Block#: " + data.BlockNumber + " City: " + data.City;
                                 GetLicense.M_UserProfile.FullName = data.FirstName + " " + data.MiddleName + " " + data.LastName;
+                                GetLicense.M_UserProfile.UpdatedOnUtc = currentTimestamp;
+                                GetLicense.UpdatedOnUtc = currentTimestamp;
 
                                 if (data.IsUnder18 == true)
                                 {
@@ -414,7 +427,8 @@ namespace BMF_WebSite.Controllers
                                         ApprovalStatus = 0,
                                         CPR_URL = data.CPR_Url,
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_UserLicense = GetLicense.ID,
                                         MedicalForm_URL = data.Medical_Url,
                                     });
@@ -429,7 +443,8 @@ namespace BMF_WebSite.Controllers
                                         ApprovalStatus = 0,
                                         CPR_URL = data.CPR_Url,
                                         IsActive = true,
-                                        CreatedOnUtc = DateTime.Now,
+                                        CreatedOnUtc = currentTimestamp,
+                                        UpdatedOnUtc = currentTimestamp,
                                         ID_UserLicense = GetLicense.ID,
                                         MedicalForm_URL = data.Medical_Url,
                                         Parent_CPR_URL = data.ParentCPR_Url
@@ -606,6 +621,9 @@ namespace BMF_WebSite.Controllers
                         }
                     }
 
+                    var currentTimestamp = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(3)).DateTime;
+                    chkExist.UpdatedOnUtc = currentTimestamp;
+
                     if (form.IsUnder18 == true)
                     {
                         var LicHistory = db.M_UserLicenseRenewal.Add(new M_UserLicenseRenewal
@@ -613,12 +631,12 @@ namespace BMF_WebSite.Controllers
                             ApprovalStatus = 0,
                             CPR_URL = form.CPR_Url,
                             IsActive = true,
-                            CreatedOnUtc = DateTime.Now,
+                            CreatedOnUtc = currentTimestamp,
                             ID_UserLicense = chkExist.ID,
                             MedicalForm_URL = form.Medical_Url,
                             Parent_CPR_URL = form.ParentCPR_Url,
                             UpdatedBy = "",
-                            UpdatedOnUtc = DateTime.Now,
+                            UpdatedOnUtc = currentTimestamp,
                             CreatedBy = "",
                         });
                         await db.SaveChangesAsync();
@@ -630,11 +648,11 @@ namespace BMF_WebSite.Controllers
                             ApprovalStatus = 0,
                             CPR_URL = form.CPR_Url,
                             IsActive = true,
-                            CreatedOnUtc = DateTime.Now,
+                            CreatedOnUtc = currentTimestamp,
                             ID_UserLicense = chkExist.ID,
                             MedicalForm_URL = form.Medical_Url,
                             UpdatedBy = "",
-                            UpdatedOnUtc = DateTime.Now,
+                            UpdatedOnUtc = currentTimestamp,
                             CreatedBy = "",
                         });
                         await db.SaveChangesAsync();
