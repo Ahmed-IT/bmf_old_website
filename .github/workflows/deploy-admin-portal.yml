@@ -1,0 +1,48 @@
+name: Deploy admin portal to Azure
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    environment: bmftest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore admin portal
+        run: dotnet restore BMF.WebCore.Admin/BMF.WebCore.Admin.csproj
+
+      - name: Publish admin portal
+        shell: pwsh
+        run: |
+          $publishPath = Join-Path $env:RUNNER_TEMP 'bmf-admin-publish'
+          Copy-Item 'BMF.WebCore.Admin\appsettings.example.json' 'BMF.WebCore.Admin\appsettings.json' -Force
+          dotnet publish BMF.WebCore.Admin/BMF.WebCore.Admin.csproj --configuration Release --no-restore --output $publishPath
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+      - name: Log in to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: bmftest
+          package: ${{ runner.temp }}/bmf-admin-publish
