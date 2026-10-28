@@ -13,9 +13,7 @@ Checked-in configuration templates contain empty connection-string values. Copy 
 
 For local development, use an ignored `appsettings.Development.json` or a local secret store.
 
-For the `bmftest` App Service, set `ASPNETCORE_ENVIRONMENT=Production`, `ConnectionStrings__DefaultDbContextProd`, and `AzureStorageConfig__AccountName` through App Service settings. Use a SQL connection string with `Authentication=Active Directory Managed Identity`; production Blob Storage uses the site's system-assigned identity. The admin portal fails fast when required configuration is missing. Keep credentials and connection strings out of the workflow and repository.
-
-The `bmftest` identity has `Storage Blob Data Contributor` on the `bmfstorage` account and `db_datareader`/`db_datawriter` in the `BMF` database. These permissions are scoped to the app's required data access; no storage key or SQL password is needed.
+The admin portal runs only on `bmfadmin`. The `bmftest` App Service serves the public `bmf.com.bh` website and must never receive the admin package. Keep the existing credential-based runtime configuration; no managed-identity migration is required.
 
 The `bmfadmin` App Service keeps its existing credential-based configuration in its deployed `appsettings.json`. A configured Blob Storage connection string takes precedence over managed identity. The workflow excludes `appsettings*.json` from the `bmfadmin` package and explicitly disables deployment cleanup, preserving those server-side files. Do not copy their values into GitHub or local committed files. Managed identity is not enabled for `bmfadmin`.
 
@@ -32,11 +30,22 @@ For local development, `BMFEntities1` and `BMFDbContext` can also be supplied as
 
 Local environment-specific settings and secret files are excluded by `.gitignore`.
 
+The public `BMF_WebSite` application targets .NET Framework 4.7.2 and runs on `bmftest`, which owns the `bmf.com.bh` custom-domain binding. Its existing server-side `Web.config` supplies the Entity Framework connection strings and `AzStorageAccount` setting. The public workflow excludes the root `Web.config` and disables deployment cleanup to retain that configuration and existing uploads. It still deploys `Views/Web.config`, which contains Razor configuration rather than credentials. Do not copy production credentials into tracked files or workflow logs.
+
 ## GitHub Actions deployment
 
-`.github/workflows/deploy-admin-portal.yml` builds `BMF.WebCore.Admin` once and deploys to both `bmftest` and `bmfadmin` on every push, or on manual dispatch. Both use the shared GitHub `bmftest` environment for deployment authentication; this does not change either app's runtime authentication. Deployments are serialized and both login pages are checked afterward. It uses GitHub OIDC; the attached publish-settings file is not used and must not be committed.
+Two workflows run on every push or manual dispatch, with separate deployment concurrency groups:
 
-The workflow temporarily creates `app_offline.htm` on `bmfadmin` to release loaded DLLs before incremental deployment, then removes it even when deployment fails. Visitors see a brief maintenance message during this step. An existing maintenance file is not overwritten.
+- [deploy-admin-portal.yml](../.github/workflows/deploy-admin-portal.yml) builds `BMF.WebCore.Admin` and deploys **only to `bmfadmin`**.
+- [deploy-public-website.yml](../.github/workflows/deploy-public-website.yml) restores NuGet packages and publishes `BMF_WebSite` using Visual Studio MSBuild on Windows, deploying **only to `bmftest`**.
+
+Both use the existing GitHub `bmftest` environment for OIDC deployment authentication; the environment name does not make `bmftest` an admin application or change runtime authentication. The attached publish-settings file is not used and must not be committed.
+
+The public workflow verifies the domain binding and existing ASP.NET Framework configuration before deployment. Both workflows run [Test-PublicWebsite.ps1](../.github/scripts/Test-PublicWebsite.ps1), checking public pages and static assets without following redirects. The admin workflow separately checks the `bmfadmin` login form. A successful admin login page on the public domain is a failure, not a deployment health check.
+
+Workflow smoke tests allow up to eight attempts, logging each failure and waiting 15 seconds between attempts, to tolerate application startup or the other workflow's brief public maintenance window. Exhausted retries fail the workflow.
+
+Each workflow temporarily creates `app_offline.htm` on its own target to release loaded DLLs before incremental deployment, then removes it even when deployment fails. Visitors see a brief maintenance message during this step. An existing maintenance file is not overwritten.
 
 Before the first run:
 

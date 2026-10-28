@@ -1,0 +1,106 @@
+name: Deploy public website to Azure
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-public-website
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    environment: bmftest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Set up NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore public website
+        run: nuget restore BMF_WebSite\packages.config -PackagesDirectory packages -NonInteractive
+
+      - name: Publish public website without runtime configuration
+        shell: pwsh
+        run: |
+          $publishPath = Join-Path $env:RUNNER_TEMP 'bmf-public-publish'
+          msbuild BMF_WebSite\BMF_WebSite.csproj /t:WebPublish /p:Configuration=Release /p:WebPublishMethod=FileSystem "/p:PublishUrl=$publishPath" /p:DeleteExistingFiles=false /p:AutoParameterizationWebConfigConnectionStrings=false /v:minimal /nologo
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (-not (Test-Path (Join-Path $publishPath 'bin\BMF_WebSite.dll'))) {
+            throw 'The public website package is missing its application assembly.'
+          }
+          Remove-Item -LiteralPath (Join-Path $publishPath 'Web.config')
+
+      - name: Log in to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Confirm public website target and configuration
+        shell: pwsh
+        run: |
+          $hostNames = az webapp show --name bmftest --resource-group BMF --query hostNames -o json
+          if ($LASTEXITCODE -ne 0) { throw 'Could not verify the public website target.' }
+          if ('bmf.com.bh' -notin ($hostNames | ConvertFrom-Json)) {
+            throw 'bmftest is no longer the verified public website host.'
+          }
+          $token = az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv
+          if ($LASTEXITCODE -ne 0) { throw 'Could not authenticate to the public deployment endpoint.' }
+          $headers = @{ Authorization = "Bearer $token" }
+          $response = Invoke-WebRequest -UseBasicParsing -Uri 'https://bmftest.scm.azurewebsites.net/api/vfs/site/wwwroot/Web.config' -Headers $headers
+          $content = if ($response.Content -is [byte[]]) { [System.Text.Encoding]::UTF8.GetString($response.Content) } else { $response.Content }
+          $config = New-Object System.Xml.XmlDocument
+          try {
+            $config.LoadXml($content.TrimStart([char]0xFEFF))
+          } catch {
+            throw 'The public runtime configuration is not valid XML; refusing deployment.'
+          }
+          $database = $config.configuration.connectionStrings.add | Where-Object { $_.name -eq 'BMFEntities1' }
+          if ($null -eq $config.configuration.'system.web' -or
+              [string]::IsNullOrWhiteSpace($database.connectionString)) {
+            throw 'The public ASP.NET Framework runtime configuration is missing; refusing to overwrite the site.'
+          }
+
+      - name: Release public website file locks
+        id: public_offline
+        shell: pwsh
+        run: |
+          $token = az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv
+          if ($LASTEXITCODE -ne 0) { throw 'Could not authenticate to the public deployment endpoint.' }
+          $headers = @{ Authorization = "Bearer $token"; 'If-None-Match' = '*' }
+          Invoke-WebRequest -Method Put -Uri 'https://bmftest.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm' `
+            -Headers $headers -ContentType 'text/html' -Body '<html><body>Updating the Bahrain Motor Federation website. Please retry shortly.</body></html>' | Out-Null
+          'created=true' >> $env:GITHUB_OUTPUT
+          Start-Sleep -Seconds 10
+
+      - name: Deploy public website preserving configuration and uploads
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: bmftest
+          package: ${{ runner.temp }}/bmf-public-publish
+          clean: 'false'
+
+      - name: Bring public website back online
+        if: ${{ always() && steps.public_offline.outputs.created == 'true' }}
+        shell: pwsh
+        run: |
+          $token = az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv
+          if ($LASTEXITCODE -ne 0) { throw 'Could not authenticate to restore the public website.' }
+          $headers = @{ Authorization = "Bearer $token"; 'If-Match' = '*' }
+          Invoke-WebRequest -Method Delete -Uri 'https://bmftest.scm.azurewebsites.net/api/vfs/site/wwwroot/app_offline.htm' `
+            -Headers $headers | Out-Null
+
+      - name: Verify public pages and assets without login redirects
+        shell: pwsh
+        run: .\.github\scripts\Test-PublicWebsite.ps1 -Attempts 8
