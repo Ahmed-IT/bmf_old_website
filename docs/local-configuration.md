@@ -44,4 +44,12 @@ Before the first run:
    - `AZURE_TENANT_ID`
    - `AZURE_SUBSCRIPTION_ID`
 
+The deployment identity must be registered in the subscription's tenant, not another tenant available to your local Azure account. For `bmftest`, the verified settings are:
+
+- Client ID: `8b77415f-4617-40db-a559-62618949af5e`
+- Tenant ID: `661bf2ff-6490-4571-90ac-4b4fed7ca17c`
+- Subscription ID: `e17eaf83-548d-464f-a1e5-b1528a940a3d`
+
+Its service principal has `Website Contributor` scoped only to the `bmftest` web app. If Azure login fails with `AADSTS700016`, verify that the client ID exists in the configured tenant before changing the workflow or granting additional permissions.
+
 The admin project targets `netcoreapp3.1`, which is out of support. The App Service must have a compatible runtime, or the project should be upgraded before relying on production deployments.
