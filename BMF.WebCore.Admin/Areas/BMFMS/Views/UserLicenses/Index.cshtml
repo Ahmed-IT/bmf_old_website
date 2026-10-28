@@ -44,4 +44,16 @@
     <script src="~/lib/adminlte/plugins/moment/moment.min.js"></script>
     <script src="~/lib/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script>
     <script src="~/lib/adminlte/plugins/select2/js/select2.js"></script>
+    <script>
+        $(document).on('init.dt', '#@BMF.WebCore.Admin.Areas.BMFMS.Controllers.UserLicensesController.JQDT_Index', function () {
+            var table = $(this).DataTable();
+            var tableId = this.id;
+            table.columns().every(function () {
+                if (this.dataSrc() === 'CreatedOnUtc' || this.dataSrc() === 'UpdatedOnUtc') {
+                    $('#dtfilter_' + tableId + 'filter_' + this.index()).find('input')
+                        .attr('type', 'date').attr('aria-label', this.dataSrc() === 'CreatedOnUtc' ? 'Created Date' : 'Last Updated');
+                }
+            });
+        });
+    </script>
 }

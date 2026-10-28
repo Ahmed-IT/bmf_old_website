@@ -70,6 +70,8 @@ namespace BMF.Shared.Entities.UserManagement
 				new Column($"{nameof(LicenseType)}.{nameof(D_LicenseType.Title)}", "License Title"),
 				new Column($"{nameof(LicenseType)}.{nameof(D_LicenseType.Type)}", "License Type"),
 				new Column(nameof(License_Number), "License Number"),
+				new Column(nameof(CreatedOnUtc), "Created Date"),
+				new Column(nameof(UpdatedOnUtc), "Last Updated"),
 			};
 			return IJQDataTableExtendDBViewModel<M_UserLicense, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
 		}

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -189,7 +190,8 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
 				#endregion
 
 				#region // Filter Data
-				var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicense.JQDT_Index(), RawData.AsQueryable());
+				var DateFilteredData = ApplyDateFilters(_DTParams, RawData.AsQueryable());
+				var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicense.JQDT_Index(), DateFilteredData);
 				#endregion
 
 				#region // Order Data
@@ -478,6 +480,30 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
 		#endregion
 
 		#region Functions
+
+		private static IQueryable<M_UserLicense> ApplyDateFilters(IDataTablesRequest request, IQueryable<M_UserLicense> licenses)
+		{
+			foreach (var column in request.Columns.Where(c =>
+				(c.Data == nameof(M_UserLicense.CreatedOnUtc) || c.Data == nameof(M_UserLicense.UpdatedOnUtc)) &&
+				!string.IsNullOrWhiteSpace(c.Search.Value)))
+			{
+				if (DateTime.TryParseExact(column.Search.Value, "yyyy-MM-dd", CultureInfo.InvariantCulture,
+					DateTimeStyles.None, out var selectedDate))
+				{
+					licenses = column.Data == nameof(M_UserLicense.CreatedOnUtc)
+						? licenses.Where(l => l.CreatedOnUtc.Date == selectedDate)
+						: licenses.Where(l => l.UpdatedOnUtc.Date == selectedDate);
+				}
+				else
+				{
+					licenses = licenses.Where(l => false);
+				}
+
+				// Date filters are handled above; the plugin only supports text comparisons.
+				column.Search.Value = string.Empty;
+			}
+			return licenses;
+		}
 
 		public void Set_SelectList(M_UserLicense DefineRecord)
 		{
