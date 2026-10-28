@@ -16,8 +16,14 @@ namespace BMF_WebSite
     public partial class BMFEntities1 : DbContext
     {
         public BMFEntities1()
-            : base("name=BMFEntities1")
+            : base(GetConnectionString())
         {
+        }
+
+        private static string GetConnectionString()
+        {
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__BMFEntities1");
+            return string.IsNullOrWhiteSpace(connectionString) ? "name=BMFEntities1" : connectionString;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

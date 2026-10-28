@@ -13,8 +13,14 @@ namespace BMF.Web.Admin.Database
 {
     public class BMFDbContext : DbContext
     {
-        public BMFDbContext() : base("BMFDbContext")
+        public BMFDbContext() : base(GetConnectionString())
         {
+        }
+
+        private static string GetConnectionString()
+        {
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__BMFDbContext");
+            return string.IsNullOrWhiteSpace(connectionString) ? "BMFDbContext" : connectionString;
         }
 
         #region Access Management

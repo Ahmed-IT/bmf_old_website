@@ -26,7 +26,13 @@ namespace BMF_WebSite.Models
             //storageAccount = CloudStorageAccount.Parse(Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
             // Parse the connection string and return a reference to the storage account.
-            storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("AzStorageAccount"));
+            var storageConnectionString = Environment.GetEnvironmentVariable("AzStorageAccount");
+            if (string.IsNullOrWhiteSpace(storageConnectionString))
+                storageConnectionString = CloudConfigurationManager.GetSetting("AzStorageAccount");
+            if (string.IsNullOrWhiteSpace(storageConnectionString))
+                throw new InvalidOperationException("Azure storage is not configured. Set the AzStorageAccount app setting or environment variable.");
+
+            storageAccount = CloudStorageAccount.Parse(storageConnectionString);
         }
 
         /// <summary>

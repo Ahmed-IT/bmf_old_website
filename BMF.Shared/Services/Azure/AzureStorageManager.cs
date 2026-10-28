@@ -23,6 +23,8 @@ namespace BMF.Shared.Services.Azure
         public AzureStorageManager(IOptions<AzureStorageConfig> azureStorageConfig)
         {
             _azureStorageConfig = azureStorageConfig.Value;
+            if (string.IsNullOrWhiteSpace(_azureStorageConfig.ConnectionString))
+                throw new InvalidOperationException("Azure storage is not configured. Set the AzureStorageConfig__ConnectionString environment variable.");
         }
 
         #endregion

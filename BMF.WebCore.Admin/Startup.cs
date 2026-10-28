@@ -52,15 +52,15 @@ namespace BMF.WebCore.Admin
             // Database
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
-                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDbContextProd")));
+                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(GetRequiredConnectionString("DefaultDbContextProd")));
             }
             else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging")
             {
-                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDbContextStaging")));
+                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(GetRequiredConnectionString("DefaultDbContextStaging")));
             }
             else
             {
-                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDbContextLocal")));
+                services.AddDbContext<BMFDbContext>(options => options.UseSqlServer(GetRequiredConnectionString("DefaultDbContextLocal")));
             }
             //services.BuildServiceProvider().GetService<KahwaDbContext>().Database.Migrate();
 
@@ -127,6 +127,15 @@ namespace BMF.WebCore.Admin
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        private string GetRequiredConnectionString(string name)
+        {
+            var connectionString = Configuration.GetConnectionString(name);
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new InvalidOperationException($"Connection string '{name}' is missing. Set the ConnectionStrings__{name} environment variable.");
+
+            return connectionString;
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
