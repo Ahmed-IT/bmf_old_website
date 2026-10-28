@@ -13,7 +13,9 @@ Checked-in configuration templates contain empty connection-string values. Copy 
 
 For local development, use an ignored `appsettings.Development.json` or a local secret store.
 
-For the `bmftest` App Service, set `ASPNETCORE_ENVIRONMENT=Production` and provide `ConnectionStrings__DefaultDbContextProd` and `AzureStorageConfig__ConnectionString` through App Service settings or Key Vault references. The admin portal fails fast when the required database connection string is missing. Keep the values in Azure; do not put them in the workflow or repository.
+For the `bmftest` App Service, set `ASPNETCORE_ENVIRONMENT=Production`, `ConnectionStrings__DefaultDbContextProd`, and `AzureStorageConfig__AccountName` through App Service settings. Use a SQL connection string with `Authentication=Active Directory Managed Identity`; production Blob Storage uses the site's system-assigned identity. The admin portal fails fast when required configuration is missing. Keep credentials and connection strings out of the workflow and repository.
+
+The `bmftest` identity has `Storage Blob Data Contributor` on the `bmfstorage` account and `db_datareader`/`db_datawriter` in the `BMF` database. These permissions are scoped to the app's required data access; no storage key or SQL password is needed.
 
 ## ASP.NET Framework applications
 

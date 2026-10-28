@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Azure.Identity;
 using BMF.Shared.Extensions;
 using Microsoft.Extensions.Options;
 using System;
@@ -14,6 +15,7 @@ namespace BMF.Shared.Services.Azure
         #region Fields
 
         private readonly AzureStorageConfig _azureStorageConfig;
+        private readonly BlobServiceClient _blobServiceClient;
         private BlobContainerClient blobContainer;
 
         #endregion
@@ -23,8 +25,32 @@ namespace BMF.Shared.Services.Azure
         public AzureStorageManager(IOptions<AzureStorageConfig> azureStorageConfig)
         {
             _azureStorageConfig = azureStorageConfig.Value;
-            if (string.IsNullOrWhiteSpace(_azureStorageConfig.ConnectionString))
-                throw new InvalidOperationException("Azure storage is not configured. Set the AzureStorageConfig__ConnectionString environment variable.");
+            var isProduction = string.Equals(
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
+                "Production",
+                StringComparison.OrdinalIgnoreCase);
+
+            if (isProduction)
+            {
+                if (string.IsNullOrWhiteSpace(_azureStorageConfig.AccountName))
+                    throw new InvalidOperationException("Azure storage is not configured. Set AzureStorageConfig__AccountName.");
+
+                var serviceUri = new Uri($"https://{_azureStorageConfig.AccountName}.blob.core.windows.net/");
+                _blobServiceClient = new BlobServiceClient(serviceUri, new ManagedIdentityCredential());
+            }
+            else if (!string.IsNullOrWhiteSpace(_azureStorageConfig.AccountName))
+            {
+                var serviceUri = new Uri($"https://{_azureStorageConfig.AccountName}.blob.core.windows.net/");
+                _blobServiceClient = new BlobServiceClient(serviceUri, new DefaultAzureCredential());
+            }
+            else if (!string.IsNullOrWhiteSpace(_azureStorageConfig.ConnectionString))
+            {
+                _blobServiceClient = new BlobServiceClient(_azureStorageConfig.ConnectionString);
+            }
+            else
+            {
+                throw new InvalidOperationException("Azure storage is not configured. Set AzureStorageConfig__AccountName or a local connection string.");
+            }
         }
 
         #endregion
@@ -37,14 +63,14 @@ namespace BMF.Shared.Services.Azure
         {
             try
             {
-                blobContainer = new BlobContainerClient(_azureStorageConfig.ConnectionString, containerName);
+                blobContainer = _blobServiceClient.GetBlobContainerClient(containerName);
                 await blobContainer.CreateIfNotExistsAsync(PublicAccessType.Blob);
                 if (!blobContainer.Exists())
                     throw new Exception("Blob container does not exist and could not be created.");
             }
-            catch (Exception LogError)
+            catch (Exception error)
             {
-                throw new Exception("Failed to create/configure Blob Container.");
+                throw new InvalidOperationException("Failed to create/configure Blob Container.", error);
             }
         }
 
