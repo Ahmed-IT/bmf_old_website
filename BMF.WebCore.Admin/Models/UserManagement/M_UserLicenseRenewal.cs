@@ -4,6 +4,7 @@ using BMF.Shared.Extensions;
 using BMF.Shared.Services.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -34,17 +35,17 @@ namespace BMF.Shared.Entities.UserManagement
 
         [NotMapped]
         [Display(Name = "Date Issued", Prompt = "Date Issued")]
-        public string Display_DateIssued => DateIssued.ToString("dd-MMM-yyyy");
+        public string Display_DateIssued => DateIssued == DateTime.MinValue ? "-" : DateIssued.ToString("dd-MMM-yyyy");
 
         [NotMapped]
         [Display(Name = "Date of Expiry", Prompt = "Date of Expiry")]
-        public string Display_DateOfExpiry => DateOfExpiry.ToString("dd-MMM-yyyy");
+        public string Display_DateOfExpiry => DateOfExpiry == DateTime.MinValue ? "-" : DateOfExpiry.ToString("dd-MMM-yyyy");
 
         [NotMapped]
-        public string Display_CreatedOnUtc => CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+        public string Display_CreatedOnUtc => CreatedOnUtc == DateTime.MinValue ? "-" : CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
         [NotMapped]
-        public string Display_UpdatedOnUtc => UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+        public string Display_UpdatedOnUtc => UpdatedOnUtc == DateTime.MinValue ? "-" : UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
         [NotMapped]
         [Display(Name = "URLs", Prompt = "URLs")]

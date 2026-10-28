@@ -24,13 +24,13 @@ namespace BMF.Shared.Entities.UserManagement
 		public string Display_MarshalRole => MarshalRole != null ? MarshalRole.Name : string.Empty;
 
 		[NotMapped]
-		public string Display_Expire_Date => Expire_Date.ToString("dd-MMM-yyyy");
+		public string Display_Expire_Date => Expire_Date == DateTime.MinValue ? "-" : Expire_Date.ToString("dd-MMM-yyyy");
 
 		[NotMapped]
-		public string Display_CreatedOnUtc => CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+		public string Display_CreatedOnUtc => CreatedOnUtc == DateTime.MinValue ? "-" : CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
 		[NotMapped]
-		public string Display_UpdatedOnUtc => UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+		public string Display_UpdatedOnUtc => UpdatedOnUtc == DateTime.MinValue ? "-" : UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
 		[NotMapped]
 		public string Display_LicenseType => LicenseType != null ? LicenseType.Display_LicenseType : string.Empty;
