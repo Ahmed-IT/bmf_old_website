@@ -37,7 +37,7 @@ Before the first run:
 1. Configure an Entra application/service principal with a federated credential:
    - Issuer: `https://token.actions.githubusercontent.com`
    - Audience: `api://AzureADTokenExchange`
-   - Subject: `repo:Ahmed-IT/bmf_old_website:environment:bmftest`
+   - Subject: `repo:Ahmed-IT@6608949/bmf_old_website@1436834269:environment:bmftest`
 2. Grant that identity permission to deploy to the `bmftest` web app.
 3. Add these non-secret repository or `bmftest` environment variables in GitHub Actions:
    - `AZURE_CLIENT_ID`
@@ -51,5 +51,7 @@ The deployment identity must be registered in the subscription's tenant, not ano
 - Subscription ID: `e17eaf83-548d-464f-a1e5-b1528a940a3d`
 
 Its service principal has `Website Contributor` scoped only to the `bmftest` web app. If Azure login fails with `AADSTS700016`, verify that the client ID exists in the configured tenant before changing the workflow or granting additional permissions.
+
+This repository's OIDC token includes the owner and repository IDs in its subject. The federated credential must match the subject emitted by `azure/login` exactly. A name-only subject causes `AADSTS700213`; keep the issuer, audience, and environment scope unchanged when correcting it.
 
 The admin project targets `netcoreapp3.1`, which is out of support. The App Service must have a compatible runtime, or the project should be upgraded before relying on production deployments.
