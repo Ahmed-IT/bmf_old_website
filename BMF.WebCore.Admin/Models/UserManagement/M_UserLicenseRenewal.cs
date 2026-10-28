@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace BMF.Shared.Entities.UserManagement
 {
@@ -38,6 +39,12 @@ namespace BMF.Shared.Entities.UserManagement
         [NotMapped]
         [Display(Name = "Date of Expiry", Prompt = "Date of Expiry")]
         public string Display_DateOfExpiry => DateOfExpiry.ToString("dd-MMM-yyyy");
+
+        [NotMapped]
+        public string Display_CreatedOnUtc => CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+
+        [NotMapped]
+        public string Display_UpdatedOnUtc => UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
         [NotMapped]
         [Display(Name = "URLs", Prompt = "URLs")]
@@ -93,6 +100,8 @@ namespace BMF.Shared.Entities.UserManagement
                 new Column($"{nameof(Display_URLs)}", "URLs"),
                 new Column($"{nameof(Display_DateIssued)}", "Date of Issue"),
                 new Column($"{nameof(Display_DateOfExpiry)}", "Date of Expiry"),
+                new Column(nameof(Display_CreatedOnUtc), "Created Date") { searchData = nameof(CreatedOnUtc) },
+                new Column(nameof(Display_UpdatedOnUtc), "Last Updated") { searchData = nameof(UpdatedOnUtc) },
             };
             return IJQDataTableExtendDBViewModel<M_UserLicenseRenewal, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
         }

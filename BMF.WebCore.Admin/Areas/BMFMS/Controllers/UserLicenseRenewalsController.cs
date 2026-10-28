@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -222,7 +223,8 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
                 #endregion
 
                 #region // Filter Data
-                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicenseRenewal.JQDT_Index(), RawData.AsQueryable());
+                var DateFilteredData = ApplyDateFilters(_DTParams, RawData.AsQueryable());
+                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicenseRenewal.JQDT_Index(), DateFilteredData);
                 #endregion
 
                 #region // Order Data
@@ -258,7 +260,8 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
                 #endregion
 
                 #region // Filter Data
-                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicenseRenewal.JQDT_Index(), RawData.AsQueryable());
+                var DateFilteredData = ApplyDateFilters(_DTParams, RawData.AsQueryable());
+                var FinalizedData = JQDataTable._DynamicFilter(_DTParams, M_UserLicenseRenewal.JQDT_Index(), DateFilteredData);
                 #endregion
 
                 #region // Order Data
@@ -542,6 +545,49 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
         #endregion
 
         #region Functions
+
+        private static IQueryable<M_UserLicenseRenewal> ApplyDateFilters(IDataTablesRequest request, IQueryable<M_UserLicenseRenewal> renewals)
+        {
+            request.Columns = new ColumnCollection(request.Columns.Select(column =>
+            {
+                var data = column.Data == nameof(M_UserLicenseRenewal.Display_CreatedOnUtc) ? nameof(M_UserLicenseRenewal.CreatedOnUtc) :
+                    column.Data == nameof(M_UserLicenseRenewal.Display_UpdatedOnUtc) ? nameof(M_UserLicenseRenewal.UpdatedOnUtc) : column.Data;
+                if (data == column.Data)
+                    return column;
+
+                var dateColumn = new Column(data, column.Name, column.Searchable, column.Orderable,
+                    column.Search.Value, column.Search.IsRegexValue, column.DefaultValue, column.Visible)
+                {
+                    searchData = data,
+                    Operator = column.Operator,
+                    FilterControl = column.FilterControl
+                };
+                if (column.IsOrdered)
+                    dateColumn.SetColumnOrdering(column.OrderNumber, column.SortDirection == OrderDirection.Ascendant ? "asc" : "desc");
+                return dateColumn;
+            }));
+
+            foreach (var column in request.Columns.Where(c =>
+                (c.Data == nameof(M_UserLicenseRenewal.CreatedOnUtc) || c.Data == nameof(M_UserLicenseRenewal.UpdatedOnUtc)) &&
+                !string.IsNullOrWhiteSpace(c.Search.Value)))
+            {
+                if (DateTime.TryParseExact(column.Search.Value, "yyyy-MM-dd", CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out var selectedDate))
+                {
+                    renewals = column.Data == nameof(M_UserLicenseRenewal.CreatedOnUtc)
+                        ? renewals.Where(r => r.CreatedOnUtc.Date == selectedDate)
+                        : renewals.Where(r => r.UpdatedOnUtc.Date == selectedDate);
+                }
+                else
+                {
+                    renewals = renewals.Where(r => false);
+                }
+
+                // Date filters are handled above; the plugin only supports text comparisons.
+                column.Search.Value = string.Empty;
+            }
+            return renewals;
+        }
 
         public void Set_SelectList(M_UserLicenseRenewal DefineRecord)
         {
