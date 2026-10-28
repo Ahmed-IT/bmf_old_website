@@ -19,6 +19,8 @@ The `bmftest` identity has `Storage Blob Data Contributor` on the `bmfstorage` a
 
 The `bmfadmin` App Service keeps its existing credential-based configuration in its deployed `appsettings.json`. A configured Blob Storage connection string takes precedence over managed identity. The workflow excludes `appsettings*.json` from the `bmfadmin` package and explicitly disables deployment cleanup, preserving those server-side files. Do not copy their values into GitHub or local committed files. Managed identity is not enabled for `bmfadmin`.
 
+The User Licenses table displays and exports Created Date and Last Updated as `dd-MMM-yyyy hh:mm tt` (for example, `28-Oct-2026 03:00 PM`), with English month names and AM/PM. It preserves the stored UTC time; sorting and date filters still use the underlying timestamps.
+
 ## ASP.NET Framework applications
 
 Configure these named connection strings in the hosting platform:

@@ -483,6 +483,25 @@ namespace BMF.WebCore.Admin.Areas.BMFMS.Controllers
 
 		private static IQueryable<M_UserLicense> ApplyDateFilters(IDataTablesRequest request, IQueryable<M_UserLicense> licenses)
 		{
+			request.Columns = new ColumnCollection(request.Columns.Select(column =>
+			{
+				var data = column.Data == nameof(M_UserLicense.Display_CreatedOnUtc) ? nameof(M_UserLicense.CreatedOnUtc) :
+					column.Data == nameof(M_UserLicense.Display_UpdatedOnUtc) ? nameof(M_UserLicense.UpdatedOnUtc) : column.Data;
+				if (data == column.Data)
+					return column;
+
+				var dateColumn = new Column(data, column.Name, column.Searchable, column.Orderable,
+					column.Search.Value, column.Search.IsRegexValue, column.DefaultValue, column.Visible)
+				{
+					searchData = data,
+					Operator = column.Operator,
+					FilterControl = column.FilterControl
+				};
+				if (column.IsOrdered)
+					dateColumn.SetColumnOrdering(column.OrderNumber, column.SortDirection == OrderDirection.Ascendant ? "asc" : "desc");
+				return dateColumn;
+			}));
+
 			foreach (var column in request.Columns.Where(c =>
 				(c.Data == nameof(M_UserLicense.CreatedOnUtc) || c.Data == nameof(M_UserLicense.UpdatedOnUtc)) &&
 				!string.IsNullOrWhiteSpace(c.Search.Value)))

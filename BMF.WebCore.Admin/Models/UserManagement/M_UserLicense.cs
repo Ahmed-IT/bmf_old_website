@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 
 namespace BMF.Shared.Entities.UserManagement
@@ -24,6 +25,12 @@ namespace BMF.Shared.Entities.UserManagement
 
 		[NotMapped]
 		public string Display_Expire_Date => Expire_Date.ToString("dd-MMM-yyyy");
+
+		[NotMapped]
+		public string Display_CreatedOnUtc => CreatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
+
+		[NotMapped]
+		public string Display_UpdatedOnUtc => UpdatedOnUtc.ToString("dd-MMM-yyyy hh:mm tt", CultureInfo.InvariantCulture);
 
 		[NotMapped]
 		public string Display_LicenseType => LicenseType != null ? LicenseType.Display_LicenseType : string.Empty;
@@ -70,8 +77,8 @@ namespace BMF.Shared.Entities.UserManagement
 				new Column($"{nameof(LicenseType)}.{nameof(D_LicenseType.Title)}", "License Title"),
 				new Column($"{nameof(LicenseType)}.{nameof(D_LicenseType.Type)}", "License Type"),
 				new Column(nameof(License_Number), "License Number"),
-				new Column(nameof(CreatedOnUtc), "Created Date"),
-				new Column(nameof(UpdatedOnUtc), "Last Updated"),
+				new Column(nameof(Display_CreatedOnUtc), "Created Date") { searchData = nameof(CreatedOnUtc) },
+				new Column(nameof(Display_UpdatedOnUtc), "Last Updated") { searchData = nameof(UpdatedOnUtc) },
 			};
 			return IJQDataTableExtendDBViewModel<M_UserLicense, BMFDbContext>.AddStatusAndOperationColumns(jqColumns);
 		}

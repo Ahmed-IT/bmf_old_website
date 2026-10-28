@@ -49,9 +49,9 @@
             var table = $(this).DataTable();
             var tableId = this.id;
             table.columns().every(function () {
-                if (this.dataSrc() === 'CreatedOnUtc' || this.dataSrc() === 'UpdatedOnUtc') {
+                if (this.dataSrc() === 'Display_CreatedOnUtc' || this.dataSrc() === 'Display_UpdatedOnUtc') {
                     $('#dtfilter_' + tableId + 'filter_' + this.index()).find('input')
-                        .attr('type', 'date').attr('aria-label', this.dataSrc() === 'CreatedOnUtc' ? 'Created Date' : 'Last Updated');
+                        .attr('type', 'date').attr('aria-label', this.dataSrc() === 'Display_CreatedOnUtc' ? 'Created Date' : 'Last Updated');
                 }
             });
         });
