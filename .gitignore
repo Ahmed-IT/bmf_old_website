@@ -340,6 +340,7 @@ ASALocalRun/
 healthchecksdb
 
 # Local application settings and secrets
+**/appsettings.json
 **/appsettings.*.json
 !**/appsettings.example.json
 **/Web.local.config

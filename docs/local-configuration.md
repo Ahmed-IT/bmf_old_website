@@ -1,6 +1,6 @@
 # Local and deployment configuration
 
-The checked-in configuration files contain empty connection-string values. Supply credentials through environment variables or the hosting platform's secret settings; do not commit them.
+Checked-in configuration templates contain empty connection-string values. Copy [appsettings.example.json](../BMF.WebCore.Admin/appsettings.example.json) to `BMF.WebCore.Admin/appsettings.json` for local setup; that generated file is ignored. Supply credentials through environment variables or the hosting platform's secret settings, and do not commit them.
 
 ## ASP.NET Core admin
 
