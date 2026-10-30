@@ -116,7 +116,13 @@ namespace BMF_WebSite.Models
                 await client.ConnectAsync(GetSetting("Host"), int.Parse(GetSetting("Port")), MailKit.Security.SecureSocketOptions.StartTls);
                 await client.AuthenticateAsync(new MailKit.Security.SaslMechanismOAuth2(GetSetting("Username"), accessToken));
                 await client.SendAsync(mimeMessage);
-                await client.DisconnectAsync(true);
+                try { await client.DisconnectAsync(true); }
+                catch (Exception ex) when (ex is IOException || ex is MailKit.ProtocolException
+                    || ex is MailKit.Net.Smtp.SmtpCommandException || ex is System.Net.Sockets.SocketException)
+                {
+                    // DATA was accepted. A failed QUIT must not turn a sent email into a retryable failure.
+                    System.Diagnostics.Trace.TraceWarning("BMF password email accepted; SMTP disconnect failed ({0}).", ex.GetType().Name);
+                }
             }
         }
 

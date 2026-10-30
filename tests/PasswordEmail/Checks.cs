@@ -65,12 +65,14 @@ internal static class Checks
         {
             foreach (var user in new[] { null, new ClsUser(), new ClsUser { Email_Address = " " }, new ClsUser { Email_Address = "not-an-email" },
                 new ClsUser { Email_Address = "member@example.com\r\nBcc: other@example.com" } })
-                Assert(controller.SendAccountPassword(user).GetAwaiter().GetResult() is BadRequestErrorMessageResult,
+                Assert(((NegotiatedContentResult<string>)controller.SendAccountPassword(user).GetAwaiter().GetResult()).StatusCode == System.Net.HttpStatusCode.BadRequest,
                     "Invalid request is rejected before a database query");
             controller.ModelState.AddModelError("Email_Address", "Invalid JSON value");
-            Assert(controller.SendAccountPassword(new ClsUser { Email_Address = "member@example.com" }).GetAwaiter().GetResult()
-                is BadRequestErrorMessageResult, "Invalid model state is rejected");
+            Assert(((NegotiatedContentResult<string>)controller.SendAccountPassword(new ClsUser { Email_Address = "member@example.com" }).GetAwaiter().GetResult())
+                .StatusCode == System.Net.HttpStatusCode.BadRequest, "Invalid model state is rejected");
         }
+
+        RecoveryApiChecks.Run();
 
         // Test configuration points to a loopback fixture. Never send these messages externally.
         try
@@ -89,6 +91,8 @@ internal static class Checks
             {
                 Assert(true, "SMTP authentication failures propagate instead of reporting Sent");
             }
+            PasswordEmailService.SendWithAccessTokenAsync("Test Member", "member@example.com", "sample-password", "fixture-token").GetAwaiter().GetResult();
+            Assert(true, "A disconnect failure after SMTP acceptance does not incorrectly report a failed send");
         }
         finally
         {

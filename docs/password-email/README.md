@@ -1,6 +1,24 @@
 # BMF App password email
 
-`POST /api/SendAccountPassword` accepts `{"Email_Address":"member@example.com"}`. It finds an active, non-deleted account and emails that account's stored password to its registered address. The mobile app's existing request and successful `200 "Sent"` response are preserved. SMTP failures return a generic `500` response; missing or invalid email addresses return `400`; unknown accounts return `404 "Account Not Found"`.
+`POST /api/SendAccountPassword` accepts `{"Email_Address":"member@example.com"}`. It trims and validates exactly one email address, performs a case-insensitive lookup of active, non-deleted accounts, and emails only the matched account's stored password to its registered address. Request-supplied IDs, names, and passwords cannot select the account or replace its credentials. Missing/deleted/inactive accounts and ambiguous active matches never send email. The existing successful `200 "Sent"` wire response is preserved.
+
+## Recovery HTTP contract and app messages
+
+Error bodies are JSON strings with safe descriptions; SMTP, OAuth, and database diagnostics are not returned. The latest app maps the HTTP status to the following text rather than displaying arbitrary server response bodies:
+
+| HTTP | Meaning | Latest app message |
+| --- | --- | --- |
+| 200, JSON `"Sent"` | The registered account's email was accepted by the mail server | Password email sent. Please check your inbox and junk folder. |
+| 400 | Missing/malformed email, multiple addresses, header injection, or invalid model | Enter a valid email address. |
+| 404 | No active, non-deleted account matches the email | This email address was not found for an active account. Check the address or contact BMF support. |
+| 409 | More than one active account matches | More than one active account uses this email address. Please contact BMF support. |
+| 500 | Database/processing failure or invalid stored account details | Unable to process your password request. Please try again later. |
+| 502 | Permanent SMTP command/recipient/message rejection | The email server could not accept your password email. Please contact BMF support. |
+| 503 | Temporary SMTP rejection, authentication, configuration, or connection failure | Password recovery email is temporarily unavailable. Please try again later. |
+
+The app additionally maps upstream 401/403, 408/504, and 429 to safe account-access, timeout, and rate-limit messages. It rejects all non-200 responses and unexpected/malformed success bodies. Timeout guidance asks the member to check their inbox before retrying, since a request may have reached the server. User cancellation remains cancellation; the form stays open on errors, shows the message, and clears its busy indicator in `finally`. The recovery request includes only the trimmed email, never stale credentials from another account form.
+
+An SMTP disconnect failure after acceptance does not turn a submitted email into a retryable failure. SMTP acceptance does not independently confirm inbox delivery.
 
 The design uses the website's red (`#cb1a2b`), charcoal (`#21252e`), white background, and BMF logo. The HTML and logo are embedded in the application assembly so they are included in builds and publishing. The email uses inline styles, presentation tables, a mobile layout, an embedded CID logo, HTML-encoded member values, and a plain text fallback.
 
@@ -36,7 +54,7 @@ Build `BMF_WebSite/BMF_WebSite.csproj` with Visual Studio MSBuild, then run:
 python tests/PasswordEmail/verify.py
 ```
 
-The checks use the compiled website assembly. They cover HTML encoding, literal template tokens in passwords, missing profiles, recipient isolation, plain text and HTML parts, the inline logo, invalid API requests, successful STARTTLS/XOAUTH2 delivery to a local SMTP fixture, and authentication rejection. The fixture uses a fictional token and a short-lived certificate trusted only by the test executable. Python's `cryptography` package is required for the test certificate. No real member accounts or external recipients are used. The test executable may require normal Windows TLS provider access when run from a restricted sandbox.
+The checks use the compiled website assembly. They cover HTML encoding, literal template tokens in passwords, missing profiles, recipient isolation, plain text and HTML parts, the opaque inline logo, invalid API requests, account eligibility, normalized lookup and registered recipient selection, duplicate matches, stored-data failures, HTTP statuses, awaited submission, successful STARTTLS/XOAUTH2 delivery to a local SMTP fixture, authentication rejection, and disconnect failure after acceptance. Account lookup and delivery boundaries are overridden with synthetic data for controller tests; the production EF query is not executed against a live database. The fixture uses a fictional token and a short-lived certificate trusted only by the test executable. Python's `cryptography` package is required for the test certificate. No real member accounts or external recipients are used. The test executable may require normal Windows TLS provider access when run from a restricted sandbox.
 
 After these checks, optionally verify live OAuth token renewal and SMTP authentication, without sending mail:
 

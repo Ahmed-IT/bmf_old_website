@@ -53,7 +53,7 @@ errors = []
 
 def smtp_fixture():
     try:
-        for attempt in range(2):
+        for attempt in range(3):
             conn, _ = listener.accept()
             conn.settimeout(15)
             stream = conn.makefile('rwb', buffering=0)
@@ -74,7 +74,7 @@ def smtp_fixture():
             auth = stream.readline().strip().split()
             assert [part.upper() for part in auth[:2]] == [b'AUTH', b'XOAUTH2']
             assert base64.b64decode(auth[2]) == b'user=bahrainmotorfederation@outlook.com\x01auth=Bearer fixture-token\x01\x01'
-            if attempt:
+            if attempt == 1:
                 reply(b'535 5.7.3 Authentication unsuccessful')
             else:
                 reply(b'235 2.7.0 Authenticated')
@@ -95,7 +95,7 @@ def smtp_fixture():
                 assert message.get_body(preferencelist=('html',)).get_content().find('sample-password') >= 0
                 assert any(part.get('Content-ID') == '<bmf-logo>' for part in message.walk())
                 reply(b'250 Accepted')
-            if stream.readline().strip().upper() == b'QUIT':
+            if stream.readline().strip().upper() == b'QUIT' and attempt != 2:
                 reply(b'221 Bye')
             stream.close()
             conn.close()
@@ -110,7 +110,8 @@ exe = OUT / 'PasswordEmailChecks.exe'
 refs = ['BMF_WebSite.dll', 'System.Web.Http.dll', 'System.Net.Http.Formatting.dll', 'EntityFramework.dll', 'MailKit.dll', 'MimeKit.dll']
 subprocess.run([str(csc), '/nologo', '/out:' + str(exe),
                 '/r:System.Web.dll', '/r:System.Net.Http.dll', '/r:System.Configuration.dll', '/r:System.Drawing.dll',
-                *['/r:' + str(OUT / ref) for ref in refs], str(Path(__file__).with_name('Checks.cs'))], check=True)
+                *['/r:' + str(OUT / ref) for ref in refs], str(Path(__file__).with_name('Checks.cs')),
+                str(Path(__file__).with_name('RecoveryApiChecks.cs'))], check=True)
 config = ET.Element('configuration')
 startup = ET.SubElement(config, 'startup')
 ET.SubElement(startup, 'supportedRuntime', version='v4.0', sku='.NETFramework,Version=v4.7.2')

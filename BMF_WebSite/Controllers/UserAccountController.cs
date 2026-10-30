@@ -150,44 +150,76 @@ namespace BMF_WebSite.Controllers
         [Route("api/SendAccountPassword")]
         public async Task<IHttpActionResult> SendAccountPassword(ClsUser user)
         {
-            if (user == null || string.IsNullOrWhiteSpace(user.Email_Address) || !ModelState.IsValid)
-                return BadRequest("A valid email address is required.");
+            if (user == null || !ModelState.IsValid || !IsSingleEmailAddress(user.Email_Address))
+                return Content(HttpStatusCode.BadRequest, "A valid email address is required.");
 
             var emailAddress = user.Email_Address.Trim();
-            if (!new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(emailAddress))
-                return BadRequest("A valid email address is required.");
-
             try
             {
-                var query = await (from u in db.M_UserAccount
-                                   where u.Email_Address
-                                   == emailAddress
-                                   && u.IsActive == true && u.DeletedOnUtc == null
-                                   select u).FirstOrDefaultAsync();
-
-                if (query != null)
-                {
-                    var profile = await (from u in db.M_UserProfile
-                                         where u.ID == query.ID
-                                         select u).FirstOrDefaultAsync();
-
-                    await PasswordEmailService.SendAsync(profile == null ? null : profile.FullName,
-                        query.Email_Address, query.Password);
-
-                    return Content(HttpStatusCode.OK, "Sent");
-                }
-                else
-                {
+                var matches = await FindPasswordRecoveryAccountsAsync(emailAddress.ToLowerInvariant());
+                var accounts = matches.Where(candidate => candidate.IsActive && candidate.DeletedOnUtc == null).ToList();
+                if (accounts.Count == 0)
                     return Content(HttpStatusCode.NotFound, "Account Not Found");
+                if (accounts.Count > 1)
+                    return Content(HttpStatusCode.Conflict, "More than one active account uses this email address. Please contact BMF support.");
+
+                var account = accounts[0];
+                // Always use the registered recipient and stored credentials, never request-supplied account details.
+                var recipient = account.Email_Address == null ? null : account.Email_Address.Trim();
+                if (!IsSingleEmailAddress(recipient) || !string.Equals(recipient, emailAddress, StringComparison.OrdinalIgnoreCase)
+                    || string.IsNullOrWhiteSpace(account.Password))
+                    return Content(HttpStatusCode.InternalServerError, "Unable to process the password request. Please contact BMF support.");
+
+                try
+                {
+                    await SendPasswordRecoveryEmailAsync(account, recipient);
                 }
+                catch (MailKit.Net.Smtp.SmtpCommandException ex)
+                {
+                    System.Diagnostics.Trace.TraceError("BMF password email rejected ({0}).", ex.GetType().Name);
+                    if ((int)ex.StatusCode >= 400 && (int)ex.StatusCode < 500)
+                        return Content(HttpStatusCode.ServiceUnavailable, "Password recovery email is temporarily unavailable. Please try again later.");
+                    return Content(HttpStatusCode.BadGateway, "The email server could not accept the password email. Please contact BMF support.");
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Trace.TraceError("BMF password email unavailable ({0}).", ex.GetType().Name);
+                    return Content(HttpStatusCode.ServiceUnavailable, "Password recovery email is temporarily unavailable. Please try again later.");
+                }
+
+                return Content(HttpStatusCode.OK, "Sent");
             }
             catch (Exception ex)
             {
-                // Do not return SMTP diagnostics or account details to the caller.
-                System.Diagnostics.Trace.TraceError("BMF password email failed ({0}).", ex.GetType().Name);
-                return Content(HttpStatusCode.InternalServerError, "Unable to send the password email. Please try again later.");
+                System.Diagnostics.Trace.TraceError("BMF password recovery lookup failed ({0}).", ex.GetType().Name);
+                return Content(HttpStatusCode.InternalServerError, "Unable to process the password request. Please try again later.");
             }
         }
 
+        protected virtual Task<List<M_UserAccount>> FindPasswordRecoveryAccountsAsync(string normalizedEmail)
+        {
+            return db.M_UserAccount.Include(account => account.M_UserProfile)
+                .Where(account => account.Email_Address != null && account.Email_Address.Trim().ToLower() == normalizedEmail
+                    && account.IsActive && account.DeletedOnUtc == null)
+                .Take(2).ToListAsync();
+        }
+
+        protected virtual Task SendPasswordRecoveryEmailAsync(M_UserAccount account, string recipient)
+        {
+            return PasswordEmailService.SendAsync(account.M_UserProfile == null ? null : account.M_UserProfile.FullName,
+                recipient, account.Password);
+        }
+
+        private static bool IsSingleEmailAddress(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return false;
+            var email = value.Trim();
+            if (email.Length > 254 || !new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(email)) return false;
+            try
+            {
+                return string.Equals(new System.Net.Mail.MailAddress(email).Address, email, StringComparison.OrdinalIgnoreCase);
+            }
+            catch (FormatException) { return false; }
+        }
     }
 }
