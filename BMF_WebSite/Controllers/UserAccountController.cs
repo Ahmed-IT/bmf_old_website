@@ -150,11 +150,18 @@ namespace BMF_WebSite.Controllers
         [Route("api/SendAccountPassword")]
         public async Task<IHttpActionResult> SendAccountPassword(ClsUser user)
         {
+            if (user == null || string.IsNullOrWhiteSpace(user.Email_Address) || !ModelState.IsValid)
+                return BadRequest("A valid email address is required.");
+
+            var emailAddress = user.Email_Address.Trim();
+            if (!new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(emailAddress))
+                return BadRequest("A valid email address is required.");
+
             try
             {
                 var query = await (from u in db.M_UserAccount
                                    where u.Email_Address
-                                   == user.Email_Address
+                                   == emailAddress
                                    && u.IsActive == true && u.DeletedOnUtc == null
                                    select u).FirstOrDefaultAsync();
 
@@ -164,20 +171,8 @@ namespace BMF_WebSite.Controllers
                                          where u.ID == query.ID
                                          select u).FirstOrDefaultAsync();
 
-                    string emailSubject = "Dear " + profile.FullName + "," +
-                                            "</br>" +
-                                            "We have sent you this email response to your request to get your password for BMF App. " +
-                                            "</br></br>" +
-                                            "Please find below your password:" +
-                                            "</br>" +
-                                            query.Password +
-                                            "</br></br>" +
-                                            "Thank You," +
-                                            "</br>" +
-                                            "BMF" +
-                                            "</br>";
-
-                    var sendMail = EmailHelper.SendMail(query.Email_Address,"", "BMF APP - FORGOT PASSWORD", emailSubject);
+                    await PasswordEmailService.SendAsync(profile == null ? null : profile.FullName,
+                        query.Email_Address, query.Password);
 
                     return Content(HttpStatusCode.OK, "Sent");
                 }
@@ -188,7 +183,9 @@ namespace BMF_WebSite.Controllers
             }
             catch (Exception ex)
             {
-                return Content(HttpStatusCode.InternalServerError, ex.Message);
+                // Do not return SMTP diagnostics or account details to the caller.
+                System.Diagnostics.Trace.TraceError("BMF password email failed ({0}).", ex.GetType().Name);
+                return Content(HttpStatusCode.InternalServerError, "Unable to send the password email. Please try again later.");
             }
         }
 
